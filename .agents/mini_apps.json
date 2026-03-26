@@ -1,0 +1,21 @@
+{
+  "app_id": "69c54113e1062c8616890676",
+  "slug": "untitled-app-16890676",
+  "pages": {
+    "Home": {
+      "title": "Home"
+    },
+    "FanChat": {
+      "title": "FanChat"
+    },
+    "ArtistDashboard": {
+      "title": "ArtistDashboard"
+    },
+    "LyricManager": {
+      "title": "LyricManager"
+    },
+    "Wallet": {
+      "title": "Wallet"
+    }
+  }
+}
