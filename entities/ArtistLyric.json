@@ -1,0 +1,41 @@
+{
+  "type": "object",
+  "properties": {
+    "artist_id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "lyrics": {
+      "type": "string"
+    },
+    "emotion_tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "themes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "key_phrases": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "year": {
+      "type": "number"
+    },
+    "usage_count": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "required": [],
+  "name": "ArtistLyric"
+}
