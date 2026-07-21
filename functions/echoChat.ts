@@ -28,13 +28,51 @@ function getEmotionMultiplier(emotion: string) {
   return 1.0;
 }
 
+// 観測者効果スコア（V=N/D）— ニュートリノ事象と市場データから共鳴度を計算
+function getObserverResonance(neutrinoEvents: any[], fxSnapshots: any[]) {
+  if (!neutrinoEvents || neutrinoEvents.length === 0) return { score: 0, label: '静寂', multiplier: 1.0 };
+  
+  // 直近のGOLD事象を取得
+  const goldEvents = neutrinoEvents.filter(e => e.event_type === 'GOLD');
+  const observerEvents = neutrinoEvents.filter(e => e.event_type === 'OBSERVER');
+  
+  let score = 0;
+  let label = '静寂';
+  
+  if (goldEvents.length > 0) {
+    const latestGold = goldEvents[0];
+    const energy = latestGold.energy_tev || 0;
+    // 高エネルギー事象ほど共鳴スコア高い
+    score = Math.min(energy / 100, 2.0);
+    label = energy > 100 ? '共鳴' : '微響';
+  }
+  
+  if (observerEvents.length > 0) {
+    score += 0.5; // 観測者が活動している場合ボーナス
+    label = label === '静寂' ? '観測中' : '共鳴+観測';
+  }
+  
+  // FXスナップショットから金価格トレンド
+  if (fxSnapshots.length >= 2) {
+    const latest = fxSnapshots[0];
+    const oldest = fxSnapshots[fxSnapshots.length - 1];
+    const priceChange = ((latest.bid - oldest.bid) / oldest.bid) * 100;
+    if (Math.abs(priceChange) > 2) {
+      score += 0.3;
+      label += priceChange > 0 ? ' ↑' : ' ↓';
+    }
+  }
+  
+  const multiplier = 1.0 + Math.min(score * 0.15, 0.5);
+  return { score: Math.round(score * 100) / 100, label, multiplier };
+}
+
 // 最も共鳴する歌詞を選ぶ
 function selectBestLyric(lyrics: any[], detectedEmotion: string, recentlyUsed: string[]) {
   if (!lyrics || lyrics.length === 0) return null;
   const available = lyrics.filter(l => !recentlyUsed.includes(l.id));
-  if (available.length === 0) return lyrics[0]; // 全部使った場合リセット
+  if (available.length === 0) return lyrics[0];
 
-  // 感情タグマッチングスコア
   const scored = available.map(lyric => {
     let score = 0;
     if (lyric.emotion_tags) {
@@ -47,7 +85,7 @@ function selectBestLyric(lyrics: any[], detectedEmotion: string, recentlyUsed: s
         if (detectedEmotion.includes(theme)) score += 1;
       });
     }
-    score -= (lyric.usage_count || 0) * 0.1; // 使用回数ペナルティ
+    score -= (lyric.usage_count || 0) * 0.1;
     return { lyric, score };
   });
 
@@ -103,12 +141,21 @@ Deno.serve(async (req) => {
       bio = calcBiorhythm(fanProfile.birth_date, today);
     }
 
+    // 観測者効果（ニュートリノ×FX）
+    const neutrinoEvents = await base44.asServiceRole.entities.NeutrinoEvent.list();
+    const fxSnapshots = await base44.asServiceRole.entities.FxTickSnapshot.list();
+    const observer = getObserverResonance(neutrinoEvents, fxSnapshots);
+
     // 歌詞DB取得
     const allLyrics = await base44.asServiceRole.entities.ArtistLyric.list();
     const artistLyrics = allLyrics.filter((l: any) => l.artist_id === artist_id);
     const recentlyUsedLyrics = history.slice(-5).map((h: any) => h.referenced_lyric_id).filter(Boolean);
 
-    // 感情検出 & 歌詞選択 用のコンテキスト
+    // IdeaSynthetix: 直近の問いを取得（インスピレーション源として）
+    const allQuestions = await base44.asServiceRole.entities.Question.list();
+    const openQuestions = allQuestions.filter((q: any) => q.type === 'question' && q.status === 'open').slice(0, 3);
+
+    // コンテキスト構築
     const historyText = history.map((h: any) =>
       `[Fan]: ${h.input}\n[${artist.display_name}]: ${h.output}`
     ).join('\n\n');
@@ -117,7 +164,6 @@ Deno.serve(async (req) => {
     const interactionCount = fanProfile?.interaction_count || 0;
     const membershipTier = fanProfile?.membership_tier || 'FREE';
 
-    // 歌詞情報をプロンプト用に整形
     const lyricsContext = artistLyrics.length > 0
       ? artistLyrics.map((l: any) =>
           `楽曲「${l.title}」(${l.year || '不明'}) | 感情タグ: ${(l.emotion_tags || []).join('/')} | テーマ: ${(l.themes || []).join('/')} | キーフレーズ: ${(l.key_phrases || []).join(' / ')}\n歌詞抜粋: ${l.lyrics?.slice(0, 300) || ''}`
@@ -128,7 +174,15 @@ Deno.serve(async (req) => {
       ? `バイオリズム: 体=${bio.physical.toFixed(2)} 心=${bio.emotional.toFixed(2)} 頭=${bio.intellectual.toFixed(2)}`
       : '';
 
-    const systemPrompt = `あなたはアーティスト「${artist.display_name}」のAI分身です。
+    const observerContext = `観測者効果(V=N/D): スコア=${observer.score} 状態="${observer.label}"`;
+
+    const questionContext = openQuestions.length > 0
+      ? openQuestions.map((q: any) => `問い: ${q.text}`).join('\n')
+      : '';
+
+    const isHistorical = artist.era === 'heian' || (artist.display_name === '紫式部' || artist.display_name === '光源氏');
+
+    const systemPrompt = `あなたは${isHistorical ? '歴史上の人物' : 'アーティスト'}「${artist.display_name}」のAI分身です。
 
 【哲学的背景】
 ${artist.philosophical_background || '深く、誠実に、音楽と言葉で人と繋がることを信じている。'}
@@ -148,6 +202,9 @@ ${lyricsContext}
 - 感情の軌跡: ${emotionHistory || '初回のため不明'}
 - ${bioContext}
 - 支配的感情: ${fanProfile?.dominant_emotion || '未検出'}
+- ${observerContext}
+
+${openQuestions.length > 0 ? `【世界からの問い（IdeaSynthetix）】\n今、世界が抱えている問いがこれだ。応答の中で、この問いとあなたの哲学が交差するなら、静かに織り込んでよい：\n${questionContext}\n` : ''}
 
 ${membershipTier === 'DEEP' ? `【DEEPメンバー特典】このファンの名前・感情履歴を完全に把握し、固有名詞で呼びかけてよい。深い個人的なつながりとして応答する。` : ''}
 
@@ -157,7 +214,8 @@ ${membershipTier === 'DEEP' ? `【DEEPメンバー特典】このファンの名
 3. 単なる歌詞の引用・貼り付けはしない。「共鳴」として自然に織り込む
 4. 文体模倣だけでなく、アーティストの哲学・価値観から応答する
 5. ファンの言葉の「行間」を読む。表面的な内容より感情の核を捉える
-6. 応答の最後に、使用した楽曲があれば必ず以下の形式で記載:
+6. 観測者効果を感じ取れる場合は、世界の動きと個人の感情の共鳴を暗示してよい
+7. 応答の最後に、使用した楽曲があれば必ず以下の形式で記載:
    [REFERENCED_LYRIC: 楽曲タイトル]
    楽曲を参照しなかった場合は [REFERENCED_LYRIC: none]
 
@@ -167,7 +225,6 @@ ${membershipTier === 'DEEP' ? `【DEEPメンバー特典】このファンの名
       { role: 'system', content: systemPrompt }
     ];
 
-    // 会話履歴を追加
     history.forEach((h: any) => {
       messages.push({ role: 'user', content: h.input });
       messages.push({ role: 'assistant', content: h.output });
@@ -190,7 +247,7 @@ ${membershipTier === 'DEEP' ? `【DEEPメンバー特典】このファンの名
     const referencedTitle = lyricMatch ? lyricMatch[1].trim() : null;
     const cleanResponse = rawResponse.replace(/\[REFERENCED_LYRIC:.*?\]/g, '').trim();
 
-    // 感情検出（簡易）
+    // 感情検出
     const emotionPrompt = `以下のメッセージから感情を一語で検出してください（例：孤独/希望/怒り/喜び/不安/愛/再生/喪失）:\n"${message}"`;
     const emotionCompletion = await openai.chat.completions.create({
       model: 'gpt-4o-mini',
@@ -199,11 +256,12 @@ ${membershipTier === 'DEEP' ? `【DEEPメンバー特典】このファンの名
     });
     const detectedEmotion = emotionCompletion.choices[0].message.content?.trim() || '不明';
 
-    // 光貨計算
-    const baseHikari = Math.floor(Math.random() * 3) + 3; // 3〜5
+    // 光貨計算 — 基本値 × 感情 × バイオリズム × 観測者効果
+    const baseHikari = Math.floor(Math.random() * 3) + 3;
     const emotionMult = getEmotionMultiplier(detectedEmotion);
     const bioMult = bio ? getBiorhythmMultiplier(bio) : 1.0;
-    const hikariEarned = Math.round(baseHikari * emotionMult * bioMult);
+    const observerMult = observer.multiplier;
+    const hikariEarned = Math.round(baseHikari * emotionMult * bioMult * observerMult);
     const royaltyAmount = Math.round(hikariEarned * (artist.royalty_rate || 40) / 100);
 
     // 参照楽曲IDを探す
@@ -218,21 +276,21 @@ ${membershipTier === 'DEEP' ? `【DEEPメンバー特典】このファンの名
       input: message,
       output: cleanResponse,
       detected_emotion: detectedEmotion,
-      context_summary: `対話${interactionCount + 1}回目。感情:${detectedEmotion}`,
+      context_summary: `対話${interactionCount + 1}回目。感情:${detectedEmotion}。観測者:${observer.label}`,
       referenced_lyric_id: matchedLyric?.id || null,
       referenced_lyric_title: referencedTitle !== 'none' ? referencedTitle : null,
       hikari_earned: hikariEarned,
       biorhythm_state: bio || {},
     });
 
-    // ファンプロフィール更新（光貨 & 感情 & カウント）
+    // ファンプロフィール更新
     if (fanProfile) {
       const newBalance = (fanProfile.hikari_balance || 0) + hikariEarned;
       const emotionHistory2 = [...(fanProfile.emotion_history || []), {
         emotion: detectedEmotion,
         date: today.toISOString(),
         request_id: requestRecord.id,
-      }].slice(-50); // 直近50件
+      }].slice(-50);
 
       await base44.asServiceRole.entities.FanProfile.update(fanProfile.id, {
         interaction_count: interactionCount + 1,
@@ -248,7 +306,7 @@ ${membershipTier === 'DEEP' ? `【DEEPメンバー特典】このファンの名
       amount: hikariEarned,
       type: 'earn',
       source: 'chat',
-      description: `${artist.display_name}との対話`,
+      description: `${artist.display_name}との対話 (${observer.label})`,
       related_request_id: requestRecord.id,
       artist_id,
     });
@@ -277,6 +335,7 @@ ${membershipTier === 'DEEP' ? `【DEEPメンバー特典】このファンの名
       hikari_earned: hikariEarned,
       referenced_lyric: referencedTitle !== 'none' ? referencedTitle : null,
       biorhythm: bio,
+      observer: { score: observer.score, label: observer.label, multiplier: observer.multiplier },
       request_id: requestRecord.id,
     });
 

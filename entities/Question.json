@@ -1,0 +1,52 @@
+{
+  "properties": {
+    "answer": {
+      "type": "string"
+    },
+    "cross_note": {
+      "type": "string"
+    },
+    "depth": {
+      "type": "number"
+    },
+    "industry": {
+      "type": "string"
+    },
+    "insight": {
+      "type": "string"
+    },
+    "parent_id": {
+      "type": "string"
+    },
+    "root_id": {
+      "type": "string"
+    },
+    "sheet_synced": {
+      "type": "boolean"
+    },
+    "source_doi": {
+      "type": "string"
+    },
+    "source_title": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "tags": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "text": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    }
+  },
+  "type": "object",
+  "required": [],
+  "name": "Question"
+}

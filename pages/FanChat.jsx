@@ -41,6 +41,7 @@ export default function FanChat() {
   const [showSetup, setShowSetup] = useState(false);
   const [birthDate, setBirthDate] = useState("");
   const [biorhythm, setBiorhythm] = useState(null);
+  const [observer, setObserver] = useState(null);
   const bottomRef = useRef(null);
 
   const params = new URLSearchParams(window.location.search);
@@ -68,7 +69,6 @@ export default function FanChat() {
         setShowSetup(true);
       }
 
-      // 過去の対話履歴
       const history = requests
         .filter(r => r.artist_id === artistId)
         .sort((a, b) => new Date(a.created_date) - new Date(b.created_date))
@@ -131,6 +131,7 @@ export default function FanChat() {
       }]);
       setHikariTotal(prev => prev + (result.hikari_earned || 0));
       if (result.biorhythm) setBiorhythm(result.biorhythm);
+      if (result.observer) setObserver(result.observer);
     } catch (err) {
       setMessages(prev => [...prev, {
         role: "artist",
@@ -183,7 +184,7 @@ export default function FanChat() {
         flexDirection: "column",
         gap: 16,
       }}>
-        <div style={{ fontSize: 32 }}>🎤</div>
+        <div style={{ fontSize: 32 }}>✦</div>
         <div>アーティストが見つかりません</div>
         <a href="/" style={{ color: "#a78bfa", fontSize: 13 }}>← トップへ戻る</a>
       </div>
@@ -236,7 +237,7 @@ export default function FanChat() {
           justifyContent: "center",
           fontSize: 18,
         }}>
-          {!artist.avatar_url && "🎤"}
+          {!artist.avatar_url && "✦"}
         </div>
         <div style={{ flex: 1 }}>
           <div style={{ fontWeight: 700, fontSize: 16 }}>{artist.display_name}</div>
@@ -252,27 +253,58 @@ export default function FanChat() {
           padding: "6px 14px",
           fontSize: 13,
         }}>
-          <span style={{ fontSize: 16 }}>✨</span>
+          <span style={{ fontSize: 16 }}>✦</span>
           <span style={{ fontWeight: 700, color: "#a78bfa" }}>{hikariTotal}</span>
           <span style={{ color: "#6b7280", fontSize: 11 }}>光貨</span>
         </div>
       </div>
 
-      {/* バイオリズムパネル */}
-      {biorhythm && (
-        <div style={{
-          margin: "12px 20px 0",
-          background: "rgba(255,255,255,0.02)",
-          border: "1px solid rgba(255,255,255,0.06)",
-          borderRadius: 12,
-          padding: "12px 16px",
-        }}>
-          <div style={{ fontSize: 10, color: "#4b5563", letterSpacing: "0.1em", marginBottom: 8 }}>今日のバイオリズム</div>
-          <BioBar label="体" value={biorhythm.physical} />
-          <BioBar label="心" value={biorhythm.emotional} />
-          <BioBar label="頭" value={biorhythm.intellectual} />
-        </div>
-      )}
+      {/* 観測者 + バイオリズムパネル */}
+      <div style={{
+        margin: "12px 20px 0",
+        display: "flex",
+        gap: 12,
+      }}>
+        {/* 観測者状態 */}
+        {observer && (
+          <div style={{
+            flex: "1 1 50%",
+            background: "rgba(96,165,250,0.04)",
+            border: "1px solid rgba(96,165,250,0.12)",
+            borderRadius: 12,
+            padding: "12px 16px",
+          }}>
+            <div style={{ fontSize: 10, color: "#4b5563", letterSpacing: "0.1em", marginBottom: 6 }}>観測者 V=N/D</div>
+            <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+              <div style={{
+                width: 6, height: 6, borderRadius: "50%",
+                background: observer.score > 1 ? "#34d399" : observer.score > 0 ? "#60a5fa" : "#374151",
+                animation: observer.score > 0 ? "pulse 2s infinite" : "none",
+              }} />
+              <span style={{ fontSize: 12, fontWeight: 600, color: "#60a5fa" }}>{observer.label}</span>
+            </div>
+            <div style={{ fontSize: 10, color: "#4b5563", marginTop: 4 }}>
+              スコア {observer.score} × {observer.multiplier.toFixed(2)}
+            </div>
+          </div>
+        )}
+
+        {/* バイオリズム */}
+        {biorhythm && (
+          <div style={{
+            flex: "1 1 50%",
+            background: "rgba(255,255,255,0.02)",
+            border: "1px solid rgba(255,255,255,0.06)",
+            borderRadius: 12,
+            padding: "12px 16px",
+          }}>
+            <div style={{ fontSize: 10, color: "#4b5563", letterSpacing: "0.1em", marginBottom: 8 }}>バイオリズム</div>
+            <BioBar label="体" value={biorhythm.physical} />
+            <BioBar label="心" value={biorhythm.emotional} />
+            <BioBar label="頭" value={biorhythm.intellectual} />
+          </div>
+        )}
+      </div>
 
       {/* メッセージエリア */}
       <div style={{
@@ -321,65 +353,39 @@ export default function FanChat() {
                 justifyContent: "center",
                 fontSize: 14,
               }}>
-                {!artist.avatar_url && "🎤"}
+                {!artist.avatar_url && "✦"}
               </div>
             )}
-            <div style={{ maxWidth: "75%" }}>
-              <div style={{
-                background: msg.role === "fan"
-                  ? "linear-gradient(135deg, #4c1d95, #1e3a5f)"
-                  : "rgba(255,255,255,0.05)",
-                border: msg.role === "fan"
-                  ? "1px solid rgba(167,139,250,0.3)"
-                  : "1px solid rgba(255,255,255,0.08)",
-                borderRadius: msg.role === "fan" ? "18px 18px 4px 18px" : "18px 18px 18px 4px",
-                padding: "12px 16px",
-                fontSize: 14,
-                lineHeight: 1.7,
-                color: msg.isError ? "#6b7280" : "#e8e8f0",
-                fontStyle: msg.isError ? "italic" : "normal",
-              }}>
-                {msg.text}
-              </div>
-              {msg.role === "artist" && (msg.emotion || msg.hikari || msg.lyric) && (
+            <div style={{
+              maxWidth: msg.role === "fan" ? "75%" : "80%",
+              background: msg.role === "fan"
+                ? "rgba(167,139,250,0.08)"
+                : msg.isError ? "rgba(248,113,113,0.05)" : "rgba(255,255,255,0.04)",
+              border: msg.role === "fan"
+                ? "1px solid rgba(167,139,250,0.15)"
+                : msg.isError ? "1px solid rgba(248,113,113,0.2)" : "1px solid rgba(255,255,255,0.06)",
+              borderRadius: 16,
+              padding: "14px 18px",
+            }}>
+              <div style={{ fontSize: 14, lineHeight: 1.7 }}>{msg.text}</div>
+              {msg.role === "artist" && !msg.isError && (
                 <div style={{
                   display: "flex",
-                  gap: 8,
-                  marginTop: 6,
-                  flexWrap: "wrap",
+                  gap: 10,
+                  marginTop: 8,
+                  paddingTop: 8,
+                  borderTop: "1px solid rgba(255,255,255,0.04)",
+                  fontSize: 10,
+                  color: "#4b5563",
                 }}>
                   {msg.emotion && (
-                    <span style={{
-                      fontSize: 10,
-                      color: "#a78bfa",
-                      background: "rgba(167,139,250,0.1)",
-                      borderRadius: 4,
-                      padding: "2px 8px",
-                    }}>
-                      {msg.emotion}
-                    </span>
-                  )}
-                  {msg.lyric && (
-                    <span style={{
-                      fontSize: 10,
-                      color: "#60a5fa",
-                      background: "rgba(96,165,250,0.1)",
-                      borderRadius: 4,
-                      padding: "2px 8px",
-                    }}>
-                      ♪ {msg.lyric}
-                    </span>
+                    <span>感情: {msg.emotion}</span>
                   )}
                   {msg.hikari > 0 && (
-                    <span style={{
-                      fontSize: 10,
-                      color: "#fbbf24",
-                      background: "rgba(251,191,36,0.1)",
-                      borderRadius: 4,
-                      padding: "2px 8px",
-                    }}>
-                      +{msg.hikari} ✨
-                    </span>
+                    <span style={{ color: "#a78bfa" }}>+{msg.hikari} 光貨</span>
+                  )}
+                  {msg.lyric && (
+                    <span>♪ {msg.lyric}</span>
                   )}
                 </div>
               )}
@@ -388,27 +394,20 @@ export default function FanChat() {
         ))}
 
         {loading && (
-          <div className="msg-enter" style={{ display: "flex", alignItems: "flex-end", gap: 10 }}>
+          <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
             <div style={{
               width: 32, height: 32, borderRadius: "50%",
               background: "linear-gradient(135deg, #a78bfa, #60a5fa)",
-              display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14,
-            }}>🎤</div>
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontSize: 14,
+            }}>✦</div>
             <div style={{
-              background: "rgba(255,255,255,0.05)",
-              border: "1px solid rgba(255,255,255,0.08)",
-              borderRadius: "18px 18px 18px 4px",
-              padding: "14px 20px",
-              display: "flex",
-              gap: 6,
+              background: "rgba(255,255,255,0.04)",
+              border: "1px solid rgba(255,255,255,0.06)",
+              borderRadius: 16, padding: "14px 18px",
+              fontSize: 13, color: "#6b7280",
             }}>
-              {[0, 1, 2].map(i => (
-                <div key={i} style={{
-                  width: 6, height: 6, borderRadius: "50%",
-                  background: "#a78bfa",
-                  animation: `pulse 1.2s ease ${i * 0.2}s infinite`,
-                }} />
-              ))}
+              <span style={{ animation: "pulse 1.5s infinite" }}>···</span>
             </div>
           </div>
         )}
@@ -421,132 +420,81 @@ export default function FanChat() {
         borderTop: "1px solid rgba(255,255,255,0.06)",
         background: "rgba(10,10,15,0.95)",
         backdropFilter: "blur(12px)",
-        position: "sticky",
-        bottom: 0,
       }}>
-        <div style={{
-          display: "flex",
-          gap: 12,
-          alignItems: "flex-end",
-          background: "rgba(255,255,255,0.04)",
-          border: "1px solid rgba(255,255,255,0.1)",
-          borderRadius: 20,
-          padding: "8px 8px 8px 16px",
-        }}>
-          <textarea
-            value={input}
-            onChange={e => setInput(e.target.value)}
-            onKeyDown={handleKey}
-            placeholder={`${artist.display_name} に言葉を投げる…`}
-            disabled={loading}
-            rows={1}
-            style={{
-              flex: 1,
-              background: "transparent",
-              border: "none",
-              color: "#e8e8f0",
-              fontSize: 14,
-              resize: "none",
-              fontFamily: "inherit",
-              lineHeight: 1.6,
-              maxHeight: 120,
-              overflowY: "auto",
-            }}
-            onInput={e => {
-              e.target.style.height = "auto";
-              e.target.style.height = Math.min(e.target.scrollHeight, 120) + "px";
-            }}
-          />
-          <button
-            onClick={sendMessage}
-            disabled={!input.trim() || loading}
-            style={{
-              width: 40,
-              height: 40,
-              borderRadius: "50%",
-              background: input.trim() && !loading
-                ? "linear-gradient(135deg, #a78bfa, #60a5fa)"
-                : "rgba(255,255,255,0.08)",
-              border: "none",
-              cursor: input.trim() && !loading ? "pointer" : "not-allowed",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 18,
-              transition: "all 0.2s",
-              flexShrink: 0,
-            }}
-          >
-            →
-          </button>
-        </div>
-        <div style={{ fontSize: 10, color: "#374151", textAlign: "center", marginTop: 8 }}>
-          Enter で送信 · Shift+Enter で改行
-        </div>
-      </div>
-
-      {/* セットアップモーダル */}
-      {showSetup && (
-        <div style={{
-          position: "fixed", inset: 0,
-          background: "rgba(0,0,0,0.8)",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          zIndex: 100, padding: 20,
-        }}>
+        {showSetup ? (
           <div style={{
-            background: "#0d0d1a",
-            border: "1px solid rgba(167,139,250,0.3)",
-            borderRadius: 20,
-            padding: 32,
-            maxWidth: 400,
-            width: "100%",
+            display: "flex", flexDirection: "column", gap: 12,
           }}>
-            <div style={{ fontSize: 32, textAlign: "center", marginBottom: 16 }}>⟁</div>
-            <div style={{ fontWeight: 700, fontSize: 18, textAlign: "center", marginBottom: 8 }}>
-              あなたの軌跡を始める
+            <div style={{ fontSize: 13, color: "#6b7280" }}>
+              誕生日を登録すると、バイオリズムが共鳴に加わる
             </div>
-            <div style={{ fontSize: 13, color: "#6b7280", textAlign: "center", marginBottom: 24 }}>
-              生年月日を教えてもらえると、バイオリズムに基づいた応答ができます（任意）
-            </div>
-            <div style={{ marginBottom: 20 }}>
-              <label style={{ fontSize: 12, color: "#9ca3af", display: "block", marginBottom: 6 }}>
-                生年月日（任意）
-              </label>
+            <div style={{ display: "flex", gap: 12 }}>
               <input
                 type="date"
                 value={birthDate}
                 onChange={e => setBirthDate(e.target.value)}
                 style={{
-                  width: "100%",
+                  flex: 1,
                   background: "rgba(255,255,255,0.05)",
                   border: "1px solid rgba(255,255,255,0.1)",
-                  borderRadius: 8,
-                  padding: "10px 14px",
-                  color: "#e8e8f0",
-                  fontSize: 14,
-                  boxSizing: "border-box",
+                  borderRadius: 10, padding: "12px 16px",
+                  color: "#e8e8f0", fontSize: 14,
+                  fontFamily: "inherit",
                 }}
               />
+              <button
+                onClick={handleSetup}
+                style={{
+                  padding: "12px 24px",
+                  background: "linear-gradient(135deg, #a78bfa, #60a5fa)",
+                  border: "none", borderRadius: 10,
+                  color: "white", fontWeight: 700, fontSize: 14,
+                  cursor: "pointer",
+                }}
+              >
+                始める
+              </button>
             </div>
-            <button
-              onClick={handleSetup}
+          </div>
+        ) : (
+          <div style={{ display: "flex", gap: 12 }}>
+            <textarea
+              value={input}
+              onChange={e => setInput(e.target.value)}
+              onKeyDown={handleKey}
+              placeholder={`${artist.display_name} への言葉…`}
+              rows={1}
               style={{
-                width: "100%",
-                background: "linear-gradient(135deg, #a78bfa, #60a5fa)",
-                border: "none",
+                flex: 1,
+                background: "rgba(255,255,255,0.05)",
+                border: "1px solid rgba(255,255,255,0.1)",
                 borderRadius: 12,
-                padding: "14px",
-                color: "white",
-                fontWeight: 700,
-                fontSize: 15,
-                cursor: "pointer",
+                padding: "12px 16px",
+                color: "#e8e8f0", fontSize: 14,
+                fontFamily: "inherit", resize: "none",
+                minHeight: 44, maxHeight: 120,
+              }}
+            />
+            <button
+              onClick={sendMessage}
+              disabled={loading || !input.trim()}
+              style={{
+                padding: "12px 20px",
+                background: input.trim() && !loading
+                  ? "linear-gradient(135deg, #a78bfa, #60a5fa)"
+                  : "rgba(255,255,255,0.05)",
+                border: "none", borderRadius: 12,
+                color: input.trim() && !loading ? "white" : "#4b5563",
+                fontWeight: 700, fontSize: 14,
+                cursor: input.trim() && !loading ? "pointer" : "default",
+                transition: "all 0.2s",
               }}
             >
-              対話を始める →
+              投げる
             </button>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }
