@@ -1,0 +1,33 @@
+{
+  "properties": {
+    "declining_flag": {
+      "type": "boolean"
+    },
+    "dominant_themes": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "last_interaction_id": {
+      "type": "string"
+    },
+    "resonance_depth": {
+      "type": "number"
+    },
+    "updated_at": {
+      "type": "string"
+    },
+    "user_identifier": {
+      "type": "string"
+    },
+    "valence": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "user_identifier"
+  ],
+  "type": "object",
+  "name": "EmotionalState"
+}
