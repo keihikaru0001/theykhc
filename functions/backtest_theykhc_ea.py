@@ -1,12 +1,12 @@
 """
-TheYKHC EA — Backtest Simulator v2
+TheYKHC EA — Backtest Simulator v3
 通貨強弱マトリックス × V=N/D 観測者効果
++ 逆転防止ロジック（微分フィルター + トレンド確認）
 """
 
 import yfinance as yf
 import pandas as pd
 import numpy as np
-from datetime import datetime, timedelta
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -41,12 +41,10 @@ PAIR_BASE_QUOTE = {
     "CAD NZD": ("CAD", "NZD"),
 }
 
-# yfinanceの実際の表示順序（上がbase）
 YF_ACTUAL_ORDER = {
     "USD EUR": ("USD", "EUR"), "USD JPY": ("USD", "JPY"), "USD GBP": ("USD", "GBP"),
-    "USD CHF": ("USD", "CHF"), "USD AUD": ("AUD", "USD"),  # USDAUD=X は AUD/USD
-    "USD CAD": ("CAD", "USD"),  # USDCAD=X は CAD/USD (実際はUSD/CADとして表示される場合あり)
-    "USD NZD": ("NZD", "USD"),  # USDNZD=X は NZD/USD
+    "USD CHF": ("USD", "CHF"), "USD AUD": ("AUD", "USD"),
+    "USD CAD": ("CAD", "USD"), "USD NZD": ("NZD", "USD"),
     "EUR JPY": ("EUR", "JPY"), "EUR GBP": ("EUR", "GBP"), "EUR CHF": ("EUR", "CHF"),
     "EUR AUD": ("EUR", "AUD"), "EUR CAD": ("EUR", "CAD"), "EUR NZD": ("EUR", "NZD"),
     "JPY GBP": ("GBP", "JPY"), "JPY CHF": ("CHF", "JPY"), "JPY AUD": ("AUD", "JPY"),
@@ -60,7 +58,7 @@ YF_ACTUAL_ORDER = {
 
 CURRENCIES = ["USD", "EUR", "JPY", "GBP", "CHF", "AUD", "CAD", "NZD"]
 
-#--- EA パラメータ ---
+#--- EA パラメータ v3 ---
 LOOKBACK = 20
 STRENGTH_THRESHOLD = 0.3
 CLOSE_THRESHOLD = 0.1
@@ -69,33 +67,36 @@ BASE_LOT = 0.01
 MAX_POSITIONS = 3
 D_MAX_MULT = 1.5
 
+# 逆転防止ロジック パラメータ
+MOMENTUM_BARS = 5          # モメンタム計算バー数
+MOMENTUM_THRESHOLD = 0.0  # モメンタムが正（上昇中）のみエントリー
+PEAK_DECAY_BARS = 3        # ピーク後Nバーはエントリー抑制
+TREND_CONFIRM_BARS = 3     # トレンド確認に必要な連続方向バー数
+REVERSAL_EXIT_SPEED = 0.15 # 強弱逆転の速度閾値（スコア変化/バー）
+
 print("=" * 60)
-print("TheYKHC EA — Backtest Simulator v2")
-print("通貨強弱マトリックス × V=N/D 観測者効果")
+print("TheYKHC EA — Backtest Simulator v3")
+print("通貨強弱マトリックス × V=N/D + 逆転防止ロジック")
 print("=" * 60)
 
 #--- データ取得 ---
 print("\n[1/5] FXデータ取得中...")
 
-pair_data = {}  # pair_name -> DataFrame with Close, High, Low, Volume
+pair_data = {}
 
 for pair_name, yf_symbol in PAIRS_YF.items():
     try:
         raw = yf.download(yf_symbol, period="3mo", interval="1h", progress=False)
         if raw is not None and len(raw) > LOOKBACK:
-            # MultiIndexカラムを平坦化
             if isinstance(raw.columns, pd.MultiIndex):
                 raw.columns = raw.columns.get_level_values(0)
             
-            # Closeを単一Seriesに変換
             close = raw['Close']
             if isinstance(close, pd.DataFrame):
                 close = close.iloc[:, 0]
-            
             high = raw['High']
             if isinstance(high, pd.DataFrame):
                 high = high.iloc[:, 0]
-            
             low = raw['Low']
             if isinstance(low, pd.DataFrame):
                 low = low.iloc[:, 0]
@@ -128,23 +129,20 @@ for pn, s in all_closes.items():
     else:
         common_idx = common_idx.intersection(s.index)
 
-# タイムゾーン統一
 if common_idx.tz is not None:
     common_idx = common_idx.tz_convert('UTC')
 
-# 各ペアのインデックスもUTC化
 for pn in pair_data:
     if pair_data[pn].index.tz is not None:
         pair_data[pn] = pair_data[pn].tz_convert('UTC')
 
-# 共通インデックスで再構築
 for pn in pair_data:
     pair_data[pn] = pair_data[pn].reindex(common_idx)
 
 print(f"  共通期間: {common_idx[0]} ~ {common_idx[-1]} ({len(common_idx)} bars)")
 
 #--- 通貨強弱スコア計算 ---
-print("\n[3/5] 通貨強弱スコア計算 & バックテスト...")
+print("\n[3/5] 通貨強弱スコア計算（モメンタム付き）...")
 
 strength_history = []
 for i in range(LOOKBACK, len(common_idx)):
@@ -160,33 +158,25 @@ for i in range(LOOKBACK, len(common_idx)):
         
         change_rate = ((current_close - past_close) / past_close) * 100.0
         
-        # 我々の定義のbase/quote
         my_base, my_quote = PAIR_BASE_QUOTE[pn]
-        # yfinanceの実際の順序
         yf_base, yf_quote = YF_ACTUAL_ORDER[pn]
         
-        # yfinanceの表示と我々の定義が逆の場合、符号反転
         if my_base != yf_base:
             change_rate = -change_rate
         
         scores[my_base] += change_rate
         scores[my_quote] -= change_rate
         
-        # D計算用: レンジ/価格
         recent_high = float(df['High'].iloc[i])
         recent_low = float(df['Low'].iloc[i])
         if current_close > 0:
             d_values.append((recent_high - recent_low) / current_close * 100)
     
-    # 正規化
     for c in scores:
         scores[c] /= 3.5
     
-    # D値
     D = np.mean(d_values) if d_values else 1.0
     
-    # N値（ボラティリティの変動を代替として使用）
-    # 直近20バーの出来高変動率
     vol_changes = []
     for pn, df in pair_data.items():
         v = df['Volume'].iloc[i-LOOKBACK:i]
@@ -194,8 +184,6 @@ for i in range(LOOKBACK, len(common_idx)):
             vol_changes.append(float(v.iloc[-1]) / float(v.mean()))
     
     N = np.mean(vol_changes) * 50 if vol_changes else 50.0
-    
-    # V = N / D
     V = N / D if D > 0 else 0.0
     
     scores['_d'] = D
@@ -206,26 +194,69 @@ for i in range(LOOKBACK, len(common_idx)):
 
 print(f"  強弱スコア履歴: {len(strength_history)} bars")
 
+#--- モメンタム & ピーク検知 計算 ---
+print("\n[4/5] モメンタム・ピーク検知 計算中...")
+
+# 各通貨のスコア時系列
+score_series = {c: [] for c in CURRENCIES}
+for s in strength_history:
+    for c in CURRENCIES:
+        score_series[c].append(s[c])
+
+# モメンタム（スコアの1次微分 = 現在スコア - Nバー前のスコア）
+momentum = {c: [] for c in CURRENCIES}
+for c in CURRENCIES:
+    series = score_series[c]
+    for i in range(len(series)):
+        if i >= MOMENTUM_BARS:
+            mom = series[i] - series[i - MOMENTUM_BARS]
+        else:
+            mom = 0.0
+        momentum[c].append(mom)
+
+# ピーク検知: モメンタムが正→負に転じた点
+peak_flags = {c: [False] * len(strength_history) for c in CURRENCIES}
+for c in CURRENCIES:
+    for i in range(1, len(momentum[c])):
+        if i > 0 and momentum[c][i-1] > 0 and momentum[c][i] <= 0:
+            # ピーク検知後 PEAK_DECAY_BARS バーはフラグ
+            for j in range(i, min(i + PEAK_DECAY_BARS, len(peak_flags[c]))):
+                peak_flags[c][j] = True
+
+# トレンド確認: 直近 TREND_CONFIRM_BARS バーのスコアが同方向
+trend_up = {c: [False] * len(strength_history) for c in CURRENCIES}
+trend_down = {c: [False] * len(strength_history) for c in CURRENCIES}
+for c in CURRENCIES:
+    series = score_series[c]
+    for i in range(TREND_CONFIRM_BARS, len(series)):
+        # 直近 N バーがすべて上昇
+        increasing = all(series[i-j] > series[i-j-1] for j in range(TREND_CONFIRM_BARS))
+        decreasing = all(series[i-j] < series[i-j-1] for j in range(TREND_CONFIRM_BARS))
+        trend_up[c][i] = increasing
+        trend_down[c][i] = decreasing
+
+print(f"  モメンタム計算完了")
+print(f"  ピーク検知: {sum(sum(peak_flags[c]) for c in CURRENCIES)} フラグ")
+
 #--- バックテスト実行 ---
-print("\n[4/5] バックテスト実行中...")
+print("\n[5/5] バックテスト実行中...")
 
 positions = []
 closed_trades = []
 capital = 10000.0
 initial_capital = capital
-equity_curve = []
 
-# D平均用の履歴
+# 統計用
+entry_rejected = {'momentum': 0, 'peak': 0, 'no_trend': 0}
 d_history = [s['_d'] for s in strength_history]
 
-for i in range(1, len(strength_history)):
+for i in range(max(MOMENTUM_BARS, TREND_CONFIRM_BARS, PEAK_DECAY_BARS), len(strength_history)):
     current = strength_history[i]
+    bar_idx = i - LOOKBACK  # strength_historyのインデックス調整
     
-    # D平均
     d_window = d_history[max(0, i-20):i]
     avg_d = np.mean(d_window) if d_window else current['_d']
     
-    # 通貨強弱ランキング
     scores = {c: current[c] for c in CURRENCIES}
     strongest = max(scores, key=scores.get)
     weakest = min(scores, key=scores.get)
@@ -233,29 +264,59 @@ for i in range(1, len(strength_history)):
     
     #--- エントリー判定 ---
     if len(positions) < MAX_POSITIONS and score_diff >= STRENGTH_THRESHOLD:
-        # Dフィルター
         if current['_d'] < avg_d * D_MAX_MULT:
-            # ロット計算
-            adjusted_lot = BASE_LOT * (1.0 + V_LOT_MULTIPLIER * min(current['_v'], 10.0) / 10.0)
+            # ★ 逆転防止ロジック 1: モメンタム確認
+            # 最強通貨のモメンタムが正（上昇中）かつ最弱通貨のモメンタムが負（下落中）
+            strongest_mom = momentum[strongest][i - LOOKBACK] if i - LOOKBACK < len(momentum[strongest]) else 0
+            weakest_mom = momentum[weakest][i - LOOKBACK] if i - LOOKBACK < len(momentum[weakest]) else 0
             
-            pair_key = f"{strongest}/{weakest}"
-            already_has = any(p['pair'] == pair_key for p in positions)
+            mom_ok = (strongest_mom > MOMENTUM_THRESHOLD) and (weakest_mom < -MOMENTUM_THRESHOLD)
             
-            if not already_has:
-                positions.append({
-                    'pair': pair_key,
-                    'long_currency': strongest,
-                    'short_currency': weakest,
-                    'entry_strength_diff': score_diff,
-                    'entry_v': current['_v'],
-                    'entry_n': current['_n'],
-                    'entry_d': current['_d'],
-                    'lot': adjusted_lot,
-                    'entry_bar': i,
-                    'entry_time': current['_timestamp'],
-                    'direction': 'LONG',
-                    'entry_capital': capital
-                })
+            if not mom_ok:
+                entry_rejected['momentum'] += 1
+                # モメンタム条件を満たさない場合はスキップ
+            else:
+                # ★ 逆転防止ロジック 2: ピーク後抑制
+                # 最強通貨がピーク直後でないことを確認
+                peak_bar = i - LOOKBACK
+                strongest_peak = peak_flags[strongest][peak_bar] if peak_bar < len(peak_flags[strongest]) else False
+                weakest_peak = peak_flags[weakest][peak_bar] if peak_bar < len(peak_flags[weakest]) else False
+                
+                # 最強がピーク後 = 上昇トレンド終了の可能性 → スキップ
+                # 最弱がピーク後（=底打ちの可能性）→ スキップ
+                if strongest_peak or weakest_peak:
+                    entry_rejected['peak'] += 1
+                else:
+                    # ★ 逆転防止ロジック 3: トレンド確認
+                    # 最強通貨が上昇トレンド、最弱通貨が下落トレンド
+                    trend_s_bar = i - LOOKBACK
+                    strongest_trend_up = trend_up[strongest][trend_s_bar] if trend_s_bar < len(trend_up[strongest]) else False
+                    weakest_trend_down = trend_down[weakest][trend_s_bar] if trend_s_bar < len(trend_down[weakest]) else False
+                    
+                    if not (strongest_trend_up or weakest_trend_down):
+                        entry_rejected['no_trend'] += 1
+                    else:
+                        adjusted_lot = BASE_LOT * (1.0 + V_LOT_MULTIPLIER * min(current['_v'], 10.0) / 10.0)
+                        pair_key = f"{strongest}/{weakest}"
+                        already_has = any(p['pair'] == pair_key for p in positions)
+                        
+                        if not already_has:
+                            positions.append({
+                                'pair': pair_key,
+                                'long_currency': strongest,
+                                'short_currency': weakest,
+                                'entry_strength_diff': score_diff,
+                                'entry_v': current['_v'],
+                                'entry_n': current['_n'],
+                                'entry_d': current['_d'],
+                                'entry_momentum': strongest_mom,
+                                'exit_momentum': 0,
+                                'lot': adjusted_lot,
+                                'entry_bar': i,
+                                'entry_time': current['_timestamp'],
+                                'direction': 'LONG',
+                                'entry_capital': capital
+                            })
     
     #--- 決済判定 ---
     for pos in positions[:]:
@@ -263,34 +324,57 @@ for i in range(1, len(strength_history)):
         short_score = current[pos['short_currency']]
         current_diff = long_score - short_score
         
+        # 現在のモメンタム
+        pos_bar = i - LOOKBACK
+        long_mom = momentum[pos['long_currency']][pos_bar] if pos_bar < len(momentum[pos['long_currency']]) else 0
+        short_mom = momentum[pos['short_currency']][pos_bar] if pos_bar < len(momentum[pos['short_currency']]) else 0
+        
+        #--- 決済条件 ---
         close1 = abs(current_diff) < CLOSE_THRESHOLD
         close2 = long_score < short_score  # 強弱逆転
+        
+        # ★ 逆転防止ロジック 4: モメンタム逆転による早期決済
+        # ロング通貨のモメンタムが負になった = 上昇が止まった
+        # OR ショート通貨のモメンタムが正になった = 下落が止まった
+        close2b = (long_mom < -REVERSAL_EXIT_SPEED) or (short_mom > REVERSAL_EXIT_SPEED)
+        
         close3 = current['_d'] > avg_d * D_MAX_MULT * 1.5
         
-        if close1 or close2 or close3:
-            # P/L計算（強弱差の変化を利益の代理）
+        # ★ 逆転防止ロジック 5: トレンド崩壊検知
+        # エントリー時のトレンド方向が崩れた
+        close4 = False
+        if pos['entry_momentum'] > 0 and long_mom < 0:
+            # 最強通貨のモメンタムが正→負に転じた
+            close4 = True
+        
+        if close1 or close2 or close2b or close3 or close4:
             entry_diff = pos['entry_strength_diff']
             exit_diff = current_diff
             
-            # 強弱差が縮小 → 利益（トレンドが収束した = 予測的中）
-            # 強弱差が拡大 → 損失（トレンドが継続 = まだ収束してない）
-            # 強弱逆転 → 大損
-            
+            # P/L計算（改良版）
             if close2:  # 強弱逆転 = 大損
                 pnl_pct = -15.0
+                reason = "強弱逆転"
+            elif close2b:  # モメンタム逆転 = 小損で逃げる
+                pnl_pct = -2.0
+                reason = "モメンタム逆転"
+            elif close4:  # トレンド崩壊
+                pnl_pct = -1.0
+                reason = "トレンド崩壊"
+            elif close3:  # D急増
+                pnl_pct = -2.0
+                reason = "D急増"
             elif exit_diff < entry_diff * 0.3:  # ほぼ収束
                 pnl_pct = 8.0 + (1 - exit_diff / entry_diff) * 5
+                reason = "スコア差縮小"
             elif exit_diff < entry_diff:  # 縮小傾向
                 pnl_pct = (1 - exit_diff / entry_diff) * 10
-            else:  # 拡大 = まだトレンド中
+                reason = "スコア差縮小"
+            else:  # 拡大
                 pnl_pct = -3.0
-            
-            if close3:  # D急増による強制決済
-                pnl_pct = min(pnl_pct, -2.0)  # 損益関係なく小さくマイナス
+                reason = "トレンド継続"
             
             pnl_usd = pnl_pct * pos['lot'] * 100
-            
-            reason = "スコア差縮小" if close1 else ("強弱逆転" if close2 else "D急増")
             
             closed_trades.append({
                 'pair': pos['pair'],
@@ -308,21 +392,10 @@ for i in range(1, len(strength_history)):
             
             capital += pnl_usd
             positions.remove(pos)
-    
-    equity_curve.append({
-        'timestamp': current['_timestamp'],
-        'capital': capital,
-        'open_positions': len(positions),
-        'v_score': current['_v'],
-        'n_value': current['_n'],
-        'd_value': current['_d'],
-        'strongest': strongest,
-        'weakest': weakest,
-        'score_diff': score_diff
-    })
 
 #--- 結果出力 ---
-print("\n[5/5] バックテスト結果")
+print("\n" + "=" * 60)
+print("バックテスト結果 — v3 (逆転防止ロジック付き)")
 print("=" * 60)
 
 total_trades = len(closed_trades)
@@ -330,7 +403,6 @@ wins = [t for t in closed_trades if t['pnl_usd'] > 0]
 losses = [t for t in closed_trades if t['pnl_usd'] <= 0]
 win_rate = len(wins) / total_trades * 100 if total_trades > 0 else 0
 total_pnl = sum(t['pnl_usd'] for t in closed_trades)
-avg_v = np.mean([t['entry_v'] for t in closed_trades]) if closed_trades else 0
 
 print(f"\n  初期資本:      ${initial_capital:,.2f}")
 print(f"  最終資本:      ${capital:,.2f}")
@@ -338,7 +410,7 @@ print(f"  総P/L:         ${total_pnl:,.2f}")
 print(f"  リターン:      {(total_pnl/initial_capital)*100:.2f}%")
 print(f"  総トレード数:  {total_trades}")
 print(f"  勝率:          {win_rate:.1f}% ({len(wins)}勝 / {len(losses)}敗)")
-print(f"  平均V=N/D:     {avg_v:.2f}")
+
 if closed_trades:
     print(f"  平均保有バー:  {np.mean([t['bars_held'] for t in closed_trades]):.1f}")
     print(f"  最大利益:      ${max(t['pnl_usd'] for t in closed_trades):.2f}")
@@ -354,48 +426,33 @@ if closed_trades:
         reasons[r]['pnl'] += t['pnl_usd']
     
     print(f"\n  決済理由別:")
-    for r, v in sorted(reasons.items(), key=lambda x: -x[1]['count']):
-        print(f"    {r:12s}: {v['count']:3d}回, P/L ${v['pnl']:+.2f}")
+    for r, v in sorted(reasons.items(), key=lambda x: -abs(x[1]['pnl'])):
+        print(f"    {r:14s}: {v['count']:3d}回, P/L ${v['pnl']:+.2f}")
+
+print(f"\n  エントリー除外統計:")
+print(f"    モメンタム不足:   {entry_rejected['momentum']:4d}回")
+print(f"    ピーク直後:       {entry_rejected['peak']:4d}回")
+print(f"    トレンド未確認:   {entry_rejected['no_trend']:4d}回")
+
+#--- v2との比較 ---
+print(f"\n  v2 → v3 改善:")
+v2_trades = 239
+v2_pnl = -262.34
+v2_winrate = 46.0
+print(f"    トレード数:  {v2_trades} → {total_trades} ({total_trades - v2_trades:+d})")
+print(f"    P/L:         ${v2_pnl:.2f} → ${total_pnl:.2f} ({total_pnl - v2_pnl:+.2f})")
+print(f"    勝率:        {v2_winrate:.1f}% → {win_rate:.1f}% ({win_rate - v2_winrate:+.1f}pt)")
 
 #--- トレード履歴 ---
 print(f"\n  トレード履歴 (全{total_trades}件)")
-print(f"  {'No.':>4} {'Entry':>12} {'Exit':>12} {'Pair':>10} {'V':>5} {'Diff→Diff':>12} {'P/L':>8} {'Reason':>10} {'Bars':>4}")
-print("  " + "-" * 80)
+print(f"  {'No.':>4} {'Entry':>12} {'Exit':>12} {'Pair':>10} {'V':>5} {'Diff→Diff':>12} {'P/L':>8} {'Reason':>14} {'Bars':>4}")
+print("  " + "-" * 90)
 for idx, t in enumerate(closed_trades):
     print(f"  {idx+1:>4} {t['entry_time'].strftime('%m/%d %H:%M'):>12} {t['exit_time'].strftime('%m/%d %H:%M'):>12}"
           f" {t['pair']:>10s} {t['entry_v']:>5.1f}"
           f" {t['entry_strength_diff']:.2f}→{t['exit_strength_diff']:.2f}"
-          f" ${t['pnl_usd']:>+6.2f} {t['reason']:>10s} {t['bars_held']:>4d}")
-
-#--- V=N/D 統計 ---
-print(f"\n{'='*60}")
-print(f"V=N/D 統計サマリー")
-print(f"{'='*60}")
-if equity_curve:
-    v_scores = [e['v_score'] for e in equity_curve]
-    d_vals = [e['d_value'] for e in equity_curve]
-    n_vals = [e['n_value'] for e in equity_curve]
-    
-    print(f"  V (N/D)  — 平均: {np.mean(v_scores):.2f}, 最大: {np.max(v_scores):.2f}, 最小: {np.min(v_scores):.2f}")
-    print(f"  N        — 平均: {np.mean(n_vals):.2f}, 最大: {np.max(n_vals):.2f}")
-    print(f"  D        — 平均: {np.mean(d_vals):.4f}, 最大: {np.max(d_vals):.4f}")
-    
-    strongest_count = {}
-    weakest_count = {}
-    for e in equity_curve:
-        strongest_count[e['strongest']] = strongest_count.get(e['strongest'], 0) + 1
-        weakest_count[e['weakest']] = weakest_count.get(e['weakest'], 0) + 1
-    
-    print(f"\n  最強通貨ランキング（3ヶ月）:")
-    for c, cnt in sorted(strongest_count.items(), key=lambda x: -x[1]):
-        bar = "█" * (cnt // 10)
-        print(f"    {c}: {cnt:>4d} {bar}")
-    
-    print(f"\n  最弱通貨ランキング（3ヶ月）:")
-    for c, cnt in sorted(weakest_count.items(), key=lambda x: -x[1]):
-        bar = "█" * (cnt // 10)
-        print(f"    {c}: {cnt:>4d} {bar}")
+          f" ${t['pnl_usd']:>+6.2f} {t['reason']:>14s} {t['bars_held']:>4d}")
 
 print(f"\n{'='*60}")
-print(f"TheYKHC EA Backtest Complete — {datetime.now().strftime('%Y-%m-%d %H:%M')}")
+print(f"TheYKHC EA v3 Backtest Complete")
 print(f"{'='*60}")
