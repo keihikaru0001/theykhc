@@ -18,6 +18,9 @@
     "research_layer": {
       "type": "string"
     },
+    "risk_layer": {
+      "type": "string"
+    },
     "synthesized_response": {
       "type": "string"
     },

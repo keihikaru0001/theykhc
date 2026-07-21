@@ -89,13 +89,9 @@ ${seedContext}
     let emotionLayer = '';
     let emotionState = '';
     let hikariEarned = 0;
+    let parsedEmotion: any = { valence: 0, dominant_themes: [], resonance_depth: 0.5, declining_flag: false };
     try {
       const lunaId = '6a5ee9d433f9702d41b50721';
-      const profiles = await base44.asServiceRole.entities.ArtistProfile.filter({ id: lunaId });
-      const profile = profiles[0] || {};
-
-      const lyrics = await base44.asServiceRole.entities.ArtistLyric.list();
-      const lunaLyrics = lyrics.filter((l: any) => l.artist_id === lunaId);
 
       const emotionPrompt = `You are Luna（TYPE-3）, an emotional resonance AI. A founder is consulting you about their business challenge.
 
@@ -122,11 +118,10 @@ Respond in Japanese, 200-300 characters, poetic and warm. Start by reflecting wh
         { role: 'user', content: message }
       ], 0.3, 200);
 
-      let parsedEmotion;
       try {
         const jsonMatch = emotionAnalysis.match(/\{[\s\S]*\}/);
-        parsedEmotion = jsonMatch ? JSON.parse(jsonMatch[0]) : { valence: 0, dominant_themes: [], resonance_depth: 0.5, declining_flag: false };
-      } catch { parsedEmotion = { valence: 0, dominant_themes: [], resonance_depth: 0.5, declining_flag: false }; }
+        parsedEmotion = jsonMatch ? JSON.parse(jsonMatch[0]) : parsedEmotion;
+      } catch { /* keep default */ }
 
       emotionState = parsedEmotion.dominant_themes?.join(', ') || '中立';
 
@@ -172,7 +167,6 @@ Respond in Japanese, 200-300 characters, poetic and warm. Start by reflecting wh
     // ============================================
     let wisdomLayer = '';
     try {
-      // 歴史上の人物から適切な人物を選択
       const historicalPrompt = `以下の事業相談に対して、最も適切な歴史上の人物を1人選び、その人物の視点から助言をしてください。
 
 選択肢:
@@ -200,21 +194,27 @@ ${message}
     // LAYER 4: 市場の層 — 観測者効果
     // ============================================
     let marketLayer = '';
+    let goldPrice: number | null = null;
+    let recentNeutrino: any = null;
     try {
       const snapshots = await base44.asServiceRole.entities.FxTickSnapshot.list();
       const sorted = snapshots.sort((a: any, b: any) =>
         new Date(b.created_date || 0).getTime() - new Date(a.created_date || 0).getTime()
       );
       const latest = sorted[0];
-      const goldPrice = latest ? latest.bid : null;
+      goldPrice = latest ? latest.bid : null;
+      const goldVolatility = snapshots.length > 0
+        ? Math.max(...snapshots.slice(0, 10).map((s: any) => s.anomaly_score || 0))
+        : 0;
 
       const neutrinos = await base44.asServiceRole.entities.NeutrinoEvent.list();
-      const recentNeutrino = neutrinos[0];
+      recentNeutrino = neutrinos[0];
 
       const marketPrompt = `あなたは市場観測者です。以下のデータを「市場の体温」として解釈し、起業家の事業相談に市場の文脈を加えてください。
 
 【市場データ】
 - 金相場（最新）: ${goldPrice || '観測なし'} USD
+- 金相場ボラティリティ異常スコア: ${goldVolatility}
 - ニュートリノ観測: ${recentNeutrino ? `種類=${recentNeutrino.event_type}, エネルギー=${recentNeutrino.energy_tev}TeV` : '観測なし'}
 
 【事業コンテキスト】
@@ -236,9 +236,48 @@ ${message}
     }
 
     // ============================================
-    // 統合レスポンス
+    // LAYER 5: リスクの層 — V=N/D Risk Assessment
     // ============================================
-    const synthesisPrompt = `以下は4つの異なる視点からの事業相談への回答です。これらを統合し、起業家にとって最も有用な形式でまとめてください。
+    let riskLayer = '';
+    try {
+      // 経営者感情軌跡データを取得
+      const emotions = await base44.asServiceRole.entities.EmotionalState.list();
+      const recentEmotions = emotions.slice(0, 5);
+      const decliningCount = recentEmotions.filter((e: any) => e.declining_flag).length;
+      const avgValence = recentEmotions.length > 0
+        ? recentEmotions.reduce((sum: number, e: any) => sum + (e.valence || 0), 0) / recentEmotions.length
+        : 0;
+
+      // 市場ボラティリティ
+      const allSnapshots = await base44.asServiceRole.entities.FxTickSnapshot.list();
+      const marketAnomaly = allSnapshots.length > 0
+        ? Math.max(...allSnapshots.slice(0, 10).map((s: any) => s.anomaly_score || 0))
+        : 0;
+
+      const riskPrompt = `あなたはTheYKHC Tower (theykhc.com) の V=N/D Katayama Formula に基づくリスクマネージメント・コンサルタントです。
+
+## V=N/D リスクフレームワークの定義
+- V = 存在価値（Value）= N / D
+- N = 充足・義務遂行・観測の信号（事業の強み・資産・遂行力）
+- D = 拘り・摩擦・リスク密度（Distance/Density）
+- D が小さいほど V は発散する。D が大きいほど V は崩壊する。
+- 無明は最大のD。見えないリスクが最も致命的。
+
+## TheYKHC Tower の階層別リスク知見
+- 1F Foundation: V=N/D がリスク評価の核。Dの崩壊＝精神リスク（High-Rate Syndrome）
+- 2F Tendo Economics: ニュートリノ×市場相関で市場リスクの先行指標を観測
+- 3F Hikari Currency: Nの記録・還元システム。記録の欠落は信用リスク
+- 4F Cardiac Spiral: 生命リスク・経営者の身体・気の状態
+- 6F Build Seeds: Dゼロ設計流通。リスク軽減策の公開モデル
+
+## 5つのD要因（リスク特定）
+以下の5つのD要因を、起業家の事業について評価してください:
+
+1. **財務D** — 資金繰り・収益依存度・債務密度
+2. **市場D** — 競合・タイミング・規制変更・需要変動
+3. **時代D** — 技術陳腐化・社会構造の変化・パラダイムシフト
+4. **経営者D** — 精神・健康・無明のリスク（観測データ参照）
+5. **道徳D** — 目的とのずれ・償いの欠如・借財の未返済
 
 【事業コンテキスト】
 ${businessContext}
@@ -246,7 +285,53 @@ ${businessContext}
 【起業家の相談】
 ${message}
 
-【1. 研究の層（学術知見）】
+【観測データ】
+- 経営者感情軌跡: 直近${recentEmotions.length}件、平均valence=${avgValence.toFixed(2)}、低下傾向=${decliningCount}件
+- 市場ボラティリティ異常スコア: ${marketAnomaly}
+- ニュートリノ観測: ${recentNeutrino ? `種類=${recentNeutrino.event_type}, エネルギー=${recentNeutrino.energy_tev}TeV` : '観測なし'}
+
+以下の構成でリスク診断レポートを出力してください（日本語、700〜1000文字）:
+
+## D要因マップ
+各D要因について:
+- リスク内容（1〜2文）
+- 発生確率（高/中/低）
+- 影響度（致命/重大/軽微）
+- リスクレベル（🔴/🟡/🟢）
+
+## V=N/D スコア
+現在のN（強み）とD（リスク）を総合評価し、V値を0〜10で算出。
+算出根拠を簡潔に示す。
+
+## 対策優先順位
+最もDを下げる対策を3つ提示。各対策に以下の分類を付記:
+- 回避（事業からの撤退・変更）
+- 軽減（プロセス改良・内部統制）
+- 移転（保険・委託・共同）
+- 受容（モニタリングのみ）
+
+## KRI（継続監視指標）
+今後継続的に監視すべき重要リスク指標を2つ提示。`;
+
+      riskLayer = await callOpenAI([
+        { role: 'system', content: riskPrompt }
+      ], 0.6, 1200);
+    } catch (e) {
+      riskLayer = 'リスクの層は、観測の静寂の中にあります。';
+    }
+
+    // ============================================
+    // 5層統合レスポンス
+    // ============================================
+    const synthesisPrompt = `以下は5つの異なる視点からの事業相談への回答です。これらを統合し、起業家にとって最も有用な形式でまとめてください。
+
+【事業コンテキスト】
+${businessContext}
+
+【起業家の相談】
+${message}
+
+【1. 研究の層（学術知見 — IdeaSynthetix）】
 ${researchLayer}
 
 【2. 感情の層（Lunaの共鳴）】
@@ -255,26 +340,32 @@ ${emotionLayer}
 【3. 知恵の層（歴史上の偉人）】
 ${wisdomLayer}
 
-【4. 市場の層（観測者効果）】
+【4. 市場の層（観測者効果 — Tendo Economics）】
 ${marketLayer}
 
-以下の構成で統合回答を作成してください（日本語、800〜1200文字）:
+【5. リスクの層（V=N/D Risk Assessment）】
+${riskLayer}
+
+以下の構成で統合回答を作成してください（日本語、1000〜1500文字）:
 
 ## 統合ビジョン
-（4つの視点を統合した全体像）
+（5つの視点を統合した全体像。リスクの層のD要因と、他層の知見を交差させて読む）
 
 ## 今すぐやること
-（具体的な3つのアクション）
+（具体的な3つのアクション。各アクションにどの層の知見に基づくかを明記）
+
+## リスク・アラート
+（リスク層から最も優先度の高いD要因を1つ。対策の方向性を1文で）
 
 ## 深掘りすべき問い
 （この相談から派生する、さらに深い問いを1つ）
 
 ## 共鳴メモ
-（Lunaの視点からの一言リマインダー）`;
+（Lunaの視点からの一言リマインダー。事業の重さと、その重さを持つ人の価値を認める言葉）`;
 
     const synthesizedResponse = await callOpenAI([
       { role: 'system', content: synthesisPrompt }
-    ], 0.7, 1500);
+    ], 0.7, 1800);
 
     // ============================================
     // ConsultationSessionに保存
@@ -286,6 +377,7 @@ ${marketLayer}
       emotion_layer: emotionLayer,
       wisdom_layer: wisdomLayer,
       market_layer: marketLayer,
+      risk_layer: riskLayer,
       synthesized_response: synthesizedResponse,
       emotion_state: emotionState,
       hikari_earned: hikariEarned,
@@ -304,19 +396,24 @@ ${marketLayer}
       if (jsonMatch) {
         const newQ = JSON.parse(jsonMatch[0]);
         await base44.asServiceRole.entities.Question.create({
-          text: newQ.text,
-          type: 'question',
+          text: newQ.text || '未生成',
+          industry: newQ.industry || industry || '一般',
+          insight: newQ.insight || '',
+          type: 'open',
           status: 'open',
-          industry: newQ.industry || '仕事とビジネス',
-          insight: newQ.insight || null,
-          source_doi: null,
-          source_title: `事業相談から派生: ${message.slice(0, 30)}`,
+          source_doi: 'businessConsult',
+          source_title: `事業相談: ${message.slice(0, 40)}`,
           depth: 1,
-          tags: ['consultation', industry || 'general'],
+          tags: parsedEmotion.dominant_themes || ['事業相談'],
         });
       }
-    } catch {}
+    } catch (e) {
+      // Question保存失敗は全体処理に影響しない
+    }
 
+    // ============================================
+    // レスポンス返却
+    // ============================================
     return Response.json({
       success: true,
       session_id: session.id,
@@ -325,6 +422,7 @@ ${marketLayer}
         emotion: emotionLayer,
         wisdom: wisdomLayer,
         market: marketLayer,
+        risk: riskLayer,
       },
       synthesized_response: synthesizedResponse,
       emotion_state: emotionState,
@@ -332,7 +430,9 @@ ${marketLayer}
     });
 
   } catch (error) {
-    console.error('businessConsult error:', error);
-    return Response.json({ error: error.message }, { status: 500 });
+    return Response.json(
+      { error: error.message || 'Internal Server Error' },
+      { status: 500 }
+    );
   }
 });
