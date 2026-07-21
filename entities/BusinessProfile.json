@@ -1,0 +1,29 @@
+{
+  "properties": {
+    "challenge_summary": {
+      "type": "string"
+    },
+    "company_name": {
+      "type": "string"
+    },
+    "founder_name": {
+      "type": "string"
+    },
+    "industry": {
+      "type": "string"
+    },
+    "stage": {
+      "enum": [
+        "idea",
+        "seed",
+        "early",
+        "growth",
+        "mature"
+      ],
+      "type": "string"
+    }
+  },
+  "type": "object",
+  "required": [],
+  "name": "BusinessProfile"
+}

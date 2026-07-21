@@ -1,0 +1,34 @@
+{
+  "properties": {
+    "business_profile_id": {
+      "type": "string"
+    },
+    "emotion_layer": {
+      "type": "string"
+    },
+    "emotion_state": {
+      "type": "string"
+    },
+    "hikari_earned": {
+      "type": "number"
+    },
+    "market_layer": {
+      "type": "string"
+    },
+    "research_layer": {
+      "type": "string"
+    },
+    "synthesized_response": {
+      "type": "string"
+    },
+    "user_message": {
+      "type": "string"
+    },
+    "wisdom_layer": {
+      "type": "string"
+    }
+  },
+  "type": "object",
+  "required": [],
+  "name": "ConsultationSession"
+}
