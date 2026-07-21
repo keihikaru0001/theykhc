@@ -1,9 +1,9 @@
 import { createClientFromRequest } from 'npm:@base44/sdk@0.8.23';
 
 async function callOpenAI(messages: any[], temperature = 0.8, maxTokens = 1500) {
-  const apiKey = Deno.env.get('OPENAI_API_KEY') || '';
+  const apiKey = Deno.env.get('OPENAI_API_KEY_2') || '';
   if (!apiKey) {
-    throw new Error('OPENAI_API_KEY environment variable is not set');
+    throw new Error('OPENAI_API_KEY_2 environment variable is not set');
   }
   const res = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
@@ -328,7 +328,7 @@ ${riskLayer}
       business_profile_id: profileId || null,
       company_name: company_name || '（未設定）',
       message: message,
-      layers: JSON.stringify(layers),
+      layers: layers,
       synthesized_response: synthesizedResponse,
       vnd_score: vndScore,
       risk_label: riskLabel,
