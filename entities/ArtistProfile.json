@@ -1,37 +1,58 @@
 {
-  "type": "object",
   "properties": {
+    "avatar_url": {
+      "type": "string"
+    },
     "display_name": {
       "type": "string"
     },
+    "display_name_en": {
+      "type": "string"
+    },
+    "fanclub_fee_deep": {
+      "type": "number"
+    },
+    "fanclub_fee_member": {
+      "type": "number"
+    },
+    "is_active": {
+      "type": "boolean"
+    },
+    "key_phrases": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "lyric_count": {
+      "type": "number"
+    },
     "philosophical_background": {
+      "type": "string"
+    },
+    "religion_mapping": {
+      "type": "string"
+    },
+    "representative_works": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "royalty_rate": {
+      "type": "number"
+    },
+    "status": {
       "type": "string"
     },
     "tone_descriptor": {
       "type": "string"
     },
-    "key_phrases": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
-    "royalty_rate": {
-      "type": "number",
-      "default": 40
-    },
-    "lyric_count": {
-      "type": "number",
-      "default": 0
-    },
-    "avatar_url": {
+    "era": {
       "type": "string"
-    },
-    "is_active": {
-      "type": "boolean",
-      "default": true
     }
   },
+  "type": "object",
   "required": [],
   "name": "ArtistProfile"
 }
