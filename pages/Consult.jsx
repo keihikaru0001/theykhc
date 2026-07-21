@@ -62,6 +62,7 @@ export default function Consult() {
 
     try {
       const res = await businessConsult({
+        message: challenge,
         company_name: companyName,
         founder_name: founderName,
         industry,
