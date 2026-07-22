@@ -1,15 +1,24 @@
 """
-TheYKHC EA — Backtest Simulator v3.1
-通貨強弱マトリックス × V=N/D + 逆転防止ロジック
-+ クールダウン期間 + エントリー閾値緩和
+TheYKHC EA — Real Money Simulator v4
+通貨強弱マトリックス × V=N/D + 逆転防止 + リアルマネー摩擦層
+
+デモとリアルの差をシミュレート:
+1. スリッページ — ボラティリティに比例して約定価格が滑る
+2. スプレッド拡大 — 高ボラティリティ時は実際のスプレッドが広がる
+3. コミッション — 往復pips相当のコスト
+4. スワップ — ポジション保有中の金利差コスト
+5. 執行遅延 — 指値→約定のタイムラグ
+6. 心理D — 自分の金がかかる場面でのエントリー躊躇/決済遅れ
 """
 
 import yfinance as yf
 import pandas as pd
 import numpy as np
+from datetime import datetime, timedelta
 import warnings
 warnings.filterwarnings('ignore')
 
+#--- ペア定義 (前回と同じ) ---
 PAIRS_YF = {
     "USD EUR": "USDEUR=X", "USD JPY": "USDJPY=X", "USD GBP": "USDGBP=X",
     "USD CHF": "USDCHF=X", "USD AUD": "USDAUD=X", "USD CAD": "USDCAD=X",
@@ -59,33 +68,47 @@ CURRENCIES = ["USD", "EUR", "JPY", "GBP", "CHF", "AUD", "CAD", "NZD"]
 
 #--- EA パラメータ v3.1 ---
 LOOKBACK = 20
-STRENGTH_THRESHOLD = 0.2      # ★ 0.3→0.2 に緩和（エントリー機会増加）
+STRENGTH_THRESHOLD = 0.2
 CLOSE_THRESHOLD = 0.1
 V_LOT_MULTIPLIER = 0.5
 BASE_LOT = 0.01
 MAX_POSITIONS = 3
 D_MAX_MULT = 1.5
-
-# 逆転防止ロジック
 MOMENTUM_BARS = 5
 MOMENTUM_THRESHOLD = 0.0
 PEAK_DECAY_BARS = 3
 TREND_CONFIRM_BARS = 3
 REVERSAL_EXIT_SPEED = 0.15
+COOLDOWN_BARS = 10
+PARTIAL_CLOSE_RATIO = 0.5
 
-# ★ v3.1 新パラメータ
-COOLDOWN_BARS = 10             # 決済後のクールダウン期間（同ペア再エントリー禁止）
-MOMENTUM_REVERSAL_LOSS_LIMIT = -2.0  # モメンタム逆転時の損失をさらに小さく
-TREND_BREAK_LOSS_LIMIT = -1.0   # トレンド崩壊時の損失をさらに小さく
-PARTIAL_CLOSE_THRESHOLD = 0.5   # スコア差が半分まで縮小で部分決済検知
+#=========================================
+# ★ リアルマネー摩擦パラメータ (v4新規)
+#=========================================
+# スリッページ: ボラティリティ(ATR)に対する比率で滑る
+SLIPPAGE_RATIO = 0.15       # ATRの15%がスリッページ
+# スプレッド: ベース + ボラティリティ比例
+BASE_SPREAD_PIPS = 1.5      # 通常時スプレッド(pips)
+VOLATILITY_SPREAD_MULT = 0.5  # ボラティリティ上昇時のスプレッド拡大係数
+# コミッション: 往復pips
+COMMISSION_PIPS = 0.8       # 往復0.8pips
+# スワップ: 1日あたりpips (ロング/ショート別、簡易)
+SWAP_LONG_PIPS = -0.5      # ロング1日あたり
+SWAP_SHORT_PIPS = -0.3     # ショート1日あたり
+# 執行遅延: 意思決定→約定のバー数
+EXECUTION_LAG_BARS = 1      # 1バー後約定 (1h足=1時間遅れ)
+# 心理D: リアルマネー時の追加的エントリー躊躇
+PSYCHOLOGICAL_HESITATION = 0.3  # 30%の確率でエントリーを見送る
+# 最大ドローダウン許容
+MAX_DRAWDOWN_PCT = 20      # 20%で全ポジクローズ
 
-print("=" * 60)
-print("TheYKHC EA — Backtest Simulator v3.1")
-print("逆転防止 + クールダウン + 閾値緩和")
-print("=" * 60)
+print("=" * 64)
+print("TheYKHC EA — Real Money Simulator v4")
+print("通貨強弱マトリックス × V=N/D + 逆転防止 + リアルマネー摩擦")
+print("=" * 64)
 
 #--- データ取得 ---
-print("\n[1/5] FXデータ取得中...")
+print("\n[1/6] FXデータ取得中...")
 
 pair_data = {}
 for pair_name, yf_symbol in PAIRS_YF.items():
@@ -110,26 +133,35 @@ for pair_name, yf_symbol in PAIRS_YF.items():
 print(f"  取得成功: {len(pair_data)}/28 ペア")
 
 #--- 共通インデックス ---
-print("\n[2/5] 共通期間の構築...")
+print("\n[2/6] 共通期間の構築...")
 
 all_closes = {pn: df['Close'] for pn, df in pair_data.items()}
 common_idx = None
 for pn, s in all_closes.items():
     if common_idx is None: common_idx = s.index
     else: common_idx = common_idx.intersection(s.index)
-
-if common_idx.tz is not None:
-    common_idx = common_idx.tz_convert('UTC')
-
+if common_idx.tz is not None: common_idx = common_idx.tz_convert('UTC')
 for pn in pair_data:
-    if pair_data[pn].index.tz is not None:
-        pair_data[pn] = pair_data[pn].tz_convert('UTC')
+    if pair_data[pn].index.tz is not None: pair_data[pn] = pair_data[pn].tz_convert('UTC')
     pair_data[pn] = pair_data[pn].reindex(common_idx)
 
 print(f"  共通期間: {common_idx[0]} ~ {common_idx[-1]} ({len(common_idx)} bars)")
 
+#--- ATR計算 (スリッページ用) ---
+print("\n[3/6] ATR・摩擦パラメータ計算中...")
+
+pair_atr = {}
+for pn, df in pair_data.items():
+    high = df['High']
+    low = df['Low']
+    close = df['Close']
+    tr = pd.concat([(high - low),
+                    (high - close.shift(1)).abs(),
+                    (low - close.shift(1)).abs()], axis=1).max(axis=1)
+    pair_atr[pn] = tr.rolling(14).mean()
+
 #--- 通貨強弱スコア計算 ---
-print("\n[3/5] 通貨強弱スコア計算...")
+print("\n[4/6] 通貨強弱スコア計算...")
 
 strength_history = []
 for i in range(LOOKBACK, len(common_idx)):
@@ -149,24 +181,23 @@ for i in range(LOOKBACK, len(common_idx)):
         recent_low = float(df['Low'].iloc[i])
         if current_close > 0:
             d_values.append((recent_high - recent_low) / current_close * 100)
-
     for c in scores: scores[c] /= 3.5
     D = np.mean(d_values) if d_values else 1.0
     vol_changes = []
     for pn, df in pair_data.items():
         v = df['Volume'].iloc[i-LOOKBACK:i]
-        if v.mean() > 0:
-            vol_changes.append(float(v.iloc[-1]) / float(v.mean()))
+        if v.mean() > 0: vol_changes.append(float(v.iloc[-1]) / float(v.mean()))
     N = np.mean(vol_changes) * 50 if vol_changes else 50.0
     V = N / D if D > 0 else 0.0
     scores['_d'] = D; scores['_n'] = N; scores['_v'] = V
     scores['_timestamp'] = common_idx[i]
+    scores['_bar_idx'] = i
     strength_history.append(scores)
 
 print(f"  強弱スコア履歴: {len(strength_history)} bars")
 
-#--- モメンタム & ピーク検知 ---
-print("\n[4/5] モメンタム・ピーク検知 計算中...")
+#--- モメンタム・ピーク・トレンド ---
+print("\n[5/6] モメンタム・ピーク検知...")
 
 score_series = {c: [s[c] for s in strength_history] for c in CURRENCIES}
 
@@ -192,34 +223,36 @@ for c in CURRENCIES:
         trend_up[c][i] = all(series[i-j] > series[i-j-1] for j in range(TREND_CONFIRM_BARS))
         trend_down[c][i] = all(series[i-j] < series[i-j-1] for j in range(TREND_CONFIRM_BARS))
 
-# ★ モメンタムの加速度（2次微分）— モメンタム自体が上向きか下向きか
 accel = {c: [] for c in CURRENCIES}
 for c in CURRENCIES:
     mom_series = momentum[c]
     for i in range(len(mom_series)):
-        if i >= 3:
-            a = mom_series[i] - mom_series[i-3]
-        else:
-            a = 0.0
+        a = mom_series[i] - mom_series[i-3] if i >= 3 else 0.0
         accel[c].append(a)
 
-print(f"  計算完了")
+print("  計算完了")
 
-#--- バックテスト実行 ---
-print("\n[5/5] バックテスト実行中...")
+#=========================================
+# ★ バックテスト実行 — リアルマネー摩擦付き
+#=========================================
+print("\n[6/6] リアルマネーバックテスト実行中...")
 
 positions = []
 closed_trades = []
-capital = 10000.0
+capital = 10000.0  # 會長の初期資本
 initial_capital = capital
+peak_capital = capital
 
-entry_rejected = {'momentum': 0, 'peak': 0, 'no_trend': 0, 'cooldown': 0}
+entry_rejected = {'momentum': 0, 'peak': 0, 'no_trend': 0, 'cooldown': 0, 'psych': 0}
 d_history = [s['_d'] for s in strength_history]
+cooldown_until = {}
 
-# ★ クールダウン管理: pair_key → 決済した bar index
-cooldown_until = {}  # pair_key -> bar index until which entry is blocked
+total_slippage_cost = 0.0
+total_spread_cost = 0.0
+total_commission_cost = 0.0
+total_swap_cost = 0.0
 
-for i in range(max(MOMENTUM_BARS, TREND_CONFIRM_BARS, PEAK_DECAY_BARS), len(strength_history)):
+for i in range(max(MOMENTUM_BARS, TREND_CONFIRM_BARS, PEAK_DECAY_BARS, EXECUTION_LAG_BARS), len(strength_history)):
     current = strength_history[i]
     bar_idx = i - LOOKBACK
 
@@ -255,36 +288,73 @@ for i in range(max(MOMENTUM_BARS, TREND_CONFIRM_BARS, PEAK_DECAY_BARS), len(stre
                     else:
                         pair_key = f"{strongest}/{weakest}"
 
-                        # ★ クールダウンチェック
                         if pair_key in cooldown_until and i < cooldown_until[pair_key]:
                             entry_rejected['cooldown'] += 1
                         else:
-                            # ★ モメンタム加速度チェック — 減速中なら見送り
                             strongest_accel = accel[strongest][bar_idx] if bar_idx < len(accel[strongest]) else 0
                             weakest_accel = accel[weakest][bar_idx] if bar_idx < len(accel[weakest]) else 0
 
-                            # 最強通貨のモメンタムが急減速 = トレンド終了間近
                             if strongest_accel < -0.1 or weakest_accel > 0.1:
                                 entry_rejected['momentum'] += 1
                             else:
-                                adjusted_lot = BASE_LOT * (1.0 + V_LOT_MULTIPLIER * min(current['_v'], 10.0) / 10.0)
-                                already_has = any(p['pair'] == pair_key for p in positions)
+                                # ★ 心理D: リアルマネー時のエントリー躊躇
+                                if np.random.random() < PSYCHOLOGICAL_HESITATION:
+                                    entry_rejected['psych'] += 1
+                                else:
+                                    adjusted_lot = BASE_LOT * (1.0 + V_LOT_MULTIPLIER * min(current['_v'], 10.0) / 10.0)
+                                    already_has = any(p['pair'] == pair_key for p in positions)
 
-                                if not already_has:
-                                    positions.append({
-                                        'pair': pair_key,
-                                        'long_currency': strongest,
-                                        'short_currency': weakest,
-                                        'entry_strength_diff': score_diff,
-                                        'entry_v': current['_v'],
-                                        'entry_n': current['_n'],
-                                        'entry_d': current['_d'],
-                                        'entry_momentum': strongest_mom,
-                                        'lot': adjusted_lot,
-                                        'entry_bar': i,
-                                        'entry_time': current['_timestamp'],
-                                        'direction': 'LONG'
-                                    })
+                                    if not already_has:
+                                        # ★ 執行遅延: EXECUTION_LAG_BARS後の価格で約定
+                                        exec_bar = min(i + EXECUTION_LAG_BARS, len(strength_history) - 1)
+
+                                        # ★ スリッページ計算
+                                        # 該当ペアのATRを取得
+                                        yf_symbol = None
+                                        for pn, pq in PAIRS_YF.items():
+                                            base, quote = PAIR_BASE_QUOTE[pn]
+                                            if base == strongest and quote == weakest:
+                                                yf_symbol = pn
+                                                break
+                                            if base == weakest and quote == strongest:
+                                                yf_symbol = pn
+                                                break
+
+                                        slippage_pips = BASE_SPREAD_PIPS  # ベース
+                                        if yf_symbol and yf_symbol in pair_atr:
+                                            current_atr = float(pair_atr[yf_symbol].iloc[i]) if i < len(pair_atr[yf_symbol]) else 0
+                                            current_price = float(pair_data[yf_symbol]['Close'].iloc[i]) if yf_symbol in pair_data else 1.0
+                                            if current_price > 0:
+                                                # ATRの比率としてスリッページ
+                                                slippage_pips = (current_atr / current_price) * 10000 * SLIPPAGE_RATIO
+
+                                        # ★ スプレッド計算 (ボラティリティ比例)
+                                        vol_mult = 1.0 + (current['_d'] / avg_d - 1.0) * VOLATILITY_SPREAD_MULT if avg_d > 0 else 1.0
+                                        actual_spread = BASE_SPREAD_PIPS * max(vol_mult, 1.0)
+
+                                        total_slippage_cost += slippage_pips * adjusted_lot * 10
+                                        total_spread_cost += actual_spread * adjusted_lot * 10
+                                        total_commission_cost += COMMISSION_PIPS * adjusted_lot * 10
+
+                                        positions.append({
+                                            'pair': pair_key,
+                                            'long_currency': strongest,
+                                            'short_currency': weakest,
+                                            'entry_strength_diff': score_diff,
+                                            'entry_v': current['_v'],
+                                            'entry_n': current['_n'],
+                                            'entry_d': current['_d'],
+                                            'entry_momentum': strongest_mom,
+                                            'lot': adjusted_lot,
+                                            'entry_bar': i,
+                                            'exec_bar': exec_bar,
+                                            'entry_time': current['_timestamp'],
+                                            'direction': 'LONG',
+                                            'slippage_pips': slippage_pips,
+                                            'spread_pips': actual_spread,
+                                            'commission_pips': COMMISSION_PIPS,
+                                            'entry_capital': capital
+                                        })
 
     #--- 決済判定 ---
     for pos in positions[:]:
@@ -297,47 +367,40 @@ for i in range(max(MOMENTUM_BARS, TREND_CONFIRM_BARS, PEAK_DECAY_BARS), len(stre
         short_mom = momentum[pos['short_currency']][pos_bar] if pos_bar < len(momentum[pos['short_currency']]) else 0
         long_accel = accel[pos['long_currency']][pos_bar] if pos_bar < len(accel[pos['long_currency']]) else 0
 
-        #--- 決済条件 ---
         close1 = abs(current_diff) < CLOSE_THRESHOLD
         close2 = long_score < short_score
-
-        # ★ モメンタム逆転 + 加速度確認（ダブルチェック）
         close2b = (long_mom < -REVERSAL_EXIT_SPEED) or (short_mom > REVERSAL_EXIT_SPEED)
-
         close3 = current['_d'] > avg_d * D_MAX_MULT * 1.5
+        close4 = (pos['entry_momentum'] > 0 and long_mom < 0 and long_accel < 0)
+        close5 = (current_diff < pos['entry_strength_diff'] * PARTIAL_CLOSE_RATIO and long_mom < 0)
 
-        # ★ トレンド崩壊: エントリー時モメンタム正 → 現在モメンタum負 + 加速度も負
-        close4 = False
-        if pos['entry_momentum'] > 0 and long_mom < 0 and long_accel < 0:
-            close4 = True
+        # ★ ドローダウン強制クローズ
+        close6 = False
+        if capital < peak_capital * (1 - MAX_DRAWDOWN_PCT / 100):
+            close6 = True
 
-        # ★ 新規: スコア差が半分以下に縮小 + モメンタム減速 = 利確
-        close5 = False
-        if current_diff < pos['entry_strength_diff'] * PARTIAL_CLOSE_THRESHOLD and long_mom < 0:
-            close5 = True
-
-        if close1 or close2 or close2b or close3 or close4 or close5:
+        if close1 or close2 or close2b or close3 or close4 or close5 or close6:
             entry_diff = pos['entry_strength_diff']
             exit_diff = current_diff
 
-            # P/L計算 v3.1
-            if close2:
+            # P/L計算 (v3.1と同じ)
+            if close6:
+                pnl_pct = -8.0
+                reason = "ドローダウン停止"
+            elif close2:
                 pnl_pct = -15.0
                 reason = "強弱逆転"
             elif close2b:
-                # ★ モメンタム逆転時: スコア差の状況で損益を変える
                 if exit_diff > entry_diff * 0.7:
-                    # まだトレンド方向にあった = 小利で逃げる
                     pnl_pct = 1.0
                     reason = "モメ逆転(小利)"
                 else:
-                    pnl_pct = MOMENTUM_REVERSAL_LOSS_LIMIT
+                    pnl_pct = -2.0
                     reason = "モメンタム逆転"
             elif close4:
-                pnl_pct = TREND_BREAK_LOSS_LIMIT
+                pnl_pct = -1.0
                 reason = "トレンド崩壊"
             elif close5:
-                # ★ 部分利確: スコア差が半分縮小 = そこそこ利益
                 pnl_pct = 5.0
                 reason = "部分利確"
             elif close3:
@@ -353,7 +416,25 @@ for i in range(max(MOMENTUM_BARS, TREND_CONFIRM_BARS, PEAK_DECAY_BARS), len(stre
                 pnl_pct = -3.0
                 reason = "トレンド継続"
 
-            pnl_usd = pnl_pct * pos['lot'] * 100
+            # ★ リアルマネー摩擦コストを差し引く
+            # スリッページ
+            friction_slippage = pos['slippage_pips'] * pos['lot'] * 10
+            # スプレッド
+            friction_spread = pos['spread_pips'] * pos['lot'] * 10
+            # コミッション
+            friction_commission = pos['commission_pips'] * pos['lot'] * 10
+            # スワップ (保有時間に比例)
+            bars_held = i - pos['entry_bar']
+            days_held = bars_held / 24  # 1h足 → 日数
+            if pos['direction'] == 'LONG':
+                friction_swap = SWAP_LONG_PIPS * days_held * pos['lot'] * 10
+            else:
+                friction_swap = SWAP_SHORT_PIPS * days_held * pos['lot'] * 10
+
+            total_friction = friction_slippage + friction_spread + friction_commission + friction_swap
+
+            pnl_gross = pnl_pct * pos['lot'] * 100
+            pnl_net = pnl_gross - total_friction
 
             closed_trades.append({
                 'pair': pos['pair'],
@@ -362,78 +443,133 @@ for i in range(max(MOMENTUM_BARS, TREND_CONFIRM_BARS, PEAK_DECAY_BARS), len(stre
                 'entry_v': pos['entry_v'],
                 'entry_strength_diff': pos['entry_strength_diff'],
                 'exit_strength_diff': exit_diff,
-                'pnl_pct': pnl_pct,
-                'pnl_usd': pnl_usd,
+                'pnl_gross': pnl_gross,
+                'pnl_net': pnl_net,
+                'friction_cost': total_friction,
+                'slippage_cost': friction_slippage,
+                'spread_cost': friction_spread,
+                'commission_cost': friction_commission,
+                'swap_cost': friction_swap,
                 'reason': reason,
-                'bars_held': i - pos['entry_bar'],
+                'bars_held': bars_held,
                 'lot': pos['lot']
             })
 
-            capital += pnl_usd
-            # ★ クールダウン設定
+            capital += pnl_net
             cooldown_until[pos['pair']] = i + COOLDOWN_BARS
             positions.remove(pos)
 
-#--- 結果出力 ---
-print("\n" + "=" * 60)
-print("バックテスト結果 — v3.1")
-print("=" * 60)
+    # ピーク資本更新
+    if capital > peak_capital:
+        peak_capital = capital
+
+    # ドローダウン停止
+    if capital < peak_capital * (1 - MAX_DRAWDOWN_PCT / 100) and positions:
+        for pos in positions[:]:
+            pnl_pct = -5.0
+            pnl_net = pnl_pct * pos['lot'] * 100
+            closed_trades.append({
+                'pair': pos['pair'],
+                'entry_time': pos['entry_time'],
+                'exit_time': current['_timestamp'],
+                'entry_v': pos['entry_v'],
+                'entry_strength_diff': pos['entry_strength_diff'],
+                'exit_strength_diff': 0,
+                'pnl_gross': pnl_pct * pos['lot'] * 100,
+                'pnl_net': pnl_net,
+                'friction_cost': 0,
+                'reason': 'ドローダウン停止',
+                'bars_held': i - pos['entry_bar'],
+                'lot': pos['lot']
+            })
+            capital += pnl_net
+            positions.remove(pos)
+
+#=========================================
+# 結果出力
+#=========================================
+print("\n" + "=" * 64)
+print("バックテスト結果 — v4 Real Money Simulator")
+print("=" * 64)
 
 total_trades = len(closed_trades)
-wins = [t for t in closed_trades if t['pnl_usd'] > 0]
-losses = [t for t in closed_trades if t['pnl_usd'] <= 0]
+wins = [t for t in closed_trades if t['pnl_net'] > 0]
+losses = [t for t in closed_trades if t['pnl_net'] <= 0]
 win_rate = len(wins) / total_trades * 100 if total_trades > 0 else 0
-total_pnl = sum(t['pnl_usd'] for t in closed_trades)
+total_pnl_gross = sum(t['pnl_gross'] for t in closed_trades)
+total_pnl_net = sum(t['pnl_net'] for t in closed_trades)
+total_friction = sum(t['friction_cost'] for t in closed_trades)
 
-print(f"\n  初期資本:      ${initial_capital:,.2f}")
-print(f"  最終資本:      ${capital:,.2f}")
-print(f"  総P/L:         ${total_pnl:,.2f}")
-print(f"  リターン:      {(total_pnl/initial_capital)*100:.2f}%")
-print(f"  総トレード数:  {total_trades}")
-print(f"  勝率:          {win_rate:.1f}% ({len(wins)}勝 / {len(losses)}敗)")
+print(f"\n  初期資本:        ${initial_capital:,.2f}")
+print(f"  最終資本:        ${capital:,.2f}")
+print(f"  総P/L (粗利):    ${total_pnl_gross:,.2f}")
+print(f"  総P/L (純利):    ${total_pnl_net:,.2f}")
+print(f"  摩擦コスト合計:  ${total_friction:,.2f}")
+print(f"  リターン(純):    {(total_pnl_net/initial_capital)*100:.2f}%")
+print(f"  総トレード数:    {total_trades}")
+print(f"  勝率:            {win_rate:.1f}% ({len(wins)}勝 / {len(losses)}敗)")
 
 if closed_trades:
-    print(f"  平均保有バー:  {np.mean([t['bars_held'] for t in closed_trades]):.1f}")
-    print(f"  最大利益:      ${max(t['pnl_usd'] for t in closed_trades):.2f}")
-    print(f"  最大損失:      ${min(t['pnl_usd'] for t in closed_trades):.2f}")
-    print(f"  プロフィットファクター: {sum(t['pnl_usd'] for t in wins) / abs(sum(t['pnl_usd'] for t in losses)) if losses else '∞':.2f}")
+    print(f"  平均保有バー:    {np.mean([t['bars_held'] for t in closed_trades]):.1f}")
+    print(f"  最大利益:        ${max(t['pnl_net'] for t in closed_trades):.2f}")
+    print(f"  最大損失:        ${min(t['pnl_net'] for t in closed_trades):.2f}")
 
+    pf_gross = sum(t['pnl_gross'] for t in wins) / abs(sum(t['pnl_gross'] for t in losses)) if losses else 999
+    pf_net = sum(t['pnl_net'] for t in wins) / abs(sum(t['pnl_net'] for t in losses)) if losses else 999
+    print(f"  PF (粗利):       {pf_gross:.2f}")
+    print(f"  PF (純利):       {pf_net:.2f}")
+
+    # 摩擦コスト内訳
+    print(f"\n  摩擦コスト内訳:")
+    print(f"    スリッページ:  ${sum(t['slippage_cost'] for t in closed_trades):.2f}")
+    print(f"    スプレッド:    ${sum(t['spread_cost'] for t in closed_trades):.2f}")
+    print(f"    コミッション:  ${sum(t['commission_cost'] for t in closed_trades):.2f}")
+    print(f"    スワップ:      ${sum(t['swap_cost'] for t in closed_trades):.2f}")
+
+    # 決済理由別
     reasons = {}
     for t in closed_trades:
         r = t['reason']
-        if r not in reasons: reasons[r] = {'count': 0, 'pnl': 0, 'wins': 0}
+        if r not in reasons: reasons[r] = {'count': 0, 'pnl_gross': 0, 'pnl_net': 0, 'wins': 0}
         reasons[r]['count'] += 1
-        reasons[r]['pnl'] += t['pnl_usd']
-        if t['pnl_usd'] > 0: reasons[r]['wins'] += 1
+        reasons[r]['pnl_gross'] += t['pnl_gross']
+        reasons[r]['pnl_net'] += t['pnl_net']
+        if t['pnl_net'] > 0: reasons[r]['wins'] += 1
 
     print(f"\n  決済理由別:")
-    for r, v in sorted(reasons.items(), key=lambda x: -abs(x[1]['pnl'])):
+    for r, v in sorted(reasons.items(), key=lambda x: -abs(x[1]['pnl_net'])):
         wr = v['wins']/v['count']*100 if v['count'] > 0 else 0
-        print(f"    {r:16s}: {v['count']:3d}回, P/L ${v['pnl']:+.2f}, 勝率{wr:.0f}%")
+        print(f"    {r:16s}: {v['count']:3d}回, 粗${v['pnl_gross']:+.2f}, 純${v['pnl_net']:+.2f}, 勝率{wr:.0f}%")
 
 print(f"\n  エントリー除外統計:")
 print(f"    モメンタム不足:   {entry_rejected['momentum']:4d}回")
 print(f"    ピーク直後:       {entry_rejected['peak']:4d}回")
 print(f"    トレンド未確認:   {entry_rejected['no_trend']:4d}回")
 print(f"    クールダウン中:   {entry_rejected['cooldown']:4d}回")
+print(f"    心理D (躊躇):     {entry_rejected['psych']:4d}回")
 
 #--- 版比較 ---
-print(f"\n  版別比較:")
-print(f"    {'':16s} {'v2':>10s} {'v3':>10s} {'v3.1':>10s}")
-print(f"    {'トレード数':14s} {239:>10d} {47:>10d} {total_trades:>10d}")
-print(f"    {'P/L':>16s} {'$-262':>10s} {'$+1.77':>10s} {'$' + f'{total_pnl:.2f}':>10s}")
-print(f"    {'勝率':>16s} {'46.0%':>10s} {'12.8%':>10s} {f'{win_rate:.1f}%':>10s}")
+print(f"\n  版別比較 (粗利 / 純利):")
+print(f"    {'':16s} {'v2':>12s} {'v3':>12s} {'v3.1':>12s} {'v4(粗)':>12s} {'v4(純)':>12s}")
+print(f"    {'トレード数':14s} {'239':>12s} {'47':>12s} {'38':>12s} {total_trades:>12d} {total_trades:>12d}")
+print(f"    {'P/L':>16s} {'-$262':>12s} {'$+1.77':>12s} {'$+60':>12s} {f'${total_pnl_gross:+.2f}':>12s} {f'${total_pnl_net:+.2f}':>12s}")
+print(f"    {'勝率':>16s} {'46.0%':>12s} {'12.8%':>12s} {'39.5%':>12s} {f'{win_rate:.1f}%':>12s} {f'{win_rate:.1f}%':>12s}")
 
 #--- トレード履歴 ---
 print(f"\n  トレード履歴 (全{total_trades}件)")
-print(f"  {'No.':>4} {'Entry':>12} {'Exit':>12} {'Pair':>10} {'V':>5} {'Diff→Diff':>12} {'P/L':>8} {'Reason':>16} {'Bars':>4}")
-print("  " + "-" * 92)
+print(f"  {'No.':>4} {'Entry':>12} {'Pair':>10} {'V':>5} {'粗P/L':>8} {'摩擦':>6} {'純P/L':>8} {'Reason':>14} {'Bars':>4}")
+print("  " + "-" * 80)
 for idx, t in enumerate(closed_trades):
-    print(f"  {idx+1:>4} {t['entry_time'].strftime('%m/%d %H:%M'):>12} {t['exit_time'].strftime('%m/%d %H:%M'):>12}"
-          f" {t['pair']:>10s} {t['entry_v']:>5.1f}"
-          f" {t['entry_strength_diff']:.2f}→{t['exit_strength_diff']:.2f}"
-          f" ${t['pnl_usd']:>+6.2f} {t['reason']:>16s} {t['bars_held']:>4d}")
+    print(f"  {idx+1:>4} {t['entry_time'].strftime('%m/%d %H:%M'):>12} {t['pair']:>10s} {t['entry_v']:>5.1f}"
+          f" ${t['pnl_gross']:>+6.2f} ${t['friction_cost']:>4.2f} ${t['pnl_net']:>+6.2f}"
+          f" {t['reason']:>14s} {t['bars_held']:>4d}")
 
-print(f"\n{'='*60}")
-print(f"TheYKHC EA v3.1 Backtest Complete")
-print(f"{'='*60}")
+print(f"\n{'='*64}")
+print(f"  リアルマネー摩擦サマリー")
+print(f"  デモとの差: 粗利${total_pnl_gross:+.2f} → 純利${total_pnl_net:+.2f}")
+print(f"  摩擦が食った割合: {abs(total_friction)/abs(total_pnl_gross)*100 if total_pnl_gross != 0 else 0:.1f}%")
+print(f"  (スリップ{SLIPPAGE_RATIO*100:.0f}% + スプレッド拡大 + コミ{COMMISSION_PIPS}pips + スワップ)")
+print(f"  (心理D: {PSYCHOLOGICAL_HESITATION*100:.0f}%のエントリー見送り)")
+print(f"{'='*64}")
+print(f"TheYKHC EA v4 Real Money Simulator Complete")
+print(f"{'='*64}")
