@@ -5,7 +5,6 @@ const openai = new OpenAI({ apiKey: Deno.env.get('OPENAI_API_KEY_2') || Deno.env
 
 function stripMarkdown(raw) {
   let s = raw.trim();
-  // Remove ```json ... ``` or ``` ... ``` wrappers
   s = s.replace(/^```(?:json)?\s*\n?/i, '').replace(/\n?```\s*$/i, '');
   return s.trim();
 }
@@ -17,7 +16,7 @@ function extractJson(raw) {
 }
 
 //===============================================
-// Question Harvest Engine — 1,034 DOIから問いを収穫 → 5層診断
+// Question Harvest Engine — 1,034 DOIから問いを収穫 → 5層診断 → 市場規模算出
 // 會長の論文 "Question Harvest Engine v1-v6" の実装
 //===============================================
 
@@ -142,7 +141,6 @@ JSONのみ返してください。マークダウン不要。`;
       const batchSize = body.batch_size || 10;
       const allQuestions = await base44.asServiceRole.entities.Question.list();
       
-      // high ポテンシャルかつ未診断（status=open）の問いを抽出
       const highOpen = allQuestions.filter(q => {
         const bp = q.tags?.find(t => t.startsWith('business:'));
         return bp === 'business:high' && q.status === 'open';
@@ -160,10 +158,8 @@ JSONのみ返してください。マークダウン不要。`;
         });
       }
 
-      // バッチ取得
       const batch = highOpen.slice(0, batchSize);
 
-      // 5層診断プロンプト（簡潔化でトークン節約）
       const questionList = batch.map((q, i) => 
         `[${i+1}] ID:${q.id}\n    問い: ${q.text}\n    業界: ${q.industry || '不明'}`
       ).join('\n');
@@ -209,7 +205,6 @@ JSONのみ。マークダウン不要。`;
         });
       }
 
-      // 各問いを更新
       let updated = 0;
       for (const d of diagnoses) {
         try {
@@ -252,7 +247,177 @@ JSONのみ。マークダウン不要。`;
     }
 
     // ============================================
-    // ACTION: stats — 収穫・診断状況の統計
+    // ACTION: market_size — go判定の問いにTAM/SAM/SOMを算出
+    // GPT-4o-mini使用、コスト最小化（低D化）
+    // ============================================
+    if (action === 'market_size') {
+      const batchSize = body.batch_size || 10;
+      const allQuestions = await base44.asServiceRole.entities.Question.list();
+      
+      // go判定の問いを抽出（verdict:go タグあり）
+      const goQuestions = allQuestions.filter(q => {
+        return q.tags?.some(t => t === 'verdict:go');
+      });
+
+      // TAM未算出のものを抽出（cross_noteに"TAM:"が無いもの）
+      const needsMarketSize = goQuestions.filter(q => {
+        return !q.cross_note || !q.cross_note.includes('TAM:');
+      });
+
+      if (needsMarketSize.length === 0) {
+        // 全体の市場規模集計
+        let totalTAM = 0;
+        let totalSAM = 0;
+        let totalSOM = 0;
+        const calculated = goQuestions.filter(q => q.cross_note && q.cross_note.includes('TAM:'));
+        
+        for (const q of calculated) {
+          const tamMatch = q.cross_note.match(/TAM:\s*([\d.]+)\s*(億|兆|万)?/);
+          const samMatch = q.cross_note.match(/SAM:\s*([\d.]+)\s*(億|兆|万)?/);
+          const somMatch = q.cross_note.match(/SOM:\s*([\d.]+)\s*(億|兆|万)?/);
+          if (tamMatch) totalTAM += parseMarketNumber(tamMatch);
+          if (samMatch) totalSAM += parseMarketNumber(samMatch);
+          if (somMatch) totalSOM += parseMarketNumber(somMatch);
+        }
+
+        return Response.json({
+          action: 'market_size',
+          status: 'complete',
+          total_go: goQuestions.length,
+          calculated: calculated.length,
+          remaining: 0,
+          summary: {
+            total_TAM_jpy: totalTAM,
+            total_SAM_jpy: totalSAM,
+            total_SOM_jpy: totalSOM,
+            total_TAM_display: formatYen(totalTAM),
+            total_SAM_display: formatYen(totalSAM),
+            total_SOM_display: formatYen(totalSOM)
+          },
+          message: '全go判定問いの市場規模算出が完了'
+        });
+      }
+
+      const batch = needsMarketSize.slice(0, batchSize);
+
+      const questionList = batch.map((q, i) => 
+        `[${i+1}] ID:${q.id}\n    問い: ${q.text}\n    業界: ${q.industry || '不明'}\n    診断: ${(q.insight || '').slice(0, 100)}`
+      ).join('\n');
+
+      const marketPrompt = `市場分析専門家として、以下の${batch.length}件の事業化候補問いの市場規模を算出してください。
+
+各問いについて、対応する産業分野の現実的な市場規模を推定し、TAM/SAM/SOMを日本円で算出してください。
+
+【問いリスト】
+${questionList}
+
+各問いについて以下のJSON配列で返答してください:
+[
+  {
+    "question_id": "上記のID",
+    "tam": 5000,
+    "tam_unit": "億円",
+    "sam": 500,
+    "sam_unit": "億円",
+    "som": 50,
+    "som_unit": "億円",
+    "growth_rate": 12.5,
+    "market_description": "市場の概要（1文）",
+    "target_segment": "ターゲット層（1文）",
+    "competitive_landscape": "競合状況（1文）"
+  }
+]
+
+※TAM = Total Addressable Market（参入可能な全市場）
+※SAM = Serviceable Addressable Market（対応可能な市場）
+※SOM = Serviceable Obtainable Market（獲得可能な市場）
+※数値は日本円ベースで、単位は「兆円」「億円」「万円」のいずれか
+※成長率は年率%（CAGR）
+
+JSONのみ。マークダウン不要。`;
+
+      const completion = await openai.chat.completions.create({
+        model: 'gpt-4o-mini',
+        messages: [{ role: 'user', content: marketPrompt }],
+        temperature: 0.5,
+        max_tokens: 4000,
+      });
+
+      let marketData = [];
+      try {
+        const raw = completion.choices[0].message.content || '';
+        marketData = JSON.parse(extractJson(raw));
+      } catch (e) {
+        return Response.json({
+          action: 'market_size',
+          status: 'parse_error',
+          raw: (completion.choices[0].message.content || '').slice(0, 500),
+          error: e.message
+        });
+      }
+
+      // 各問いを更新
+      let updated = 0;
+      for (const m of marketData) {
+        try {
+          const existing = batch.find(q => q.id === m.question_id);
+          if (!existing) continue;
+
+          const marketText = [
+            `【TAM】${m.tam}${m.tam_unit}`,
+            `【SAM】${m.sam}${m.sam_unit}`,
+            `【SOM】${m.som}${m.som_unit}`,
+            `【成長率(CAGR)】${m.growth_rate}%`,
+            `【市場概要】${m.market_description}`,
+            `【ターゲット】${m.target_segment}`,
+            `【競合状況】${m.competitive_landscape}`
+          ].join('\n');
+
+          // 既存のanswerに市場規模セクションを追加
+          const existingAnswer = existing.answer || '';
+          const updatedAnswer = existingAnswer 
+            ? existingAnswer + '\n\n--- 市場規模 ---\n' + marketText 
+            : marketText;
+
+          // cross_noteにTAM/SAM/SOMを追加
+          const existingCrossNote = existing.cross_note || '';
+          const updatedCrossNote = `${existingCrossNote} | TAM:${m.tam}${m.tam_unit} SAM:${m.sam}${m.sam_unit} SOM:${m.som}${m.som_unit}`;
+
+          // tagsにmarket_sizedを追加
+          const existingTags = existing.tags || [];
+          const updatedTags = [...existingTags, 'market_sized'];
+
+          await base44.asServiceRole.entities.Question.update(m.question_id, {
+            answer: updatedAnswer,
+            cross_note: updatedCrossNote,
+            tags: updatedTags
+          });
+          updated++;
+        } catch (e) { /* skip errors */ }
+      }
+
+      // 進捗の集計
+      const alreadyCalculated = goQuestions.length - needsMarketSize.length;
+      
+      return Response.json({
+        action: 'market_size',
+        status: 'processing',
+        total_go: goQuestions.length,
+        calculated: alreadyCalculated + updated,
+        batch_processed: updated,
+        remaining: needsMarketSize.length - updated,
+        sample_results: marketData.slice(0, 3).map(m => ({
+          id: m.question_id,
+          tam: `${m.tam}${m.tam_unit}`,
+          sam: `${m.sam}${m.sam_unit}`,
+          som: `${m.som}${m.som_unit}`,
+          growth: `${m.growth_rate}%`
+        }))
+      });
+    }
+
+    // ============================================
+    // ACTION: stats — 収穫・診断・市場規模の統計
     // ============================================
     if (action === 'stats') {
       const allSeeds = await base44.asServiceRole.entities.SeedRecord.list();
@@ -302,6 +467,23 @@ JSONのみ。マークダウン不要。`;
           if (verdicts[verdict] !== undefined) verdicts[verdict]++;
         }
       }
+
+      // 市場規模集計
+      let totalTAM = 0;
+      let totalSAM = 0;
+      let totalSOM = 0;
+      let marketSized = 0;
+      for (const q of allQuestions) {
+        if (q.cross_note && q.cross_note.includes('TAM:')) {
+          marketSized++;
+          const tamMatch = q.cross_note.match(/TAM:\s*([\d.]+)\s*(億|兆|万)?/);
+          const samMatch = q.cross_note.match(/SAM:\s*([\d.]+)\s*(億|兆|万)?/);
+          const somMatch = q.cross_note.match(/SOM:\s*([\d.]+)\s*(億|兆|万)?/);
+          if (tamMatch) totalTAM += parseMarketNumber(tamMatch);
+          if (samMatch) totalSAM += parseMarketNumber(samMatch);
+          if (somMatch) totalSOM += parseMarketNumber(somMatch);
+        }
+      }
       
       return Response.json({
         action: 'stats',
@@ -323,14 +505,50 @@ JSONのみ。マークダウン不要。`;
           avg_vnd_score: avgVnd,
           verdicts: verdicts
         },
+        market_size: {
+          go_total: verdicts.go,
+          market_sized: marketSized,
+          remaining: verdicts.go - marketSized,
+          total_TAM_jpy: totalTAM,
+          total_SAM_jpy: totalSAM,
+          total_SOM_jpy: totalSOM,
+          total_TAM_display: formatYen(totalTAM),
+          total_SAM_display: formatYen(totalSAM),
+          total_SOM_display: formatYen(totalSOM)
+        },
         progress_pct: allSeeds.length > 0 ? Math.round(processedSeeds.length / allSeeds.length * 100) : 0
       });
     }
 
-    return Response.json({ error: 'Unknown action. Use: harvest, diagnose, stats' }, { status: 400 });
+    return Response.json({ error: 'Unknown action. Use: harvest, diagnose, market_size, stats' }, { status: 400 });
 
   } catch (error) {
     console.error('questionHarvest error:', error);
     return Response.json({ error: error.message }, { status: 500 });
   }
 });
+
+// ============================================
+// Helper functions
+// ============================================
+function parseMarketNumber(match) {
+  const num = parseFloat(match[1]);
+  const unit = match[2] || '';
+  if (unit === '兆') return num * 1000000000000;
+  if (unit === '億') return num * 100000000;
+  if (unit === '万') return num * 10000;
+  return num;
+}
+
+function formatYen(amount) {
+  if (amount >= 1000000000000) {
+    return `${(amount / 1000000000000).toFixed(2)}兆円`;
+  }
+  if (amount >= 100000000) {
+    return `${(amount / 100000000).toFixed(1)}億円`;
+  }
+  if (amount >= 10000) {
+    return `${(amount / 10000).toFixed(0)}万円`;
+  }
+  return `${amount}円`;
+}
