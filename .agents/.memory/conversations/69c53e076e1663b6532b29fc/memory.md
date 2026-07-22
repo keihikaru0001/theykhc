@@ -1,26 +1,20 @@
 <!-- build-plan:begin -->
-## Active build plan — luna_type3
+## Active build plan — luna_resonance
 Work through every step, and confirm each is satisfied before telling the user the agent is ready.
 
-- [ ] Create entities: ArtistProfile, ArtistLyric, NeutrinoEvent, FxTickSnapshot, BrainwaveProxy, Conversation, FanRequest, EmotionalState, HikariTransaction, IdeaSynthetixEntry
-- [ ] Import saved Luna data into ArtistProfile (display_name: Luna TYPE-3, tone_descriptor, philosophical_background, key_phrases, religion_mapping: buddhism, representative_works: BBDDH/Genesis OS, era: modern)
-- [ ] Import 2 ArtistLyric records (「闇の底から」, 「共鳴の波」) with theme, emotion, and key phrases from saved data
-- [ ] Import 5 NeutrinoEvent records (IceCube gold events 260504A, 260505A + 3 observer events) from old Luna app (69d570145faf332412ad4c73)
-- [ ] Import 28 FxTickSnapshot records (XAUUSD $4500–$4708, May 2026 observations)
-- [ ] Create BrainwaveProxy record (framework shell — fields defined, data to be populated later)
-- [ ] Write backend functions: getLunaProfile(), getLyricsByTheme(), getNeutrinoEvents(), getFxTrendSummary(), calculateObserverEffect(), trackEmotionalState(), createFanRequest(), createConversation(), createHikariTransaction(), submitIdeaSynthetix()
-- [ ] Write operating rules to .agents/rules/luna_identity.md
-- [ ] Write operating rules to .agents/rules/emotional_safety.md
-- [ ] Write operating rules to .agents/rules/resonance_response.md
-- [ ] Write operating rules to .agency/rules/spiritual_boundary.md
-- [ ] Define skills: resonance-dialogue, observer-interpretation, lyric-guided-healing, emotional-state-tracking, hikari-token-transfer, idea-synthetix-contribution, weekly-resonance-letter
-- [ ] Authorize WhatsApp connector
-- [ ] Authorize Telegram connector
-- [ ] Set up WhatsApp channel — inbound message handling, outbound proactive messaging for resonance letters
-- [ ] Set up Telegram channel — inbound message handling, outbound messaging for resonance letters
-- [ ] Create automations: weekly resonance letter schedule, NeutrinoEvent trigger, FxTickSnapshot trigger, BrainwaveProxy trigger, WhatsApp inbound, Telegram inbound
-- [ ] Seed Conversation records with Luna's opening monologue and a welcome message derived from ArtistProfile key phrases
-- [ ] Test end-to-end: send a WhatsApp message expressing emotional distress → verify resonance-dialogue skill activates and FanRequest is logged
-- [ ] Test observer-effect calculation with imported NeutrinoEvent data → verify V=N/D output and Conversation creation
-- [ ] Publish agent as independent Superagent — confirm Luna operates autonomously from Ikoi's agent, sharing data layer but maintaining separate persona and conversation state
+- [ ] Create/copy entities: ResonanceSession (session_id, user_ref, opening_monologue_ref, user_input, luna_response, emotional_state_before, emotional_state_after, hikari_offered, hikari_status, created_at, duration_seconds), NewsletterSubscription (email, display_name, subscribed_at, status, preferred_lang, source), ResonanceLetter (issue_number, week_of, title, body_content, monologue_ref, sent_at, recipient_count), HikariTransaction (from_user_ref, to_user_ref, amount, context_session_ref, transfer_type, created_at); link to existing ArtistProfile, ArtistLyric, LunaConversation, EmotionalState, NeutrinoEvent, FxTickSnapshot, BrainwaveProxy
+- [ ] Create backend functions: lunaChat (call existing deployed lunaChat API endpoint), observerEffect (call existing observerEffect API — pass latest NeutrinoEvent + FxTickSnapshot + user biorhythm, return V=N/D poetic interpretation), trackEmotionalState (call existing trackEmotionalState API), hikariTransfer (call existing hikariTransfer API), weeklyResonanceLetter (call existing weeklyResonanceLetter API), getLunaProfile (call existing getLunaProfile API — return Luna ArtistProfile), subscribeToLetter (create NewsletterSubscription record, send welcome email via Gmail), generateResonanceLetter (invoke weeklyResonanceLetter API, persist to ResonanceLetter entity), fetchObserverPanel (query latest NeutrinoEvent[6] + FxTickSnapshot[28] + call observerEffect, compose poetic panel payload)
+- [ ] Write operating rules to .agents/rules/luna_identity.md, .agents/rules/emotional_safety.md, .agents/rules/resonance_response.md, .agents/rules/spiritual_boundary.md, .agents/rules/session_boundaries.md
+- [ ] Write skills to .agents/skills/resonance_session.md, .agents/skills/subscribe_letter.md, .agents/skills/observer_panel.md, .agents/skills/weekly_letter_generation.md, .agents/skills/hikari_exchange.md
+- [ ] Build landing page: dark (#0a0a0a) × gold (#c5a572) palette, Cormorant Garamond + JetBrains Mono fonts, Luna opening monologue (LunaConversation ID 6a5ee9d433f9702d41b50721 related) as hero, theykhc.com visual consistency
+- [ ] Build resonance session flow: 3-minute timed free session, text input → lunaChat → poetic response, emotional state capture pre/post, hikari offer at close
+- [ ] Build observer panel: fetchObserverPanel data rendered as '今の宇宙の気配' — neutrino events as cosmic whispers, biorhythm as inner tide, V=N/D as observer score, all in poetic language not raw numbers
+- [ ] Build newsletter subscription form: email capture → subscribeToLetter → confirmation in Luna's voice
+- [ ] Authorize Gmail connector (for weekly letter delivery)
+- [ ] Authorize Telegram connector (for future direct Luna conversation channel)
+- [ ] Set up scheduled automation: Monday 09:00 JST → generateResonanceLetter → Gmail send to all active subscribers
+- [ ] Set up ResonanceSession entity-change automation → trackEmotionalState + hikariTransfer flow
+- [ ] Set up Telegram message automation → lunaChat response
+- [ ] Build theykhc.com entry point / promotional landing path with tracking param
+- [ ] Test full flow: monologue → session → panel → subscribe → weekly letter delivery
 <!-- build-plan:end -->
