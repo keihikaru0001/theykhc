@@ -1,0 +1,452 @@
+[
+  {
+    "doi": "10.64823/ijter.2605011",
+    "title": "Detection and Prevention of SQL Injection Attacks in Modern Web Applications",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212605094517/212605094517.\nSQL Injection (",
+    "keywords": "SQL Injection (SQLi), Web Application Security, Vulnerability Detection, Intrusion Detection Systems (IDS)., International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2026-05-13",
+    "zenodo_url": "https://zenodo.org/records/21465313",
+    "authors": "Mrs. M. Anbu"
+  },
+  {
+    "doi": "10.64823/ijter.2604016",
+    "title": "Machine Learning Based Real-Time Ad Click Fraud Detection and IP Mitigation System",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212604238928/212604238928.\nThe rapid expan",
+    "keywords": "LightGBM, feature engineering, Ad Click Fraud, XGBoost, SHAP, Real-Time Detection, IP Mitigation., International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2026-04-24",
+    "zenodo_url": "https://zenodo.org/records/21465257",
+    "authors": "A Kameswara Rao, J Sujay, R Radhika"
+  },
+  {
+    "doi": "10.64823/ijter.2603003",
+    "title": "Amazon's Transformation through Emerging Technologies",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212604234486/212604234486.\nThe report cond",
+    "keywords": "digital transformation, artificial intelligence, robotics, Amazon, sociotechnical systems, resource-based view, International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2026-03-30",
+    "zenodo_url": "https://zenodo.org/records/21465242",
+    "authors": "Shivanand R Koppalkar"
+  },
+  {
+    "doi": "10.64823/ijter.2604010",
+    "title": "A Hybrid Machine Learning–Deep Learning Framework for Explainable and Scalable Digital Forensic Analysis",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212604173995/212604173995.\nThe intensive d",
+    "keywords": "cybersecurity, artificial intelligence, machine learning, explainable AI, Digital Forensics, Real-Time Evidence Analysis, Forensic Intelligence Framework, International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2026-04-18",
+    "zenodo_url": "https://zenodo.org/records/21465222",
+    "authors": "Soni Rameshrao Ragho, Narendra Chaudhari"
+  },
+  {
+    "doi": "10.64823/ijter.2604006",
+    "title": "A Drift-Aware One-Class SVM Framework for Real-Time Adaptive DDoS Detection in SDN Environments",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212604159960/212604159960.\nSoftware-Define",
+    "keywords": "machine learning, concept drift, Software-Defined Networking, DDoS Detection, One-Class SVM, Adaptive Intrusion Detection, Network Security, International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2026-04-16",
+    "zenodo_url": "https://zenodo.org/records/21465219",
+    "authors": "Priti Tukaram Chorade, Narendra Chaudhari"
+  },
+  {
+    "doi": "10.64823/ijter.2604009",
+    "title": "Adversarially Robust Mask Generator: A Secure Encoder Network for Deep Learning-Based Steganography",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212604154851/212604154851.\nWe propose the ",
+    "keywords": "Adversarially Robust Steganography, Mask Generator Network, Vision Transformer Discriminator, Certifiable Robustness, Gradient Masking and Quantization, Steganalysis Resistance, International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2026-04-17",
+    "zenodo_url": "https://zenodo.org/records/21465218",
+    "authors": "Kaushik Sinha, Debalina Sinha Jana"
+  },
+  {
+    "doi": "10.64823/ijter.2604005",
+    "title": "Design of Intelligent Energy Meter with IoT-Based Power Theft Detection",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212604146403/212604146403.\nThis paper pres",
+    "keywords": "Electrical engineering final year project, International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2026-04-14",
+    "zenodo_url": "https://zenodo.org/records/21465210",
+    "authors": "Mayuresh Desai, Ms. R. S. Chavan, Adinath B Ghugare, Aniket L Methe"
+  },
+  {
+    "doi": "10.64823/ijter.2601001",
+    "title": "A Fault-Tolerant Dual-Port RAM Architecture Using ECC and Conflict Arbitration",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212512285366/212512285366.\nThis work prese",
+    "keywords": "FPGA, Dual-Port RAM, Error Correction Code, Arbitration, Memory Scrubbing, Fault Injection, International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2026-01-03",
+    "zenodo_url": "https://zenodo.org/records/21465157",
+    "authors": "Somu Goudagavi, Suhas G V, Dr. Sunitha Y N, Amar Ghule"
+  },
+  {
+    "doi": "10.64823/ijter.2508006",
+    "title": "Mental health chatbot with mood visualization",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212512173427/212512173427.\nStress, anxiety",
+    "keywords": "artificial intelligence, Mental health chatbot, rule-based system, emotion detection, International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2025-12-20",
+    "zenodo_url": "https://zenodo.org/records/21465152",
+    "authors": "Sanjana, Ruchitha M, Dr. Sunitha Y N"
+  },
+  {
+    "doi": "10.64823/ijter.2508004",
+    "title": "Enhanced Error Detection And Correction Codes For Space Communication",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212512116671/212512116671.\nSpace communica",
+    "keywords": "QC-LDPC codes, CRC-16, Block Interleaver, Offset Min-Sum Algorithm, Space Communication, FPGA Implementation, Error Correction, Burst Error Mitigation, Spartan-6, Channel Coding., International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2025-12-15",
+    "zenodo_url": "https://zenodo.org/records/21465146",
+    "authors": "Jeevan A T, Dr. Vijayakumar T, Hemanth Kumar S, Ashwanth M, Karun Kumar"
+  },
+  {
+    "doi": "10.64823/ijter.2507012",
+    "title": "Solar Panel Defect Detection Using Raspberry Pi And Machine Learning",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212511251764/212511251764.\nThe increasing ",
+    "keywords": "Defect Detection, Solar Panel, YOLOv9, Raspberry Pi, Thermal Imaging, Machine Learning., International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2025-11-28",
+    "zenodo_url": "https://zenodo.org/records/21465143",
+    "authors": "Mahesh Veershetty, Mrs. Anushree R, Srinivasa TV, Suprith D, ABHISHEK NS"
+  },
+  {
+    "doi": "10.64823/ijter.2507008",
+    "title": "Mental Health Prediction Using Machine Learning",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212511073500/212511073500.\nThis paper expl",
+    "keywords": "machine learning, deep learning, edge computing, explainable AI, Clinical Decision Support, Multimodal AI, Healthcare, Real-time Systems, Medical Imaging, Data Fusion, Privacy and Security, Personalized Medicine, International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2025-11-12",
+    "zenodo_url": "https://zenodo.org/records/21465116",
+    "authors": "Avani Shinde, Dr. Sonal Ayare"
+  },
+  {
+    "doi": "10.64823/ijter.2506006",
+    "title": "A Comprehensive Survey on Deep Learning-based Techniques for Tomato Leaves Disease Detection and Classification",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212510118206/212510118206.\nTomato is one o",
+    "keywords": "deep learning, Convolutional Neural Networks (CNN), Image Classification, object detection, Tomato Leaf Disease, Plant Pathology, Vision Transformers, Precision Agriculture., International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2025-10-11",
+    "zenodo_url": "https://zenodo.org/records/21465103",
+    "authors": "Jagisha"
+  },
+  {
+    "doi": "10.64823/ijter.2506003",
+    "title": "Optimized Xception Deep Learning Model for Automated Skin Disease Classification in Scalable Healthcare Systems",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212510054529/212510054529.\nHealthcare adva",
+    "keywords": "computer vision, CNN, Skin diseases, xception, International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2025-10-08",
+    "zenodo_url": "https://zenodo.org/records/21465087",
+    "authors": "Geeta Rani, Sahul Goyal, Lalit Kumar Awasthi, Love Kumar"
+  },
+  {
+    "doi": "10.64823/ijter.2505013",
+    "title": "Bone Fracture Detection in X-ray images using Convolutional Neural Networks",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212509199040/212509199040.\nBone fractures ",
+    "keywords": "deep learning, Convolutional Neural Networks (CNN), X-ray images, Computer-aided detection (CAD)., International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2025-09-19",
+    "zenodo_url": "https://zenodo.org/records/21465062",
+    "authors": "Pilla Sanjana, Dr. M. Ramjee"
+  },
+  {
+    "doi": "10.64823/ijter.2505012",
+    "title": "Automated Lung Cancer Diagnosis using Convolutional Neural Networks",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212509196702/212509196702.\nLung cancer is ",
+    "keywords": "Convolutional Neural Network (CNN), CT scans, Computer-Aided Diagnosis, Medical Image Analysis., International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2025-09-19",
+    "zenodo_url": "https://zenodo.org/records/21465061",
+    "authors": "Gullipalli Rohitha Sagar, P. Swathi, Prof. K. Venkata Rao"
+  },
+  {
+    "doi": "10.64823/ijter.2505009",
+    "title": "Intelligent Prediction of Cancer Diseases through Machine Learning",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212509171966/212509171966.\nCancer remains ",
+    "keywords": "machine learning, Cancer Prediction, Intelligent Systems, Early Diagnosis, Clinical Decision Support, International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2025-09-19",
+    "zenodo_url": "https://zenodo.org/records/21465045",
+    "authors": "Veeramuthu P, Rajesh D"
+  },
+  {
+    "doi": "10.64823/ijter.2505008",
+    "title": "Determination of The Level of Knowledge of Students Studying in The First and Emergency Aid Program About Cancer Screening",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212509169632/212509169632.\nCancer screenin",
+    "keywords": "Cancer, screening, health education, emergency aid, knowledge level, students, International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2025-09-19",
+    "zenodo_url": "https://zenodo.org/records/21465034",
+    "authors": "ILKNUR  YUCEL, Nadiye CAMCI"
+  },
+  {
+    "doi": "10.64823/ijter.2505002",
+    "title": "Deep Convolutional Network Modeling for ECG Image Analysis in Cardiovascular Disease Detection",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212509080724/212509080724.\nCardiovascular ",
+    "keywords": "deep learning, Flask Web application, Electrocardiogram (ECG), Convolutional Neural Network (CNN), Cardiovascular Disease Detection, Medical Image Classification, International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2025-09-09",
+    "zenodo_url": "https://zenodo.org/records/21465016",
+    "authors": "Pilla Divya, Dr. M. V. V. Siva Prasad"
+  },
+  {
+    "doi": "10.64823/ijter.2505001",
+    "title": "Handwriting – Based Behaviour Pattern Detection Using Convolutional Neural Networks",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212509041514/212509041514.\nHandwriting is ",
+    "keywords": "deep learning, CNN, Graphology, Personality traits, Behaviour Prediction., International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2025-09-07",
+    "zenodo_url": "https://zenodo.org/records/21465011",
+    "authors": "Dwarapu Daliya, Dr. Priyanka K Bhansali"
+  },
+  {
+    "doi": "10.64823/ijter.2504013",
+    "title": "RAFE-Net: A Residual Adaptive Residual Ensemble Feedback Network to Improve Accuracy of Prediction",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212508254688/212508254688.\nPrediction syst",
+    "keywords": "Prediction accuracy, residual learning, ensemble models, adaptive feedback, time series analysis, anomaly detection., International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2025-08-26",
+    "zenodo_url": "https://zenodo.org/records/21465001",
+    "authors": "Dr.S Gladson Oliver, Dr.T.Suguna, Dr.C.Aswini, Dr.R.Malavika"
+  },
+  {
+    "doi": "10.64823/ijter.2504008",
+    "title": "Panoptic Segmentation: A comprehensive pathway to A Real-World AI Vision",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212508172907/212508172907.\nFor computer vi",
+    "keywords": "computer vision, panoptic segmentation, instance segmentation, semantic segmentation, data annotation, medical image segmentation, object detection, International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2025-08-19",
+    "zenodo_url": "https://zenodo.org/records/21464981",
+    "authors": "Dr Nellutla Sasikala, Vemuri Pravalika"
+  },
+  {
+    "doi": "10.64823/ijter.2504002",
+    "title": "Enhanced Multi-Class Skin Cancer Detection Using EfficientNet-B0 with Test-Time Augmentation and Monte Carlo Dropout",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212507318687/212507318687.\nSkin cancer is ",
+    "keywords": "deep learning, skin cancer, EfficientNet-B0, transfer learning, dermoscopic images, test-time augmentation, monte carlo dropout, image processing, International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2025-08-01",
+    "zenodo_url": "https://zenodo.org/records/21464948",
+    "authors": "Pooja kukreja, Avani Chopra"
+  },
+  {
+    "doi": "10.64823/ijter.2503033",
+    "title": "Emerging Trends in Phishing : A look at Smishing, Vishing and  Quishing",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212507308755/212507308755.\nSophisticated a",
+    "keywords": "cybersecurity, Phishing, Smishing, Vishing, Quishing, Cybercrime, Human vulnerability, Threat., International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2025-07-30",
+    "zenodo_url": "https://zenodo.org/records/21464932",
+    "authors": "Bello Bello Musa, Adamu Ahmad Bahago, Nasir Auwal Muhammad, Dr. Fakhrun Jamal"
+  },
+  {
+    "doi": "10.64823/ijter.2503030",
+    "title": "Advanced CyberSecurity Solutions for IoT Based Networks",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212507282388/212507282388.\nThe proliferati",
+    "keywords": "cybersecurity, machine learning, Anomaly detection, Industrial Control Systems (ICS), Internet of Things (IoT), AutoEncoder, Deep Neural Networks (DNN), Decision Tree Classifier, Principal Component Analysis (PCA), Feature Extraction, Attack Classification, SWaT Dataset, Denial of Service (DoS), Malicious Command Injection, Supervised and Unsupervised Learning, Real-time Threat Detection, Cyber-Physical Systems (CPS), SCADA Systems, Modbus Protocols, and Critical Infrastructure Protection., Inte",
+    "published_date": "2025-07-28",
+    "zenodo_url": "https://zenodo.org/records/21464927",
+    "authors": "Nammi Arun Kumar, Dr. G. Narasimha Rao"
+  },
+  {
+    "doi": "10.64823/ijter.2503025",
+    "title": "Skin Cancer Detection Using  Convolutional Neural Networks",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212507269402/212507269402.\nSkin cancer rem",
+    "keywords": "deep learning, Streamlit Interface, Convolutional Neural Networks (CNN), Image Classification, Skin Cancer Detection, HAM10000, Melanoma, Dermatoscopic Images, Medical Image Analysis, Data Augmentation, Automated Diagnosis, Artificial Intelligence in Healthcare, Early Detection, Lesion Classification, Medical AI Tools, International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2025-07-26",
+    "zenodo_url": "https://zenodo.org/records/21464914",
+    "authors": "Tirlangi Indumathi, Dr. G. Narasimha Rao"
+  },
+  {
+    "doi": "10.64823/ijter.2503021",
+    "title": "Photovoltaic Cell Defect Identification and Categorization Using Image Classification Model",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212507256133/212507256133.\nThe rapid growt",
+    "keywords": "deep learning, Convolutional Neural Networks (CNN), Photovoltaic (PV) Cells, Defect Detection, Image Classification, Solar Panel Inspection, Automated Quality Assessment, Renewable Energy., International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2025-07-25",
+    "zenodo_url": "https://zenodo.org/records/21464898",
+    "authors": "Gantana Sai Madhav, Kunjam Nageswara Rao, Pappala Mohan Rao"
+  },
+  {
+    "doi": "10.64823/ijter.2503020",
+    "title": "Optimized Deep Learning Framework for Intrusion  Detection in Network Traffic",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212507255511/212507255511.\nWith the improv",
+    "keywords": "Intrusion Detection System, Convolutional Neural Networks, Long Short-Term Memory, Particle Swarm Optimization, Hyperparameters, International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2025-07-25",
+    "zenodo_url": "https://zenodo.org/records/21464895",
+    "authors": "Shaik Ishrath, I. Grace Asha Roy"
+  },
+  {
+    "doi": "10.64823/ijter.2503016",
+    "title": "Credit Card Fraud Detection Using Machine Learning",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212507245887/212507245887.\nCredit card fra",
+    "keywords": "Credit card fraud detection, Flask Web application, Anomaly detection, Ensemble methods, International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2025-07-24",
+    "zenodo_url": "https://zenodo.org/records/21464892",
+    "authors": "Pasala Sanyasi Naidu, Pakerla Emmy Rathan"
+  },
+  {
+    "doi": "10.64823/ijter.2503019",
+    "title": "Fraud Shield-Payment Protection using Machine Learning",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212507241907/212507241907.\nOnline payment ",
+    "keywords": "machine learning, Random Forest, Online Payment Fraud, Fraud Detection, Real-time Prediction, Streamlit Interface, Financial Security, Imbalanced Dataset, Transaction Monitoring, Ensemble Models., International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2025-07-25",
+    "zenodo_url": "https://zenodo.org/records/21464883",
+    "authors": "Nagireddi Jaya Sravanthi, Dr G.Sharmila Sujatha"
+  },
+  {
+    "doi": "10.64823/ijter.2503013",
+    "title": "Diagnosis of Keratoconus Using Machine Learning",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212507241498/212507241498.\nKeratoconus is ",
+    "keywords": "Microbial keratitis and inflammation, Probable allograft rejection, Transplant failure, Contact lenses, astigmatism, International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2025-07-24",
+    "zenodo_url": "https://zenodo.org/records/21464880",
+    "authors": "Dr. Bharati Bidikar, Karanam Sagar kiran"
+  },
+  {
+    "doi": "10.64823/ijter.2503011",
+    "title": "AI Based Mouse Controller Using Hand Gestures For Real-Time Applications",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212507236942/212507236942.\nThe interaction",
+    "keywords": "computer vision, human-computer interaction, hand motion control, gesture-based interface, assistive technology, International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2025-07-23",
+    "zenodo_url": "https://zenodo.org/records/21464867",
+    "authors": "Dr. Bharati Bidikar, Gorremuchu Jayasri"
+  },
+  {
+    "doi": "10.64823/ijter.2501012",
+    "title": "AI-Enabled Smart System for Continuous Monitoring of Neonatal Vital Signs in Intensive Care Unit",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212505205427/212505205427.\nNeonates in Int",
+    "keywords": "artificial intelligence, IoT, Neonatal Monitoring, NICU, Vital Signs, Smart Healthcare., International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2025-05-26",
+    "zenodo_url": "https://zenodo.org/records/21464801",
+    "authors": "Mrs. Namratha Dcruz, Ms. Thriveni  S, Mr. Kishan  H M, Ms. Varsha  S, Ms. Sindhu D H"
+  },
+  {
+    "doi": "10.5281/zenodo.21463734",
+    "title": "Smartphone-Based and Point-of-Care Green Analytical Devices: Engineering Design for Resource-Limited Settings",
+    "abstract": "Green analytical chemistry (GAC) aims to minimise the environmental impact of analytical methods, such as the amount of toxic chemicals, energy consumption and waste produced, while maintaining the an",
+    "keywords": "",
+    "published_date": "2025-04-21",
+    "zenodo_url": "https://zenodo.org/records/21463734",
+    "authors": "Anselm Oluwaseun Hannah, Henry Odion Ojika"
+  },
+  {
+    "doi": "10.5281/zenodo.21365614",
+    "title": "Strengthening global pathogen surveillance: A mentorship program to increase capacity for pathogen genomics in low-resource settings",
+    "abstract": "Abstract\nThe burden of infectious diseases disproportionately impacts regions of the world that historically have had limited capacity to detect and respond to emerging pathogens. The growing affordab",
+    "keywords": "",
+    "published_date": "2026-07-15",
+    "zenodo_url": "https://zenodo.org/records/21365614",
+    "authors": "Gowen, Rebecca, Ahyong, Vida, Vanaerschot, Manu, Kalantar, Katrina, Fahsbender, Elizabeth, Phelps, Maira, Pilarowski, Genay, Thakku, Sri Gowtham, Gil, Juliana, Rosario, Karyna, Holmes, Olivia, Ayscue, Patrick, Mahjoub, Sara, Krystosik, Amy, Mwakibete, Lusajo, Oluniyi, Paul E., Jones, Daniele, Aranda"
+  },
+  {
+    "doi": "10.5281/zenodo.21456629",
+    "title": "ARTIFICIAL INTELLIGENCE RESOURCES, RESEARCH SKILLS AND RESEARCH PRODUCTIVITY IN NIGERIAN PUBLIC UNIVERSITIES",
+    "abstract": "This study examined how Artificial Intelligence (AI) adoption and research competencies impact the scholarly output of lecturers at Nigerian public universities. It adopted a descriptive survey design",
+    "keywords": "Artificial Intelligence, Research Skills, Research Productivity, Academic Staff, Nigerian Public Universities",
+    "published_date": "2026-07-20",
+    "zenodo_url": "https://zenodo.org/records/21456629",
+    "authors": "FADEYI, VICTORIA OLUBOLA"
+  },
+  {
+    "doi": "10.5281/zenodo.21456425",
+    "title": "NACTIS-NG: AI-POWERED COUNTER-UAS AND AUTONOMOUS BORDER SURVEILLANCE FOR NIGERIA'S INSECURE BORDER REGIONS Radar-Vision Fusion, RF Signal Classification, and Autonomous Patrol Optimisation for the Lake Chad Basin and Northwest Border Corridors",
+    "abstract": "Nigeria faces a compounding security crisis driven by the Boko Haram/ISWAP insurgency in the Northeast and an escalating wave of armed banditry and mass kidnapping in the Northwest. Between 2023 and 2",
+    "keywords": "",
+    "published_date": "2026-07-20",
+    "zenodo_url": "https://zenodo.org/records/21456425",
+    "authors": "Sulaiman, J., Hussain, M. M. A."
+  },
+  {
+    "doi": "10.5281/zenodo.21456370",
+    "title": "PRECIA-NG: A PRECISION CROP INTELLIGENCE AND ANALYTICS FRAMEWORK FOR NIGERIA Multispectral UAV Imaging, YOLOv8 Disease Detection, and Stacked Ensemble Yield Prediction for Maize, Rice, Sorghum, and Cassava",
+    "abstract": "Nigeria loses an estimated 40% of annual crop production to diseases, pests, and post-harvest spoilage; a burden costing the sector over USD 9 billion annually. Smallholder farmers, who contribute mor",
+    "keywords": "",
+    "published_date": "2026-07-20",
+    "zenodo_url": "https://zenodo.org/records/21456370",
+    "authors": "Sulaiman, J., Hussain, M. M. A."
+  },
+  {
+    "doi": "10.5281/zenodo.21455752",
+    "title": "EpiRNAC – Biophysical Tensor Fusion CNN Model for Single‑Nucleotide m⁶A Detection",
+    "abstract": "EpiRNA‑C is the high‑throughput scanner of the EpiRNA suite &ndash; a 128‑channel Biophysical Tensor Fusion CNN for single‑nucleotide m⁶A boundary detection.\nThe model was trained on 11,844 experiment",
+    "keywords": "Bioinformatics, Epitranscriptomics, modification, m6A, RNA, Deep Learning, Sequence Analysis,, Biophysics",
+    "published_date": "2026-07-20",
+    "zenodo_url": "https://zenodo.org/records/21455752",
+    "authors": "Mansoori, Zaeem Ahmad"
+  },
+  {
+    "doi": "10.5281/zenodo.21456190",
+    "title": "Staphylococcus aureus and Its Association with Foodborne Illnesses",
+    "abstract": "Staphylococcus aureus is one of the most important pathogens that is represented as one of the most critical causes of foodborne illness. The bacteria have ability to contaminate a variety of food ite",
+    "keywords": "",
+    "published_date": "2026-07-20",
+    "zenodo_url": "https://zenodo.org/records/21456190",
+    "authors": "Aditi Yadav1, Sonal Shrivas2, Mohan Singh Thakur2, Rajni Nigam1, Tripti Jain2, Kush Shrivastava2,  Bikash Ranjan Prusty2*"
+  },
+  {
+    "doi": "10.5281/zenodo.21455556",
+    "title": "Federated Anomaly Detection for Smart Meter Analytics: An Empirical Study",
+    "abstract": "",
+    "keywords": "",
+    "published_date": "2026-07-20",
+    "zenodo_url": "https://zenodo.org/records/21455556",
+    "authors": "Dautov, Rustem, Husom, Erik Johannes, Erdogan, Gencer, Rauniyar, Ashish, Žbontar, Klemen, Pavšič, Amadej"
+  },
+  {
+    "doi": "10.5281/zenodo.21455209",
+    "title": "Bridging the gap in infertility care: the role of community health nurses in early detection and management in rural populations",
+    "abstract": "Infertility is a significant public health concern that affects millions of couples worldwide and has profound physical, psychological, social, and economic consequences. In rural populations, limited",
+    "keywords": "Infertility, Community Health Nursing, Rural Health, Early Detection, Reproductive Care",
+    "published_date": "2026-07-20",
+    "zenodo_url": "https://zenodo.org/records/21455209",
+    "authors": "Nijas A."
+  },
+  {
+    "doi": "10.3390/jcm15010252",
+    "title": "Prevalence and Impact of Urinary Incontinence at 5-10 Years After a Singleton Birth.",
+    "abstract": "Background/Objectives: To analyze the prevalence and risk factors associated with the onset of urinary incontinence (UI) in primiparous non-menopausal women with no personal history of pregestational ",
+    "keywords": "primiparity, quality of life, risk factors, urinary incontinence, vaginal delivery",
+    "published_date": "2025-12-29",
+    "zenodo_url": "https://zenodo.org/records/20409371",
+    "authors": "Serrano-Raya L, Esplugues A, Ferreros Villar I, Vallés-Murcia N, Muñoz Esteban P, Torres López MS, Turrión Martínez E, Errandonea García P, Nohales Alfonso FJ, González-Timoneda A"
+  },
+  {
+    "doi": "10.1186/s41747-025-00617-7",
+    "title": "Advancing deep learning-based segmentation for multiple lung cancer lesions in real-world multicenter CT scans",
+    "abstract": "BackgroundAccurate segmentation of lung cancer lesions in computed tomography (CT) is essential for precise diagnosis, personalized therapy planning, and treatment response assessment. While automatic",
+    "keywords": "Artificial intelligence, Deep learning, Lung neoplasms, Neural networks (computer), Tomography (x-ray computed)",
+    "published_date": "2025-08-18",
+    "zenodo_url": "https://zenodo.org/records/20409351",
+    "authors": "Rafael-Palou, X, Jimenez-Pastor, A, Martí-Bonmati, L, Muñoz-Nuñez, CF, Laudazi, M, Alberich-Bayarri, A"
+  },
+  {
+    "doi": "10.1002/alz70856_103775",
+    "title": "Biomarkers.",
+    "abstract": "BACKGROUND: Early prediction of Alzheimer's disease (AD) is an urgent\n health challenge. The aim of PREDICTOM is to develop and test the\n accuracy of an artificial intelligence (AI) driven screening p",
+    "keywords": "",
+    "published_date": "2025-12-01",
+    "zenodo_url": "https://zenodo.org/records/20409252",
+    "authors": "Brem, Anna-Katharine, Khan, Zunera, Pickering, Ellie, Botz, Jonas, Mitterreiter, Johanna, Ashton, Nicholas J, Pszeida, Martin, Huang, Bin, Brandt, Sigurd, Layton, Richard, Campill, Sarah, Gjestsen, Martha Therese, Tegethoff, Paulina, Cacciamani, Federica, de Witte, Sara, Ferre-Gonzalez, Laura, Mende"
+  },
+  {
+    "doi": "10.1158/1078-0432.CCR-25-0180",
+    "title": "Fc? Receptor Polymorphism in Patients with Relapsed/Refractory High-Risk Neuroblastoma Correlates with Outcomes in the SIOPEN Dinutuximab Beta Long-Term Infusion Trial",
+    "abstract": "Purpose: To identify a tolerable dinutuximab beta long-term infusion\n (LTI) schedule with immunomodulatory activity for relapsed/refractory\n high-risk neuroblastoma (HRNBL). Patients and Methods: In t",
+    "keywords": "VALIDATED DETECTION, RANDOMIZED-TRIAL, CHO-CELLS, ANTIBODY, INDUCTION, CHEMOTHERAPY, CH14.18/CHO, CHILDREN, THERAPY, BIOLOGY",
+    "published_date": "2025-09-02",
+    "zenodo_url": "https://zenodo.org/records/20409192",
+    "authors": "Lode, Holger N., Siebert, Nikolai, Valteau-Couanet, Dominique, Garaventa, Alberto, Canete, Adela, Anderson, John, Yaniv, Isaac, Ash, Shifra, Gray, Juliet, Klingebiel, Thomas, Loibner, Hans, Luksch, Roberto, Manzitti, Carla, Michon, Jean Marie, Owens, Cormac, Potschger, Ulrike, Troschke-Meurer, Sasch"
+  },
+  {
+    "doi": "10.1002/hem3.70065",
+    "title": "Detection of clinically relevant variants in the TP53 gene below 10% allelic frequency: A multicenter study by ERIC, the European Research Initiative on CLL",
+    "abstract": "In chronic lymphocytic leukemia, the reliability of next-generation sequencing (NGS) to detect TP53 variants &lt;= 10% allelic frequency (low-VAF) is debated. We tested the ability to detect 23 such v",
+    "keywords": "",
+    "published_date": "2025-01-01",
+    "zenodo_url": "https://zenodo.org/records/20409180",
+    "authors": "Pavlova, S, Malcikova, J, Radova, L, Bonfiglio, S, Cowland, JB, Brieghel, C, Andersen, MK, Karypidou, M, Biderman, B, Doubek, M, Lazarian, G, Rapado, I, Vynck, M, Porret, NA, Andres, M, Rosenberg, D, Sahar, D, Martínez-Laperche, C, Buño, I, Hindley, A, Donaldson, D, Sánchez, JB, García-Marco, JA, Se"
+  },
+  {
+    "doi": "10.3390/ijms26083825",
+    "title": "Long-Read Whole-Genome Sequencing as a Tool for Variant Detection in Inherited Retinal Dystrophies.",
+    "abstract": "Advances in whole-genome sequencing (WGS) have significantly enhanced our ability to detect genomic variants underlying inherited diseases. In this study, we performed long-read WGS on 24 patients wit",
+    "keywords": "inherited retinal dystrophies, long-read sequencing, nanopore sequencing",
+    "published_date": "2025-04-18",
+    "zenodo_url": "https://zenodo.org/records/20409060",
+    "authors": "Rodilla C, Núñez-Moreno G, Benitez Y, Rodríguez de Alba M, Blanco-Kelly F, López-Alcojor A, Fernández-Caballero L, Perea-Romero I, Del Pozo-Valero M, García-García G, Balanzá M, Villaverde C, Zurita O, Jubin C, Fund C, Delepine M, Leduc A, Deleuze JF, Millán JM, Minguez P, Corton M, Ayuso C"
+  },
+  {
+    "doi": "10.1007/s12094-025-03894-1",
+    "title": "Sex and gender differences in cancer pathogenesis and pharmacology.",
+    "abstract": "Sex and gender may influence the epidemiology, pathogenesis, and prognosis of cancer. This narrative review describes sex and gender differences in the epidemiology and pathogenesis of cancer, and how",
+    "keywords": "Cancer, Epidemiology, Gender, Pathogenesis, Pharmacology, Sex",
+    "published_date": "2025-10-01",
+    "zenodo_url": "https://zenodo.org/records/20408920",
+    "authors": "Bernardez B, Higuera O, Martinez-Callejo V, Cardeña-Gutiérrez A, Marcos Rodríguez JA, Santaballa Bertrán A, Majem M, Moreno-Martínez ME"
+  },
+  {
+    "doi": "10.1007/s00404-025-07984-x",
+    "title": "Cervical injection as an alternative to the utero-ovarian ligament for mapping pelvic sentinel lymph node in early-stage ovarian cancer.",
+    "abstract": "PURPOSE: In early-stage ovarian cancer, sentinel lymph node (SLN) mapping using double injection into the utero-ovarian and infundibulo-pelvic ligaments has been postulated. Cervical injection, common",
+    "keywords": "Early-stage, Indocyanine green, Injection site, Ovarian cancer, Sentinel lymph node, Technetium-99 m",
+    "published_date": "2025-05-01",
+    "zenodo_url": "https://zenodo.org/records/20408910",
+    "authors": "Lago V, Rey I, Arnáez M, Padilla-Iserte P, Matute L, Gurrea M, Moner S, Bello P, Domingo S"
+  }
+]

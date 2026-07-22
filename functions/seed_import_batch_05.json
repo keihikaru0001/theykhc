@@ -1,0 +1,452 @@
+[
+  {
+    "doi": "10.5281/zenodo.21486481",
+    "title": "Implementation of YOLOv8n-Based Liveness Detection to Enhance the Security of Facial Attendance Systems Against Real-Time Spoofing Attacks",
+    "abstract": "Abstract :\nThis research aims to develop an anti-spoofing security system based on liveness detection to address the vulnerabilities of facial attendance systems against identity manipulation using ph",
+    "keywords": "anti-spoofing, Computer Vision, facial attendance, facial recognition, liveness detection",
+    "published_date": "2026-07-21",
+    "zenodo_url": "https://zenodo.org/records/21486481",
+    "authors": "I Putu Elba Duta, Nugraha, Widyadi, Setiawan"
+  },
+  {
+    "doi": "10.3897/mbmg.10.196568",
+    "title": "A feast of aphids: assessing the detectability of prey aphid DNA inside ladybeetle predators using taxon-specific metabarcoding",
+    "abstract": "Understanding insect predator–prey interactions is critical for crop protection, particularly within biological control and integrated pest management frameworks. Ladybeetles (Coleoptera, Coccinellida",
+    "keywords": "Biological control, diagnostics, integrated pest management surveillance",
+    "published_date": "2026-07-20",
+    "zenodo_url": "https://zenodo.org/records/21486145",
+    "authors": "Willmott, Nikolas J., Scanlan, Jack L., Blacket, Mark J., Rodoni, Brendan C., Nancarrow, Narelle, Jones, Therésa M., Martoni, Francesco"
+  },
+  {
+    "doi": "10.5281/zenodo.21484776",
+    "title": "Comparative Analysis of Machine Learning Techniques for Network Intrusion Detection in Cyber Security with a Diverse Metric-Based Performance Assessment",
+    "abstract": "",
+    "keywords": "",
+    "published_date": "2026-07-22",
+    "zenodo_url": "https://zenodo.org/records/21484776",
+    "authors": "Annual Methodological Archive Research Review"
+  },
+  {
+    "doi": "10.5281/zenodo.21484374",
+    "title": "A DEEP LEARNING FRAMEWORK FOR REAL AND FAKE IMAGE DETECTION USING CNN AND LSTM NETWORKS",
+    "abstract": "",
+    "keywords": "",
+    "published_date": "2026-07-22",
+    "zenodo_url": "https://zenodo.org/records/21484374",
+    "authors": "Neha Saini"
+  },
+  {
+    "doi": "10.5281/zenodo.21483622",
+    "title": "Pansoma",
+    "abstract": "Somatic variant calling, the identification of mutations in non-germline cells acquired over an individual's lifetime, is critical for studying diseases, including cancer, and for developing precision",
+    "keywords": "somatic variant calling, Pansoma, pangenome, genome graph, machine learning, deep learning, cancer genomics, tumor-only sequencing",
+    "published_date": "2026-07-21",
+    "zenodo_url": "https://zenodo.org/records/21483622",
+    "authors": "Shen, Jiawei, Fu, Qichen, Macias, Juan, Li, Daofeng, Wang, Ting"
+  },
+  {
+    "doi": "10.5281/zenodo.21483939",
+    "title": "Hybrid Image Compression by Blurring Background and Non-Edges",
+    "abstract": "Two hybrid image compression methods are proposed in this paper. In these methods the vital part of the image is completely restorable and non vital part of the image may restorable with insignificant",
+    "keywords": "",
+    "published_date": "2026-07-22",
+    "zenodo_url": "https://zenodo.org/records/21483939",
+    "authors": "IJMA"
+  },
+  {
+    "doi": "10.12928/TELKOMNIKA.v24i2.27502",
+    "title": "Identification of paleographic curvature using skeletonization and key point detection",
+    "abstract": "Jawi script represents a vital component of the Islamic intellectual heritage of the Nusantara, preserved across numerous classical manuscripts. A primary challenge in digitizing these documents is ch",
+    "keywords": "Aksara Jawi, Connected component, Key points, Manuscript, Paleography, Segmentation, Skeletonization",
+    "published_date": "2026-04-01",
+    "zenodo_url": "https://zenodo.org/records/21483783",
+    "authors": "Fadhilatul Fitriyah, Dian Andriana, Muhammad Zulhaj Aliansyah, Lukman Hakim, Muhammad Faishol Amrulloh"
+  },
+  {
+    "doi": "10.12928/TELKOMNIKA.v24i2.27548",
+    "title": "Design and evaluation of a low‑cost real‑time fluid-level monitoring system for fuel stations",
+    "abstract": "Accurate fluid level management in fuel stations is hampered by inventory errors, delayed shortage detection and costly proprietary sensors. We designed and built a low‑cost, open‑source monitoring sy",
+    "keywords": "Arduino, Fuel station, Internet of things, Low‑cost sensor, Monitoring prototype, Ultrasonic measurement",
+    "published_date": "2026-04-01",
+    "zenodo_url": "https://zenodo.org/records/21483744",
+    "authors": "Jovianne Birindwa, Stéphane Birindwa Birhashwirwa"
+  },
+  {
+    "doi": "10.12928/TELKOMNIKA.v24i2.27332",
+    "title": "Improving multilabel classification of hate speech and abusive language in Indonesian using MAML",
+    "abstract": "This study investigates automated multi-label detection of hate speech and abusive language (HSAL) in Indonesian social media, addressing challenges of data imbalance, especially in minority labels. T",
+    "keywords": "Hate speech detection, IndoBERTweet-BiGRU, Meta-learning, Model-agnostic meta-learning, Multilabel classification",
+    "published_date": "2026-04-01",
+    "zenodo_url": "https://zenodo.org/records/21483213",
+    "authors": "Jasman Pardede, Ghixandra Julyaneu Irawadi, Rizka Milandga Milenio"
+  },
+  {
+    "doi": "10.12928/TELKOMNIKA.v24i2.27576",
+    "title": "A comparative MRI-based study of ResNet-152 and novel deep learning approaches for early Alzheimer's disease classification",
+    "abstract": "Alzheimer&rsquo;s disease (AD) is the leading cause of dementia, making early-stage detection essential for timely intervention. Most prior studies have focused on binary AD classification, which limi",
+    "keywords": "Convolutional neural network, Deep learning, Medical image classification, Mutli-class classification, Transfer learning",
+    "published_date": "2026-04-01",
+    "zenodo_url": "https://zenodo.org/records/21483179",
+    "authors": "Kelvin Leonardi Kohsasih, Octara Pribadi, Andy Andy, Daniel Smith Sunario"
+  },
+  {
+    "doi": "10.48550/arXiv.2506.12088",
+    "title": "Risks & Benefits of LLMs & GenAI for Platform Integrity, Healthcare Diagnostics, Financial Trust and Compliance, Cybersecurity, Privacy & AI Safety: A Comprehensive Survey, Roadmap & Implementation Blueprint",
+    "abstract": "Abstract&mdash; Large Language Models (LLMs) and generative AI (GenAI) systems&mdash;such as ChatGPT, Claude, Gemini, LLaMA, Copilot, and Stable Diffusion, developed by OpenAI, Anthropic, Google, Meta",
+    "keywords": "",
+    "published_date": "2025-07-26",
+    "zenodo_url": "https://zenodo.org/records/21483016",
+    "authors": "Ahi, Kiarash"
+  },
+  {
+    "doi": "10.1109/SVCC65277.2025.11133642",
+    "title": "Large Language Models (LLMs) and Generative AI in Cybersecurity and Privacy: A Survey of Dual-Use Risks, AI-Generated Malware, Explainability, and Defensive Strategies",
+    "abstract": "Abstract:\nLarge Language Models (LLMs) and generative AI (GenAI) systems, such as ChatGPT, Claude, Gemini, LLaMA, Copilot, Stable Diffusion by OpenAI, Anthropic, Google, Meta, Microsoft, Stability AI,",
+    "keywords": "",
+    "published_date": "2026-07-22",
+    "zenodo_url": "https://zenodo.org/records/21482941",
+    "authors": "Ahi, Kiarash, Saeed, Valizadeh"
+  },
+  {
+    "doi": "10.12928/TELKOMNIKA.v24i2.27316",
+    "title": "Hybrid intrusion detection in IoT devices: a deep learning approach using Kitsune and quantized autoencoder",
+    "abstract": "Internet of things (IoT) has been transforming the way to connect and communicate in smart homes, healthcare, and businesses so fast and rapidly around the world. But this growth has complicated secur",
+    "keywords": "Anomaly detection, Deep learning, Internet of things security, Intrusion detection system, Kitsune, Quantized autoencoder",
+    "published_date": "2026-04-01",
+    "zenodo_url": "https://zenodo.org/records/21482878",
+    "authors": "Md. Rifat E Noor, Md. Tofael Ahmed, Dulal Chakraborty, Pintu Chandra Paul, Sohana Nowar, Rejwan Ahmed, Tanjina Akter"
+  },
+  {
+    "doi": "10.1080/08874417.2026.2624670",
+    "title": "Introducing the LLM Scalability Risk Index (LSRI) for Trustworthy AI: A Standard Cybersecurity Framework for Assessing Agentic-AI Security and Software Model Supply Chain Safety, Boosting AI-Generated Malware Defense and Explainability for Mitigating Emerging Risks of Generative",
+    "abstract": "As AI shifts from human-in-the-loop interfaces to autonomous multi-agent systems capable of real-time code execution and tool integration through protocols like the Model Context Protocol (MCP), tradi",
+    "keywords": "cybersecurity, llm, large language models",
+    "published_date": "2026-02-17",
+    "zenodo_url": "https://zenodo.org/records/21482688",
+    "authors": "Ahi, Kiarash, Agrawal, Vaibhav, Valizadeh, Saeed"
+  },
+  {
+    "doi": "10.5281/zenodo.21481181",
+    "title": "Appendix B of the paper \"Beyond prewhitening: detection of gravity modes and their period spacings in slowly pulsating B stars using the multitaper F-test\"",
+    "abstract": "This document is Appendix B of the publication \"Beyond prewhitening: detection of gravity modes and their period spacings in slowly pulsating B stars using the multitaper F-test\" accepted in Astronomy",
+    "keywords": "",
+    "published_date": "2026-07-21",
+    "zenodo_url": "https://zenodo.org/records/21481181",
+    "authors": "Aerts, Conny, Wang, Nikki Yat Ning, Van Beeck, Jordan, Pedersen, May Gade"
+  },
+  {
+    "doi": "10.5281/zenodo.21480286",
+    "title": "RAEON: Rapid-Deployment Autonomous First-Response Observation Drone System (Technical Blueprint v1)",
+    "abstract": "RAEON (Core Concept + Technical &amp; Compliance Annex)RAEON is a rapid‑deployment autonomous drone system designed to eliminate early‑incident blind spots by providing immediate aerial situational aw",
+    "keywords": "RAEON; Emergency Response; Autonomous Drone; First Responder; AI Compliance; EU AI Act; GDPR; LED; CJIS; ISO/IEC 42001; WORM Ledger; Digital Twin; Starlink; Mesh Networking; Thermal Imaging; Human-in-the-Loop; Public Safety Technology; Situational Awareness; Drone-as-First-Responder; Audit Logging; Bias Auditing; Emergency Services",
+    "published_date": "2026-07-21",
+    "zenodo_url": "https://zenodo.org/records/21480286",
+    "authors": "Davidson, Craig Kyrle Sfrachan, Davidson, Alfie Christian Strachan"
+  },
+  {
+    "doi": "10.5281/zenodo.21479279",
+    "title": "Exact Reduced OT/GKSL Equations and Controlled Recovery of Abelian and Newtonian Readout Sectors",
+    "abstract": "Short summary:\n\n\n\nThis work develops the exact reduced-dynamics backbone of an Einstein-locked optimal-transport/GKSL framework for open quantum sources and their certified classical readouts. Startin",
+    "keywords": "GKSL, Optimal Transport, GKSL dynamics, open quantum systems, emergent spacetime, readout geometry, certified readout, Abelian gauge sector, Newtonian limit, chiral dynamics, HS/NJL model, holonomy, constitutive response, lock-in detection, phasor observables, effective field equations",
+    "published_date": "2026-07-21",
+    "zenodo_url": "https://zenodo.org/records/21479279",
+    "authors": "Bocquet, Gwenolé"
+  },
+  {
+    "doi": "10.5281/zenodo.21478849",
+    "title": "Two Layers of Galaxy Aging in MaNGA DynPop: A Principle-Level Proof of Concept",
+    "abstract": "We test a principle-level prediction from an age-dependent gravity framework using the public MaNGA DynPop DR17 catalogs. The prediction is that younger galaxies, at fixed stellar mass, should show la",
+    "keywords": "Stellar dynamics, Galaxy aging, Mass-to-light ratio, Stellar populations, MaNGA, Dynamical modeling, Mass discrepancy, Age-dependent gravity.",
+    "published_date": "2026-07-21",
+    "zenodo_url": "https://zenodo.org/records/21478849",
+    "authors": "McGinty, Louis"
+  },
+  {
+    "doi": "10.5281/zenodo.21478510",
+    "title": "The Great Filter and the Silence of the Cosmos Evolutionary Barriers Sustainability Limits and Detection Strategies for Extraterrestrial Life",
+    "abstract": "",
+    "keywords": "",
+    "published_date": "2026-07-21",
+    "zenodo_url": "https://zenodo.org/records/21478510",
+    "authors": "Toledo Morales, Orlando E."
+  },
+  {
+    "doi": "10.5281/zenodo.21476162",
+    "title": "Entropy-based Differentiation between GenAI and Human Translation in Academic Texts via Machine Learning Techniques",
+    "abstract": "Abstract\nWith the adoption of Generative Artificial Intelligence (GenAI) in academic translation, there is an urgent need for reliable methods to differentiate between AI-generated and human-produced ",
+    "keywords": "",
+    "published_date": "2026-07-20",
+    "zenodo_url": "https://zenodo.org/records/21476162",
+    "authors": "Liang, Haowen"
+  },
+  {
+    "doi": "10.5281/zenodo.21473771",
+    "title": "Model assisted probability of detection on growing delamination in composite shear panel",
+    "abstract": "Abstract: Structural health monitoring systems are known to bring numerous advantages from early detection of defects to increasing lifetime of structures. There is a need for quantified reliability e",
+    "keywords": "",
+    "published_date": "2026-07-08",
+    "zenodo_url": "https://zenodo.org/records/21473771",
+    "authors": "Yilmaz, Bengisu, Recoquillay, Arnaud, Chapuis, Bastien, Renke, Viola, Hlasek, Siegfried"
+  },
+  {
+    "doi": "10.64697/iahr.proc.hic2026.abs",
+    "title": "Adapting FMECA for Digital Reliability Assessment of Soft Sensors in Drinking-Water Systems",
+    "abstract": "Abstract: The digitalisation of water utilities introduces new operational risks that conventional asset management frameworks do not fully capture. As utilities increasingly rely on machine-learning-",
+    "keywords": "",
+    "published_date": "2026-06",
+    "zenodo_url": "https://zenodo.org/records/21473691",
+    "authors": "Alexandraki, Akrivi, Kyritsakas, Grigorios, van den Boomen, Martine, Rietveld, Luuk"
+  },
+  {
+    "doi": "10.5281/zenodo.21472990",
+    "title": "Regulatory and legal framework of information and data security",
+    "abstract": "The strengthening of regulation of personal data protection and cybersecurity is accompanied by an increase in the number of regulatory acts and the complexity of their interaction in the digital econ",
+    "keywords": "Information, Digital Transformation, Legal Framework, Public Authorities, Regulatory Density, Sanctioning Practice, Panel Analysis, Financial Responsibility, Digital Governance, Institutional Efficiency, Cross-Jurisdictional Comparison",
+    "published_date": "2026-06-30",
+    "zenodo_url": "https://zenodo.org/records/21472990",
+    "authors": "Nishchymna, Svitlana, Nazarko, Svitlana, Pekarchuk, Volodymyr, Petrovska, Yuliia, Popruzhna, Alla"
+  },
+  {
+    "doi": "10.5281/zenodo.21471958",
+    "title": "Critical Issues at the Intersection of Cybersecurity and Artificial Intelligence in Developing India",
+    "abstract": "India&rsquo;s rapid digital development has created a complex environment where cybersecurity and artificial intelligence (AI) gradually intersect, shaping both national opportunities and vulnerabilit",
+    "keywords": "Cyber Space, Cyber-Security, Artificial Intelligence, e-governance, and e-commerce.",
+    "published_date": "2026-07-05",
+    "zenodo_url": "https://zenodo.org/records/21471958",
+    "authors": "Dr. Smith Vyas"
+  },
+  {
+    "doi": "10.5281/zenodo.20395399",
+    "title": "Preliminary Detection of Potential Ground Subsidence Zones Using a Local Relief Model (LRM)",
+    "abstract": "The study area is a part of the wider Mursko Sredi&scaron;će region in northern Croatia. Under the centralized mining legislation typical of Central Europe, the area represents an early example of for",
+    "keywords": "coal mining, DEM, local relief model, zonal statistics, subsidence",
+    "published_date": "2026-07-01",
+    "zenodo_url": "https://zenodo.org/records/20395399",
+    "authors": "Gizdavec, Nikola, Kovacevic Galovic, Erli"
+  },
+  {
+    "doi": "10.5281/zenodo.21471379",
+    "title": "Simplifying Pavement Crack Detection: From Deep Learning Pipelines To Multimodal Vision-Language Models",
+    "abstract": "Pavement distress detection and pavement condition index (PCI) assessment are central to transportation asset management and road safety. Automated monitoring has progressed from handcrafted image-pro",
+    "keywords": "Pavement crack detection; deep learning; vision large language models; pavement condition index; multimodal sensing; road asset management.",
+    "published_date": "2026-07-21",
+    "zenodo_url": "https://zenodo.org/records/21471379",
+    "authors": "Alfred Patrick Patric*"
+  },
+  {
+    "doi": "10.5281/zenodo.21470565",
+    "title": "Code Pipeline for Machine Learning Based Smart Agriculture Framework for Precision Agriculture Mapping",
+    "abstract": "This repository contains the computer code, hybrid CNN+ViT deep learning model architecture, and multi-temporal change detection workflows developed for monitoring crop and drought stress using Sentin",
+    "keywords": "",
+    "published_date": "2026-07-21",
+    "zenodo_url": "https://zenodo.org/records/21470565",
+    "authors": "Yasmeen, Gausiya, Ahmed, Tasneem"
+  },
+  {
+    "doi": "10.5281/zenodo.21469184",
+    "title": "Beyond Structural MRI: Combined Diffusion Metric Improve Delineation of Epileptogenic Tissue in Focal Cortical Dysplasia",
+    "abstract": "Accurate delineation of the epileptogenic zone in focal cortical dysplasia (FCD) remains challenging, as structural MRI often underestimates the extent of dysplastic tissue. Diffusion MRI can probe mi",
+    "keywords": "",
+    "published_date": "2026-07-21",
+    "zenodo_url": "https://zenodo.org/records/21469184",
+    "authors": "Kala, David, Abragimovich, Timur, Janca, Radek, Profantova, Nora, Koblížek, Miroslav, Kalina, Adam, Kudr, Martin, Prysiazhniuk, Yeva, Michal, Lukas, Sanda, Jan, Holubova, Zuzana, Jirankova, Katerina, Marusic, Petr, Krsek, Pavel, Kyncl, Martin, Otáhal, Jakub"
+  },
+  {
+    "doi": "10.5281/zenodo.21469458",
+    "title": "The Anatomy of Silent Failures in Machine Learning Pipelines for Quantum Error Correction: A Post-Mortem Analysis",
+    "abstract": "\nThe integration of Machine Learning (ML) into physics pipelines, particularly for Quantum Error Correction (QEC), has introduced profound new complexities. While hard crashes and syntax errors are ea",
+    "keywords": "",
+    "published_date": "2026-07-21",
+    "zenodo_url": "https://zenodo.org/records/21469458",
+    "authors": "Priya, Sharma, Hiroshi, Tanaka, Rajesh, Kumar, Anil, K. Gupta"
+  },
+  {
+    "doi": "10.5281/zenodo.21469375",
+    "title": "X-DRIVE: AN EXPLAINABLE AND RESPONSIBLE AI FRAMEWORK FOR REAL-TIME DRIVER ATTENTION AND DROWSINESS MONITORING",
+    "abstract": "Driver distraction and fatigue remain among the leading causes of road accidents worldwide, necessitating the development of intelligent, reliable, and human-centric driver monitoring systems. This pa",
+    "keywords": "Advanced Driver Assistance Systems (ADAS), Computer Vision, Driver Distraction Detection, Driver Monitoring System, Drowsiness Detection, Explainable Artificial Intelligence (XAI), Human-Centered AI, Responsible AI, Road Safety, Trustworthy AI.",
+    "published_date": "2026-07-21",
+    "zenodo_url": "https://zenodo.org/records/21469375",
+    "authors": "Amol Raoji Madane, Ho Chin Kuan"
+  },
+  {
+    "doi": "10.1016/j.sampre.2026.100241",
+    "title": "In-situ modified polyamide 6 nanofibers for spin-filter solid phase extraction: Effect of azo dye coating on extraction efficiency",
+    "abstract": "\nAbstract\nDue to their significant surface area and tunable surface chemistry, polymer nanofibers are promising advanced sorbents for miniaturized solid phase extraction of a broad range of model anal",
+    "keywords": "Electrospinning, Polymer nanofibers",
+    "published_date": "2026-07-14",
+    "zenodo_url": "https://zenodo.org/records/21450574",
+    "authors": "Chocholoušová Havlíková, Lucie, Chocholouš, Petr, Erben, Jakub, Holec, Pavel, Švec, František, Šatínský, Dalibor"
+  },
+  {
+    "doi": "10.5281/zenodo.21412933",
+    "title": "Towards Privacy-Preserving Ladder-Walking Detection in Construction Environments Using Differential Privacy and Visual Data Protection",
+    "abstract": "This is the author-accepted manuscript of a paper accepted for presentation and publication in the proceedings of the 2026 IEEE International Workshop on Metrology for Living Environment (MetroLivEnv ",
+    "keywords": "",
+    "published_date": "2026-07-17",
+    "zenodo_url": "https://zenodo.org/records/21412933",
+    "authors": "V, Eftichia Badeka, Koulalis, Ilias, Ioannidis, Konstantinos, Vrochidis, Stefanos"
+  },
+  {
+    "doi": "10.12928/TELKOMNIKA.v24i1.27126",
+    "title": "Advanced microwave imaging and artificial neural networks for early detection and localization of breast tumors",
+    "abstract": "This study investigates the detection and localization of breast tumors based on dielectric property differences between cancerous and normal tissues. A microwave imaging technique integrated with art",
+    "keywords": "Artificial neural networks, Breast cancer, Dielectric properties of tumor, Microwave imaging, Tumor detection",
+    "published_date": "2026-02-01",
+    "zenodo_url": "https://zenodo.org/records/21468847",
+    "authors": "Miraoui, Abdelfettah, Merad, Lotfi, Ziani-Kerarti, Djalal"
+  },
+  {
+    "doi": "10.5281/zenodo.21468741",
+    "title": "Harnessing Artificial Intelligence and Retrieval-Augmented Generation for Smarter Heart Disease Prediction and Management",
+    "abstract": "Cardiovascular diseases (CVDs), particularly ischaemic heart disease, remain the leading cause of mortality worldwide, accounting for an estimated 17.9 million deaths each year. Despite great progress",
+    "keywords": "Artificial Intelligence; Deep Learning; Retrieval-Augmented Generation; Heart Disease Prediction, Explainable AI; Clinical Decision Support; Medical Large Language Models; Healthcare Informatics",
+    "published_date": "2026-07-20",
+    "zenodo_url": "https://zenodo.org/records/21468741",
+    "authors": "Mathur, Ashish"
+  },
+  {
+    "doi": "10.5281/zenodo.21468585",
+    "title": "AI Driven Resilience in Urban Water Management in Indian Cities",
+    "abstract": ": India&rsquo;s rapidly growing cities are facing major water-related problems such as water scarcity, leakages, unequal distribution, and changes caused by climate variability. Traditional water mana",
+    "keywords": "Artificial Intelligence, Urban Water Management, Resilience, Indian Cities, Smart Water Grids, IoT-based Water Systems, Machine Learning for Leak Detection",
+    "published_date": "2026-07-20",
+    "zenodo_url": "https://zenodo.org/records/21468585",
+    "authors": "Aggarwal, Ruchika"
+  },
+  {
+    "doi": "10.12928/TELKOMNIKA.v24i1.27464",
+    "title": "SELLA: An IoT-based smart shopping trolley with real-time RFID tracking and automated checkout",
+    "abstract": "The contemporary retail sector faces a persistent challenge in enhancing in-store customer experience, primarily due to inefficiencies at checkout. This paper presents smart e-cart for lean logistics ",
+    "keywords": "Automated checkout, Microcontrollers, Performance evaluation, Radio frequency identification, Retail technology, Smart shopping cart",
+    "published_date": "2026-02-01",
+    "zenodo_url": "https://zenodo.org/records/21468494",
+    "authors": "Zerrouki, Hadj, Azzaz-Rahmani, Salima"
+  },
+  {
+    "doi": "10.12928/TELKOMNIKA.v24i1.27451",
+    "title": "Challenges in radar-based non-supercell tornado detection using machine learning approache",
+    "abstract": "Tornado detection in Indonesia remains challenging as most areas are monitored by single-polarization weather radar, while dual-polarization systems offer superior detection capabilities. This study p",
+    "keywords": "Machine learning, Random forest, Single-polarized radar, Tornadoes, XGBoost",
+    "published_date": "2026-02-01",
+    "zenodo_url": "https://zenodo.org/records/21468300",
+    "authors": "Kiki, Koesmaryono, Yonny, Hidayat, Rahmat, Permana, Donaldi Sukma, Perdinan, Ali, Abdullah"
+  },
+  {
+    "doi": "10.12928/TELKOMNIKA.v24i1.27507",
+    "title": "Dental caries detection and treatment cost prediction using YOLOv11",
+    "abstract": "Dental caries is one of the most prevalent oral diseases, progressively damaging tooth structure and often leading to significant treatment costs. Variations in dental service fees across clinics can ",
+    "keywords": "Artificial intelligence, Deep learning, Dental caries detection, Treatment cost estimation, YOLOv11",
+    "published_date": "2026-02-01",
+    "zenodo_url": "https://zenodo.org/records/21468218",
+    "authors": "Qotrunnada, Salsabila, Putra, Bayu Taruna Widjaja, Syafriadi, Mei"
+  },
+  {
+    "doi": "10.5281/zenodo.21468178",
+    "title": "Web Based Air Quality Surveillance",
+    "abstract": "The Web-Based Air Quality Surveillance System is an Internet of Things (IoT)-enabled environmental monitoring solution designed to provide real-time assessment of air quality and atmospheric condition",
+    "keywords": "Internet of Things (IoT), Air Quality Monitoring, ESP32, Environmental Monitoring, MQ-7, MQ-135, DHT11, BMP180, Web-Based Dashboard, Smart Environment.",
+    "published_date": "2026-07-21",
+    "zenodo_url": "https://zenodo.org/records/21468178",
+    "authors": "Prof. K.D. Patil, Sagar Morale, Ashitosh Choutre, Pruthviraj Kamble, Prathmesh Vibhute"
+  },
+  {
+    "doi": "10.12928/TELKOMNIKA.v24i1.27445",
+    "title": "RWT-Net: A hybrid ResNet-wavelet-transformer for early detection of left ventricular hypertrophy",
+    "abstract": "Early detection of left ventricular hypertrophy (LVH), a key predictor of heart failure and stroke, is critical. However, standard 12-lead electrocardiogram (ECG) criteria suffer from low sensitivity.",
+    "keywords": "Deep learning, Electrocardiogram, Left ventricular hypertrophy, RWT-Net, Transformer, Wavelet transform",
+    "published_date": "2026-02-01",
+    "zenodo_url": "https://zenodo.org/records/21468169",
+    "authors": "Nguyen, Hoang Huu To, Le, Phuong Huu Nghia, Mai, Lam, Trong, Nguyen Pham Ho"
+  },
+  {
+    "doi": "10.12928/TELKOMNIKA.v24i1.27448",
+    "title": "Performance enhancement of embedded object detection via neural hardware acceleration",
+    "abstract": "This paper presents the first benchmarking of you only look once version 11 (YOLO11) on the Rockchip RK3566 neural processing unit (NPU) within the Orange Pi 3B platform. Performance was compared betw",
+    "keywords": "Energy efficiency, Low-latency image inference, Orange Pi 3B, RK3566 NPU, YOLO11",
+    "published_date": "2026-02-01",
+    "zenodo_url": "https://zenodo.org/records/21468110",
+    "authors": "Limaran, Alwin Hartono, Wicaksono, Agung, Herwanto, Patah"
+  },
+  {
+    "doi": "10.5281/zenodo.21468083",
+    "title": "Quantum Coherence in Ion Channels: An Alternating Electric Field Could Put the Idea to the Test",
+    "abstract": "The selectivity filter of a potassium channel passes about 100 million ions per second while still turning sodium away at a ratio of at least 10,000 to 1.The researchers proposed quantum coherence as ",
+    "keywords": "quantum biology",
+    "published_date": "2026-07-21",
+    "zenodo_url": "https://zenodo.org/records/21468083",
+    "authors": "inquantio"
+  },
+  {
+    "doi": "10.5281/zenodo.21465995",
+    "title": "ENVIRONMENTAL SUPERVISION IN PALM OIL INDUSTRY WASTE MANAGEMENT IN PELALAWAN REGENCY",
+    "abstract": "Environmental monitoring is a crucial instrument for ensuring industrial compliance with waste management, particularly in areas with high palm oil industry activity. This study aims to analyze enviro",
+    "keywords": "environmental monitoring; environmental compliance; industrial waste; palm oil; Pelalawan Regency",
+    "published_date": "2026-07-20",
+    "zenodo_url": "https://zenodo.org/records/21465995",
+    "authors": "Nahrin Zakiyah, Rahmadani Yusran"
+  },
+  {
+    "doi": "10.64823/ijter.2606015",
+    "title": "Smart Industrial Job Verification Allocation System Using RFID and Image Processing",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212606223228/212606223228.\nThis paper pres",
+    "keywords": "YOLOv5, Industry 4.0, I. - RFID authentication, Cyber-Physical Systems, Smart Manufacturing, Machine Vision Inspection, Arduino Automation, Industrial Quality Control, Job Tracking System., International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2026-06-25",
+    "zenodo_url": "https://zenodo.org/records/21465424",
+    "authors": "Miss. Kiran Ravindra Manole., Dr.Saurabh R. Prasad., Dr. Shrinivas A. Patil"
+  },
+  {
+    "doi": "10.64823/ijter.2606012",
+    "title": "A Systematic Review of Deep Learning Architectures for Lung Cancer Detection and Classification",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212606191318/212606191318.\nLung cancer is ",
+    "keywords": "deep learning, transformer models, Convolutional Neural Networks, Medical Image Analysis, transfer learning, Computer-Aided Diagnosis, Systematic Review, lung cancer detection, CT scan, image segmentation, self-supervised learning, LIDC-IDRI., International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2026-06-25",
+    "zenodo_url": "https://zenodo.org/records/21465417",
+    "authors": "Mudit Mittal, Prabhakar Semwal, Pallaw Singh Aswal"
+  },
+  {
+    "doi": "10.64823/ijter.2606011",
+    "title": "Explaining Tribal Disparities in Infant & Young Child Feeding Practices in Jharkhand: The Role of Poverty, Education and Culture : A Systematic Literature Review",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212606191256/212606191256.\n   One of the m",
+    "keywords": "NFHS, Nutritional, MMAT, Childcare, International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2026-06-20",
+    "zenodo_url": "https://zenodo.org/records/21465414",
+    "authors": "Sunny Devel"
+  },
+  {
+    "doi": "10.64823/ijter.2606010",
+    "title": "Transforming Unstructured Data into Accessible Braille Content Using AI",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212606154791/212606154791.\nThe conversion ",
+    "keywords": "Braille Accessibility • Artificial Intelligence • Unstructured Data • NLP • Assistive Technology • OCR, International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2026-06-18",
+    "zenodo_url": "https://zenodo.org/records/21465405",
+    "authors": "G. Parvathi Devi, G. Harika, M. Sravani, S. Dhaneesha"
+  },
+  {
+    "doi": "10.64823/ijter.2606008",
+    "title": "Framework for Integrating Digital Twin Technology in the Real Estate Industry (CREST)",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212606048930/212606048930.\nThe majority of",
+    "keywords": "sustainability reporting, Internet of things, Digital Twin (DT), Commercial Real Estate (CRE), Building Information Management (BIM), Facility Management, Maturity Model, CREST framework, Environmental Social and Governance (ESG) Reporting, International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2026-06-13",
+    "zenodo_url": "https://zenodo.org/records/21465397",
+    "authors": "Shivanand R Koppalkar, Vivek Krishan, Yogesh Gupte, Arunkumar Gunasekaran, Kathiravan Udayakumar, Prachi Kadam"
+  },
+  {
+    "doi": "10.64823/ijter.2605025",
+    "title": "An AI-Powered Career Readiness Ecosystem for Campus Placements",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212605206006/212605206006.\n Campus placeme",
+    "keywords": "Artificial Intelligence (AI), Campus Placement System, Mock Interviews, ATS Resume  Analysis, DSA Practice, Face Detection Proctoring, Performance Analytics, Cloud-Based Platform., International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2026-06-13",
+    "zenodo_url": "https://zenodo.org/records/21465360",
+    "authors": "Mehul Chavan, Ajinkya Bondge, Atharva Patil, Pratik Chinchawadkar, Soham Bhogale, Satyajeet Shinge"
+  },
+  {
+    "doi": "10.64823/ijter.2605008",
+    "title": "AUTOMATED IRRIGATION AND SOIL NUTRITION DETECTION",
+    "abstract": "Preservation copy of an article published in International Journal of Technology and Emerging Research. Read the full article: https://ioro.org/ijter/article/212605125574/212605125574.\nAgriculture is ",
+    "keywords": "Internet of Things (IoT), Precision Farming, Smart agriculture, Automated irrigation, Soil moisture monitoring, Soil nutrient monitoring, Water management sensor based system, Embedded system., International Journal of Technology and Emerging Research, ijter",
+    "published_date": "2026-05-13",
+    "zenodo_url": "https://zenodo.org/records/21465335",
+    "authors": "Vaishnavi Nitin Mhetre, Jayshree Jogdand, Samruddhi Pawar"
+  }
+]
