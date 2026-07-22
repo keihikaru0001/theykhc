@@ -114,9 +114,79 @@ JSON配列で${idea_count}個のアイデアを返してください。各アイ
         ideas = JSON.parse(jsonMatch[0]);
       }
     } catch (e) {
-      // パース失敗時はテキストをそのまま保存
       ideas = [{ name: 'ブレスト結果', description: brainstormResult, one_liner: 'パースエラー' }];
     }
+
+    // ============================================
+    // PHASE 1.5: 市場規模算出 — 全アイデア一括
+    // ============================================
+    const marketSizePrompt = `あなたは市場規模推定の専門アナリストです。以下の${ideas.length}個の事業アイデアそれぞれについて、予想市場規模を算出してください。
+
+【アイデア一覧】
+${ideas.map((idea, i) => `${i+1}. ${idea.name || `アイデア${i+1}`}: ${idea.one_liner || ''} (ターゲット: ${idea.target_market || '未設定'})`).join('\n')}
+
+【各アイデアについて以下を算出】
+- tam: Total Addressable Market（最大潜在市場規模、円/年）
+- sam: Serviceable Available Market（参入可能市場規模、円/年）
+- som: Serviceable Obtainable Market（初期獲得可能市場規模、円/年）
+- tam_label: TAMを「X兆円」「X億円」など分かりやすく表記
+- growth_rate: 市場の年間成長率（%）
+- time_to_market: 想定市場参入までの期間（年）
+- key_drivers: 市場拡大の要因（3つまで）
+- competition_level: 競合の激しさ（低/中/高/極高）
+
+推定根拠を簡潔に添えてください。日本の市場データ、グローバル市場データを参考に、現実的な範囲で算出する。
+
+JSON配列で返答:
+[
+  {
+    "idea_index": 0,
+    "tam": 数値,
+    "sam": 数値,
+    "som": 数値,
+    "tam_label": "X兆円",
+    "growth_rate": 数値,
+    "time_to_market": 数値,
+    "key_drivers": ["要因1", "要因2", "要因3"],
+    "competition_level": "低/中/高/極高",
+    "rationale": "推定根拠（100字程度）"
+  },
+  ...
+]`;
+
+    let marketSizes: any[] = [];
+    try {
+      const marketResult = await callOpenAI([
+        { role: 'system', content: 'あなたは市場規模推定の専門アナリストです。現実的かつ保守的な数値を出す。' },
+        { role: 'user', content: marketSizePrompt }
+      ], 0.5, 4000);
+
+      const marketJsonMatch = marketResult.match(/\[[\s\S]*\]/);
+      if (marketJsonMatch) {
+        marketSizes = JSON.parse(marketJsonMatch[0]);
+      }
+    } catch (e) {
+      // 市場規模算出失敗時は空配列
+    }
+
+    // 市場規模データをアイデアに統合
+    ideas = ideas.map((idea, i) => {
+      const ms = marketSizes.find(m => m.idea_index === i) || marketSizes[i] || {};
+      return {
+        ...idea,
+        market_size: {
+          tam: ms.tam || 0,
+          sam: ms.sam || 0,
+          som: ms.som || 0,
+          tam_label: ms.tam_label || '未算出',
+          growth_rate: ms.growth_rate || 0,
+          time_to_market: ms.time_to_market || 0,
+          key_drivers: ms.key_drivers || [],
+          competition_level: ms.competition_level || '不明',
+          rationale: ms.rationale || ''
+        }
+      };
+    });
 
     // ============================================
     // PHASE 2: 全件保存（種として残す — 捨てない）
@@ -124,9 +194,10 @@ JSON配列で${idea_count}個のアイデアを返してください。各アイ
     const savedRecords: any[] = [];
     for (let i = 0; i < ideas.length; i++) {
       const idea = ideas[i];
+      const ms = idea.market_size;
       const saveResult = await safeCreate(base44.asServiceRole.entities, 'IdeaSynthetixEntry', {
         question: theme,
-        perspective_text: `【${idea.name || `アイデア${i+1}`}】\n${idea.one_liner || ''}\n\n${idea.description || ''}\n\nターゲット: ${idea.target_market || '未設定'}\nWild要素: ${idea.wild_factor || '未設定'}\n組み合わせ元: ${idea.builds_on || '未設定'}`,
+        perspective_text: `【${idea.name || `アイデア${i+1}`}】\n${idea.one_liner || ''}\n\n${idea.description || ''}\n\nターゲット: ${idea.target_market || '未設定'}\nWild要素: ${idea.wild_factor || '未設定'}\n組み合わせ元: ${idea.builds_on || '未設定'}\n\n【市場規模】\nTAM: ${ms.tam_label} (¥${ms.tam}/年)\nSAM: ¥${ms.sam}/年\nSOM: ¥${ms.som}/年\n成長率: ${ms.growth_rate}%\n参入まで: ${ms.time_to_market}年\n競合: ${ms.competition_level}\n推定根拠: ${ms.rationale}`,
         source_agent: 'ideaRiskChain_brainstorm',
         emotional_resonance_score: 0,
         linked_neutrino_event_id: ''
@@ -141,12 +212,23 @@ JSON配列で${idea_count}個のアイデアを返してください。各アイ
 
     for (let i = 0; i < ideas.length; i++) {
       const idea = ideas[i];
+      const ms = idea.market_size;
       const ideaText = `【事業アイデア】${idea.name || `アイデア${i+1}`}
 一言で: ${idea.one_liner || ''}
 詳細: ${idea.description || ''}
 ターゲット: ${idea.target_market || '未設定'}
 Wild要素: ${idea.wild_factor || '未設定'}
 組み合わせ元: ${idea.builds_on || '未設定'}
+
+【予想市場規模】
+TAM（最大潜在市場）: ${ms.tam_label} (¥${ms.tam}/年)
+SAM（参入可能市場）: ¥${ms.sam}/年
+SOM（初期獲得可能）: ¥${ms.som}/年
+市場成長率: ${ms.growth_rate}%/年
+参入まで: ${ms.time_to_market}年
+競合レベル: ${ms.competition_level}
+市場拡大要因: ${(ms.key_drivers || []).join(', ')}
+推定根拠: ${ms.rationale}
 
 【事業コンテキスト】
 会社: ${company_name} / 業界: ${industry} / ステージ: ${stage}
@@ -163,7 +245,7 @@ ${ideaText}
 1. **研究の層**: 学術・技術的な裏付け、既存研究との接点、TRL（技術成熟度）
 2. **感情の層**: 起業家の心理状態、熱量、自己認識、無常観
 3. **知恵の層**: 歴史的視点、長期持久性、100年後に残るか
-4. **市場の層**: 市場規模、競合、タイミング、観測者効果
+4. **市場の層**: 市場規模の妥当性、競合の動向、タイミング、観測者効果。提供されたTAM/SAM/SOMの数値を踏まえて評価
 5. **リスクの層**: V=N/D評価 — 5つのD要因（財務D/市場D/時代D/経営者D/道徳D）を0-10で採点し、総合V=N/Dスコアを算出
 
 最後に:
@@ -230,6 +312,7 @@ JSON形式で返答:
           target_market: idea.target_market || '',
           wild_factor: idea.wild_factor || '',
           builds_on: idea.builds_on || '',
+          market_size: ms,
           vnd_score: assessment.vnd_score || 0,
           risk_label: assessment.risk_label || '不明',
           one_word: assessment.one_word || '',
@@ -243,6 +326,7 @@ JSON形式で返答:
           name: idea.name || `アイデア${i+1}`,
           one_liner: idea.one_liner || '',
           error: e.message || String(e),
+          market_size: ms,
           vnd_score: 0,
           risk_label: '診断エラー'
         });
@@ -254,18 +338,28 @@ JSON形式で返答:
     // ============================================
     const ranking = [...assessedIdeas].sort((a, b) => (b.vnd_score || 0) - (a.vnd_score || 0));
 
+    // 市場規模ランキングも作成
+    const marketRanking = [...assessedIdeas].sort((a, b) => {
+      const aSom = a.market_size?.som || 0;
+      const bSom = b.market_size?.som || 0;
+      return bSom - aSom;
+    });
+
     const reportPrompt = `以下の${assessedIdeas.length}つの事業アイデアとV=N/Dスコアを比較し、レポートを作成してください。
 
 テーマ: ${theme}
 会社: ${company_name} (${industry}, ${stage})
 
 アイデア一覧（V=N/Dスコア順）:
-${ranking.map((a, i) => `${i+1}位: ${a.name} — V=N/D ${a.vnd_score}/10 (${a.risk_label}) — ${a.one_liner || a.one_word || ''}`).join('\n')}
+${ranking.map((a, i) => `${i+1}位: ${a.name} — V=N/D ${a.vnd_score}/10 (${a.risk_label}) — SOM: ${a.market_size?.tam_label || '未算出'} — ${a.one_liner || a.one_word || ''}`).join('\n')}
+
+市場規模順（SOM順）:
+${marketRanking.map((a, i) => `${i+1}位: ${a.name} — SOM: ¥${(a.market_size?.som || 0).toLocaleString()}/年 (成長率${a.market_size?.growth_rate || 0}%/年) — 競合${a.market_size?.competition_level || '不明'}`).join('\n')}
 
 以下を含む比較レポートを作成:
-1. ランキング表（スコア順）
-2. 各アイデアの一言評価
-3. 推奨案（Dが最小の案）とその理由
+1. ランキング表（スコア順 + 市場規模順の2軸）
+2. 各アイデアの一言評価 + 市場規模の妥当性
+3. 推奨案（V=N/Dが高く、かつ市場規模が現実的な案）とその理由
 4. 組み合わせ可能性（複数案を融合すべきか）
 5. KRI（継続監視指標）— 3つ
 6. 総括: ブレスト全体の傾向と次の一手
@@ -275,9 +369,9 @@ ${ranking.map((a, i) => `${i+1}位: ${a.name} — V=N/D ${a.vnd_score}/10 (${a.r
     let comparisonReport = '';
     try {
       comparisonReport = await callOpenAI([
-        { role: 'system', content: 'あなたはV=N/Dリスクマネージメントの専門アナリストです。' },
+        { role: 'system', content: 'あなたはV=N/Dリスクマネージメントの専門アナリストです。市場規模とV=N/Dスコアの両軸で評価する。' },
         { role: 'user', content: reportPrompt }
-      ], 0.7, 2000);
+      ], 0.7, 2500);
     } catch (e) {
       comparisonReport = `比較レポート生成エラー: ${e.message}`;
     }
@@ -293,11 +387,21 @@ ${ranking.map((a, i) => `${i+1}位: ${a.name} — V=N/D ${a.vnd_score}/10 (${a.r
         name: a.name,
         vnd_score: a.vnd_score,
         risk_label: a.risk_label,
-        one_liner: a.one_liner || a.one_word || ''
+        one_liner: a.one_liner || a.one_word || '',
+        market_size: a.market_size
+      })),
+      market_ranking: marketRanking.map((a, i) => ({
+        rank: i + 1,
+        name: a.name,
+        som: a.market_size?.som || 0,
+        som_label: a.market_size?.tam_label || '未算出',
+        growth_rate: a.market_size?.growth_rate || 0,
+        competition_level: a.market_size?.competition_level || '不明',
+        vnd_score: a.vnd_score
       })),
       comparison_report: comparisonReport,
       saved_records: savedRecords.length,
-      message: `ブレスト${ideas.length}案生成完了。全件IdeaSynthetixEntryに保存。各案の5層診断をConsultationSessionに保存。`
+      message: `ブレスト${ideas.length}案生成完了。市場規模算出済み。全件IdeaSynthetixEntryに保存。各案の5層診断をConsultationSessionに保存。`
     });
 
   } catch (error) {
