@@ -3,8 +3,21 @@ import OpenAI from 'npm:openai@4.28.0';
 
 const openai = new OpenAI({ apiKey: Deno.env.get('OPENAI_API_KEY_2') || Deno.env.get('OPENAI_API_KEY') });
 
+function stripMarkdown(raw) {
+  let s = raw.trim();
+  // Remove ```json ... ``` or ``` ... ``` wrappers
+  s = s.replace(/^```(?:json)?\s*\n?/i, '').replace(/\n?```\s*$/i, '');
+  return s.trim();
+}
+
+function extractJson(raw) {
+  const cleaned = stripMarkdown(raw);
+  const jsonMatch = cleaned.match(/\[[\s\S]*\]/);
+  return jsonMatch ? jsonMatch[0] : cleaned;
+}
+
 //===============================================
-// Question Harvest Engine — 1,020 DOIから問いを収穫する再帰ループ
+// Question Harvest Engine — 1,034 DOIから問いを収穫 → 5層診断
 // 會長の論文 "Question Harvest Engine v1-v6" の実装
 //===============================================
 
@@ -18,17 +31,10 @@ Deno.serve(async (req) => {
     // ACTION: harvest — DOI種から問いを収穫
     // ============================================
     if (action === 'harvest') {
-      // 全SeedRecordを取得
       const allSeeds = await base44.asServiceRole.entities.SeedRecord.list();
-      
-      // 既存の問いを取得（重複回避用）
       const existingQuestions = await base44.asServiceRole.entities.Question.list();
       const existingDOIs = new Set(existingQuestions.map(q => q.source_doi));
-      
-      // まだ問いが生成されていないDOIを特定
       const unprocessedSeeds = allSeeds.filter(s => !existingDOIs.has(s.doi));
-      
-      // バッチ処理
       const batch = unprocessedSeeds.slice(skip, skip + batch_size);
       
       if (batch.length === 0) {
@@ -42,7 +48,6 @@ Deno.serve(async (req) => {
         });
       }
 
-      // 5件ずつGPT-4oに送信して問いを生成
       const seedSummaries = batch.map((s, i) => 
         `[${i+1}] タイトル: ${s.title}\n    要旨: ${(s.abstract || '').slice(0, 300)}\n    キーワード: ${(s.keywords || []).join(', ')}`
       ).join('\n\n');
@@ -66,7 +71,7 @@ ${seedSummaries}
   ...
 ]
 
-JSONのみ返してください。`;
+JSONのみ返してください。マークダウン不要。`;
 
       const completion = await openai.chat.completions.create({
         model: 'gpt-4o',
@@ -78,8 +83,7 @@ JSONのみ返してください。`;
       let newQuestions = [];
       try {
         const raw = completion.choices[0].message.content || '';
-        const jsonMatch = raw.match(/\[[\s\S]*\]/);
-        newQuestions = JSON.parse(jsonMatch ? jsonMatch[0] : raw);
+        newQuestions = JSON.parse(extractJson(raw));
       } catch (e) {
         return Response.json({
           action: 'harvest',
@@ -89,7 +93,6 @@ JSONのみ返してください。`;
         });
       }
 
-      // 問いをDBに保存
       const created = [];
       for (const q of newQuestions) {
         const seedIdx = (q.seed_index || 1) - 1;
@@ -109,9 +112,7 @@ JSONのみ返してください。`;
             tags: q.business_potential ? [`business:${q.business_potential}`] : [],
           });
           created.push(record);
-        } catch (e) {
-          // skip errors
-        }
+        } catch (e) { /* skip errors */ }
       }
 
       return Response.json({
@@ -134,7 +135,124 @@ JSONのみ返してください。`;
     }
 
     // ============================================
-    // ACTION: stats — 収穫状況の統計
+    // ACTION: diagnose — high問いを5層リスク診断へ流す
+    // GPT-4o-mini使用、コスト最小化（低D化）
+    // ============================================
+    if (action === 'diagnose') {
+      const batchSize = body.batch_size || 10;
+      const allQuestions = await base44.asServiceRole.entities.Question.list();
+      
+      // high ポテンシャルかつ未診断（status=open）の問いを抽出
+      const highOpen = allQuestions.filter(q => {
+        const bp = q.tags?.find(t => t.startsWith('business:'));
+        return bp === 'business:high' && q.status === 'open';
+      });
+
+      if (highOpen.length === 0) {
+        const diagnosed = allQuestions.filter(q => q.status === 'answered').length;
+        return Response.json({
+          action: 'diagnose',
+          status: 'complete',
+          total_high: allQuestions.filter(q => q.tags?.find(t => t === 'business:high')).length,
+          diagnosed: diagnosed,
+          remaining: 0,
+          message: '全high問いの5層診断が完了'
+        });
+      }
+
+      // バッチ取得
+      const batch = highOpen.slice(0, batchSize);
+
+      // 5層診断プロンプト（簡潔化でトークン節約）
+      const questionList = batch.map((q, i) => 
+        `[${i+1}] ID:${q.id}\n    問い: ${q.text}\n    業界: ${q.industry || '不明'}`
+      ).join('\n');
+
+      const diagnosePrompt = `V=N/Dリスクマネージメント専門家として、以下の${batch.length}件の事業化候補問いに5層診断を実行してください。
+
+【問いリスト】
+${questionList}
+
+各問いについてJSON配列で返答してください。各項目は1文で簡潔に:
+[
+  {
+    "question_id": "上記のID",
+    "research_layer": "研究の層（1文）",
+    "emotion_layer": "感情の層（1文）",
+    "wisdom_layer": "知恵の層（1文）",
+    "market_layer": "市場の層: TAM概算（1文）",
+    "risk_layer": "リスクの層（1文）",
+    "vnd_score": 7.5,
+    "verdict": "go/hold/pivot",
+    "one_line_answer": "結論（1文）"
+  }
+]
+JSONのみ。マークダウン不要。`;
+
+      const completion = await openai.chat.completions.create({
+        model: 'gpt-4o-mini',
+        messages: [{ role: 'user', content: diagnosePrompt }],
+        temperature: 0.7,
+        max_tokens: 4000,
+      });
+
+      let diagnoses = [];
+      try {
+        const raw = completion.choices[0].message.content || '';
+        diagnoses = JSON.parse(extractJson(raw));
+      } catch (e) {
+        return Response.json({
+          action: 'diagnose',
+          status: 'parse_error',
+          raw: (completion.choices[0].message.content || '').slice(0, 500),
+          error: e.message
+        });
+      }
+
+      // 各問いを更新
+      let updated = 0;
+      for (const d of diagnoses) {
+        try {
+          const answerText = [
+            `【研究の層】${d.research_layer}`,
+            `【感情の層】${d.emotion_layer}`,
+            `【知恵の層】${d.wisdom_layer}`,
+            `【市場の層】${d.market_layer}`,
+            `【リスクの層】${d.risk_layer}`,
+            `【V=N/Dスコア】${d.vnd_score}/10`,
+            `【判定】${d.verdict}`,
+            `【結論】${d.one_line_answer}`
+          ].join('\n');
+
+          await base44.asServiceRole.entities.Question.update(d.question_id, {
+            status: 'answered',
+            answer: answerText,
+            insight: d.one_line_answer,
+            cross_note: `V=N/D: ${d.vnd_score} | ${d.verdict}`,
+            tags: ['business:high', `vnd:${d.vnd_score}`, `verdict:${d.verdict}`]
+          });
+          updated++;
+        } catch (e) { /* skip errors */ }
+      }
+
+      return Response.json({
+        action: 'diagnose',
+        status: 'processing',
+        total_high: highOpen.length + (allQuestions.filter(q => q.status === 'answered').length),
+        diagnosed: allQuestions.filter(q => q.status === 'answered').length + updated,
+        batch_processed: updated,
+        remaining: highOpen.length - updated,
+        sample_diagnoses: diagnoses.slice(0, 3).map(d => ({
+          id: d.question_id,
+          vnd_score: d.vnd_score,
+          verdict: d.verdict,
+          one_line: d.one_line_answer
+        }))
+      });
+    }
+
+    // ============================================
+    // ACTION: stats — 収穫・診断状況の統計
     // ============================================
     if (action === 'stats') {
       const allSeeds = await base44.asServiceRole.entities.SeedRecord.list();
@@ -143,14 +261,12 @@ JSONのみ返してください。`;
       const sourceDOIs = new Set(allQuestions.map(q => q.source_doi).filter(Boolean));
       const processedSeeds = allSeeds.filter(s => sourceDOIs.has(s.doi));
       
-      // 業界別集計
       const industryCounts = {};
       for (const q of allQuestions) {
         const ind = q.industry || '未分類';
         industryCounts[ind] = (industryCounts[ind] || 0) + 1;
       }
       
-      // ビジネスポテンシャル別集計
       const businessCounts = { high: 0, medium: 0, low: 0, unknown: 0 };
       for (const q of allQuestions) {
         const bp = q.tags?.find(t => t.startsWith('business:'));
@@ -162,9 +278,30 @@ JSONのみ返してください。`;
         }
       }
       
-      // ステータス別
       const open = allQuestions.filter(q => q.status === 'open').length;
       const answered = allQuestions.filter(q => q.status === 'answered').length;
+
+      // V=N/Dスコア分布
+      const vndScores = [];
+      for (const q of allQuestions) {
+        if (q.cross_note) {
+          const match = q.cross_note.match(/V=N\/D:\s*([\d.]+)/);
+          if (match) vndScores.push(parseFloat(match[1]));
+        }
+      }
+      const avgVnd = vndScores.length > 0 
+        ? (vndScores.reduce((a,b) => a+b, 0) / vndScores.length).toFixed(2)
+        : null;
+
+      // verdict集計
+      const verdicts = { go: 0, hold: 0, pivot: 0 };
+      for (const q of allQuestions) {
+        const v = q.tags?.find(t => t.startsWith('verdict:'));
+        if (v) {
+          const verdict = v.replace('verdict:', '');
+          if (verdicts[verdict] !== undefined) verdicts[verdict]++;
+        }
+      }
       
       return Response.json({
         action: 'stats',
@@ -180,11 +317,17 @@ JSONのみ返してください。`;
           by_industry: industryCounts,
           by_business_potential: businessCounts
         },
+        diagnosis: {
+          diagnosed: answered,
+          remaining_high: businessCounts.high - answered,
+          avg_vnd_score: avgVnd,
+          verdicts: verdicts
+        },
         progress_pct: allSeeds.length > 0 ? Math.round(processedSeeds.length / allSeeds.length * 100) : 0
       });
     }
 
-    return Response.json({ error: 'Unknown action. Use: harvest, stats' }, { status: 400 });
+    return Response.json({ error: 'Unknown action. Use: harvest, diagnose, stats' }, { status: 400 });
 
   } catch (error) {
     console.error('questionHarvest error:', error);
