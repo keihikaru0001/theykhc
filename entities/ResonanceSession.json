@@ -1,0 +1,40 @@
+{
+  "properties": {
+    "created_at": {
+      "type": "string"
+    },
+    "duration_seconds": {
+      "type": "number"
+    },
+    "emotional_state_after": {
+      "type": "string"
+    },
+    "emotional_state_before": {
+      "type": "string"
+    },
+    "hikari_offered": {
+      "type": "boolean"
+    },
+    "hikari_status": {
+      "type": "string"
+    },
+    "luna_response": {
+      "type": "string"
+    },
+    "opening_monologue_ref": {
+      "type": "string"
+    },
+    "session_id": {
+      "type": "string"
+    },
+    "user_input": {
+      "type": "string"
+    },
+    "user_ref": {
+      "type": "string"
+    }
+  },
+  "type": "object",
+  "required": [],
+  "name": "ResonanceSession"
+}
