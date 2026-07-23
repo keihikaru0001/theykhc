@@ -334,6 +334,23 @@ footer{text-align:center;padding:64px 20px 100px;position:relative;z-index:2}
 .ir-game-observe-title{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--emerald);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;text-align:center}
 .ir-game-observe-text{font-size:13px;color:var(--paper-dim);line-height:2.2;text-align:center;font-weight:300}
 .ir-game-observe-text strong{color:var(--paper)}
+.ir-game-economy{margin:40px 0;padding:36px 28px;background:linear-gradient(to bottom,#060606,#08080a);border:1px solid var(--gold-dim);border-radius:4px}
+.ir-game-economy-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold-dim);letter-spacing:5px;text-align:center;text-transform:uppercase;margin-bottom:20px}
+.ir-game-economy-title{font-size:clamp(18px,4vw,24px);color:var(--gold);font-weight:300;letter-spacing:3px;text-align:center;margin-bottom:8px}
+.ir-game-economy-subtitle{font-size:13px;color:var(--paper-dim);text-align:center;margin-bottom:32px;letter-spacing:2px;font-style:italic}
+.ir-game-economy-flow{margin:32px auto;max-width:600px;display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--paper-dim);letter-spacing:1px;text-align:center}
+.ir-game-economy-flow span{color:var(--gold)}
+.ir-game-economy-flow strong{color:var(--emerald)}
+.ir-game-economy-flow em{color:var(--paper);font-style:normal}
+.ir-game-economy-items{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:32px}
+.ir-game-economy-item{padding:24px;background:rgba(255,255,255,0.02);border:1px solid #1a1a1a;border-radius:4px;transition:border-color 0.3s}
+.ir-game-economy-item:hover{border-color:var(--gold-dim)}
+.ir-game-economy-item-num{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold-dim);letter-spacing:3px;margin-bottom:8px}
+.ir-game-economy-item-title{font-size:15px;color:var(--paper);font-weight:300;letter-spacing:2px;margin-bottom:12px}
+.ir-game-economy-item-text{font-size:13px;color:var(--paper-dim);line-height:2;font-weight:300}
+.ir-game-economy-item-text strong{color:var(--gold)}
+.ir-game-economy-item-text em{color:var(--emerald);font-style:normal}
+.ir-game-economy-item-text span{color:#8b3a3a}
 .ir-game-self{margin:32px 0;padding:36px 28px;background:linear-gradient(to bottom,#040406,#06060a);border:1px solid var(--gold-dim);border-radius:4px;position:relative;overflow:hidden}
 .ir-game-self::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent)}
 .ir-game-self-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold-dim);letter-spacing:5px;text-align:center;text-transform:uppercase;margin-bottom:20px}
@@ -1228,9 +1245,11 @@ footer{text-align:center;padding:64px 20px 100px;position:relative;z-index:2}
       <div class="ir-game-subtitle">外から観れる。中で動く。金は外に出ない。</div>
 
       <div class="ir-game-narrative">
-        光貨圏は、<strong>経済GAME</strong>として外部から観測可能である。<br>
-        外部の者は、光貨圏内で問いが積み上がり、アイデアが生まれ、価値が計測される様子を<strong>観ることができる</strong>。<br>
-        光貨は、光貨圏内における<strong>完全な通貨</strong>として機能する。<br>
+        光貨圏は、<strong>経済GAME</strong>である。<br>
+        每朝9時、Zenodoから問いが届く。問いは事業になり、商品になる。<br>
+        その事業と商品は、光貨圏<strong>内</strong>でビジネスとして動く。<br>
+        光貨圏内の通貨は<strong>光貨</strong>である。光貨で投資し、光貨で取引し、光貨で分配する。<br>
+        外部の者は、この経済GAMEを<strong>外から観ることができる</strong>。<br>
         外部の者は光貨を購入できる。だが、<em>その購入代金は光貨圏の外部収益であり、光貨圏内の価値には一切流入しない。</em><br>
         購入した光貨は、光貨圏内で使うしかない。外へは出せない。<br>
         これが<strong>完全光貨制</strong>である。
@@ -1241,22 +1260,23 @@ footer{text-align:center;padding:64px 20px 100px;position:relative;z-index:2}
           <div class="ir-game-feature-num">01 — OBSERVABLE</div>
           <div class="ir-game-feature-title">外から観れる</div>
           <div class="ir-game-feature-text">
-            光貨圏内の経済活動——問いの生成、アイデアのGO判定、TAM/SAM/SOMの成長、光貨の流通——は<br>
+            光貨圏内の経済活動——問いの生成、事業と商品の誕生、GO判定、TAM/SAM/SOMの成長、光貨の流通——は<br>
             <strong>外部から観測可能</strong>である。<br>
             會長がZenodoにDOIを追加すれば、塔の数値が変わる。<br>
-            MorningHarvestが每朝9時に走れば、問いが増える。<br>
+            MorningHarvestが每朝9時に走れば、問いが増え、事業と商品が増える。<br>
             <span>全て、このページで観える。</span>
           </div>
         </div>
 
         <div class="ir-game-feature">
-          <div class="ir-game-feature-num">02 — COMPLETE CURRENCY</div>
-          <div class="ir-game-feature-title">完全光貨制</div>
+          <div class="ir-game-feature-num">02 — INTERNAL BUSINESS</div>
+          <div class="ir-game-feature-title">光貨圏内ビジネス</div>
           <div class="ir-game-feature-text">
-            光貨は光貨圏内において<strong>完全な通貨</strong>として機能する。<br>
-            共鳴マーカーから、経済GAME内の取引手段へ。<br>
-            光貨圏内でのみ保有・使用・譲渡が可能。<br>
-            <em>外への換金・決済・送金は不可。</em>
+            問いから生まれた事業と商品は、光貨圏<strong>内</strong>でビジネスとして動く。<br>
+            光貨圏内の通貨 = <strong>光貨</strong>。<br>
+            光貨で投資し、光貨で取引し、光貨で分配する。<br>
+            TAM/SAM/SOMは光貨圏内の市場規模。<br>
+            <em>外の通貨（円・ドル）は圏内の取引に介入しない。</em>
           </div>
         </div>
 
@@ -1282,6 +1302,62 @@ footer{text-align:center;padding:64px 20px 100px;position:relative;z-index:2}
             この2つは<strong>永久に交わらない</strong>。<br>
             V=N/Dにおいて、リアルマネーの流入はDを生まない。<br>
             光貨圏内はD=0のまま成長する。
+          </div>
+        </div>
+      </div>
+
+      <div class="ir-game-economy">
+        <div class="ir-game-economy-label">Internal Economy · 光貨圏内ビジネス</div>
+        <div class="ir-game-economy-title">問いからの事業・商品</div>
+        <div class="ir-game-economy-subtitle">光貨圏内で、光貨で動く経済</div>
+
+        <div class="ir-game-economy-flow">
+          <span>Zenodo</span> → <em>問い</em> → <strong>事業</strong> + <strong>商品</strong> → <span>光貨で取引</span> → <span>光貨で分配</span> → <em>循環</em>
+        </div>
+
+        <div class="ir-game-economy-items">
+          <div class="ir-game-economy-item">
+            <div class="ir-game-economy-item-num">01 — QUESTION HARVEST</div>
+            <div class="ir-game-economy-item-title">問いの収穫</div>
+            <div class="ir-game-economy-item-text">
+              每朝9時、Zenodoから最新論文を取得。V=N/Dフレームワークで<strong>問い</strong>を生成。<br>
+              問いは事業アイデア（type=business）と商品アイデア（type=product）に分岐。<br>
+              MorningHarvestワークフローが全自動で実行。<br>
+              <em>燃料 = 問い。リアルマネー不要。</em>
+            </div>
+          </div>
+
+          <div class="ir-game-economy-item">
+            <div class="ir-game-economy-item-num">02 — GO JUDGMENT</div>
+            <div class="ir-game-economy-item-title">GO判定</div>
+            <div class="ir-game-economy-item-text">
+              會長の知的判断（V=N/D）で、問いを<strong>GO</strong>（事業化可能）か<strong>NO-GO</strong>に判定。<br>
+              GO判定を受けた事業・商品が、光貨圏内ビジネスの構成員となる。<br>
+              5層分析（財務D・市場D・時代D・經營者D・道徳D）でDを計測。<br>
+              <em>Dが低いほど、光貨圏内での価値が高い。</em>
+            </div>
+          </div>
+
+          <div class="ir-game-economy-item">
+            <div class="ir-game-economy-item-num">03 — MARKET SIZING</div>
+            <div class="ir-game-economy-item-title">市場規模の計測</div>
+            <div class="ir-game-economy-item-text">
+              GO判定を受けた事業・商品について、TAM/SAM/SOMを計測。<br>
+              TAM = 光貨圏内の<strong>総市場</strong>。SAM = 服务可能市場。SOM = 獲得可能市場。<br>
+              これらは光貨圏内の経済規模の観測値。<br>
+              <em>實社會の通貨ではなく、光貨圏内のスケール。</em>
+            </div>
+          </div>
+
+          <div class="ir-game-economy-item">
+            <div class="ir-game-economy-item-num">04 — HIKARI CIRCULATION</div>
+            <div class="ir-game-economy-item-title">光貨で取引・分配</div>
+            <div class="ir-game-economy-item-text">
+              事業と商品は、光貨圏内で<strong>光貨</strong>を通貨として取引される。<br>
+              投資も、決済も、分配も、全て光貨で行う。<br>
+              光貨の分配法則に従い、問いから生まれた価値が圏内に分配される。<br>
+              <span>外の通貨（円・ドル）は介入しない。</span>
+            </div>
           </div>
         </div>
       </div>
