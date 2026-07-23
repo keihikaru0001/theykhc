@@ -1,0 +1,50 @@
+{
+  "total": 748,
+  "market_totals": {
+    "tam_trillion_yen": 203.92,
+    "sam_trillion_yen": 22.43,
+    "som_trillion_yen": 2.2
+  },
+  "samples": [
+    {
+      "text": "自律運転システムの商用化に向けて、どのような新しい設計アプローチを採用すべきか？",
+      "industry": "科学と技術",
+      "vnd": "8.5",
+      "source_title": "TheYKHC Journal Vol.7 — 設計者の不要化",
+      "insight": "自律運転システムの商用化には新しい設計アプローチが必要である。",
+      "_locked": true
+    },
+    {
+      "text": "Koku宇宙の構造を基に、個別化されたオルガンのデザイン最適化に向けた新しいビジネスモデルを構築できるか？",
+      "industry": "科学と技術/生活と健康",
+      "vnd": "8.5",
+      "source_title": "Koku Universe as a Design Principle for 3D Bio-Fabrication: Geometric Application to Organ Design",
+      "insight": "個別化されたオルガンデザインのビジネスモデルは成功する可能性が高い。",
+      "_locked": true
+    },
+    {
+      "text": "X線スペクトル調査の結果を応用した新しい治療法の開発は可能か？",
+      "industry": "生活と健康",
+      "vnd": "8.5",
+      "source_title": "A Complete X-ray Spectral Survey of ISP BL Lac Objects in the 4LAC-DR3 High-Confidence Catalog: Evidence for a Rare Spectral Hardening Class",
+      "insight": "新しい治療法の開発は期待されており、前向きに進めるべきである。",
+      "_locked": true
+    },
+    {
+      "text": "パフォーマンスインテリジェンスを活用した新しい通貨システムの設計は可能か？",
+      "industry": "金融/仕事とビジネス",
+      "vnd": "8.5",
+      "source_title": "Ubiquitous Money: Embedding Performance Intelligence into Physical Currency",
+      "insight": "新しい通貨システムはパフォーマンスインテリジェンスを活用し、革新をもたらす。",
+      "_locked": true
+    },
+    {
+      "text": "次世代AIインフラのエネルギーコストを削減する革新的なソリューションを開発することはできるか？",
+      "industry": "科学と技術",
+      "vnd": "8.5",
+      "source_title": "The Energy Paradox of Intelligence: Centralization Risk in Next-Generation AI Infrastructure and the Moral Density Alternative",
+      "insight": "革新的なソリューションの開発は市場ニーズに応える。",
+      "_locked": true
+    }
+  ]
+}
