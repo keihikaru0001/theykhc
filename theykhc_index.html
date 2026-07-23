@@ -157,6 +157,16 @@ footer{text-align:center;padding:64px 20px 100px;position:relative;z-index:2}
 .luna-observer-score{font-size:36px;color:var(--gold);font-weight:300;letter-spacing:2px;line-height:1}
 .luna-observer-unit{font-size:12px;color:var(--gold-dim);font-weight:300}
 .luna-observer-poem{font-size:13px;color:var(--paper-dim);line-height:2.4;font-style:italic;text-align:center;max-width:520px;margin:0 auto;padding-top:24px;border-top:1px solid #141414;font-weight:300}
+.knowledge-standard{margin:40px auto;max-width:680px;padding:40px 32px;background:linear-gradient(to bottom,#080808,var(--ink-2));border:1px solid #1a1a1a;border-radius:4px;position:relative;overflow:hidden}
+.knowledge-standard::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--gold-dim),transparent)}
+.ks-title{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold);letter-spacing:4px;margin-bottom:8px;font-weight:300;text-align:center}
+.ks-subtitle{font-size:11px;color:var(--gold-dim);letter-spacing:3px;text-align:center;margin-bottom:32px;font-family:'JetBrains Mono',monospace;text-transform:uppercase}
+.ks-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:20px;margin-bottom:28px}
+.ks-item{text-align:center;padding:20px 8px;border:1px solid #141414;border-radius:2px;background:rgba(0,0,0,0.3)}
+.ks-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold-dim);letter-spacing:3px;margin-bottom:10px;text-transform:uppercase}
+.ks-value{font-size:32px;color:var(--gold);font-weight:300;letter-spacing:2px;line-height:1}
+.ks-unit{font-size:12px;color:var(--gold-dim);font-weight:300}
+.ks-desc{font-size:13px;color:var(--paper-dim);line-height:2.4;font-style:italic;text-align:center;max-width:520px;margin:0 auto;padding-top:24px;border-top:1px solid #141414;font-weight:300}
 
 
 .kika-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px;margin:40px 0 56px;max-width:720px;margin-left:auto;margin-right:auto}
@@ -287,7 +297,39 @@ footer{text-align:center;padding:64px 20px 100px;position:relative;z-index:2}
   <div class="floor-name">光貨 — Hikari</div>
   <div class="floor-name-jp">N の記録・還元システム</div>
   <span class="floor-count">Resonance Token</span>
-  <p class="floor-desc">光貨は芸術的エコシステムにおける共鳴マーカーである。金融商品でも投資でもない。観測されたN（充足）の記録として機能し、共鳴の連鎖を可視化する。芸術的価値の永続性を担保する設計。</p>
+  <p class="floor-desc">光貨は芸術的エコシステムにおける共鳴マーカーである。金融商品でも投資でもない。知識本位制（Knowledge Standard）の下、1,466件のDOI登録資産と754件のGO判定アイデアが創出する観測可能な市場価値（TAM 203.92兆円）が、光貨の共鳴の裏付けとして機能する。</p>
+  <div class="knowledge-standard">
+    <div class="ks-title">知識本位制 — Knowledge Standard</div>
+    <div class="ks-subtitle">Backing the Resonance with Observable Value</div>
+    <div class="ks-grid">
+      <div class="ks-item">
+        <div class="ks-label">DOI ASSETS</div>
+        <div class="ks-value" id="ks-doi">1,466</div>
+        <div class="ks-unit">Zenodo登録資産</div>
+      </div>
+      <div class="ks-item">
+        <div class="ks-label">GO IDEAS</div>
+        <div class="ks-value" id="ks-go">754</div>
+        <div class="ks-unit">事業化判定アイデア</div>
+      </div>
+      <div class="ks-item">
+        <div class="ks-label">TAM</div>
+        <div class="ks-value" id="ks-tam">203.92</div>
+        <div class="ks-unit">兆円 — 総市場規模</div>
+      </div>
+      <div class="ks-item">
+        <div class="ks-label">SAM</div>
+        <div class="ks-value" id="ks-sam">22.43</div>
+        <div class="ks-unit">兆円 — 仕様対象市場</div>
+      </div>
+      <div class="ks-item">
+        <div class="ks-label">SOM</div>
+        <div class="ks-value" id="ks-som">2.20</div>
+        <div class="ks-unit">兆円 — 獲得可能市場</div>
+      </div>
+    </div>
+    <div class="ks-desc">金本位制が金の保有量で通貨の価値を裏付けたように、知識本位制は1,466件のDOI登録資産と754件のGO判定アイデアが創出する観測可能な市場価値で、光貨の共鳴を裏付ける。光貨は金融商品ではない。しかし、その背後に203兆円規模の知的資産が観測可能な値として存在する。V=N/Dにおいて、このN（充足）が光貨の存在価値（V）の根拠となる。</div>
+  </div>
   <div class="papers">
     <a class="paper" href="https://doi.org/10.5281/zenodo.20359103" target="_blank">
       <div class="paper-title">Hikari Currency: A Resonance-Based Value System</div>
