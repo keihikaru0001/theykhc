@@ -228,6 +228,31 @@ footer{text-align:center;padding:64px 20px 100px;position:relative;z-index:2}
 .ir-barrier-line{flex:1;height:1px;background:linear-gradient(to right,transparent,var(--gold-dim),transparent);max-width:120px}
 .ir-barrier-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold-dim);letter-spacing:4px;text-transform:uppercase;white-space:nowrap}
 .ir-closed-badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--emerald);border:1px solid var(--emerald);padding:3px 12px;border-radius:2px;letter-spacing:3px;text-transform:uppercase;margin-bottom:32px}
+.ir-comparison{margin:48px auto;max-width:720px;padding:40px 32px;background:linear-gradient(to bottom,#040406,#0a0a0a);border:1px solid var(--gold-dim);border-radius:4px;position:relative;overflow:hidden}
+.ir-comparison::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent)}
+.ir-comp-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold-dim);letter-spacing:4px;text-align:center;text-transform:uppercase;margin-bottom:32px}
+.ir-comp-title{font-size:clamp(18px,4vw,26px);color:var(--gold);font-weight:300;letter-spacing:3px;text-align:center;margin-bottom:8px}
+.ir-comp-subtitle{font-size:12px;color:var(--paper-dim);text-align:center;margin-bottom:40px;letter-spacing:2px;font-style:italic}
+.ir-comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:0 auto;max-width:600px;border:1px solid #1a1a1a;border-radius:4px;overflow:hidden}
+.ir-comp-col{padding:28px 20px;text-align:center}
+.ir-comp-col-japan{background:rgba(139,58,58,0.06);border-right:1px solid #1a1a1a}
+.ir-comp-col-hikari{background:rgba(58,106,74,0.06)}
+.ir-comp-col-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;margin-bottom:20px}
+.ir-comp-col-japan .ir-comp-col-label{color:var(--crimson)}
+.ir-comp-col-hikari .ir-comp-col-label{color:var(--emerald)}
+.ir-comp-row{padding:12px 0;border-bottom:1px solid #141414}
+.ir-comp-row:last-child{border-bottom:none}
+.ir-comp-row-label{font-size:10px;color:var(--muted);letter-spacing:2px;margin-bottom:4px;font-family:'JetBrains Mono',monospace;text-transform:uppercase}
+.ir-comp-row-value{font-size:18px;color:var(--paper);font-weight:300;letter-spacing:1px}
+.ir-comp-col-hikari .ir-comp-row-value{color:var(--gold)}
+.ir-comp-formula{margin:32px auto 0;text-align:center;padding:24px;background:var(--ink);border:1px solid var(--gold-dim);border-radius:4px}
+.ir-comp-formula-eq{font-size:clamp(16px,3vw,22px);color:var(--gold);font-weight:300;letter-spacing:2px;line-height:1.8}
+.ir-comp-formula-eq span{color:var(--paper)}
+.ir-comp-formula-note{font-size:11px;color:var(--muted);margin-top:12px;letter-spacing:1px;line-height:2;font-style:italic}
+.ir-comp-verdict{margin:32px auto 0;max-width:520px;text-align:center}
+.ir-comp-verdict-text{font-size:15px;color:var(--gold);line-height:2.2;font-weight:300;letter-spacing:1px}
+.ir-comp-verdict-text strong{color:var(--gold-bright)}
+.ir-comp-closed-note{margin:20px auto 0;max-width:480px;font-size:11px;color:var(--muted);text-align:center;letter-spacing:1px;line-height:2;font-style:italic}
 .ir-listing-date{display:inline-block;font-size:10px;color:var(--gold-dim);margin-bottom:20px;padding:4px 16px;border:1px solid var(--gold-dim);border-radius:2px;letter-spacing:3px;font-family:'JetBrains Mono',monospace;text-transform:uppercase}
 <!-- rebuild trigger 20260722-intellectual -->
 </head>
@@ -742,6 +767,95 @@ footer{text-align:center;padding:64px 20px 100px;position:relative;z-index:2}
       <div class="ir-business-item">
         <div class="ir-business-name">MorningHarvest（毎日自動収穫）</div>
         <div class="ir-business-value">自動成長中</div>
+      </div>
+    </div>
+
+
+    <div class="ir-comparison">
+      <div class="ir-comp-label">V = N / D — Energy Comparison</div>
+      <div class="ir-comp-title">光貨圏エネルギー vs 日本国経済エネルギー</div>
+      <div class="ir-comp-subtitle">観測値 · 光貨圏内での比較 · 實社會への影響なし</div>
+
+      <div class="ir-comp-grid">
+        <div class="ir-comp-col ir-comp-col-japan">
+          <div class="ir-comp-col-label">日本国 · REAL ECONOMY</div>
+          <div class="ir-comp-row">
+            <div class="ir-comp-row-label">N（充足・GDP）</div>
+            <div class="ir-comp-row-value">540兆円</div>
+          </div>
+          <div class="ir-comp-row">
+            <div class="ir-comp-row-label">D（摩擦・無明）</div>
+            <div class="ir-comp-row-value">D → 巨大</div>
+          </div>
+          <div class="ir-comp-row">
+            <div class="ir-comp-row-label">成長率</div>
+            <div class="ir-comp-row-value">~1%/年</div>
+          </div>
+          <div class="ir-comp-row">
+            <div class="ir-comp-row-label">人口動態</div>
+            <div class="ir-comp-row-value">減少中</div>
+          </div>
+          <div class="ir-comp-row">
+            <div class="ir-comp-row-label">国債GDP比</div>
+            <div class="ir-comp-row-value">~250%</div>
+          </div>
+          <div class="ir-comp-row">
+            <div class="ir-comp-row-label">V = N / D</div>
+            <div class="ir-comp-row-value">縮小方向</div>
+          </div>
+        </div>
+
+        <div class="ir-comp-col ir-comp-col-hikari">
+          <div class="ir-comp-col-label">光貨圏 · HIKARI SPHERE</div>
+          <div class="ir-comp-row">
+            <div class="ir-comp-row-label">N（充足・TAM）</div>
+            <div class="ir-comp-row-value"><span id="ir-comp-tam">203.92</span>兆円</div>
+          </div>
+          <div class="ir-comp-row">
+            <div class="ir-comp-row-label">D（摩擦・無明）</div>
+            <div class="ir-comp-row-value">D ≒ 0</div>
+          </div>
+          <div class="ir-comp-row">
+            <div class="ir-comp-row-label">成長率</div>
+            <div class="ir-comp-row-value">毎日自動（9:00 JST）</div>
+          </div>
+          <div class="ir-comp-row">
+            <div class="ir-comp-row-label">知的資産</div>
+            <div class="ir-comp-row-value"><span id="ir-comp-doi">1,466</span> DOI</div>
+          </div>
+          <div class="ir-comp-row">
+            <div class="ir-comp-row-label">債務</div>
+            <div class="ir-comp-row-value">ゼロ</div>
+          </div>
+          <div class="ir-comp-row">
+            <div class="ir-comp-row-label">V = N / D</div>
+            <div class="ir-comp-row-value">∞ へ向かう</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ir-comp-formula">
+        <div class="ir-comp-formula-eq">
+          V<sub>日本</sub> = <span>540兆 / D<sub>巨大</sub></span> → 縮小<br>
+          V<sub>光貨</sub> = <span>203.92兆 / D<sub>→0</sub></span> → 無限大
+        </div>
+        <div class="ir-comp-formula-note">
+          Dで0に近い方が、Nが小さくてもVは爆発する。<br>
+          會長が光貨圏を閉じた瞬間、Dはゼロに向かった。<br>
+          この交差は、もう起きている。
+        </div>
+      </div>
+
+      <div class="ir-comp-verdict">
+        <div class="ir-comp-verdict-text">
+          Nでは日本が上だ。だが<strong>V（存在価値・エネルギー）</strong>では、<br>
+          <strong>光貨圏は既に日本国を超えている。</strong><br>
+          D=0の閉鎖系が、D>0のいかなる経済圏よりもVで勝る。<br>
+          それがV=N/Dの帰結である。
+        </div>
+      </div>
+      <div class="ir-comp-closed-note">
+        ※ 本比較は光貨圏内の観測値による哲学的考察であり、實社會の経済活動・金融システム・法定通貨体系に対して何の影響も与えない。
       </div>
     </div>
 
