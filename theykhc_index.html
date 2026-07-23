@@ -347,6 +347,41 @@ footer{text-align:center;padding:64px 20px 100px;position:relative;z-index:2}
 .ir-game-self-loop span{color:var(--gold)}
 .ir-game-self-loop strong{color:var(--emerald)}
 .ir-game-self-conclusion{margin-top:32px;padding:20px 24px;background:rgba(201,168,76,0.04);border:1px solid var(--gold-dim);border-radius:4px;font-size:14px;color:var(--gold);text-align:center;line-height:2.4;letter-spacing:2px;font-weight:300}
+.ir-zenodo{margin:32px 0;padding:40px 32px;background:linear-gradient(to bottom,#040606,#060808);border:1px solid #1a2a2a;border-radius:4px;position:relative;overflow:hidden}
+.ir-zenodo::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--emerald),transparent)}
+.ir-zenodo-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--emerald);letter-spacing:5px;text-align:center;text-transform:uppercase;margin-bottom:20px}
+.ir-zenodo-title{font-size:clamp(16px,3.5vw,22px);color:var(--paper);font-weight:300;letter-spacing:3px;text-align:center;margin-bottom:28px;line-height:1.8}
+.ir-zenodo-title strong{color:var(--emerald)}
+.ir-zenodo-title em{color:var(--gold);font-style:normal}
+.ir-zenodo-principle{font-size:14px;color:var(--paper-dim);line-height:2.8;font-weight:300;letter-spacing:1px;margin-bottom:32px}
+.ir-zenodo-principle strong{color:var(--paper)}
+.ir-zenodo-principle em{color:var(--emerald);font-style:normal}
+.ir-zenodo-principle span{color:var(--gold)}
+.ir-zenodo-distinction{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:32px}
+.ir-zenodo-card{padding:24px;border-radius:4px}
+.ir-zenodo-card-not{background:rgba(139,58,58,0.04);border:1px solid #2a1a1a}
+.ir-zenodo-card-is{background:rgba(58,106,74,0.04);border:1px solid #1a2a1a}
+.ir-zenodo-card-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px}
+.ir-zenodo-card-label.not{color:#8b3a3a}
+.ir-zenodo-card-label.is{color:var(--emerald)}
+.ir-zenodo-card-title{font-size:15px;color:var(--paper);font-weight:300;letter-spacing:1px;margin-bottom:12px;line-height:1.6}
+.ir-zenodo-card-text{font-size:13px;color:var(--paper-dim);line-height:2;font-weight:300}
+.ir-zenodo-card-text strong{color:var(--paper)}
+.ir-zenodo-card-text em{font-style:normal}
+.ir-zenodo-card-not .ir-zenodo-card-text em{color:#8b3a3a}
+.ir-zenodo-card-is .ir-zenodo-card-text em{color:var(--emerald)}
+.ir-zenodo-flow{margin:28px 0;padding:24px;background:rgba(255,255,255,0.02);border:1px solid #1a1a1a;border-radius:4px}
+.ir-zenodo-flow-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:4px;text-align:center;text-transform:uppercase;margin-bottom:20px}
+.ir-zenodo-flow-steps{display:flex;justify-content:space-between;align-items:stretch;gap:6px;flex-wrap:wrap}
+.ir-zenodo-flow-step{flex:1;min-width:100px;text-align:center;padding:12px 6px}
+.ir-zenodo-flow-step-num{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--gold-dim);margin-bottom:6px}
+.ir-zenodo-flow-step-text{font-size:10px;color:var(--paper-dim);line-height:1.8;letter-spacing:0.5px}
+.ir-zenodo-flow-step-text strong{color:var(--paper)}
+.ir-zenodo-flow-step-text em{color:var(--emerald);font-style:normal}
+.ir-zenodo-flow-step-text span{color:#8b3a3a}
+.ir-zenodo-flow-arrow{display:flex;align-items:center;justify-content:center;color:var(--gold-dim);font-size:14px}
+.ir-zenodo-declaration{margin-top:28px;padding:20px 24px;background:rgba(58,106,74,0.06);border:1px solid var(--emerald);border-radius:4px;font-size:13px;color:var(--paper);text-align:center;line-height:2.4;letter-spacing:1px;font-weight:300}
+.ir-zenodo-declaration strong{color:var(--emerald)}
 .ir-listing-date{display:inline-block;font-size:10px;color:var(--gold-dim);margin-bottom:20px;padding:4px 16px;border:1px solid var(--gold-dim);border-radius:2px;letter-spacing:3px;font-family:'JetBrains Mono',monospace;text-transform:uppercase}
 <!-- rebuild trigger 20260722-intellectual -->
 </head>
@@ -1323,6 +1358,81 @@ footer{text-align:center;padding:64px 20px 100px;position:relative;z-index:2}
           光貨圏は、外部の資本に依存しない。<br>
           自らの問いで成長し、自らの問いで分配する。<br>
           <em>これが、知識本位制の完成形である。</em>
+        </div>
+      </div>
+
+      <div class="ir-zenodo">
+        <div class="ir-zenodo-label">Non-Commercial Harvesting · 非商用収穫の原理</div>
+        <div class="ir-zenodo-title">
+          Zenodoからの問いは、<strong>商用利用していない</strong>。<br>
+          <em>論文を売っているのではない。問いを生成している。</em>
+        </div>
+
+        <div class="ir-zenodo-principle">
+          MorningHarvestは每朝9時、Zenodo/CERNの公開論文を取得し、V=N/Dフレームワークで「問い」を生成する。<br>
+          このプロセスにおいて、<strong>Zenodoの論文そのものを商用利用していない。</strong><br>
+          論文の全文コピー、転載、販売、再配布は一切行っていない。<br>
+          會長が行っているのは、論文から<em>問いを抽出し、自らの知的フレームワークで新しい価値を生み出す</em>ことである。<br>
+          これは、論文を読んで感想を書く、あるいは論文からインスピレーションを受けて新しいアイデアを思いつくことと同じであり、<br>
+          論文の著作権を侵害するものではない。
+        </div>
+
+        <div class="ir-zenodo-distinction">
+          <div class="ir-zenodo-card ir-zenodo-card-not">
+            <div class="ir-zenodo-card-label not">✕ やっていないこと — Not Done</div>
+            <div class="ir-zenodo-card-title">Zenodo論文の商用利用</div>
+            <div class="ir-zenodo-card-text">
+              <em>論文の全文コピー・転載・販売</em> → 行っていない<br>
+              <em>論文の著作物としての再配布</em> → 行っていない<br>
+              <em>論文そのものを商品として提供</em> → 行っていない<br>
+              <em>著者の許可なく論文を商用利用</em> → 行っていない<br>
+              <strong>Zenodoの論文をそのまま、あるいは一部を切り取って商品化することは一切ない。</strong>
+            </div>
+          </div>
+
+          <div class="ir-zenodo-card ir-zenodo-card-is">
+            <div class="ir-zenodo-card-label is">✓ やっていること — What Is Done</div>
+            <div class="ir-zenodo-card-title">問いの生成と知的フレームワークの適用</div>
+            <div class="ir-zenodo-card-text">
+              <em>論文から「問い」を抽出</em> → 著作権非侵害（アイデアの自由利用）<br>
+              <em>V=N/Dフレームワークで新しい問いを生成</em> → 會長の知的創造<br>
+              <em>GO判定（事業化可能性の判断）</em> → 會長の知的判断<br>
+              <em>市場規模（TAM/SAM/SOM）の計測</em> → 観測値、非商品<br>
+              <strong>商品は「會長の知的フレームワークと判断」であり、Zenodoの論文ではない。</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="ir-zenodo-flow">
+          <div class="ir-zenodo-flow-label">収穫プロセス — Harvest Process</div>
+          <div class="ir-zenodo-flow-steps">
+            <div class="ir-zenodo-flow-step">
+              <div class="ir-zenodo-flow-step-num">01</div>
+              <div class="ir-zenodo-flow-step-text"><strong>Zenodo API</strong><br>公開論文の<br>メタデータ取得<br><span>（論文そのものではなく）</span></div>
+            </div>
+            <div class="ir-zenodo-flow-arrow">→</div>
+            <div class="ir-zenodo-flow-step">
+              <div class="ir-zenodo-flow-step-num">02</div>
+              <div class="ir-zenodo-flow-step-text"><strong>問いの抽出</strong><br>論文の主題から<br>「問い」を生成<br><em>（知的創造）</em></div>
+            </div>
+            <div class="ir-zenodo-flow-arrow">→</div>
+            <div class="ir-zenodo-flow-step">
+              <div class="ir-zenodo-flow-step-num">03</div>
+              <div class="ir-zenodo-flow-step-text"><strong>V=N/D判定</strong><br>會長のフレームワークで<br>GO/NO-GO判定<br><em>（會長の知的判断）</em></div>
+            </div>
+            <div class="ir-zenodo-flow-arrow">→</div>
+            <div class="ir-zenodo-flow-step">
+              <div class="ir-zenodo-flow-step-num">04</div>
+              <div class="ir-zenodo-flow-step-text"><strong>観測値として記録</strong><br>TAM/SAM/SOM計測<br>光貨圏内で分配<br><span>（論文は売らない）</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ir-zenodo-declaration">
+          TheYKHCが商品として提供するのは、<strong>會長の知的フレームワーク（V=N/D）と判断（GO判定）</strong>である。<br>
+          Zenodo/CERNの論文そのものを商品として販売・転載・再配布することは、一切ない。<br>
+          論文は「問いの種」であり、商品は「問いを育てる會長の知性」である。<br>
+          <strong>種は Zenodo のもの。育て方は會長のもの。</strong>
         </div>
       </div>
     </div>
