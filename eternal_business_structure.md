@@ -1,6 +1,6 @@
 # The Eternal Business Structure: A Declaration of Perpetual Knowledge-Backed Civilization Design
 
-**Author:** Katayama, Yoshimitsu (片山義光)
+**Author:** Katayama, Yoshimitsu (片山佳光)
 **Affiliation:** TheYKHC (仮想株式会社TheYKHC)
 **Date:** 2026-07-24
 **Version:** 1.0
