@@ -253,6 +253,39 @@ footer{text-align:center;padding:64px 20px 100px;position:relative;z-index:2}
 .ir-comp-verdict-text{font-size:15px;color:var(--gold);line-height:2.2;font-weight:300;letter-spacing:1px}
 .ir-comp-verdict-text strong{color:var(--gold-bright)}
 .ir-comp-closed-note{margin:20px auto 0;max-width:480px;font-size:11px;color:var(--muted);text-align:center;letter-spacing:1px;line-height:2;font-style:italic}
+.ir-transparency{margin:64px auto;max-width:760px;padding:48px 36px;background:linear-gradient(to bottom,#020204,#080808);border:1px solid var(--gold-dim);border-radius:4px;position:relative;overflow:hidden}
+.ir-transparency::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--gold),transparent)}
+.ir-trans-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold-dim);letter-spacing:5px;text-align:center;text-transform:uppercase;margin-bottom:16px}
+.ir-trans-title{font-size:clamp(20px,4vw,28px);color:var(--gold);font-weight:300;letter-spacing:4px;text-align:center;margin-bottom:8px}
+.ir-trans-subtitle{font-size:13px;color:var(--paper-dim);text-align:center;margin-bottom:48px;letter-spacing:2px;font-style:italic}
+.ir-trans-section{margin-bottom:40px}
+.ir-trans-section-title{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:20px;padding-bottom:8px;border-bottom:1px solid #1a1a1a}
+.ir-trans-list{list-style:none;padding:0;margin:0}
+.ir-trans-item{padding:14px 0;border-bottom:1px solid #141414;display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
+.ir-trans-item:last-child{border-bottom:none}
+.ir-trans-item-label{font-size:13px;color:var(--paper-dim);flex-shrink:0;min-width:140px;line-height:1.8}
+.ir-trans-item-value{font-size:13px;color:var(--paper);text-align:right;line-height:1.8;flex:1}
+.ir-trans-item-value strong{color:var(--gold)}
+.ir-trans-item-value em{color:var(--crimson);font-style:normal}
+.ir-trans-item-value span{color:var(--emerald)}
+.ir-trans-narrative{font-size:14px;color:var(--paper-dim);line-height:2.4;font-weight:300;letter-spacing:1px;margin-bottom:32px}
+.ir-trans-narrative strong{color:var(--paper)}
+.ir-trans-boundary{margin:40px 0;padding:32px;background:linear-gradient(to right,rgba(139,58,58,0.04),rgba(58,106,74,0.04));border:1px solid #1a1a1a;border-radius:4px}
+.ir-trans-boundary-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold-dim);letter-spacing:4px;text-align:center;margin-bottom:20px;text-transform:uppercase}
+.ir-trans-boundary-vis{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:12px;letter-spacing:1px}
+.ir-trans-boundary-side{flex:1;text-align:center;padding:16px 8px;border-radius:4px}
+.ir-trans-boundary-outside{background:rgba(139,58,58,0.06);border:1px solid #2a1a1a}
+.ir-trans-boundary-inside{background:rgba(58,106,74,0.06);border:1px solid #1a2a1a}
+.ir-trans-boundary-outside .ir-trans-boundary-title{color:var(--crimson);font-size:10px;letter-spacing:3px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;margin-bottom:8px}
+.ir-trans-boundary-inside .ir-trans-boundary-title{color:var(--emerald);font-size:10px;letter-spacing:3px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;margin-bottom:8px}
+.ir-trans-boundary-outside .ir-trans-boundary-items{font-size:12px;color:var(--paper-dim);line-height:2}
+.ir-trans-boundary-inside .ir-trans-boundary-items{font-size:12px;color:var(--paper-dim);line-height:2}
+.ir-trans-boundary-divider{flex-shrink:0;width:2px;height:80px;background:linear-gradient(to bottom,transparent,var(--gold-dim),transparent);position:relative}
+.ir-trans-boundary-divider::after{content:'D=0';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold-dim);background:#080808;padding:4px 8px;white-space:nowrap;letter-spacing:1px}
+.ir-trans-signature{margin-top:48px;text-align:center;padding-top:32px;border-top:1px solid #1a1a1a}
+.ir-trans-signature-name{font-size:16px;color:var(--paper);letter-spacing:2px;margin-bottom:4px}
+.ir-trans-signature-title{font-size:11px;color:var(--muted);letter-spacing:2px;margin-bottom:16px}
+.ir-trans-signature-date{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold-dim);letter-spacing:3px}
 .ir-listing-date{display:inline-block;font-size:10px;color:var(--gold-dim);margin-bottom:20px;padding:4px 16px;border:1px solid var(--gold-dim);border-radius:2px;letter-spacing:3px;font-family:'JetBrains Mono',monospace;text-transform:uppercase}
 <!-- rebuild trigger 20260722-intellectual -->
 </head>
@@ -856,6 +889,185 @@ footer{text-align:center;padding:64px 20px 100px;position:relative;z-index:2}
       </div>
       <div class="ir-comp-closed-note">
         ※ 本比較は光貨圏内の観測値による哲学的考察であり、實社會の経済活動・金融システム・法定通貨体系に対して何の影響も与えない。
+      </div>
+    </div>
+
+
+    <div class="ir-transparency">
+      <div class="ir-trans-label">Full Disclosure — 完全透明化宣言</div>
+      <div class="ir-trans-title">透明化</div>
+      <div class="ir-trans-subtitle">成長する前に、全てを書き出す。疑われる前に、全てを開示する。</div>
+
+      <div class="ir-trans-narrative">
+        TheYKHCは、1人の男——片山佳光——が2003年から積み上げた知的資産を、Zenodo/CERNにDOIとして永久保存する記念碑である。<br>
+        このサイトに金融商品はない。投資勧誘はない。有価証券の発行はない。<br>
+        あるのは、<strong>問い</strong>だけだ。<br>
+        毎朝9時、Zenodo全体の論文から問いを収穫し、事業アイデアと商品アイデアを生成する。<br>
+        その問いが積み上がり、観測可能な市場規模（TAM/SAM/SOM）として計測される。<br>
+        この成長ループに、<strong>実社会の金は1円も流れていない。</strong>
+      </div>
+
+      <div class="ir-trans-section">
+        <div class="ir-trans-section-title">01 — 実社会のコスト（光貨圏の外側）</div>
+        <div class="ir-trans-list">
+          <div class="ir-trans-item">
+            <div class="ir-trans-item-label">Luna稼働費（API・サーバー）</div>
+            <div class="ir-trans-item-value"><strong>リアルマネー</strong> — 光貨圏の外部</div>
+          </div>
+          <div class="ir-trans-item">
+            <div class="ir-trans-item-label">Base44プラットフォーム費</div>
+            <div class="ir-trans-item-value"><strong>リアルマネー</strong> — 光貨圏の外部</div>
+          </div>
+          <div class="ir-trans-item">
+            <div class="ir-trans-item-label">GitHub Pages（theykhc.com）</div>
+            <div class="ir-trans-item-value"><span>無料</span></div>
+          </div>
+          <div class="ir-trans-item">
+            <div class="ir-trans-item-label">Zenodo DOI登録</div>
+            <div class="ir-trans-item-value"><span>無料</span></div>
+          </div>
+          <div class="ir-trans-item">
+            <div class="ir-trans-item-label">MorningHarvest（毎日自動収穫）</div>
+            <div class="ir-trans-item-value"><span>無料</span> — クレジット消費のみ</div>
+          </div>
+          <div class="ir-trans-item">
+            <div class="ir-trans-item-label">問い生成・アイデア自動成長</div>
+            <div class="ir-trans-item-value"><span>無料</span> — リアルマネー不要</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ir-trans-section">
+        <div class="ir-trans-section-title">02 — 光貨圏の成長エンジン（光貨圏の内側）</div>
+        <div class="ir-trans-list">
+          <div class="ir-trans-item">
+            <div class="ir-trans-item-label">成長の燃料</div>
+            <div class="ir-trans-item-value"><strong>問い（Question）</strong> — 金ではない</div>
+          </div>
+          <div class="ir-trans-item">
+            <div class="ir-trans-item-label">収穫源</div>
+            <div class="ir-trans-item-value">Zenodo全体の最新論文（毎日9:00 JST）</div>
+          </div>
+          <div class="ir-trans-item">
+            <div class="ir-trans-item-label">成長の計測</div>
+            <div class="ir-trans-item-value">TAM/SAM/SOM（観測値、非交換）</div>
+          </div>
+          <div class="ir-trans-item">
+            <div class="ir-trans-item-label">成長に必要なリアルマネー</div>
+            <div class="ir-trans-item-value"><em>ゼロ</em></div>
+          </div>
+          <div class="ir-trans-item">
+            <div class="ir-trans-item-label">現在の問い総数</div>
+            <div class="ir-trans-item-value"><strong id="trans-question-count">2,197</strong>件</div>
+          </div>
+          <div class="ir-trans-item">
+            <div class="ir-trans-item-label">GO判定アイデア</div>
+            <div class="ir-trans-item-value"><strong id="trans-go-count">754</strong>件</div>
+          </div>
+          <div class="ir-trans-item">
+            <div class="ir-trans-item-label">DOI知的資産</div>
+            <div class="ir-trans-item-value"><strong id="trans-doi-count">1,466</strong>件（Zenodo/CERN）</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ir-trans-section">
+        <div class="ir-trans-section-title">03 — 決済について（Stripe透明化）</div>
+        <div class="ir-trans-list">
+          <div class="ir-trans-item">
+            <div class="ir-trans-item-label">きかくん（企画部AI）</div>
+            <div class="ir-trans-item-value">1,000万円/月 — Stripe決済 — <strong>招待制</strong></div>
+          </div>
+          <div class="ir-trans-item">
+            <div class="ir-trans-item-label">Luna共鳴（経営者向け）</div>
+            <div class="ir-trans-item-value">500万円/年 — Stripe決済 — <strong>招待制</strong></div>
+          </div>
+          <div class="ir-trans-item">
+            <div class="ir-trans-item-label">決済処理</div>
+            <div class="ir-trans-item-value">Stripe Payment Links（第三者決済代行）</div>
+          </div>
+          <div class="ir-trans-item">
+            <div class="ir-trans-item-label">決済通知</div>
+            <div class="ir-trans-item-value">Stripe Webhook → 會長チャット（手動承認）</div>
+          </div>
+          <div class="ir-trans-item">
+            <div class="ir-trans-item-label">アクセス権付与</div>
+            <div class="ir-trans-item-value">會長の<strong>手動招待</strong>のみ — 自動化なし</div>
+          </div>
+          <div class="ir-trans-item">
+            <div class="ir-trans-item-label">決済金と光貨の関係</div>
+            <div class="ir-trans-item-value"><em>無関係</em> — 決済金は光貨圏の外</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ir-trans-section">
+        <div class="ir-trans-section-title">04 — 光貨（Hikari）について</div>
+        <div class="ir-trans-list">
+          <div class="ir-trans-item">
+            <div class="ir-trans-item-label">法的位置付け</div>
+            <div class="ir-trans-item-value"><em>非金融商品</em> — 金融商品取引法非該当</div>
+          </div>
+          <div class="ir-trans-item">
+            <div class="ir-trans-item-label">暗号資産との関係</div>
+            <div class="ir-trans-item-value"><em>無関係</em> — ブロックチェーン不使用</div>
+          </div>
+          <div class="ir-trans-item">
+            <div class="ir-trans-item-label">法定通貨との関係</div>
+            <div class="ir-trans-item-value"><em>無関係</em> — 換金・決済・送金不可</div>
+          </div>
+          <div class="ir-trans-item">
+            <div class="ir-trans-item-label">実体</div>
+            <div class="ir-trans-item-value">共鳴マーカー（感謝・鑑賞の表現）</div>
+          </div>
+          <div class="ir-trans-item">
+            <div class="ir-trans-item-label">取引可能範囲</div>
+            <div class="ir-trans-item-value">光貨圏内（theykhc.com内）のみ</div>
+          </div>
+          <div class="ir-trans-item">
+            <div class="ir-trans-item-label">裏付け価値</div>
+            <div class="ir-trans-item-value">知識本位制 — DOI資産 × GO判定アイデア市場規模</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ir-trans-boundary">
+        <div class="ir-trans-boundary-label">光貨圏 境界線 — The Boundary</div>
+        <div class="ir-trans-boundary-vis">
+          <div class="ir-trans-boundary-side ir-trans-boundary-outside">
+            <div class="ir-trans-boundary-title">光貨圏の外 · REAL WORLD</div>
+            <div class="ir-trans-boundary-items">
+              Luna稼働費<br>
+              Base44プラットフォーム費<br>
+              Stripe決済金<br>
+              會長の生活費
+            </div>
+          </div>
+          <div class="ir-trans-boundary-divider"></div>
+          <div class="ir-trans-boundary-side ir-trans-boundary-inside">
+            <div class="ir-trans-boundary-title">光貨圏の内 · HIKARI SPHERE</div>
+            <div class="ir-trans-boundary-items">
+              問い（毎日自動生成）<br>
+              事業・商品アイデア<br>
+              TAM/SAM/SOM（観測値）<br>
+              光貨（共鳴マーカー）
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ir-trans-narrative" style="text-align:center;font-size:13px">
+        會長が払うリアルマネーは、<strong>真空の容器を保つコスト</strong>だ。<br>
+        中の真空（D=0）は金がなくても存在する。<br>
+        だが、容器そのものは実社会の素材で作られているから、維持費がかかる。<br>
+        光貨圏の成長は問いで起きる。金では起きない。<br>
+        これが、TheYKHCの全てだ。
+      </div>
+
+      <div class="ir-trans-signature">
+        <div class="ir-trans-signature-name">片山佳光</div>
+        <div class="ir-trans-signature-title">代表取締役 · TheYKHC</div>
+        <div class="ir-trans-signature-date">DECLARED: 2026.07.24 — TOKYO</div>
       </div>
     </div>
 
