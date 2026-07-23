@@ -1,0 +1,36 @@
+{
+  "properties": {
+    "amount": {
+      "type": "number"
+    },
+    "customer_email": {
+      "type": "string"
+    },
+    "customer_name": {
+      "type": "string"
+    },
+    "currency": {
+      "type": "string"
+    },
+    "product_name": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending_invite",
+        "invited",
+        "rejected"
+      ]
+    },
+    "stripe_event_id": {
+      "type": "string"
+    },
+    "stripe_session_id": {
+      "type": "string"
+    }
+  },
+  "type": "object",
+  "required": [],
+  "name": "PaymentNotification"
+}
