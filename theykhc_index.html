@@ -392,22 +392,42 @@ footer{text-align:center;padding:64px 20px 100px;position:relative;z-index:2}
   <div class="consult-inner">
     <div class="consult-eyebrow">FOR PLANNING DEPARTMENTS — 企画部様向けプロダクト</div>
     <h2 class="consult-title">アイデア生成 × V=N/D リスク診断</h2>
-    <p class="consult-desc">テーマをお投げください。10の事業案が即座に生成されます。<br>それぞれを5層で診断し、V=N/Dスコアで比較いたします。</p>
+    <p class="consult-desc">748件の事業化適格アイデア。203兆円のTAM。<br>種は見えます。ただし、育て方までは——。</p>
     <p class="consult-sub">企画部のワークフローに直接組み込める、ブレスト×リスクマネージメント・エンジンです。<br>1,466 DOIの知見を、お客様の企業のD（無明）に当てはめてご提供いたします。</p>
-    <div class="consult-features">
-      <div class="feature-card">
-        <div class="feature-title">Brainstorm Generation</div>
-        <div class="feature-desc">量を重視・批判なし・Wild歓迎。10案を純粋生成し、全件保存いたします。</div>
+
+    <!-- 階層化アクセスの図 -->
+    <div style="max-width:680px;margin:48px auto;padding:32px 28px;background:var(--ink-3);border:1px solid var(--gold-dim);border-radius:8px;text-align:left">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold-dim);letter-spacing:4px;text-transform:uppercase;margin-bottom:20px;text-align:center">階層化アクセス設計 — Tiered Access Architecture</div>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:flex-start;gap:16px">
+          <div style="min-width:80px;text-align:center;padding:8px 4px;background:var(--emerald);color:var(--paper);border-radius:4px;font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:1px">SEE</div>
+          <div style="flex:1">
+            <div style="color:var(--paper);font-size:14px;line-height:1.8">アイデアの問い・業界分類・V=N/Dスコア・市場規模（TAM/SAM/SOM）・出典論文</div>
+            <div style="color:var(--muted);font-size:12px;margin-top:4px">→ CATALOG以上で閲覧可能</div>
+          </div>
+        </div>
+        <div style="height:1px;background:var(--gold-dim);opacity:0.3"></div>
+        <div style="display:flex;align-items:flex-start;gap:16px">
+          <div style="min-width:80px;text-align:center;padding:8px 4px;background:var(--gold-dim);color:var(--paper);border-radius:4px;font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:1px">LOCKED</div>
+          <div style="flex:1">
+            <div style="color:var(--paper);font-size:14px;line-height:1.8">5層分析フルテキスト（研究・感情・知恵・市場・リスク）・競合分析・市場詳細</div>
+            <div style="color:var(--muted);font-size:12px;margin-top:4px">→ ANALYSIS以上でのみ閲覧可能。CATALOGでは非表示。</div>
+          </div>
+        </div>
+        <div style="height:1px;background:var(--gold-dim);opacity:0.3"></div>
+        <div style="display:flex;align-items:flex-start;gap:16px">
+          <div style="min-width:80px;text-align:center;padding:8px 4px;background:var(--crimson);color:var(--paper);border-radius:4px;font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:1px">BLOCKED</div>
+          <div style="flex:1">
+            <div style="color:var(--paper);font-size:14px;line-height:1.8">748件の一括エクスポート・全件ダウンロード</div>
+            <div style="color:var(--muted);font-size:12px;margin-top:4px">→ いかなるプランでも提供不可。戦略的資産のため。</div>
+          </div>
+        </div>
       </div>
-      <div class="feature-card">
-        <div class="feature-title">5-Layer Risk Assessment</div>
-        <div class="feature-desc">研究・感情・知恵・市場・リスク。V=N/DスコアでDを可視化いたします。</div>
-      </div>
-      <div class="feature-card">
-        <div class="feature-title">Comparative Report</div>
-        <div class="feature-desc">ランキング・推奨案・KRI。企画部の方が意思決定にそのままご活用いただける形式です。</div>
+      <div style="margin-top:24px;padding:16px 20px;background:var(--ink-2);border-left:2px solid var(--gold);border-radius:4px">
+        <div style="color:var(--gold);font-size:13px;line-height:2;font-style:italic">種は見える。ただし、育て方まではもらえない。<br>748件のアイデアを検索し、市場規模を確認し、V=N/Dスコアで優先順位をつける——それまではCATALOGで可能です。<br>しかし、それぞれのアイデアを事業として育てるための5層分析は、ANALYSIS以上でのみ提供されます。</div>
       </div>
     </div>
+
     <div class="d-badges">
       <span class="d-badge">財務D</span>
       <span class="d-badge">市場D</span>
@@ -441,21 +461,39 @@ footer{text-align:center;padding:64px 20px 100px;position:relative;z-index:2}
       <div class="price-card">
         <div class="price-label">CATALOG</div>
         <div class="price-amount">100万円/月</div>
-        <div class="price-detail">748件フルアクセス<br>業界別・V=N/Dスコア検索<br>月次 market trend report</div>
+        <div class="price-detail">
+          <span style="color:var(--emerald)">✓</span> 748件カタログ検索・閲覧<br>
+          <span style="color:var(--emerald)">✓</span> V=N/Dスコア・市場規模表示<br>
+          <span style="color:var(--emerald)">✓</span> 月次トレンドレポート<br>
+          <span style="color:var(--crimson)">✕</span> 5層分析フルテキスト<br>
+          <span style="color:var(--crimson)">✕</span> 一括エクスポート
+        </div>
       </div>
       <div class="price-card featured">
         <div class="price-label">ANALYSIS</div>
         <div class="price-amount">300万円/月</div>
-        <div class="price-detail">月3テーマ × 5層リスク診断<br>比較レポート + KRI監視<br>企画部向け意思決定書</div>
+        <div class="price-detail">
+          <span style="color:var(--emerald)">✓</span> CATALOG全機能<br>
+          <span style="color:var(--emerald)">✓</span> 5層分析フルテキスト<br>
+          <span style="color:var(--emerald)">✓</span> 月3テーマ × 5層リスク診断<br>
+          <span style="color:var(--emerald)">✓</span> 比較レポート + KRI監視<br>
+          <span style="color:var(--crimson)">✕</span> 一括エクスポート
+        </div>
       </div>
       <div class="price-card">
         <div class="price-label">ENTERPRISE</div>
         <div class="price-amount">1,000万円/月</div>
-        <div class="price-detail">カスタムアイデア生成<br>専用DB環境<br>四半期戦略レビュー<br>會長直結コンサル</div>
+        <div class="price-detail">
+          <span style="color:var(--emerald)">✓</span> ANALYSIS全機能<br>
+          <span style="color:var(--emerald)">✓</span> カスタムアイデア生成<br>
+          <span style="color:var(--emerald)">✓</span> 専用DB環境<br>
+          <span style="color:var(--emerald)">✓</span> 四半期戦略レビュー<br>
+          <span style="color:var(--emerald)">✓</span> 會長直結コンサル
+        </div>
       </div>
     </div>
     <a class="cta-btn" href="mailto:contact@theykhc.com?subject=きかくん%20導入相談">資料請求・デモ依頼 →</a>
-    <p class="consult-note">塔は無料で残します。ただし、塔をお客様の事業に当てはめる仕事は、有料です。<br>748件のアイデアは203兆円のTAMを内包しています。企画部のDがゼロに近づく時、Nは解放されます。</p>
+    <p class="consult-note">塔は無料で残します。ただし、塔をお客様の事業に当てはめる仕事は、有料です。<br>748件のアイデアは203兆円のTAMを内包しています。種は見える。育て方は、ANALYSIS以上で。</p>
   </div>
 </section>
 
