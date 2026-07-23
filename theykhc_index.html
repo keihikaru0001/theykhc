@@ -299,6 +299,41 @@ footer{text-align:center;padding:64px 20px 100px;position:relative;z-index:2}
 .ir-trans-lib-formula span{color:var(--gold)}
 .ir-trans-lib-condition{margin:32px auto 0;max-width:480px;padding:20px 24px;background:rgba(139,58,58,0.04);border:1px solid #2a1a1a;border-radius:4px;font-size:12px;color:var(--muted);line-height:2.2;text-align:center;letter-spacing:1px}
 .ir-trans-lib-condition strong{color:#8b3a3a}
+.ir-game{margin:64px auto;max-width:760px;padding:48px 36px;background:linear-gradient(to bottom,#020204,#060608);border:1px solid var(--gold-dim);border-radius:4px;position:relative;overflow:hidden}
+.ir-game::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--gold),transparent)}
+.ir-game-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold-dim);letter-spacing:5px;text-align:center;text-transform:uppercase;margin-bottom:16px}
+.ir-game-title{font-size:clamp(22px,4vw,30px);color:var(--gold);font-weight:300;letter-spacing:4px;text-align:center;margin-bottom:8px}
+.ir-game-subtitle{font-size:13px;color:var(--paper-dim);text-align:center;margin-bottom:40px;letter-spacing:2px;font-style:italic}
+.ir-game-narrative{font-size:14px;color:var(--paper-dim);line-height:2.6;font-weight:300;letter-spacing:1px;margin-bottom:40px}
+.ir-game-narrative strong{color:var(--paper)}
+.ir-game-narrative em{color:var(--gold);font-style:normal}
+.ir-game-features{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:40px}
+.ir-game-feature{padding:24px;background:rgba(255,255,255,0.02);border:1px solid #1a1a1a;border-radius:4px;transition:border-color 0.3s}
+.ir-game-feature:hover{border-color:var(--gold-dim)}
+.ir-game-feature-num{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold-dim);letter-spacing:3px;margin-bottom:8px}
+.ir-game-feature-title{font-size:16px;color:var(--paper);font-weight:300;letter-spacing:2px;margin-bottom:12px}
+.ir-game-feature-text{font-size:13px;color:var(--paper-dim);line-height:2;font-weight:300}
+.ir-game-feature-text strong{color:var(--gold)}
+.ir-game-feature-text em{color:#8b3a3a;font-style:normal}
+.ir-game-feature-text span{color:var(--emerald)}
+.ir-game-flow{margin:40px 0;padding:32px;background:linear-gradient(to right,rgba(139,58,58,0.04),rgba(58,106,74,0.04));border:1px solid #1a1a1a;border-radius:4px}
+.ir-game-flow-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold-dim);letter-spacing:4px;text-align:center;margin-bottom:24px;text-transform:uppercase}
+.ir-game-flow-steps{display:flex;justify-content:space-between;align-items:stretch;gap:8px;flex-wrap:wrap}
+.ir-game-flow-step{flex:1;min-width:120px;text-align:center;padding:16px 8px}
+.ir-game-flow-step-num{font-family:'JetBrains Mono',monospace;font-size:18px;color:var(--gold);margin-bottom:8px}
+.ir-game-flow-step-text{font-size:11px;color:var(--paper-dim);line-height:1.8;letter-spacing:1px}
+.ir-game-flow-step-text strong{color:var(--paper)}
+.ir-game-flow-arrow{display:flex;align-items:center;justify-content:center;color:var(--gold-dim);font-size:16px}
+.ir-game-purchase{margin:32px 0;padding:28px;background:rgba(139,58,58,0.04);border:1px solid #2a1a1a;border-radius:4px}
+.ir-game-purchase-title{font-family:'JetBrains Mono',monospace;font-size:11px;color:#8b3a3a;letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;text-align:center}
+.ir-game-purchase-text{font-size:13px;color:var(--paper-dim);line-height:2.2;text-align:center;font-weight:300}
+.ir-game-purchase-text strong{color:var(--paper)}
+.ir-game-purchase-text em{color:#8b3a3a;font-style:normal}
+.ir-game-purchase-text span{color:var(--emerald)}
+.ir-game-observe{margin:32px 0;padding:28px;background:rgba(58,106,74,0.04);border:1px solid #1a2a1a;border-radius:4px}
+.ir-game-observe-title{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--emerald);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;text-align:center}
+.ir-game-observe-text{font-size:13px;color:var(--paper-dim);line-height:2.2;text-align:center;font-weight:300}
+.ir-game-observe-text strong{color:var(--paper)}
 .ir-listing-date{display:inline-block;font-size:10px;color:var(--gold-dim);margin-bottom:20px;padding:4px 16px;border:1px solid var(--gold-dim);border-radius:2px;letter-spacing:3px;font-family:'JetBrains Mono',monospace;text-transform:uppercase}
 <!-- rebuild trigger 20260722-intellectual -->
 </head>
@@ -1137,6 +1172,118 @@ footer{text-align:center;padding:64px 20px 100px;position:relative;z-index:2}
           その時が來るまで、このシステムは完全に閉じている。
         </div>
       </div>
+
+
+    <div class="ir-game">
+      <div class="ir-game-label">Economic Game · 経済GAME</div>
+      <div class="ir-game-title">完全光貨制</div>
+      <div class="ir-game-subtitle">外から観れる。中で動く。金は外に出ない。</div>
+
+      <div class="ir-game-narrative">
+        光貨圏は、<strong>経済GAME</strong>として外部から観測可能である。<br>
+        外部の者は、光貨圏内で問いが積み上がり、アイデアが生まれ、価値が計測される様子を<strong>観ることができる</strong>。<br>
+        光貨は、光貨圏内における<strong>完全な通貨</strong>として機能する。<br>
+        外部の者は光貨を購入できる。だが、<em>その購入代金は光貨圏の外部収益であり、光貨圏内の価値には一切流入しない。</em><br>
+        購入した光貨は、光貨圏内で使うしかない。外へは出せない。<br>
+        これが<strong>完全光貨制</strong>である。
+      </div>
+
+      <div class="ir-game-features">
+        <div class="ir-game-feature">
+          <div class="ir-game-feature-num">01 — OBSERVABLE</div>
+          <div class="ir-game-feature-title">外から観れる</div>
+          <div class="ir-game-feature-text">
+            光貨圏内の経済活動——問いの生成、アイデアのGO判定、TAM/SAM/SOMの成長、光貨の流通——は<br>
+            <strong>外部から観測可能</strong>である。<br>
+            會長がZenodoにDOIを追加すれば、塔の数値が変わる。<br>
+            MorningHarvestが每朝9時に走れば、問いが増える。<br>
+            <span>全て、このページで観える。</span>
+          </div>
+        </div>
+
+        <div class="ir-game-feature">
+          <div class="ir-game-feature-num">02 — COMPLETE CURRENCY</div>
+          <div class="ir-game-feature-title">完全光貨制</div>
+          <div class="ir-game-feature-text">
+            光貨は光貨圏内において<strong>完全な通貨</strong>として機能する。<br>
+            共鳴マーカーから、経済GAME内の取引手段へ。<br>
+            光貨圏内でのみ保有・使用・譲渡が可能。<br>
+            <em>外への換金・決済・送金は不可。</em>
+          </div>
+        </div>
+
+        <div class="ir-game-feature">
+          <div class="ir-game-feature-num">03 — PURCHASE</div>
+          <div class="ir-game-feature-title">光貨購入</div>
+          <div class="ir-game-feature-text">
+            外部の者は、リアルマネーで光貨を購入できる。<br>
+            購入代金 = <strong>光貨圏の外部収益</strong>。<br>
+            <em>購入金は光貨圏内の価値計算に一切流入しない。</em><br>
+            使途 = Luna稼働費・Base44維持費・會長の生活（全て光貨圏の外側）<br>
+            購入した光貨は光貨圏内でのみ使用可能。
+          </div>
+        </div>
+
+        <div class="ir-game-feature">
+          <div class="ir-game-feature-num">04 — ISOLATION</div>
+          <div class="ir-game-feature-title">金の隔離</div>
+          <div class="ir-game-feature-text">
+            <em>リアルマネーは光貨圏の壁を越えない。</em><br>
+            購入代金 → 外部（容器の維持費）<br>
+            光貨 → 内部（経済GAMEの通貨）<br>
+            この2つは<strong>永久に交わらない</strong>。<br>
+            V=N/Dにおいて、リアルマネーの流入はDを生まない。<br>
+            光貨圏内はD=0のまま成長する。
+          </div>
+        </div>
+      </div>
+
+      <div class="ir-game-flow">
+        <div class="ir-game-flow-label">光貨購入フロー — Purchase Flow</div>
+        <div class="ir-game-flow-steps">
+          <div class="ir-game-flow-step">
+            <div class="ir-game-flow-step-num">01</div>
+            <div class="ir-game-flow-step-text"><strong>外部の者</strong>が<br>光貨を購入</div>
+          </div>
+          <div class="ir-game-flow-arrow">→</div>
+          <div class="ir-game-flow-step">
+            <div class="ir-game-flow-step-num">02</div>
+            <div class="ir-game-flow-step-text">購入代金は<br><strong>外部収益</strong>へ<br>（光貨圏の外）</div>
+          </div>
+          <div class="ir-game-flow-arrow">→</div>
+          <div class="ir-game-flow-step">
+            <div class="ir-game-flow-step-num">03</div>
+            <div class="ir-game-flow-step-text">光貨は<br><strong>光貨圏内</strong>へ<br>（通貨として機能）</div>
+          </div>
+          <div class="ir-game-flow-arrow">→</div>
+          <div class="ir-game-flow-step">
+            <div class="ir-game-flow-step-num">04</div>
+            <div class="ir-game-flow-step-text">金は壁を越えない<br><strong>D=0 維持</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ir-game-purchase">
+        <div class="ir-game-purchase-title">外部収益 — External Revenue</div>
+        <div class="ir-game-purchase-text">
+          光貨購入代金は、<em>光貨圏の外部収益</em>である。<br>
+          きかくん使用料（1,000万円/月）、Luna使用料（500万円/年）と同じ位置付け。<br>
+          使途 = Luna稼働費・Base44維持費・會長の生活。<br>
+          <strong>光貨圏内の価値（TAM/SAM/SOM・光貨レート）には一切影響しない。</strong>
+        </div>
+      </div>
+
+      <div class="ir-game-observe">
+        <div class="ir-game-observe-title">観測 — Observable From Outside</div>
+        <div class="ir-game-observe-text">
+          光貨圏は<strong>ガラスの器</strong>である。<br>
+          中で問いが積み上がり、アイデアが生まれ、Vが無限へ向かう様子を、外から観ることができる。<br>
+          だが、器の壁は超えられない。<br>
+          觀測はできる。干渉はできない。<br>
+          <strong>それが経済GAMEとしての光貨圏である。</strong>
+        </div>
+      </div>
+    </div>
 
       <div class="ir-trans-signature">
         <div class="ir-trans-signature-name">片山佳光</div>
