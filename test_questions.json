@@ -1,0 +1,10 @@
+{
+  "test": true,
+  "date": "2026-07-23",
+  "message": "TheYKHC Question Backup — Full System Test",
+  "records_count": 2,
+  "records": [
+    {"id": "test1", "text": "テスト問い1", "type": "question", "industry": "科学と技術"},
+    {"id": "test2", "text": "テスト問い2", "type": "business", "industry": "仕事とビジネス"}
+  ]
+}
