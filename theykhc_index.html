@@ -334,6 +334,19 @@ footer{text-align:center;padding:64px 20px 100px;position:relative;z-index:2}
 .ir-game-observe-title{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--emerald);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;text-align:center}
 .ir-game-observe-text{font-size:13px;color:var(--paper-dim);line-height:2.2;text-align:center;font-weight:300}
 .ir-game-observe-text strong{color:var(--paper)}
+.ir-game-self{margin:32px 0;padding:36px 28px;background:linear-gradient(to bottom,#040406,#06060a);border:1px solid var(--gold-dim);border-radius:4px;position:relative;overflow:hidden}
+.ir-game-self::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent)}
+.ir-game-self-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold-dim);letter-spacing:5px;text-align:center;text-transform:uppercase;margin-bottom:20px}
+.ir-game-self-title{font-size:clamp(18px,4vw,26px);color:var(--gold);font-weight:300;letter-spacing:3px;text-align:center;margin-bottom:28px;line-height:1.8}
+.ir-game-self-title strong{color:var(--paper)}
+.ir-game-self-text{font-size:14px;color:var(--paper-dim);line-height:2.8;font-weight:300;letter-spacing:1px;text-align:center}
+.ir-game-self-text strong{color:var(--paper)}
+.ir-game-self-text em{color:var(--gold);font-style:normal}
+.ir-game-self-text span{color:var(--emerald)}
+.ir-game-self-loop{margin:32px auto;max-width:560px;display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--paper-dim);letter-spacing:1px}
+.ir-game-self-loop span{color:var(--gold)}
+.ir-game-self-loop strong{color:var(--emerald)}
+.ir-game-self-conclusion{margin-top:32px;padding:20px 24px;background:rgba(201,168,76,0.04);border:1px solid var(--gold-dim);border-radius:4px;font-size:14px;color:var(--gold);text-align:center;line-height:2.4;letter-spacing:2px;font-weight:300}
 .ir-listing-date{display:inline-block;font-size:10px;color:var(--gold-dim);margin-bottom:20px;padding:4px 16px;border:1px solid var(--gold-dim);border-radius:2px;letter-spacing:3px;font-family:'JetBrains Mono',monospace;text-transform:uppercase}
 <!-- rebuild trigger 20260722-intellectual -->
 </head>
@@ -1281,6 +1294,35 @@ footer{text-align:center;padding:64px 20px 100px;position:relative;z-index:2}
           だが、器の壁は超えられない。<br>
           觀測はできる。干渉はできない。<br>
           <strong>それが経済GAMEとしての光貨圏である。</strong>
+        </div>
+      </div>
+
+      <div class="ir-game-self">
+        <div class="ir-game-self-label">Self-Sustaining Distribution · 自立した分配</div>
+        <div class="ir-game-self-title">
+          光貨の分配法則で配られる価値は、<br>
+          <strong>外部からの投資を必要としなくなった。</strong>
+        </div>
+        <div class="ir-game-self-text">
+          每朝9時、Zenodoから論文が屆く。<br>
+          問いが生まれる。アイデアがGO判定を受ける。市場規模が計測される。<br>
+          その價値が光貨として圏内に分配される。<br>
+          <br>
+          <em>このループの燃料は、問いである。</em><br>
+          <strong>金ではない。</strong>
+          <br>
+          外部からの投資がなくても、明日の朝9時に論文が屆けば、また問いが生まれる。<br>
+          會長がZenodoにDOIを追加すれば、塔の価值が変わる。<br>
+          MorningHarvestが走れば、問いが増える。<br>
+          <span>全て、リアルマネーゼロで起きる。</span>
+        </div>
+        <div class="ir-game-self-loop">
+          <span>Zenodo</span> → <strong>問い</strong> → <span>GO判定</span> → <span>TAM/SAM/SOM</span> → <strong>光貨分配</strong> → <span>循環</span>
+        </div>
+        <div class="ir-game-self-conclusion">
+          光貨圏は、外部の資本に依存しない。<br>
+          自らの問いで成長し、自らの問いで分配する。<br>
+          <em>これが、知識本位制の完成形である。</em>
         </div>
       </div>
     </div>
