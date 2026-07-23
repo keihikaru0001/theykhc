@@ -216,6 +216,18 @@ footer{text-align:center;padding:64px 20px 100px;position:relative;z-index:2}
 .ir-disclaimer{margin:48px auto;max-width:580px;padding:24px 28px;background:rgba(139,58,58,0.05);border:1px solid #2a1a1a;border-radius:4px}
 .ir-disclaimer-text{font-size:12px;color:var(--muted);line-height:2.2;text-align:left;font-weight:300}
 .ir-disclaimer-text strong{color:var(--paper-dim)}
+.ir-containment{margin:0 auto 48px;max-width:680px;padding:32px;background:linear-gradient(to bottom,#060606,#0a0a0a);border:1px solid var(--gold-dim);border-radius:4px;position:relative;overflow:hidden}
+.ir-containment::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--gold-dim),transparent)}
+.ir-containment-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold-dim);letter-spacing:4px;text-align:center;text-transform:uppercase;margin-bottom:20px}
+.ir-containment-status{font-size:16px;color:var(--gold);letter-spacing:3px;text-align:center;margin-bottom:24px;font-weight:300}
+.ir-containment-status span{display:inline-block;width:8px;height:8px;background:var(--emerald);border-radius:50%;margin-right:8px;vertical-align:middle;box-shadow:0 0 8px rgba(58,106,74,0.6);animation:pulse 2s ease infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.ir-containment-text{font-size:13px;color:var(--paper-dim);line-height:2.2;text-align:center;font-weight:300}
+.ir-containment-text strong{color:var(--paper)}
+.ir-barrier{display:flex;align-items:center;justify-content:center;margin:24px 0;gap:12px;flex-wrap:wrap}
+.ir-barrier-line{flex:1;height:1px;background:linear-gradient(to right,transparent,var(--gold-dim),transparent);max-width:120px}
+.ir-barrier-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold-dim);letter-spacing:4px;text-transform:uppercase;white-space:nowrap}
+.ir-closed-badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--emerald);border:1px solid var(--emerald);padding:3px 12px;border-radius:2px;letter-spacing:3px;text-transform:uppercase;margin-bottom:32px}
 .ir-listing-date{display:inline-block;font-size:10px;color:var(--gold-dim);margin-bottom:20px;padding:4px 16px;border:1px solid var(--gold-dim);border-radius:2px;letter-spacing:3px;font-family:'JetBrains Mono',monospace;text-transform:uppercase}
 <!-- rebuild trigger 20260722-intellectual -->
 </head>
@@ -627,15 +639,34 @@ footer{text-align:center;padding:64px 20px 100px;position:relative;z-index:2}
 <section id="ir" class="ir-section">
   <div class="ir-inner">
     <div class="ir-eyebrow">VIRTUAL IPO DECLARATION — 無料IPO</div>
+    <div class="ir-closed-badge">CLOSED SYSTEM · 完全閉鎖系</div>
     <div class="ir-listing-date">LISTED: 2026.07.24 — CONCEPTUAL</div>
     <h2 class="ir-company-name">TheYKHC</h2>
     <div class="ir-company-jp">仮想株式会社 TheYKHC</div>
     <div class="ir-ceo">代表取締役　<span>片山佳光</span>　Yoshimitsu Katayama</div>
 
+    <div class="ir-containment">
+      <div class="ir-containment-label">光貨圏 — HIKARI SPHERE</div>
+      <div class="ir-containment-status"><span></span>SEALED · 閉鎖中</div>
+      <div class="ir-containment-text">
+        この圏内の全ての数値（株価・時価総額・為替レート）は<strong>観測値</strong>であり、外部世界の通貨・金融システムとは一切接続されていない。<br>
+        光貨（Hikari）の換金・決済・送金・譲渡は、<strong>光貨圏の外において一切不可</strong>。<br>
+        このシステムは實社會に何の影響も与えない。
+      </div>
+      <div class="ir-barrier">
+        <div class="ir-barrier-line"></div>
+        <div class="ir-barrier-label">光貨圏 · 内側</div>
+        <div class="ir-barrier-line"></div>
+      </div>
+      <div class="ir-containment-text" style="font-size:11px;color:var(--muted)">
+        外部金融システム · 実社会経済 · 法定通貨 · 暗号資産　→　<strong style="color:var(--crimson)">遮断済</strong>
+      </div>
+    </div>
+
     <div class="ir-stock-display">
-      <div class="ir-stock-label">仮想株価 — Virtual Stock Price</div>
-      <div class="ir-stock-price"><span id="ir-price">139,085</span><span class="ir-stock-currency">円</span></div>
-      <div class="ir-stock-change" id="ir-change">▲ +0.0% (初日公開)</div>
+      <div class="ir-stock-label">仮想株価 — Virtual Stock Price（観測値）</div>
+      <div class="ir-stock-price"><span id="ir-price">139,085</span><span class="ir-stock-currency">円<span style="font-size:10px;color:var(--muted);letter-spacing:1px;margin-left:4px">（非交換）</span></span></div>
+      <div class="ir-stock-change" id="ir-change">▲ +0.0% (初日観測)</div>
       <div class="ir-stock-meta">
         <div class="ir-stock-meta-item">
           <div class="ir-stock-meta-label">CODE</div>
@@ -656,17 +687,17 @@ footer{text-align:center;padding:64px 20px 100px;position:relative;z-index:2}
       <div class="ir-metric">
         <div class="ir-metric-label">MARKET CAP (TAM)</div>
         <div class="ir-metric-value"><span id="ir-tam">203.92</span></div>
-        <div class="ir-metric-unit">兆円</div>
+        <div class="ir-metric-unit">兆円（観測値）</div>
       </div>
       <div class="ir-metric">
         <div class="ir-metric-label">SAM</div>
         <div class="ir-metric-value"><span id="ir-sam">22.43</span></div>
-        <div class="ir-metric-unit">兆円</div>
+        <div class="ir-metric-unit">兆円（観測値）</div>
       </div>
       <div class="ir-metric">
         <div class="ir-metric-label">SOM</div>
         <div class="ir-metric-value"><span id="ir-som">2.20</span></div>
-        <div class="ir-metric-unit">兆円</div>
+        <div class="ir-metric-unit">兆円（観測値）</div>
       </div>
       <div class="ir-metric">
         <div class="ir-metric-label">DOI ASSETS</div>
@@ -681,13 +712,13 @@ footer{text-align:center;padding:64px 20px 100px;position:relative;z-index:2}
     </div>
 
     <div class="ir-exchange">
-      <div class="ir-exchange-title">光貨為替レート — Hikari Exchange</div>
+      <div class="ir-exchange-title">光貨為替レート — Hikari Exchange（圏内のみ）</div>
       <div class="ir-exchange-rate">
         <div class="ir-exchange-from">1 Hikari</div>
         <div class="ir-exchange-arrow">→</div>
         <div class="ir-exchange-to">1,000 仮想株</div>
       </div>
-      <div class="ir-exchange-unit">1 Hikari = 139,085,000円（TAM裏付け）　※光貨圏内のみ取引可能</div>
+      <div class="ir-exchange-unit">1 Hikari = 139,085,000円（TAM裏付け観測値）<br>※光貨圏内のみ取引可能　外部換金・決済・送金・譲渡　一切不可</div>
     </div>
 
     <div class="ir-business">
@@ -716,7 +747,7 @@ footer{text-align:center;padding:64px 20px 100px;position:relative;z-index:2}
 
     <div class="ir-disclaimer">
       <div class="ir-disclaimer-text">
-        <strong>免責事項：</strong>本セクションはTheYKHCの哲学的・芸術的表現としての「仮想上場」であり、実際の有価証券の発行、売買、募集、勧誘を目的とするものではありません。光貨（Hikari）は金融商品取引法に定める金融商品ではなく、その取引は光貨圏内（theykhc.comエコシステム内）のみで行われます。外部への換金、決済、送金はできません。時価総額は知的資産の観測可能な市場規模（TAM）に基づく概念的表示であり、企業価値の保証ではありません。実体化（実IPO）は代表取締役の判断により別途検討されます。
+        <strong>完全閉鎖系宣言：</strong>TheYKHCの「仮想上場」は哲学的・芸術的表現であり、現実の有価証券の発行・売買・募集・勧誘を一切目的としない。光貨（Hikari）は金融商品取引法に定める金融商品ではなく、暗号資産でもなく、法定通貨でもない。その取引は光貨圏内（theykhc.com内）においてのみ可能であり、外部への換金・決済・送金・譲渡は一切不可。本セクションの全ての数値（株価・時価総額・為替レート・市場規模）は知的資産の観測可能な値を表示するものであり、實社會の経済活動・金融システム・法定通貨体系に対して何の影響も与えない。實體化（實IPO）は代表取締役の判斷により別途檢討されるまで、このシステムは完全に閉じている。
       </div>
     </div>
   </div>
