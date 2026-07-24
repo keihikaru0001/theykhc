@@ -3,25 +3,29 @@
     "amount": {
       "type": "number"
     },
+    "currency": {
+      "type": "string"
+    },
     "customer_email": {
       "type": "string"
     },
     "customer_name": {
       "type": "string"
     },
-    "currency": {
+    "hikari_amount": {
+      "type": "number"
+    },
+    "player_id": {
       "type": "string"
     },
     "product_name": {
       "type": "string"
     },
+    "purchase_type": {
+      "type": "string"
+    },
     "status": {
-      "type": "string",
-      "enum": [
-        "pending_invite",
-        "invited",
-        "rejected"
-      ]
+      "type": "string"
     },
     "stripe_event_id": {
       "type": "string"

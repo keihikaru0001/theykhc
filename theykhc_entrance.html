@@ -18,8 +18,6 @@
   --gold:#c5a769;
   --gold-dim:#7a6a44;
   --gold-bright:#e0c488;
-  --emerald:#3a6a4a;
-  --crimson:#8b3a3a;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -64,11 +62,6 @@ body{
   letter-spacing:4px;
   line-height:1;
   margin-bottom:16px;
-}
-.hero-formula sub{
-  font-size:0.4em;
-  vertical-align:sub;
-  color:var(--gold-dim);
 }
 .hero-divider{
   width:60px;
@@ -217,6 +210,17 @@ body{
   line-height:2;
   font-weight:300;
 }
+.door-free{
+  display:inline-block;
+  margin-top:12px;
+  padding:4px 12px;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  color:var(--gold);
+  border:1px solid var(--gold-dim);
+  border-radius:3px;
+  letter-spacing:2px;
+}
 
 /* Philosophy */
 .philosophy{
@@ -336,8 +340,9 @@ body{
       <div class="door-title">光貨圏</div>
       <div class="door-subtitle">Hikari Sphere · 経済GAME</div>
       <div class="door-desc">
-        V=N/Dを価格メカニズムとする閉鎖系の経済シミュレーター。754件の事業アイデアが光貨で取引される。外から観測はできる。中には会長が招待した者のみ入れる。
+        V=N/Dを価格メカニズムとする閉鎖系の経済シミュレーター。754件の事業アイデアが光貨で取引される。無料で遊べて、光貨は追加購入できる。
       </div>
+      <span class="door-free">FREE TO PLAY</span>
     </a>
 
     <a class="door" href="https://conscious-echo-soul-link.base44.app" target="_blank" rel="noopener">
