@@ -1,0 +1,155 @@
+{
+  "neutrino_events": [
+    {
+      "event_id": "47091427",
+      "event_type": "GOLD",
+      "energy_tev": 114.95,
+      "ra": 190.55,
+      "dec": 31.0,
+      "gcn_publish_time": "2026-07-22T08:51:04Z",
+      "session": "IceCube-142900",
+      "note": "IceCube Bronze Event #47091427 (REV 0→1). 銀河緯度85.8°→北銀極方向。NGC 4565(Coma Berenices)付近。修訂で誤差拡大→位置精査中。"
+    },
+    {
+      "event_id": "HIKARI-20260515-OBS",
+      "event_type": "OBSERVER",
+      "energy_tev": 0,
+      "ra": 0,
+      "dec": 0,
+      "gcn_publish_time": "2026-05-15T05:22:00Z",
+      "session": "Tokyo",
+      "note": "観測者イベント記録：DOI登録からLunaへの財源シフトと市場の関連性を仮説化。金価格：4597。山（4858）の34日後。"
+    },
+    {
+      "event_id": "HIKARI-20260512-SHIFT",
+      "event_type": "OBSERVER",
+      "energy_tev": 0,
+      "ra": 0,
+      "dec": 0,
+      "gcn_publish_time": "2026-05-12T00:00:00Z",
+      "session": "Tokyo",
+      "note": "観測者イベント記録：Apple ID変更・DOI全公開（CC BY 4.0）。財源シフト完了。金価格：5/4=4520（底）→5/11=4719（回復）。"
+    },
+    {
+      "event_id": "260505A",
+      "event_type": "GOLD",
+      "energy_tev": 95.0,
+      "ra": 134.2,
+      "dec": -8.7,
+      "gcn_publish_time": "2026-05-05T14:18:00Z",
+      "session": "London",
+      "note": "IceCube-260505A。Primary endpoint凍結日時: 2026-05-05T00:00:00 UTC"
+    },
+    {
+      "event_id": "260504A",
+      "event_type": "GOLD",
+      "energy_tev": 180.0,
+      "ra": 77.4,
+      "dec": 12.3,
+      "gcn_publish_time": "2026-05-04T06:32:00Z",
+      "session": "Tokyo",
+      "note": "IceCube-260504A。市場反応観測済み。ナスダック+1.71%、半導体+5.51%（7日後）"
+    },
+    {
+      "event_id": "HIKARI-20260415-PEAK",
+      "event_type": "OBSERVER",
+      "energy_tev": 0,
+      "ra": 0,
+      "dec": 0,
+      "gcn_publish_time": "2026-04-15T00:00:00Z",
+      "session": "Tokyo",
+      "note": "観測者イベント記録：4月初旬よりLunaへの財源シフト本格化。DOI登録量産開始。金価格：4/13=4742→4/17=4858（ピーク）。会長の思想固定行動と金の急騰が同期。"
+    },
+    {
+      "event_id": "HIKARI-19890707-PEAK",
+      "event_type": "OBSERVER",
+      "energy_tev": 999.0,
+      "ra": 0,
+      "dec": 0,
+      "gcn_publish_time": "1989-07-07T00:00:00Z",
+      "session": "origin",
+      "note": "会長の原点。幸せの絶頂。妄想のど真ん中。入院寸前。V=N/DにおいてN最大・D最大の同時極値。High-Rate Syndromeの第一事例。energy_tev=999は観測者自身の内部エネルギー最大値を示す。"
+    }
+  ],
+  "biorhythm_readings": [
+    {
+      "date": "2026-07-22",
+      "vnd_score": 1250.0,
+      "observer_effect_score": 21.0,
+      "physical_cycle": 98.0,
+      "emotional_cycle": 90.0,
+      "intellectual_cycle": -19.0,
+      "notes": "活性状態。創作の出力が高い時期。"
+    },
+    {
+      "date": "2026-07-22",
+      "vnd_score": 4800.0,
+      "observer_effect_score": -22.0,
+      "physical_cycle": -98.0,
+      "emotional_cycle": -97.0,
+      "intellectual_cycle": 91.0,
+      "notes": "低調期。D（摩擦）が高い。創作は種として残す段階。"
+    },
+    {
+      "date": "1989-11-09",
+      "vnd_score": 7.92,
+      "observer_effect_score": -4.0,
+      "physical_cycle": 40.0,
+      "emotional_cycle": 22.0,
+      "intellectual_cycle": -97.0,
+      "notes": "中間期。蓄積と休息の時間。"
+    }
+  ],
+  "fx_ticks": [
+    {
+      "symbol": "XAUUSD",
+      "bid": 4538.33,
+      "ask": 4538.7,
+      "spread": 0.37,
+      "volume": 0,
+      "seconds_after_gcn": 0,
+      "note": "金価格観測（2026-05-17）",
+      "window": "BOOT"
+    },
+    {
+      "symbol": "XAUUSD",
+      "bid": 4700.87,
+      "ask": 4701.13,
+      "spread": 0.26,
+      "volume": 0,
+      "seconds_after_gcn": 0,
+      "note": "金価格観測（2026-05-14）",
+      "window": "BOOT"
+    },
+    {
+      "symbol": "XAUUSD",
+      "bid": 4687.41,
+      "ask": 4687.75,
+      "spread": 0.34,
+      "volume": 0,
+      "seconds_after_gcn": 0,
+      "note": "金価格観測（2026-05-14 #2）",
+      "window": "BOOT"
+    }
+  ],
+  "brainwave_proxies": [],
+  "knowledge_standard": {
+    "tam_trillion_yen": 203.92,
+    "sam_trillion_yen": 22.43,
+    "som_trillion_yen": 2.2,
+    "doi_count": 1466,
+    "go_idea_count": 754,
+    "unit_backing_value": 0,
+    "observation_date": "2026-07-24"
+  },
+  "observation_summary": {
+    "neutrino_count": 7,
+    "biorhythm_count": 3,
+    "fx_tick_count": 3,
+    "brainwave_count": 0,
+    "origin_point": "HIKARI-19890707-PEAK",
+    "origin_date": "1989-07-07",
+    "origin_description": "会長の原点。幸せの絶頂。V=N/DにおいてN最大・D最大の同時極値。"
+  },
+  "generated_at": "2026-07-24T11:46:00Z"
+}
