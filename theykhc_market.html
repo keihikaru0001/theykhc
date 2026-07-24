@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>光貨圏 — 今日のトップ15 | TheYKHC</title>
-<meta name="description" content="光貨圏（Hikari Sphere）のV=N/Dランキング上位15事業アイデア。入場無料・取引1,000円からの閉鎖系効果圏GAME。">
+<title>効果圏GAME — 今日のトップ15 | TheYKHC</title>
+<meta name="description" content="効果圏GAMEのV=N/Dランキング上位15事業アイデア。入場無料・取引1,000円からの閉鎖系効果圏GAME。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
@@ -86,7 +86,7 @@ body{
 
 /* Table */
 .table-wrap{
-  max-width:900px;
+  max-width:780px;
   margin:0 auto;
   padding:0 24px 60px;
 }
@@ -146,22 +146,11 @@ body{
 }
 .num-cell{
   font-family:'JetBrains Mono',monospace;
-  font-size:13px;
-  color:var(--paper);
+  font-size:15px;
+  color:var(--gold);
   text-align:right;
   white-space:nowrap;
-}
-.v-cell{
-  color:var(--gold);
   font-weight:500;
-}
-.d-cell{
-  color:var(--paper-dim);
-}
-.holders-cell{
-  text-align:center;
-  color:var(--paper-dim);
-  font-size:12px;
 }
 
 /* CTA */
@@ -239,10 +228,6 @@ body{
 
 /* Responsive */
 @media(max-width:768px){
-  .idea-table thead th.hide-mobile,
-  .idea-table tbody td.hide-mobile{
-    display:none;
-  }
   .idea-table{
     font-size:13px;
   }
@@ -256,7 +241,7 @@ body{
 
 <!-- Header -->
 <header class="page-header">
-  <div class="header-eyebrow">HIKARI SPHERE · 光貨圏</div>
+  <div class="header-eyebrow">効果圏GAME · HIKARI SPHERE</div>
   <h1 class="header-title">今日のトップ15</h1>
   <p class="header-subtitle">V = N / D で計算された、存在価値の高い事業アイデア<br>754件の中から、今日の上位15件を公開する</p>
   <div class="header-formula">V = N / D</div>
@@ -272,9 +257,6 @@ body{
         <th>#</th>
         <th>アイデア</th>
         <th class="num">V 値</th>
-        <th class="num hide-mobile">D 値</th>
-        <th class="num hide-mobile">N 値</th>
-        <th class="num hide-mobile">保有者</th>
       </tr>
     </thead>
     <tbody id="ideaTableBody"></tbody>
@@ -298,7 +280,7 @@ body{
   <div class="footer-text">
     <a class="footer-link" href="index.html">← 入口に戻る</a> ·
     <a class="footer-link" href="tower.html">学術塔</a> ·
-    <a class="footer-link" href="https://hikari-sphere-flow.base44.app" target="_blank" rel="noopener">光貨圏に参加</a><br>
+    <a class="footer-link" href="https://hikari-sphere-flow.base44.app" target="_blank" rel="noopener">効果圏GAMEに参加</a><br>
     V = N / D · 光貨は共鳴マーカー · 外部への換金は不可<br>
     &copy; Yoshimitsu Katayama — TheYKHC
   </div>
@@ -323,10 +305,7 @@ fetch('top-ideas.json')
           <div class="idea-name">${item.name}</div>
           <span class="idea-industry">${item.industry}</span>
         </td>
-        <td class="num-cell v-cell">${formatNumber(item.v_value)}</td>
-        <td class="num-cell d-cell hide-mobile">${item.d_value.toFixed(2)}</td>
-        <td class="num-cell hide-mobile">${formatNumber(item.n_value)}</td>
-        <td class="num-cell holders-cell hide-mobile">${item.holders}</td>
+        <td class="num-cell">${formatNumber(item.v_value)}</td>
       </tr>
     `).join('');
     document.getElementById('updatedDate').textContent = '最終更新: ' + new Date().toLocaleDateString('ja-JP', {year:'numeric',month:'long',day:'numeric'}) + ' 09:30 JST';
