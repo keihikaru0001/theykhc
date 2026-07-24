@@ -1,0 +1,119 @@
+{
+  "simulations": 1000,
+  "vnd_interpretation": "N=Revenue(B$), D=P/E ratio, V=N/D",
+  "disclaimer": "philosophical observation, not financial advice",
+  "ranking": [
+    {
+      "name": "Toyota",
+      "ticker": "7203",
+      "v": 40.89709762532981,
+      "n": 310,
+      "d": 7.58,
+      "mcap_t": 0.234,
+      "country": "JP",
+      "sector": "自動車",
+      "wins": 612,
+      "win_rate": 0.612
+    },
+    {
+      "name": "Honda",
+      "ticker": "7267",
+      "v": 23.217247097844112,
+      "n": 140,
+      "d": 6.03,
+      "mcap_t": 0.045,
+      "country": "JP",
+      "sector": "自動車",
+      "wins": 142,
+      "win_rate": 0.142
+    },
+    {
+      "name": "Amazon",
+      "ticker": "AMZN",
+      "v": 20.034843205574912,
+      "n": 575,
+      "d": 28.7,
+      "mcap_t": 2.5,
+      "country": "US",
+      "sector": "Eコマース/クラウド",
+      "wins": 102,
+      "win_rate": 0.102
+    },
+    {
+      "name": "Alphabet",
+      "ticker": "GOOGL",
+      "v": 18.817204301075268,
+      "n": 350,
+      "d": 18.6,
+      "mcap_t": 4.31,
+      "country": "US",
+      "sector": "テクノロジー",
+      "wins": 97,
+      "win_rate": 0.097
+    },
+    {
+      "name": "Apple",
+      "ticker": "AAPL",
+      "v": 12.121212121212121,
+      "n": 400,
+      "d": 33,
+      "mcap_t": 4.3,
+      "country": "US",
+      "sector": "テクノロジー",
+      "wins": 29,
+      "win_rate": 0.029
+    },
+    {
+      "name": "Mazda",
+      "ticker": "7261",
+      "v": 7.661290322580645,
+      "n": 38,
+      "d": 4.96,
+      "mcap_t": 0.015,
+      "country": "JP",
+      "sector": "自動車",
+      "wins": 6,
+      "win_rate": 0.006
+    },
+    {
+      "name": "Microsoft",
+      "ticker": "MSFT",
+      "v": 8.0,
+      "n": 280,
+      "d": 35,
+      "mcap_t": 4.1,
+      "country": "US",
+      "sector": "ソフトウェア",
+      "wins": 6,
+      "win_rate": 0.006
+    },
+    {
+      "name": "Meta",
+      "ticker": "META",
+      "v": 6.6,
+      "n": 165,
+      "d": 25,
+      "mcap_t": 2.0,
+      "country": "US",
+      "sector": "SNS/広告",
+      "wins": 4,
+      "win_rate": 0.004
+    },
+    {
+      "name": "Sony",
+      "ticker": "6758",
+      "v": 5.8,
+      "n": 87,
+      "d": 15,
+      "mcap_t": 0.131,
+      "country": "JP",
+      "sector": "エンタメ/テクノロジー",
+      "wins": 2,
+      "win_rate": 0.002
+    }
+  ],
+  "us_vs_jp": {
+    "us": 238,
+    "jp": 762
+  }
+}
