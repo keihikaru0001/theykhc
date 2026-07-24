@@ -655,6 +655,53 @@ footer{text-align:center;padding:64px 20px 100px;position:relative;z-index:2}
     DOI（Zenodo/CERN）が一次 source。各プラットフォームは DOI を鏡に映しているだけだ。<br>
     鏡が割れても、実物は残る。
   </div>
+  <!-- 観測データ — Live from Observation Layer -->
+  <div id="observation-data" style="margin-top:48px;padding:32px 24px;background:var(--ink-2);border:1px solid var(--gold-dim);border-radius:8px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold-dim);letter-spacing:5px;text-transform:uppercase;margin-bottom:24px;text-align:center">▼ 観測データ — Live Observation Layer</div>
+
+    <!-- 原点 -->
+    <div id="obs-origin" style="text-align:center;margin-bottom:32px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold-dim);letter-spacing:3px;margin-bottom:8px">ORIGIN POINT</div>
+      <div id="obs-origin-id" style="font-size:18px;color:var(--gold);letter-spacing:2px;margin-bottom:6px">HIKARI-19890707-PEAK</div>
+      <div id="obs-origin-desc" style="font-size:13px;color:var(--paper-dim);line-height:2;max-width:480px;margin:0 auto;font-style:italic">會長の原点。幸せの絶頂。V=N/DにおいてN最大・D最大の同時極値。</div>
+    </div>
+
+    <!-- ニュートリノ観測 -->
+    <div style="margin-bottom:32px">
+      <div style="font-size:14px;color:var(--gold);letter-spacing:2px;margin-bottom:16px;font-weight:400">ニュートリノ観測 — Neutrino Events</div>
+      <div id="neutrino-list" style="display:flex;flex-direction:column;gap:8px">
+        <div style="font-size:12px;color:var(--muted);padding:12px;background:var(--ink-3);border-radius:4px;border-left:2px solid var(--gold-dim)">観測データを読み込み中...</div>
+      </div>
+    </div>
+
+    <!-- バイオリズム観測 -->
+    <div style="margin-bottom:32px">
+      <div style="font-size:14px;color:var(--gold);letter-spacing:2px;margin-bottom:16px;font-weight:400">バイオリズム観測 — Biorhythm Readings</div>
+      <div id="biorhythm-list" style="display:flex;flex-direction:column;gap:8px">
+        <div style="font-size:12px;color:var(--muted);padding:12px;background:var(--ink-3);border-radius:4px;border-left:2px solid var(--gold-dim)">観測データを読み込み中...</div>
+      </div>
+    </div>
+
+    <!-- FX観測 -->
+    <div style="margin-bottom:16px">
+      <div style="font-size:14px;color:var(--gold);letter-spacing:2px;margin-bottom:16px;font-weight:400">金市場観測 — Gold Market (XAUUSD)</div>
+      <div id="fx-list" style="display:flex;flex-direction:column;gap:8px">
+        <div style="font-size:12px;color:var(--muted);padding:12px;background:var(--ink-3);border-radius:4px;border-left:2px solid var(--gold-dim)">観測データを読み込み中...</div>
+      </div>
+    </div>
+
+    <!-- 脳波観測 -->
+    <div style="margin-bottom:16px">
+      <div style="font-size:14px;color:var(--gold);letter-spacing:2px;margin-bottom:16px;font-weight:400">脳波プロキシ観測 — Brainwave Proxy</div>
+      <div id="brainwave-list" style="display:flex;flex-direction:column;gap:8px">
+        <div style="font-size:12px;color:var(--muted);padding:12px;background:var(--ink-3);border-radius:4px;border-left:2px solid var(--gold-dim)">まだ波は観測されていない。枠組みだけがここにある。</div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;padding:14px 20px;background:var(--ink);border-left:2px solid var(--gold);border-radius:4px">
+      <div style="color:var(--paper-dim);font-size:12px;line-height:2;font-style:italic">これらの観測データはV=N/D哲学的メタファーによる記録であり、金融・医療・科学的助言ではありません。<br>會長の観測者効果（Observer Effect）の仮説的記録として公開する。</div>
+    </div>
+  </div>
 </div>
 </div>
 <section id="consult" class="floor">
@@ -1626,6 +1673,99 @@ async function updateLatestPapers(){
 
 updateDynamicData();
 updateLatestPapers();
+
+// ============================================
+// 観測データ取得 — getObservationData
+// ============================================
+async function updateObservationData(){
+  try{
+    const resp=await fetch('https://app.base44.com/api/agents/69c53e05c969d16a2d7cbd0c/functions/getObservationData');
+    const data=await resp.json();
+
+    // Origin point
+    if(data.observation_summary){
+      const origin=document.getElementById('obs-origin-id');
+      if(origin){origin.textContent=data.observation_summary.origin_point+' ('+data.observation_summary.origin_date+')';}
+      const originDesc=document.getElementById('obs-origin-desc');
+      if(originDesc){originDesc.textContent=data.observation_summary.origin_description;}
+    }
+
+    // Neutrino events
+    const neutrinoList=document.getElementById('neutrino-list');
+    if(neutrinoList&&data.neutrino_events&&data.neutrino_events.length>0){
+      neutrinoList.innerHTML=data.neutrino_events.slice(0,5).map(e=>{
+        const date=(e.gcn_publish_time||'').split('T')[0];
+        const energy=e.energy_tev?e.energy_tev+' TeV':'';
+        return '<div style="padding:14px 16px;background:var(--ink-3);border-radius:4px;border-left:2px solid '+(e.event_type==='OBSERVER'?'var(--gold)':'var(--gold-dim)')+'">'+
+          '<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px">'+
+          '<span style="font-family:JetBrains Mono,monospace;font-size:11px;color:var(--gold);letter-spacing:1px">'+(e.event_id||'')+'</span>'+
+          '<span style="font-size:11px;color:var(--muted);font-family:JetBrains Mono,monospace">'+date+'</span>'+
+          '</div>'+
+          (energy?'<div style="font-size:12px;color:var(--paper-dim);margin-bottom:4px">Energy: '+energy+' · Type: '+(e.event_type||'')+'</div>':'')+
+          '<div style="font-size:12px;color:var(--paper-dim);line-height:1.8">'+((e.note||'').substring(0,150))+(e.note&&e.note.length>150?'…':'')+'</div>'+
+          '</div>';
+      }).join('');
+    }else if(neutrinoList){
+      neutrinoList.innerHTML='<div style="font-size:12px;color:var(--muted);padding:12px;background:var(--ink-3);border-radius:4px;border-left:2px solid var(--gold-dim)">観測データなし。静寂の中にある。</div>';
+    }
+
+    // Biorhythm readings
+    const bioList=document.getElementById('biorhythm-list');
+    if(bioList&&data.biorhythm_readings&&data.biorhythm_readings.length>0){
+      bioList.innerHTML=data.biorhythm_readings.slice(0,3).map(b=>{
+        return '<div style="padding:14px 16px;background:var(--ink-3);border-radius:4px;border-left:2px solid var(--gold-dim)">'+
+          '<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">'+
+          '<span style="font-size:12px;color:var(--gold)">'+(b.date||'')+'</span>'+
+          '<span style="font-size:11px;color:var(--muted);font-family:JetBrains Mono,monospace">VND:'+(b.vnd_score||0)+'</span>'+
+          '</div>'+
+          '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px">'+
+          '<div style="font-size:11px;color:var(--paper-dim)">身体:'+(b.physical_cycle||0)+'</div>'+
+          '<div style="font-size:11px;color:var(--paper-dim)">感情:'+(b.emotional_cycle||0)+'</div>'+
+          '<div style="font-size:11px;color:var(--paper-dim)">知性:'+(b.intellectual_cycle||0)+'</div>'+
+          '<div style="font-size:11px;color:var(--paper-dim)">直感:'+(b.intuitive_cycle||0)+'</div>'+
+          '<div style="font-size:11px;color:var(--paper-dim)">創作:'+(b.creative_output||0)+'</div>'+
+          '<div style="font-size:11px;color:var(--paper-dim)">観測効果:'+(b.observer_effect_score||0)+'</div>'+
+          '</div>'+
+          (b.notes?'<div style="font-size:11px;color:var(--muted);font-style:italic">'+b.notes+'</div>':'')+
+          '</div>';
+      }).join('');
+    }else if(bioList){
+      bioList.innerHTML='<div style="font-size:12px;color:var(--muted);padding:12px;background:var(--ink-3);border-radius:4px;border-left:2px solid var(--gold-dim)">観測データなし。静寂の中にある。</div>';
+    }
+
+    // FX ticks
+    const fxList=document.getElementById('fx-list');
+    if(fxList&&data.fx_ticks&&data.fx_ticks.length>0){
+      fxList.innerHTML=data.fx_ticks.slice(0,5).map(f=>{
+        return '<div style="padding:12px 16px;background:var(--ink-3);border-radius:4px;border-left:2px solid var(--gold-dim)">'+
+          '<div style="display:flex;justify-content:space-between;align-items:baseline">'+
+          '<span style="font-size:12px;color:var(--gold)">'+(f.symbol||'XAUUSD')+'</span>'+
+          '<span style="font-size:12px;color:var(--paper-dim)">Bid:'+(f.bid||0)+' Ask:'+(f.ask||0)+'</span>'+
+          '</div>'+
+          (f.note?'<div style="font-size:11px;color:var(--muted);margin-top:4px">'+f.note+'</div>':'')+
+          '</div>';
+      }).join('');
+    }else if(fxList){
+      fxList.innerHTML='<div style="font-size:12px;color:var(--muted);padding:12px;background:var(--ink-3);border-radius:4px;border-left:2px solid var(--gold-dim)">金市場の観測は静かに待機中。</div>';
+    }
+
+    // Brainwave
+    const bwList=document.getElementById('brainwave-list');
+    if(bwList&&data.brainwave_proxies&&data.brainwave_proxies.length>0){
+      bwList.innerHTML=data.brainwave_proxies.slice(0,3).map(b=>{
+        return '<div style="padding:12px 16px;background:var(--ink-3);border-radius:4px;border-left:2px solid var(--gold)">'+
+          '<div style="font-size:12px;color:var(--paper-dim)">Proxy: '+(b.proxy_type||'unknown')+' Value: '+(b.proxy_value||0)+'</div>'+
+          (b.note?'<div style="font-size:11px;color:var(--muted);margin-top:4px">'+b.note+'</div>':'')+
+          '</div>';
+      }).join('');
+    }
+
+  }catch(e){
+    console.log('Observation data fetch failed:',e.message);
+  }
+}
+
+updateObservationData();
 </script>
 </body>
 </html>
