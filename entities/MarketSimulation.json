@@ -1,0 +1,34 @@
+{
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "result_data": {
+      "type": "string"
+    },
+    "simulation_date": {
+      "type": "string"
+    },
+    "simulation_type": {
+      "type": "string",
+      "enum": [
+        "tournament",
+        "stock_vnd",
+        "buy_analysis",
+        "market_recalc"
+      ]
+    },
+    "summary": {
+      "type": "string"
+    },
+    "total_simulations": {
+      "type": "number"
+    },
+    "top_result": {
+      "type": "string"
+    }
+  },
+  "type": "object",
+  "required": [],
+  "name": "MarketSimulation"
+}
