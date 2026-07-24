@@ -13,25 +13,8 @@ Deno.serve(async (req: Request) => {
 
     const base44 = createClientFromRequest(req);
 
-    // Step 1: Read ALL Question records with pagination
-    let allRecords: any[] = [];
-    let skip = 0;
-    let hasMore = true;
-    const batchSize = 500;
-
-    while (hasMore) {
-      const batch = await base44.asServiceRole.entities.Question.list({
-        limit: batchSize,
-        skip: skip,
-        sort: "-created_date"
-      });
-
-      allRecords = allRecords.concat(batch.results || []);
-      hasMore = batch.has_more || false;
-      skip += batchSize;
-
-      if (allRecords.length >= 10000) break;
-    }
+    // Read ALL Question records (list() with no args returns all)
+    const allRecords: any[] = await base44.asServiceRole.entities.Question.list();
 
     const today = new Date().toISOString().split('T')[0];
     const fileName = `TheYKHC_Questions_Backup_${today}.json`;
@@ -45,7 +28,7 @@ Deno.serve(async (req: Request) => {
 
     const jsonStr = JSON.stringify(backupData, null, 2);
 
-    // Step 2: Search for TheYKHC folder
+    // Search for TheYKHC folder
     let folderId: string | null = null;
     try {
       const folderQuery = encodeURIComponent("name='TheYKHC' and mimeType='application/vnd.google-apps.folder' and trashed=false");
@@ -61,7 +44,7 @@ Deno.serve(async (req: Request) => {
       // Folder search failed, will upload to root
     }
 
-    // Step 3: Upload to Google Drive via multipart
+    // Upload to Google Drive via multipart
     const metadata: any = {
       name: fileName,
       mimeType: "application/json"
