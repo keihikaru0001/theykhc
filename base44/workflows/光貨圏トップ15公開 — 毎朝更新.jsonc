@@ -1,0 +1,44 @@
+{
+  "name": "\u5149\u8ca8\u570f\u30c8\u30c3\u30d715\u516c\u958b \u2014 \u6bce\u671d\u66f4\u65b0",
+  "description": "\u6bce\u671d9:35\u306bHikari Sphere\u30a2\u30d7\u30ea\u304b\u3089V=N/D\u5024\u4e0a\u4f4d15\u4ef6\u306e\u30a2\u30a4\u30c7\u30a2\u3092\u53d6\u5f97\u3057\u3001GitHub Pages\u306etop-ideas.json\u3092\u66f4\u65b0\u3057\u3066theykhc.com/market.html\u306b\u53cd\u6620\u3059\u308b\u3002",
+  "trigger": {
+    "condition": null,
+    "config": {
+      "trigger_type": "scheduled",
+      "events": [],
+      "schedule_mode": "recurring",
+      "cron_expression": "35 9 * * *",
+      "one_time_date": null,
+      "timezone": "Asia/Tokyo",
+      "interval_value": null,
+      "interval_unit": null,
+      "interval_anchor": null,
+      "ends_type": "never",
+      "ends_on_date": null,
+      "ends_after_count": null
+    }
+  },
+  "definition": {
+    "document": {
+      "dsl": "1.0.0",
+      "name": "hikari_top15_public",
+      "namespace": "base44",
+      "version": "1.0"
+    },
+    "do": [
+      {
+        "update_top15": {
+          "call": "invoke_superagent_step",
+          "with": {
+            "message": "\u5149\u8ca8\u570f\u30de\u30fc\u30b1\u30c3\u30c8\u516c\u958b\u30da\u30fc\u30b8\u306e\u30c8\u30c3\u30d715\u3092\u66f4\u65b0\u3057\u3066\u304f\u3060\u3055\u3044\u3002\n\n## \u624b\u9806\n1. read_entities\u3067Hikari Sphere\u30a2\u30d7\u30ea\uff08app_id: 6a5fa515a25dd96b8fcc7bd0\uff09\u306eIdea\u30a8\u30f3\u30c6\u30a3\u30c6\u30a3\u304b\u3089\u3001v_value\u964d\u9806\u3067\u4e0a\u4f4d15\u4ef6\u3092\u53d6\u5f97\u3059\u308b\n   - fields: [\"id\", \"name\", \"v_value\", \"d_value\", \"n_value\", \"industry\", \"holders_count\", \"recent_price\"]\n   - sort: \"-v_value\"\n   - limit: 15\n2. \u53d6\u5f97\u3057\u305f\u30c7\u30fc\u30bf\u3092\u4ee5\u4e0b\u306eJSON\u914d\u5217\u5f62\u5f0f\u306b\u5909\u63db\u3059\u308b\uff08rank\u306f1\u304b\u308915\uff09\uff1a\n   [{\"rank\": 1, \"name\": \"...\", \"industry\": \"...\", \"v_value\": \u6570\u5024, \"d_value\": \u6570\u5024(\u5c0f\u65702\u6841), \"n_value\": \u6570\u5024, \"holders\": \u6570, \"price\": \u6570\u5024}]\n3. \u305d\u306eJSON\u3092GitHub\u30ea\u30dd\u30b8\u30c8\u30ea keihikaru0001/theykhc \u306e top-ideas.json \u306b\u30d7\u30c3\u30b7\u30e5\u3059\u308b\n   - \u30b3\u30df\u30c3\u30c8\u30e1\u30c3\u30bb\u30fc\u30b8: \"\u6bce\u671d\u306e\u30c8\u30c3\u30d715\u66f4\u65b0 \u2014 V=N/D\u30e9\u30f3\u30ad\u30f3\u30b0\"\n   - branch: main\n4. \u5b8c\u4e86\u3057\u305f\u3089\u7c21\u6f54\u306b\u5831\u544a\u3059\u308b"
+          },
+          "then": "end",
+          "x-base44": {
+            "description": "V=N/D\u4e0a\u4f4d15\u4ef6\u3092GitHub Pages\u306b\u914d\u4fe1",
+            "title": "\u30c8\u30c3\u30d715\u30a2\u30a4\u30c7\u30a2\u66f4\u65b0"
+          }
+        }
+      }
+    ]
+  }
+}

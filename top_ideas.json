@@ -1,0 +1,17 @@
+[
+  {"rank": 1, "name": "感情共鳴翻訳AI", "industry": "AI", "v_value": 6472742140, "d_value": 1.0, "n_value": 6472742140, "holders": 12, "price": 120000},
+  {"rank": 2, "name": "太陽光ワイヤレス送電網", "industry": "エネルギー", "v_value": 4529950772, "d_value": 1.77, "n_value": 8020169032, "holders": 7, "price": 85000},
+  {"rank": 3, "name": "自律均衡マイクログリッド", "industry": "エネルギー", "v_value": 2489268360, "d_value": 1.08, "n_value": 2698505399, "holders": 10, "price": 58000},
+  {"rank": 4, "name": "コミュニティ通貨共鳴協議会", "industry": "金融", "v_value": 1578330705, "d_value": 1.19, "n_value": 1870795324, "holders": 9, "price": 64000},
+  {"rank": 5, "name": "個別最適化教科書AI", "industry": "教育", "v_value": 1483109228, "d_value": 1.48, "n_value": 2195409076, "holders": 5, "price": 41000},
+  {"rank": 6, "name": "睡眠学習インプラント", "industry": "医療", "v_value": 1457045394, "d_value": 2.28, "n_value": 3317655855, "holders": 4, "price": 52000},
+  {"rank": 7, "name": "軌道間資源搬送索", "industry": "宇宙", "v_value": 1362733273, "d_value": 3.96, "n_value": 5397388566, "holders": 6, "price": 95000},
+  {"rank": 8, "name": "意識復元アーカイブ", "industry": "AI", "v_value": 1257691197, "d_value": 3.57, "n_value": 4488247269, "holders": 8, "price": 71000},
+  {"rank": 9, "name": "自律型海底物流ドローン", "industry": "物流", "v_value": 973281500, "d_value": 3.08, "n_value": 2993174620, "holders": 3, "price": 38000},
+  {"rank": 10, "name": "砂漠再生藻類ファーム", "industry": "農業", "v_value": 360637275, "d_value": 2.69, "n_value": 970503949, "holders": 2, "price": 22000},
+  {"rank": 11, "name": "パフォーマンスインテリジェンスを活用した新しい通貨システムの設計は可能か？", "industry": "金融", "v_value": 6416, "d_value": 1.49, "n_value": 9551, "holders": 0, "price": 0},
+  {"rank": 12, "name": "Hikari Cityのビジョンをもとに、持続可能な都市開発計画をどのように策定できるか？", "industry": "社会と倫理", "v_value": 5163, "d_value": 1.98, "n_value": 10235, "holders": 0, "price": 0},
+  {"rank": 13, "name": "hikari phase4 mushinが提案する新しいAIアルゴリズムは、金融市場におけるリスク管理をどのように変革するか？", "industry": "仕事とビジネス", "v_value": 4643, "d_value": 1.79, "n_value": 8292, "holders": 1, "price": 0},
+  {"rank": 14, "name": "V=N/Dを基にした全臓器設計理論が、医療機器の進化にどのように寄与するか？", "industry": "科学と技術", "v_value": 4243, "d_value": 1.97, "n_value": 8375, "holders": 0, "price": 0},
+  {"rank": 15, "name": "ユニファイド理論を基にした新たなエネルギー源の発見は、どのように事業化される可能性があるか？", "industry": "科学と技術", "v_value": 4221, "d_value": 1.47, "n_value": 6213, "holders": 0, "price": 0}
+]
