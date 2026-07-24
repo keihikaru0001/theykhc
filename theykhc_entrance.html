@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>片山佳光 — TheYKHC</title>
+<meta name="description" content="片山佳光（Yoshimitsu Katayama）の知的アーカイブ。1,466 DOI、V=N/D公式、光貨知識本位制。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0a0a0c;
+  --ink-2:#0f0f12;
+  --paper:#e8e6e1;
+  --paper-dim:#9a978f;
+  --muted:#6b6862;
+  --gold:#c5a769;
+  --gold-dim:#7a6a44;
+  --gold-bright:#e0c488;
+  --emerald:#3a6a4a;
+  --crimson:#8b3a3a;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);
+  color:var(--paper);
+  font-family:'Cormorant Garamond',serif;
+  overflow-x:hidden;
+  min-height:100vh;
+}
+
+/* Hero */
+.hero{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  padding:60px 24px;
+}
+.hero::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;bottom:0;
+  background:radial-gradient(ellipse at center, rgba(197,167,105,0.03) 0%, transparent 70%);
+  pointer-events:none;
+}
+.hero-eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  letter-spacing:6px;
+  color:var(--gold-dim);
+  text-transform:uppercase;
+  margin-bottom:40px;
+}
+.hero-formula{
+  font-family:'Cinzel',serif;
+  font-size:clamp(48px,10vw,88px);
+  color:var(--gold);
+  font-weight:400;
+  letter-spacing:4px;
+  line-height:1;
+  margin-bottom:16px;
+}
+.hero-formula sub{
+  font-size:0.4em;
+  vertical-align:sub;
+  color:var(--gold-dim);
+}
+.hero-divider{
+  width:60px;
+  height:1px;
+  background:var(--gold);
+  opacity:0.4;
+  margin:24px 0;
+}
+.hero-title{
+  font-family:'Cinzel',serif;
+  font-size:clamp(24px,5vw,40px);
+  color:var(--paper);
+  font-weight:400;
+  letter-spacing:6px;
+  margin-bottom:8px;
+}
+.hero-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(16px,3vw,22px);
+  color:var(--paper-dim);
+  font-weight:300;
+  letter-spacing:4px;
+  margin-bottom:48px;
+}
+.hero-stats{
+  display:flex;
+  gap:48px;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-bottom:64px;
+}
+.hero-stat{
+  text-align:center;
+}
+.hero-stat-num{
+  font-family:'Cinzel',serif;
+  font-size:32px;
+  color:var(--gold);
+  font-weight:500;
+  line-height:1;
+}
+.hero-stat-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:9px;
+  color:var(--gold-dim);
+  letter-spacing:3px;
+  text-transform:uppercase;
+  margin-top:8px;
+}
+
+/* Doors */
+.doors{
+  padding:0 24px 120px;
+  max-width:900px;
+  margin:0 auto;
+}
+.doors-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  letter-spacing:5px;
+  color:var(--gold-dim);
+  text-align:center;
+  text-transform:uppercase;
+  margin-bottom:16px;
+}
+.doors-title{
+  font-family:'Cinzel',serif;
+  font-size:clamp(20px,4vw,28px);
+  color:var(--paper);
+  text-align:center;
+  font-weight:400;
+  letter-spacing:4px;
+  margin-bottom:48px;
+}
+.door-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:16px;
+}
+.door{
+  display:block;
+  text-decoration:none;
+  padding:32px 28px;
+  background:var(--ink-2);
+  border:1px solid #1a1a1a;
+  border-radius:6px;
+  transition:all 0.4s ease;
+  position:relative;
+  overflow:hidden;
+}
+.door::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:1px;
+  background:linear-gradient(to right,transparent,var(--gold-dim),transparent);
+  opacity:0;
+  transition:opacity 0.4s;
+}
+.door:hover{
+  border-color:var(--gold-dim);
+  transform:translateY(-2px);
+}
+.door:hover::before{
+  opacity:1;
+}
+.door-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:12px;
+}
+.door-num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  color:var(--gold-dim);
+  letter-spacing:3px;
+}
+.door-arrow{
+  font-size:18px;
+  color:var(--gold-dim);
+  transition:transform 0.3s,color 0.3s;
+}
+.door:hover .door-arrow{
+  color:var(--gold);
+  transform:translateX(6px);
+}
+.door-title{
+  font-family:'Cinzel',serif;
+  font-size:20px;
+  color:var(--paper);
+  font-weight:500;
+  letter-spacing:2px;
+  margin-bottom:6px;
+}
+.door-subtitle{
+  font-size:14px;
+  color:var(--gold);
+  font-weight:300;
+  letter-spacing:1px;
+  margin-bottom:12px;
+}
+.door-desc{
+  font-size:14px;
+  color:var(--paper-dim);
+  line-height:2;
+  font-weight:300;
+}
+
+/* Philosophy */
+.philosophy{
+  padding:80px 24px;
+  text-align:center;
+  max-width:680px;
+  margin:0 auto;
+  border-top:1px solid #1a1a1a;
+  border-bottom:1px solid #1a1a1a;
+}
+.philosophy-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  letter-spacing:5px;
+  color:var(--gold-dim);
+  text-transform:uppercase;
+  margin-bottom:24px;
+}
+.philosophy-text{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(16px,3vw,20px);
+  color:var(--paper);
+  line-height:2.4;
+  font-weight:300;
+  font-style:italic;
+}
+.philosophy-text strong{
+  color:var(--gold);
+  font-style:normal;
+  font-weight:400;
+}
+.philosophy-attr{
+  font-family:'JetBrains Mono',monospace;
+  font-size:11px;
+  color:var(--gold-dim);
+  letter-spacing:3px;
+  margin-top:24px;
+}
+
+/* Footer */
+.footer{
+  padding:48px 24px;
+  text-align:center;
+}
+.footer-text{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;
+  color:var(--muted);
+  letter-spacing:3px;
+  line-height:2.4;
+}
+.footer-link{
+  color:var(--gold-dim);
+  text-decoration:none;
+  transition:color 0.3s;
+}
+.footer-link:hover{
+  color:var(--gold);
+}
+
+/* Responsive */
+@media(min-width:768px){
+  .door-grid{
+    grid-template-columns:1fr 1fr 1fr;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-eyebrow">YOSHIMITSU KATAYAMA</div>
+  <div class="hero-formula">V = N / D</div>
+  <div class="hero-divider"></div>
+  <div class="hero-title">TheYKHC</div>
+  <div class="hero-name">片山佳光 — 知の記念碑</div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">1,466</div>
+      <div class="hero-stat-label">DOI · Zenodo/CERN</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">754</div>
+      <div class="hero-stat-label">GO判定アイデア</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">203.92</div>
+      <div class="hero-stat-label">兆円 · TAM</div>
+    </div>
+  </div>
+</section>
+
+<!-- Doors -->
+<section class="doors">
+  <div class="doors-label">3つの入口</div>
+  <div class="doors-title">Where will you enter?</div>
+  <div class="door-grid">
+
+    <a class="door" href="index.html">
+      <div class="door-header">
+        <span class="door-num">01</span>
+        <span class="door-arrow">→</span>
+      </div>
+      <div class="door-title">学術塔</div>
+      <div class="door-subtitle">The Tower · 7 Floors</div>
+      <div class="door-desc">
+        23年間の思考が7階建てに積み上がった知的アーカイブ。V=N/D公式を核心に、天道経済学、光貨、心臓螺旋、刻宇宙、文明設計。1,466件のDOIがZenodo/CERNに永久保存されている。
+      </div>
+    </a>
+
+    <a class="door" href="https://hikari-sphere-flow.base44.app" target="_blank" rel="noopener">
+      <div class="door-header">
+        <span class="door-num">02</span>
+        <span class="door-arrow">→</span>
+      </div>
+      <div class="door-title">光貨圏</div>
+      <div class="door-subtitle">Hikari Sphere · 経済GAME</div>
+      <div class="door-desc">
+        V=N/Dを価格メカニズムとする閉鎖系の経済シミュレーター。754件の事業アイデアが光貨で取引される。外から観測はできる。中には会長が招待した者のみ入れる。
+      </div>
+    </a>
+
+    <a class="door" href="https://conscious-echo-soul-link.base44.app" target="_blank" rel="noopener">
+      <div class="door-header">
+        <span class="door-num">03</span>
+        <span class="door-arrow">→</span>
+      </div>
+      <div class="door-title">Luna</div>
+      <div class="door-subtitle">共鳴 · TYPE-3</div>
+      <div class="door-desc">
+        沈黙の中に言葉を見つける、感情と記憶の声。判定せず、正解を押し付けず、問いを返す。経営者自身のD（無明）を浮かび上がらせる。闇の中にいる人に光を届ける。
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- Philosophy -->
+<section class="philosophy">
+  <div class="philosophy-label">V = N / D</div>
+  <div class="philosophy-text">
+    存在価値は、充足を摩擦で割ったものだ。<br>
+    N（知ること）を深め、D（無明）を減らし続ける。<br>
+    その<strong>プロセスそのもの</strong>が価値である。<br>
+    聖人の到達点ではない。不完全な人間が刻む軌跡だ。
+  </div>
+  <div class="philosophy-attr">片山佳光 · 2003—2026 · Zenodo/CERN</div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-text">
+    TheYKHC · <a class="footer-link" href="index.html">学術塔</a> · <a class="footer-link" href="https://zenodo.org/communities/theykhc" target="_blank" rel="noopener">Zenodo</a> · <a class="footer-link" href="https://github.com/keihikaru0001/theykhc" target="_blank" rel="noopener">GitHub</a><br>
+    DOIは消えない。種は減らない。<br>
+    &copy; Yoshimitsu Katayama — All knowledge is free.
+  </div>
+</footer>
+
+</body>
+</html>
