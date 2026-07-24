@@ -51,6 +51,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .hero-formula-name{font-size:clamp(11px,2.5vw,14px);color:var(--paper-dim);letter-spacing:5px;text-transform:uppercase;font-family:'JetBrains Mono',monospace;opacity:0;animation:fadeIn 2s ease 1s forwards}
 .hero-title{font-size:clamp(22px,5vw,38px);color:var(--paper);letter-spacing:4px;margin-top:48px;font-weight:400;opacity:0;animation:fadeIn 2s ease 1.5s forwards;text-shadow:0 0 20px rgba(0,0,0,0.9)}
 .hero-sub{font-size:clamp(11px,2vw,13px);color:var(--gold-dim);letter-spacing:4px;margin-top:14px;font-family:'JetBrains Mono',monospace;opacity:0;animation:fadeIn 2s ease 2s forwards}
+.hero-game-link{display:inline-block;margin-top:36px;padding:14px 40px;border:1px solid var(--gold);color:var(--gold);text-decoration:none;font-size:13px;letter-spacing:4px;transition:all 0.4s;font-family:'JetBrains Mono',monospace;text-transform:uppercase;position:relative;background:transparent}.hero-game-link:hover{background:var(--gold);color:var(--ink);box-shadow:0 0 24px rgba(201,168,76,0.4)}.hero-game-sub{font-size:10px;color:var(--gold-dim);letter-spacing:3px;margin-top:10px;font-family:'JetBrains Mono',monospace}
 .hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);color:var(--gold-dim);font-size:10px;letter-spacing:4px;font-family:'JetBrains Mono',monospace;opacity:0;animation:fadeIn 2s ease 2.8s forwards,scrollBounce 2.5s ease-in-out 3.5s infinite}
 @keyframes fadeIn{to{opacity:1}}
 @keyframes scrollBounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
@@ -418,6 +419,8 @@ footer{text-align:center;padding:64px 20px 100px;position:relative;z-index:2}
     <div class="hero-formula-name">The Katayama Formula</div>
     <div class="hero-title">TheYKHC Tower</div>
     <div class="hero-sub">1,466 SEEDS · ZENODO / CERN · D → 0</div>
+    <a class="hero-game-link" href="/market.html">効果圏GAME · 入場無料</a>
+    <div class="hero-game-sub">754 ideas · V=N/D · トップ15公開中</div>
   </div>
   <div class="hero-scroll">SCROLL ↓</div>
 </div>
@@ -437,6 +440,7 @@ footer{text-align:center;padding:64px 20px 100px;position:relative;z-index:2}
   <a href="#f7" title="観測の座"></a>
 <a href="#luna" title="Luna"></a>
 <a href="#ir" title="IR"></a>
+<a href="/market.html" title="効果圏GAME" style="width:8px;height:8px;border-color:var(--gold);background:var(--gold-dim)"></a>
 </nav>
 <div class="tower">
 <div class="floor vault" id="f0">
