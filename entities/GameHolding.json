@@ -1,0 +1,37 @@
+{
+  "properties": {
+    "company_id": {
+      "type": "string"
+    },
+    "current_d": {
+      "type": "number"
+    },
+    "current_v": {
+      "type": "number"
+    },
+    "held_since": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "purchase_price_hikari": {
+      "type": "number"
+    },
+    "question_id": {
+      "type": "string"
+    },
+    "status": {
+      "default": "held",
+      "enum": [
+        "held",
+        "sold"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "company_id",
+    "question_id"
+  ],
+  "type": "object",
+  "name": "GameHolding"
+}

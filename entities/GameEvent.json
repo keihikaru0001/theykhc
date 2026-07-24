@@ -1,0 +1,50 @@
+{
+  "properties": {
+    "description": {
+      "type": "string"
+    },
+    "event_type": {
+      "enum": [
+        "ipo",
+        "d_reduction",
+        "analyst_rating",
+        "market_cap_update",
+        "major_trade",
+        "investigation"
+      ],
+      "type": "string"
+    },
+    "impact_level": {
+      "default": "low",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "critical"
+      ],
+      "type": "string"
+    },
+    "metadata": {
+      "type": "string"
+    },
+    "question_id": {
+      "type": "string"
+    },
+    "timestamp": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "v_after": {
+      "type": "number"
+    },
+    "v_before": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "event_type",
+    "description"
+  ],
+  "type": "object",
+  "name": "GameEvent"
+}
