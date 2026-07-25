@@ -1714,14 +1714,6 @@ async function updateDynamicData(){
 }
 
 
-    // Update meta description
-    document.querySelector('meta[name="description"]')?.setAttribute('content',
-      'TheYKHC — 片山佳光（Yoshimitsu Katayama）による天道経済学・光貨・宇宙同期標準の研究拠点。V=N/D公式を核心に、'+doiCount.toLocaleString()+'件のZenodo DOI資産と文明設計の全記録をここに置く。');
-  }catch(e){
-    console.log('Zenodo API fallback to static values');
-  }
-}
-
 // Fetch latest 10 papers from Zenodo
 async function updateLatestPapers(){
   try{
