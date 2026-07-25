@@ -295,7 +295,7 @@ function formatNumber(n) {
   return n.toFixed(2);
 }
 
-fetch('top-ideas.json')
+fetch('top-ideas.json?v=' + Date.now())
   .then(r => r.json())
   .then(data => {
     const tbody = document.getElementById('ideaTableBody');
