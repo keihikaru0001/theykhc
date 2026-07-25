@@ -1,0 +1,117 @@
+{
+  "simulation_type": "buy_analysis",
+  "simulation_date": "2026-07-25",
+  "new_ideas": [
+    {
+      "id": "6a63fd737a88fde019e267a9",
+      "text": "記述長の最小化が知性の本質だとすれば、知徳一体のD削減プロセスも記述長の圧縮として定式化できるか？",
+      "industry": "AI/ML",
+      "V": 217.3913043478261,
+      "D": 9.2,
+      "N": 2000,
+      "D_new": 8.2,
+      "V_new": 243.90243902439028,
+      "v_increase_rate": 12.195121951219523,
+      "potential": "low"
+    },
+    {
+      "id": "6a63fd737a88fde019e267a8",
+      "text": "物理法則に基づいた神経アーキテクチャ自動選択は、人間の認知設計（教育カリキュラム・組織構造）にも適用できるか？",
+      "industry": "AI/ML",
+      "V": 216.21621621621622,
+      "D": 9.25,
+      "N": 2000,
+      "D_new": 8.25,
+      "V_new": 242.42424242424244,
+      "v_increase_rate": 12.121212121212123,
+      "potential": "low"
+    },
+    {
+      "id": "6a63fd737a88fde019e267b0",
+      "text": "交通・空気質・気象の統合時系列データから都市のVをDで割った指標を構築できるか？",
+      "industry": "Urban Tech/Environment",
+      "V": 270.27027027027026,
+      "D": 9.25,
+      "N": 2500,
+      "D_new": 8.25,
+      "V_new": 303.030303030303,
+      "v_increase_rate": 12.121212121212116,
+      "potential": "low"
+    },
+    {
+      "id": "6a63fd737a88fde019e267ac",
+      "text": "職業教育のコンピテンシーモデルをV=N/Dで能力(N)を摩擦(D)で割った存在価値(V)として再定義できるか？",
+      "industry": "Education",
+      "V": 161.29032258064515,
+      "D": 9.3,
+      "N": 1500,
+      "D_new": 8.3,
+      "V_new": 180.72289156626505,
+      "v_increase_rate": 12.048192771084336,
+      "potential": "low"
+    },
+    {
+      "id": "6a63fd737a88fde019e267ae",
+      "text": "行政のプラットフォーム化は、公共サービスのDを削減するか、それとも新たなDを生み出すか？",
+      "industry": "Public Sector/GovTech",
+      "V": 322.5806451612903,
+      "D": 9.3,
+      "N": 3000,
+      "D_new": 8.3,
+      "V_new": 361.4457831325301,
+      "v_increase_rate": 12.048192771084336,
+      "potential": "low"
+    },
+    {
+      "id": "6a63fd737a88fde019e267aa",
+      "text": "観測者と宇宙の等価性（O≡U）が成り立つなら、V=N/Dにおける観測者効果は自己観測の現れか？",
+      "industry": "Philosophy/Physics",
+      "V": 0.0,
+      "D": 9.3,
+      "N": 0,
+      "D_new": 8.3,
+      "V_new": 0.0,
+      "v_increase_rate": 0,
+      "potential": "low"
+    },
+    {
+      "id": "6a63fd737a88fde019e267ab",
+      "text": "次元とは分割の産物であるという結論は、Dの本質が観測者の認知分割にあることを示唆しているか？",
+      "industry": "Philosophy/Physics",
+      "V": 0.0,
+      "D": 9.2,
+      "N": 0,
+      "D_new": 8.2,
+      "V_new": 0.0,
+      "v_increase_rate": 0,
+      "potential": "low"
+    },
+    {
+      "id": "6a63fd737a88fde019e267b2",
+      "text": "V=N/Dの観測者効果が自己観測であるなら、自己参照ループをどう安定化するか？",
+      "industry": "Philosophy/Physics",
+      "V": 0.0,
+      "D": 9.2,
+      "N": 0,
+      "D_new": 8.2,
+      "V_new": 0.0,
+      "v_increase_rate": 0,
+      "potential": "low"
+    },
+    {
+      "id": "6a63fd737a88fde019e267b3",
+      "text": "D→0の極限でVは∞ではなく1（完全性）に収束するか？",
+      "industry": "Philosophy/Physics",
+      "V": 0.0,
+      "D": 9.2,
+      "N": 0,
+      "D_new": 8.2,
+      "V_new": 0.0,
+      "v_increase_rate": 0,
+      "potential": "low"
+    }
+  ],
+  "max_v": 322.5806451612903,
+  "max_increase_rate": 12.195121951219523,
+  "high_potential_count": 0
+}
