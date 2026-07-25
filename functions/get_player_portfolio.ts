@@ -1,4 +1,5 @@
-// get_player_portfolio — プレイヤーのポートフォリオ取得
+// get_player_portfolio — プレイヤーの研究貢献ポートフォリオ
+// 事業売買は廃止。研究貢献（D削減）とランキングを表示。
 
 export default async function(req) {
   const url = new URL(req.url);
@@ -18,44 +19,19 @@ export default async function(req) {
     const company = await client.entities.GameCompany.get(company_id);
     if (!company) throw new Error("Company not found");
 
-    // Holdingsを取得
-    const holdings = await client.entities.GameHolding.list({
-      filter: { company_id, status: "held" },
-      limit: 100
-    });
-
-    const portfolio = [];
-    let total_v = 0;
-    if (holdings && holdings.length > 0) {
-      for (const h of holdings) {
-        const q = await client.entities.Question.get(h.data.question_id);
-        portfolio.push({
-          holding_id: h.id,
-          question_id: h.data.question_id,
-          title: q ? q.data.text : "Unknown",
-          industry: q ? q.data.industry : "Unknown",
-          purchase_price: h.data.purchase_price_hikari,
-          current_v: h.data.current_v,
-          current_d: h.data.current_d,
-          v_change: ((h.data.current_v || 0) - (h.data.purchase_price_hikari || 0)),
-          held_since: h.data.held_since
-        });
-        total_v += (h.data.current_v || 0);
-      }
-    }
-
     // リーダーボード順位を取得
     const leaderboard = await client.entities.GameLeaderboard.list({
       filter: { company_id, period: "all_time" },
       limit: 1
     });
     const rank = leaderboard && leaderboard.length > 0 ? leaderboard[0].data.rank : null;
+    const d_reduction_total = leaderboard && leaderboard.length > 0 ? leaderboard[0].data.d_reduction_total : 0;
+    const resonance_score = leaderboard && leaderboard.length > 0 ? leaderboard[0].data.resonance_score : 0;
 
-    // 直近取引履歴を取得
-    const transactions = await client.entities.GameTransaction.list({
-      filter: { buyer_id: company_id },
-      sort: "-timestamp",
-      limit: 10
+    // 研究貢献イベントを取得
+    const researchEvents = await client.entities.GameEvent.list({
+      filter: { question_id: null, event_type: "research_contribution" },
+      limit: 20
     });
 
     return new Response(JSON.stringify({
@@ -63,20 +39,18 @@ export default async function(req) {
         id: company.id,
         name: company.data.name,
         hikari_balance: company.data.hikari_balance,
-        assets_held: holdings ? holdings.length : 0,
-        v_score: total_v,
+        v_score: company.data.v_score,
         d_score: company.data.d_score,
         status: company.data.status,
-        rank
+        rank,
+        d_reduction_total,
+        resonance_score
       },
-      portfolio,
-      recent_transactions: transactions ? transactions.map(t => ({
-        id: t.id,
-        question_id: t.data.question_id,
-        price: t.data.price_hikari,
-        type: t.data.trade_type,
-        v_at_trade: t.data.v_at_trade,
-        timestamp: t.data.timestamp
+      research_contributions: researchEvents ? researchEvents.map(e => ({
+        id: e.id,
+        description: e.data.description,
+        impact_level: e.data.impact_level,
+        timestamp: e.data.timestamp
       })) : []
     }), {
       status: 200, headers: { "Content-Type": "application/json" }

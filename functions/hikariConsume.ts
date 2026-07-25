@@ -1,13 +1,12 @@
 // hikariConsume — 統一光貨消費関数
 // 3サービス共通: 効果圏GAME / きかくん / Luna
-// 各サービスが利用前に呼び出して光貨残高を確認・消費する
+// 事業売買は廃止。研究貢献・サービス利用料のみ消費。
 
 import { createClientFromRequest } from 'npm:@base44/sdk@0.8.23';
 
-// サービス別消費レート
+// サービス別消費レート（事業売買は廃止）
 const CONSUMPTION_RATES: Record<string, number> = {
-  'effect_game_trade': 1000,      // 効果圏GAME: 1取引 = 1,000光貨
-  'effect_game_ipo': 5000,         // 効果圏GAME: IPO取得 = 5,000光貨
+  'effect_game_research': 1000,     // 効果圏GAME: 研究貢献（D削減）1回 = 1,000光貨
   'kika_idea_chain': 100000,      // きかくん: ideaRiskChain 1回 = 100,000光貨
   'luna_resonance': 30000,        // Luna: 共鳴セッション 1回 = 30,000光貨
   'luna_letter': 10000,          // Luna: 週次レター = 10,000光貨

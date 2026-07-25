@@ -1,5 +1,5 @@
-// get_market_overview — 光貨圏GAME市場一覧
-// 全GO判定アイデアの現在V/D/取引価格を返す
+// get_market_overview — 効果圏GAME 公開ランキング
+// 事業売買は廃止。V=N/D値とランキングのみ表示。
 
 export default async function(req) {
   const url = new URL(req.url);
@@ -39,21 +39,6 @@ export default async function(req) {
         const d_value = vnd_score > 0 ? (10 - vnd_score) : 10;
         const v_value = d_value > 0 ? Math.round((n_value / d_value) * 100) / 100 : n_value;
 
-        // 保有者数
-        const holdings = await client.entities.GameHolding.list({
-          filter: { question_id: q.id, status: "held" },
-          limit: 100
-        });
-        const holder_count = holdings ? holdings.length : 0;
-
-        // 直近取引価格
-        const transactions = await client.entities.GameTransaction.list({
-          filter: { question_id: q.id },
-          sort: "-timestamp",
-          limit: 1
-        });
-        const last_price = transactions && transactions.length > 0 ? transactions[0].data.price_hikari : null;
-
         market.push({
           question_id: q.id,
           title: q.data.text,
@@ -63,13 +48,13 @@ export default async function(req) {
           d_value: Math.round(d_value * 100) / 100,
           v_value,
           vnd_score,
-          tam,
-          holder_count,
-          last_trade_price: last_price,
-          ipo_available: holder_count === 0
+          tam
         });
       }
     }
+
+    // V値で降順ソート（ランキング）
+    market.sort((a, b) => b.v_value - a.v_value);
 
     return new Response(JSON.stringify({
       total: market.length,
