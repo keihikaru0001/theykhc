@@ -62,13 +62,10 @@ function startPurchase() {
   loader.style.display = 'block';
   errorEl.style.display = 'none';
 
-  const successUrl = service === 'hikari_sphere' ? 'https://theykhc.com' :
-                    service === 'kika' ? 'https://theykhc.com' :
-                    service === 'luna' ? 'https://theykhc.com' :
-                    'https://theykhc.com';
+  const successUrl = 'https://theykhc.com';
   const cancelUrl = successUrl;
 
-  fetch('https://app.base44.com/api/agents/69c53e05c969d16a2d7cbd0c/functions/purchaseHikari', {
+  fetch('https://app-2d7cbd0c.base44.app/functions/purchaseHikari', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
