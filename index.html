@@ -1036,7 +1036,7 @@ footer{text-align:center;padding:64px 20px 100px;position:relative;z-index:2}
       <div class="ir-comp-formula">
         <div class="ir-comp-formula-eq">
           V<sub>日本</sub> = <span>540兆 / D<sub>巨大</sub></span> → 縮小<br>
-          V<sub>光貨</sub> = <span>208.67兆 / D<sub>→0</sub></span> → 無限大
+          V<sub>光貨</sub> = <span><span id="energy-n-tam">208.67</span>兆 / D<sub>→0</sub></span> → 無限大
         </div>
         <div class="ir-comp-formula-note">
           Dで0に近い方が、Nが小さくてもVは爆発する。<br>
@@ -1615,36 +1615,104 @@ document.querySelectorAll('section').forEach(s=>observer.observe(s));
 const ZENODO_API='https://zenodo.org/api/records?size=0&q=creators.name:"Katayama,+Yoshimitsu"';
 
 async function updateDynamicData(){
+  let doiCount=1032;
+  let tamTrillion=208.67;
+  let samTrillion=23.19;
+  let somTrillion=2.28;
+  let goCount=776;
+
+  // Fetch KnowledgeStandard from observation-data.json
+  try{
+    const obsResp=await fetch('observation-data.json');
+    const obsData=await obsResp.json();
+    if(obsData.knowledge_standard){
+      const ks=obsData.knowledge_standard;
+      if(ks.doi_count) doiCount=ks.doi_count;
+      if(ks.tam_trillion_yen) tamTrillion=ks.tam_trillion_yen;
+      if(ks.sam_trillion_yen) samTrillion=ks.sam_trillion_yen;
+      if(ks.som_trillion_yen) somTrillion=ks.som_trillion_yen;
+      if(ks.go_idea_count) goCount=ks.go_idea_count;
+    }
+  }catch(e){console.log('observation-data.json fallback');}
+
+  // Fetch live DOI count from Zenodo API (overrides observation-data)
   try{
     const resp=await fetch(ZENODO_API);
     const data=await resp.json();
-    const doiCount=data.hits.total||1032;
+    if(data.hits && data.hits.total) doiCount=data.hits.total;
+  }catch(e){console.log('Zenodo API fallback to static values');}
 
-    // Update vault number
-    const vaultNum=document.querySelector('.vault-num');
-    if(vaultNum){vaultNum.textContent=doiCount.toLocaleString();}
+  // Update vault number
+  const vaultNum=document.querySelector('.vault-num');
+  if(vaultNum){vaultNum.textContent=doiCount.toLocaleString();}
 
-    // Update hero sub
-    const heroSub=document.querySelector('.hero-sub');
-    if(heroSub){heroSub.textContent=doiCount.toLocaleString()+' SEEDS · ZENODO / CERN · D → 0';}
+  // Update hero sub
+  const heroSub=document.querySelector('.hero-sub');
+  if(heroSub){heroSub.textContent=doiCount.toLocaleString()+' SEEDS · ZENODO / CERN · D → 0';}
 
-    // Update knowledge standard DOI
-    const ksDoi=document.getElementById('ks-doi');
-    if(ksDoi){ksDoi.textContent=doiCount.toLocaleString();}
+  // Update hero game sub
+  const heroGameSub=document.querySelector('.hero-game-sub');
+  if(heroGameSub){heroGameSub.textContent=goCount.toLocaleString()+' ideas · V=N/D · トップ15公開中';}
 
-    // Update IR section — recalculate stock price from DOI count
-    const irDoi=document.getElementById('ir-doi');
-    const irShares=document.getElementById('ir-shares');
-    const irPrice=document.getElementById('ir-price');
-    if(irDoi){irDoi.textContent=doiCount.toLocaleString();}
-    if(irShares){irShares.textContent=(doiCount*1000).toLocaleString();}
-    if(irPrice){
-      // Stock price = TAM (208.67T yen) / total shares (DOI × 1000)
-      const tamTrillion=208.67;
-      const totalShares=doiCount*1000;
-      const pricePerShare=Math.round((tamTrillion*1000000000000)/totalShares);
-      irPrice.textContent=pricePerShare.toLocaleString();
-    }
+  // Update knowledge standard values
+  const ksDoi=document.getElementById('ks-doi');
+  if(ksDoi){ksDoi.textContent=doiCount.toLocaleString();}
+  const ksGo=document.getElementById('ks-go');
+  if(ksGo){ksGo.textContent=goCount.toLocaleString();}
+  const ksTam=document.getElementById('ks-tam');
+  if(ksTam){ksTam.textContent=tamTrillion.toFixed(2);}
+  const ksSam=document.getElementById('ks-sam');
+  if(ksSam){ksSam.textContent=samTrillion.toFixed(2);}
+  const ksSom=document.getElementById('ks-som');
+  if(ksSom){ksSom.textContent=somTrillion.toFixed(2);}
+
+  // Update text references with GO count
+  document.querySelectorAll('[data-go-count]').forEach(el=>{el.textContent=goCount.toLocaleString();});
+
+  // Update IR section
+  const irDoi=document.getElementById('ir-doi');
+  const irShares=document.getElementById('ir-shares');
+  const irPrice=document.getElementById('ir-price');
+  const irGo=document.getElementById('ir-go');
+  const irTam=document.getElementById('ir-tam');
+  const irCompTam=document.getElementById('ir-comp-tam');
+  const irCompDoi=document.getElementById('ir-comp-doi');
+  if(irDoi){irDoi.textContent=doiCount.toLocaleString();}
+  if(irGo){irGo.textContent=goCount.toLocaleString();}
+  if(irTam){irTam.textContent=tamTrillion.toFixed(2);}
+  if(irCompTam){irCompTam.textContent=tamTrillion.toFixed(2);}
+  if(irCompDoi){irCompDoi.textContent=doiCount.toLocaleString();}
+  if(irShares){irShares.textContent=(doiCount*1000).toLocaleString();}
+  if(irPrice){
+    const totalShares=doiCount*1000;
+    const pricePerShare=Math.round((tamTrillion*1000000000000)/totalShares);
+    irPrice.textContent=pricePerShare.toLocaleString();
+  }
+
+  // Update exchange rate
+  const irExchange=document.querySelector('.ir-exchange-unit');
+  if(irExchange&&irPrice){
+    const priceNum=parseInt(irPrice.textContent.replace(/,/g,''));
+    irExchange.innerHTML='1 Hikari = '+priceNum.toLocaleString()+',000円（TAM裏付け観測値）<br>※光貨圏内のみ取引可能　外部換金・決済・送金・譲渡　一切不可';
+  }
+
+  // Update trans counts
+  const transDoi=document.getElementById('trans-doi-count');
+  if(transDoi){transDoi.textContent=doiCount.toLocaleString();}
+  const transGo=document.getElementById('trans-go-count');
+  if(transGo){transGo.textContent=goCount.toLocaleString();}
+
+  // Update energy comparison section
+  const energyNTam=document.getElementById('energy-n-tam');
+  if(energyNTam){energyNTam.textContent=tamTrillion.toFixed(2);}
+  const energyNDoi=document.getElementById('energy-n-doi');
+  if(energyNDoi){energyNDoi.textContent=doiCount.toLocaleString();}
+
+  // Update meta description
+  document.querySelector('meta[name="description"]')?.setAttribute('content',
+    'TheYKHC — 片山佳光（Yoshimitsu Katayama）による天道経済学・光貨・宇宙同期標準の研究拠点。V=N/D公式を核心に、'+doiCount.toLocaleString()+'件のZenodo DOI資産と文明設計の全記録をここに置く。');
+}
+
 
     // Update meta description
     document.querySelector('meta[name="description"]')?.setAttribute('content',

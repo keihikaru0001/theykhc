@@ -186,12 +186,12 @@
   ],
   "brainwave_proxies": [],
   "knowledge_standard": {
-    "tam_trillion_yen": 0,
-    "sam_trillion_yen": 0,
-    "som_trillion_yen": 0,
+    "tam_trillion_yen": 208.67,
+    "sam_trillion_yen": 23.19,
+    "som_trillion_yen": 2.28,
     "doi_count": 1032,
-    "go_idea_count": 0,
-    "unit_backing_value": 0,
+    "go_idea_count": 776,
+    "unit_backing_value": 270000000,
     "observation_date": "2026-07-25"
   },
   "observation_summary": {
