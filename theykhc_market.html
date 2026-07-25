@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>効果圏GAME — 今日のトップ15 | TheYKHC</title>
-<meta name="description" content="効果圏GAMEのV=N/Dランキング上位15事業アイデア。入場無料・取引1,000円からの閉鎖系効果圏GAME。">
+<meta name="description" content="効果圏GAMEのV=N/Dランキング上位15。754件の知的資産の中から、今日の上位15件を公開。入場無料。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
@@ -126,11 +126,11 @@ body{
   text-align:center;
   width:48px;
 }
-.idea-name{
-  font-family:'Cormorant Garamond',serif;
-  font-size:16px;
+.idea-code{
+  font-family:'JetBrains Mono',monospace;
+  font-size:14px;
   color:var(--paper);
-  line-height:1.6;
+  letter-spacing:2px;
   font-weight:400;
 }
 .idea-industry{
@@ -231,8 +231,8 @@ body{
   .idea-table{
     font-size:13px;
   }
-  .idea-name{
-    font-size:14px;
+  .idea-code{
+    font-size:12px;
   }
 }
 </style>
@@ -243,7 +243,7 @@ body{
 <header class="page-header">
   <div class="header-eyebrow">効果圏GAME · HIKARI SPHERE</div>
   <h1 class="header-title">今日のトップ15</h1>
-  <p class="header-subtitle">V = N / D で計算された、存在価値の高い事業アイデア<br>754件の中から、今日の上位15件を公開する</p>
+  <p class="header-subtitle">V = N / D で計算された、存在価値の高い知的資産<br>754件の中から、今日の上位15件を公開する</p>
   <div class="header-formula">V = N / D</div>
 </header>
 
@@ -255,7 +255,8 @@ body{
     <thead>
       <tr>
         <th>#</th>
-        <th>アイデア</th>
+        <th>コード</th>
+        <th>分野</th>
         <th class="num">V 値</th>
       </tr>
     </thead>
@@ -265,14 +266,14 @@ body{
 
 <!-- CTA -->
 <section class="cta-section">
-  <h2 class="cta-title">取引を始める</h2>
+  <h2 class="cta-title">参加する</h2>
   <p class="cta-desc">
-    入場は<strong>無料</strong>。誰でも登録して754件の事業アイデアを閲覧できる。<br>
-    取引（IPO取得・売却・研究）には光貨が必要——<strong>1,000円から</strong>。<br>
+    入場は<strong>無料</strong>。登録すれば754件の知的資産ランキングを閲覧できる。<br>
+    研究貢献（D削減）には光貨が必要——<strong>¥30,000 = 100,000光貨</strong>。<br>
     光貨は共鳴マーカーであり、金融商品ではありません。
   </p>
-  <a class="cta-button" href="https://hikari-sphere-flow.base44.app" target="_blank" rel="noopener">SNSで入場する</a>
-  <div class="cta-note">Google / Apple でログイン · 入場無料 · 取引¥1,000〜</div>
+  <a class="cta-button" href="https://hikari-sphere-flow.base44.app" target="_blank" rel="noopener">入場する</a>
+  <div class="cta-note">Google / Apple でログイン · 入場無料 · 光貨購入型</div>
 </section>
 
 <!-- Footer -->
@@ -301,10 +302,8 @@ fetch('top-ideas.json')
     tbody.innerHTML = data.map(item => `
       <tr>
         <td class="rank-cell">${item.rank}</td>
-        <td>
-          <div class="idea-name">${item.name}</div>
-          <span class="idea-industry">${item.industry}</span>
-        </td>
+        <td><div class="idea-code">${item.code}</div></td>
+        <td><span class="idea-industry">${item.industry}</span></td>
         <td class="num-cell">${formatNumber(item.v_value)}</td>
       </tr>
     `).join('');
