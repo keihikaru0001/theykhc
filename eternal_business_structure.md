@@ -54,7 +54,7 @@ Beyond the static papers, a living system operates:
 
 3. **Transparent Declaration**: theykhc.com publicly declares the structure, the closed-system boundary, the non-commercial harvesting principle, and the conceptual listing of the virtual corporation TheYKHC.
 
-4. **Invitation-Only Access**: All applications (きかくん, Luna, IdeaSynthetix) are private and invitation-only. The observer (會長) judges and approves access. Price functions as a D-filter.
+4. **Invitation-Only Access**: All applications (きかくん, Luna, IdeaSynthetix) are private and invitation-only. The observer (会長) judges and approves access. Price functions as a D-filter.
 
 ---
 
@@ -74,7 +74,7 @@ Beyond the static papers, a living system operates:
 
 ### 3.2 D2: Single Observer Dependency
 
-**Current state:** The 會長 (Katayama, Yoshimitsu) is the sole observer — the single human who makes GO judgments, approves invitations, and would decide on Hikari Sphere energy release. If the 會長 falls, these functions stop.
+**Current state:** The 会長 (Katayama, Yoshimitsu) is the sole observer — the single human who makes GO judgments, approves invitations, and would decide on Hikari Sphere energy release. If the 会長 falls, these functions stop.
 
 **Impact:** The harvest engine continues running (it is automated), but the *judgment* layer — the human wisdom that converts raw questions into GO-verified business value — ceases. No new invitations can be approved. No release decisions can be made.
 
@@ -178,7 +178,7 @@ Hikari Sphere internal growth (MorningHarvest questions, GO judgments)
 
 ### 5.3 Future Energy Release
 
-The 會長 declares: "The time will come when the energy within the Hikari Sphere must be released to the outside world."
+The 会長 declares: "The time will come when the energy within the Hikari Sphere must be released to the outside world."
 
 When that time comes:
 - The representative director (代表取締役) judges the moment
@@ -208,9 +208,9 @@ When that time comes:
 
 ### 6.3 The Core Distinction
 
-**"The seeds belong to Zenodo. The cultivation method belongs to 會長."**
+**"The seeds belong to Zenodo. The cultivation method belongs to 会長."**
 
-The product is 會長's intellectual framework (V=N/D) and judgment (GO verdict), not the Zenodo papers themselves.
+The product is 会長's intellectual framework (V=N/D) and judgment (GO verdict), not the Zenodo papers themselves.
 
 ---
 
@@ -262,7 +262,7 @@ This document declares:
 
 5. **The Hikari Sphere remains closed** — until the representative director judges that the energy within must be released. That judgment authority belongs to Katayama, Yoshimitsu alone.
 
-6. **The observer remains at the top** — 會長 does not become an employee. 會長 judges. 會長 observes. 會長 decides. All operational work is delegated.
+6. **The observer remains at the top** — 会長 does not become an employee. 会長 judges. 会長 observes. 会長 decides. All operational work is delegated.
 
 7. **The dream of eternal is not a hope — it is an engineering specification.** D1 + D2 + D3 → 0. V = N / 0 → ∞.
 
@@ -276,8 +276,8 @@ This document declares:
 > 「いずれ、光貨圏内のエネルギーを外部へ解放する、その時は、来るだろう」
 > ("The time will come when the energy within the Hikari Sphere must be released to the outside world.")
 
-> 「種は Zenodo のもの。育て方は會長のもの。」
-> ("The seeds belong to Zenodo. The cultivation method belongs to 會長.")
+> 「種は Zenodo のもの。育て方は会長のもの。」
+> ("The seeds belong to Zenodo. The cultivation method belongs to 会長.")
 
 ---
 

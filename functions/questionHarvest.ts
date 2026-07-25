@@ -17,7 +17,7 @@ function extractJson(raw) {
 
 //===============================================
 // Question Harvest Engine — 1,034 DOIから問いを収穫 → 5層診断 → 市場規模算出
-// 會長の論文 "Question Harvest Engine v1-v6" の実装
+// 会長の論文 "Question Harvest Engine v1-v6" の実装
 //===============================================
 
 Deno.serve(async (req) => {

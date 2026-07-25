@@ -1,5 +1,5 @@
 // zenodoMorningHarvest.ts
-// Fetches recent Zenodo records (excluding 會長's own) for question harvesting
+// Fetches recent Zenodo records (excluding 会長's own) for question harvesting
 // Called every morning by the workflow
 
 export default async function(req: Request): Promise<Response> {
@@ -27,7 +27,7 @@ export default async function(req: Request): Promise<Response> {
     const data = await res.json();
     const hits = data?.hits?.hits || [];
 
-    // Filter out 會長's own records (Katayama, Yoshimitsu)
+    // Filter out 会長's own records (Katayama, Yoshimitsu)
     const filtered = hits.filter((hit: any) => {
       const creators = hit?.metadata?.creators || [];
       const isOwn = creators.some((c: any) =>

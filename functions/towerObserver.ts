@@ -3,7 +3,7 @@ import { createClientFromRequest } from 'npm:@base44/sdk@0.8.23';
 //===============================================
 // Tower Observer — TheYKHC Tower 観測装置
 // DOI・引用・ニュートリノ・金価格の相関を観測
-// 摩擦ゼロ。會長の創作活動そのものが観測データ。
+// 摩擦ゼロ。会長の創作活動そのものが観測データ。
 //===============================================
 
 Deno.serve(async (req) => {
@@ -78,7 +78,7 @@ Deno.serve(async (req) => {
         timestamp: new Date().toISOString(),
         tower_stats: {
           doi_seeds: seeds.length,
-          total_dois_on_zenodo: 1466, // 會長の全DOI数
+          total_dois_on_zenodo: 1466, // 会長の全DOI数
           conversations: conversations.length,
           neutrino_events: neutrinoEvents.length,
           gold_snapshots: fxTicks.length,
@@ -121,10 +121,10 @@ Deno.serve(async (req) => {
       const intellectual = Math.round(Math.sin(2 * Math.PI * diffDays / INTELLECTUAL_CYCLE) * 100);
       const intuitive = Math.round(Math.sin(2 * Math.PI * diffDays / INTUITIVE_CYCLE) * 100);
       
-      // 創作サイクル: 會長のDOI登録頻度から独自周期を算出
+      // 創作サイクル: 会長のDOI登録頻度から独自周期を算出
       // 2003年から蓄積されている → 年平均1466/23年 ≈ 64 DOI/年
       // これを「創作バイオリズム」の基準にする
-      const creativeCycle = 47; // 會長独自の創作周期（仮説: 47日）
+      const creativeCycle = 47; // 会長独自の創作周期（仮説: 47日）
       const creative = Math.round(Math.sin(2 * Math.PI * diffDays / creativeCycle) * 100);
       
       // 総合バイオリズムスコア
@@ -265,7 +265,7 @@ Deno.serve(async (req) => {
           gold_after_avg: parseFloat(afterAvg.toFixed(2)),
           gold_change_pct: parseFloat(change.toFixed(2)),
           interpretation: n.event_type === 'GOLD' && change > 0.5 ? 'GOLD級ニュートリノ → 金価格上昇（観測者効果候補）' :
-                          n.event_type === 'OBSERVER' && Math.abs(change) > 1 ? '觀測者イベント → 金価格変動あり' :
+                          n.event_type === 'OBSERVER' && Math.abs(change) > 1 ? '観測者イベント → 金価格変動あり' :
                           '相関なし or データ不足'
         });
       }

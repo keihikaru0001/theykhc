@@ -1,4 +1,4 @@
-// Zenodo Harvester — 會長の領域に関連するメタデータをZenodo APIから取得しSeedRecordに保存
+// Zenodo Harvester — 会長の領域に関連するメタデータをZenodo APIから取得しSeedRecordに保存
 // タイトル+キーワードのみ使用（著作権クリア、事実情報）
 
 Deno.serve(async (req) => {
@@ -12,7 +12,7 @@ Deno.serve(async (req) => {
       start_page = 1               // 開始ページ
     } = body;
 
-    // 會長の領域のデフォルト検索キーワード
+    // 会長の領域のデフォルト検索キーワード
     const defaultSubjects = [
       'philosophy of mind',
       'consciousness observation',

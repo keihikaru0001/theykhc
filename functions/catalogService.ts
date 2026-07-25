@@ -295,7 +295,7 @@ export default async function catalogService(req, res) {
         plans: [
           { name: 'CATALOG', price: 1000000, interval: '月額', features: ['748件カタログ検索・閲覧', 'V=N/Dスコア・市場規模表示', '月次トレンドレポート'] },
           { name: 'ANALYSIS', price: 3000000, interval: '月額', features: ['CATALOG全機能', '5層分析フルテキスト', '月3テーマ × 5層リスク診断', '比較レポート + KRI監視'] },
-          { name: 'ENTERPRISE', price: 10000000, interval: '月額', features: ['ANALYSIS全機能', 'カスタム生成', '専用DB', '會長直接相談'] }
+          { name: 'ENTERPRISE', price: 10000000, interval: '月額', features: ['ANALYSIS全機能', 'カスタム生成', '専用DB', '会長直接相談'] }
         ]
       });
     }
