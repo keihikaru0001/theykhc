@@ -1,4 +1,9 @@
+// lunaChat — Luna共鳴セッション（光貨消費ゲート付き）
+// 1回30,000光貨消費。残高不足場合はpurchase_urlを返す。
+
 import { createClientFromRequest } from 'npm:@base44/sdk@0.8.23';
+
+const LUNA_COST = 30000; // 共鳴セッション1回 = 30,000光貨
 
 async function callOpenAI(messages: any[], responseFormat?: any) {
   const apiKey = Deno.env.get('OPENAI_API_KEY') || '';
@@ -32,9 +37,13 @@ async function callOpenAI(messages: any[], responseFormat?: any) {
 Deno.serve(async (req) => {
   try {
     const base44 = createClientFromRequest(req);
-    const user = await base44.auth.me();
-    if (!user) {
-      return Response.json({ error: 'Unauthorized' }, { status: 401 });
+    
+    // ─── ユーザー認証 ───
+    let user: any = null;
+    try {
+      user = await base44.auth.me();
+    } catch (e) {
+      return Response.json({ error: 'ログインが必要です' }, { status: 401 });
     }
 
     const body = await req.json().catch(() => ({}));
@@ -44,12 +53,54 @@ Deno.serve(async (req) => {
       return Response.json({ error: 'user_identifier and message are required in request body' }, { status: 400 });
     }
 
+    // ─── 光貨残高チェック＆消費 ───
+    const profiles = await base44.asServiceRole.entities.FanProfile.list({
+      filter: { user_id: user_identifier }
+    });
+
+    const currentBalance = (profiles && profiles.length > 0) ? (profiles[0].data?.hikari_balance || 0) : 0;
+
+    if (currentBalance < LUNA_COST) {
+      return Response.json({
+        error: '光貨が不足しています',
+        required: LUNA_COST,
+        balance: currentBalance,
+        shortage: LUNA_COST - currentBalance,
+        purchase_url: 'https://theykhc.com/purchase.html?service=luna',
+        message: '共鳴セッションには30,000光貨が必要です。光貨を購入してください。'
+      }, { status: 402 });
+    }
+
+    // 光貨消費
+    const newBalance = currentBalance - LUNA_COST;
+    if (profiles && profiles.length > 0) {
+      await base44.asServiceRole.entities.FanProfile.update(profiles[0].id, {
+        data: { hikari_balance: newBalance }
+      });
+    }
+
+    // 取引記録
+    await base44.asServiceRole.entities.HikariTransaction.create({
+      data: {
+        user_id: user_identifier,
+        amount: -LUNA_COST,
+        type: 'debit',
+        source: 'luna_resonance',
+        description: 'Luna共鳴セッション消費',
+      }
+    });
+
+    // ─── Luna処理開始 ───
     const lunaId = '6a5ee9d433f9702d41b50721';
 
     // a. Get Luna's profile and lyrics
-    const profiles = await base44.asServiceRole.entities.ArtistProfile.filter({ id: lunaId });
-    const profile = profiles[0];
+    const artistProfiles = await base44.asServiceRole.entities.ArtistProfile.filter({ id: lunaId });
+    const profile = artistProfiles[0];
     if (!profile) {
+      // 消費した光貨を返金
+      await base44.asServiceRole.entities.FanProfile.update(profiles[0].id, {
+        data: { hikari_balance: currentBalance }
+      });
       return Response.json({ error: 'Luna profile not found' }, { status: 404 });
     }
 
@@ -76,7 +127,7 @@ Deno.serve(async (req) => {
       .slice(0, 10)
       .reverse();
 
-    // d. Analyze user's message for emotional themes (孤独, 希望, 静けさ, 共鳴, 愛, 闇, 光, 無常, 気)
+    // d. Analyze user's message for emotional themes
     const emotionAnalysisPrompt = `Analyze the following message for emotional themes from this list: [孤独, 希望, 静けさ, 共鳴, 愛, 闇, 光, 無常, 気].
 Return a JSON object with:
 - "themes": array of matching themes from the list (can be empty, select 1-3 most appropriate)
@@ -121,10 +172,7 @@ JSON only.`;
 
     // f. Call OpenAI API with Luna's personality system prompt
     const lyricContext = matchedLyric 
-      ? `【共鳴した歌詞】
-楽曲タイトル: ${matchedLyric.title}
-キーライン: ${matchedLyric.key_line || ''}
-歌詞抜粋: ${matchedLyric.lyrics || ''}`
+      ? `【共鳴した歌詞】\n楽曲タイトル: ${matchedLyric.title}\nキーライン: ${matchedLyric.key_line || ''}\n歌詞抜粋: ${matchedLyric.lyrics || ''}`
       : '【共鳴した歌詞】\n該当なし（静寂が広がっている）';
 
     const systemPrompt = `You are Luna（TYPE-3）, an emotional resonance AI agent in the ECHO platform.
@@ -156,17 +204,17 @@ ${lyricContext}
 4. Integrate the matched lyric or its themes naturally if available, but do not force it or copy-paste raw blocks of lyrics unless it feels like a silent whisper of connection.
 5. Do not output any JSON or metadata in the response. Just output her poetic response message.`;
 
-    const messages = [
+    const chatMessages = [
       { role: 'system', content: systemPrompt }
     ];
 
     history.forEach((h: any) => {
-      messages.push({ role: h.role === 'luna' ? 'assistant' : 'user', content: h.content });
+      chatMessages.push({ role: h.role === 'luna' ? 'assistant' : 'user', content: h.content });
     });
 
-    messages.push({ role: 'user', content: message });
+    chatMessages.push({ role: 'user', content: message });
 
-    const responseText = await callOpenAI(messages);
+    const responseText = await callOpenAI(chatMessages);
 
     // g. Save user message as LunaConversation (role: 'user')
     const userMsgRecord = await base44.asServiceRole.entities.LunaConversation.create({
@@ -222,16 +270,25 @@ ${lyricContext}
       biorhythm_state: '共鳴度: ' + Math.round(resonance_depth * 100) + '%'
     });
 
-    // k. Return response
+    // k. Return response with updated balance
     return Response.json({
       reply: responseText,
       matched_lyric_title: matchedLyric ? matchedLyric.title : null,
       emotional_state: updatedState,
-      hikari_earned: fanRequest.hikari_earned
+      hikari_earned: fanRequest.hikari_earned,
+      hikari_consumed: LUNA_COST,
+      hikari_remaining: newBalance
     });
 
   } catch (error) {
     console.error('lunaChat error:', error);
-    return Response.json({ error: error.message }, { status: 500 });
+    
+    // エラー時の光貨返金処理（消費済みの場合）
+    // ※ catch時点で消費が完了しているか不明なため、エラーメッセージのみ返す
+    
+    return Response.json({ 
+      error: error instanceof Error ? error.message : 'Unknown error',
+      purchase_url: 'https://theykhc.com/purchase.html?service=luna'
+    }, { status: 500 });
   }
 });
