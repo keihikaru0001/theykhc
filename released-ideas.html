@@ -35,14 +35,7 @@ header .meta{margin-top:24px;color:#666;font-size:0.85rem}
 .idea-card .vnd-score{display:inline-block;margin-top:12px;padding:4px 12px;background:rgba(255,215,0,0.08);border-radius:8px;color:#ffd700;font-size:0.9rem}
 /* 有料コンテンツ */
 .locked-section{margin-top:20px;position:relative;overflow:hidden;border-radius:12px}
-.locked-content{filter:blur(8px);user-select:none;pointer-events:none;opacity:0.5}
-.locked-overlay{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(10,10,15,0.85);border-radius:12px;text-align:center;padding:20px}
-.locked-overlay .lock-icon{font-size:2rem;margin-bottom:12px;opacity:0.7}
-.locked-overlay .lock-title{font-size:1rem;color:#ffd700;font-weight:600;margin-bottom:8px}
-.locked-overlay .lock-desc{font-size:0.85rem;color:#888;margin-bottom:16px;max-width:400px}
-.locked-overlay .lock-desc strong{color:#ccc}
-.locked-overlay .cta-btn{display:inline-block;padding:10px 28px;background:linear-gradient(135deg,#ffd700,#ffa500);color:#0a0a0f;font-weight:600;border-radius:24px;text-decoration:none;font-size:0.9rem;transition:all 0.3s}
-.locked-overlay .cta-btn:hover{transform:scale(1.05);box-shadow:0 4px 20px rgba(255,215,0,0.3)}
+
 .purchase-notice{text-align:center;margin:40px 20px;padding:24px;background:rgba(255,215,0,0.04);border:1px solid rgba(255,215,0,0.15);border-radius:12px}
 .purchase-notice p{color:#888;font-size:0.9rem;margin:8px 0}
 .purchase-notice .highlight{color:#ffd700;font-weight:600}
@@ -72,7 +65,7 @@ footer{text-align:center;padding:40px 20px;color:#555;font-size:0.8rem;border-to
 
 <div class="purchase-notice" id="purchase-notice">
 <p>五段評価の全文・市場規模データ・出典DOIは<span class="highlight">光貨決済後</span>に閲覧可能です。</p>
-<p><strong style="color:#ccc">¥30,000 = 100,000光貨</strong> — 五段評価全文＋市場データへのアクセス権</p>
+<p><strong style="color:#ccc">¥30,000 = 100,000光貨</strong> — 決済後、会長が手動でアクセス権を付与します</p>
 <p style="margin-top:12px;color:#666">金に変われば、差し引き済み。 — モラロジー</p>
 <button onclick="startPurchase()" class="cta-btn" style="border:none;cursor:pointer;font-family:inherit">光貨を購入する</button>
 </div>
@@ -130,28 +123,14 @@ function renderIdeas(ideas){
   container.innerHTML = ideas.map((idea,idx)=>{
     const verdictClass = 'verdict-' + (idea.verdict||'go');
     
-    // 有料セクション（ぼかし表示）
-    const hasPaidContent = idea.research_layer || idea.market_layer || idea.tam;
-    const lockedSection = hasPaidContent ? `
-      <div class="locked-section">
-        <div class="locked-content">
-          <div class="layer" style="padding:16px;background:rgba(255,255,255,0.02);border-left:3px solid rgba(255,215,0,0.3);border-radius:0 8px 8px 0;margin-bottom:12px">
-            <div style="font-weight:600;color:#ffd700;font-size:0.85rem;margin-bottom:8px">研究の層</div>
-            <div style="font-size:0.9rem;color:#ccc">${idea.research_layer||''}</div>
-          </div>
-          <div class="layer" style="padding:16px;background:rgba(255,255,255,0.02);border-left:3px solid rgba(255,215,0,0.3);border-radius:0 8px 8px 0;margin-bottom:12px">
-            <div style="font-weight:600;color:#ffd700;font-size:0.85rem;margin-bottom:8px">市場の層</div>
-            <div style="font-size:0.9rem;color:#ccc">${idea.market_layer||''}</div>
-          </div>
-        </div>
-        <div class="locked-overlay">
-          <div class="lock-icon">🔒</div>
-          <div class="lock-title">五段評価の全文・市場データ</div>
-          <div class="lock-desc">研究・感情・知恵・市場・リスクの5層分析全文とTAM/SAM/SOM市場規模データは<strong>光貨決済後</strong>に閲覧可能です。</div>
-          <button onclick="startPurchase()" class="cta-btn" style="border:none;cursor:pointer;font-family:inherit">光貨を購入して読む — ¥30,000</button>
-        </div>
+    // 有料セクション — データは静的ファイルに含めない（案内のみ）
+    const lockedSection = `
+      <div class="locked-section" style="margin-top:20px;padding:20px;border:1px solid rgba(255,215,0,0.15);border-radius:12px;text-align:center;background:rgba(255,215,0,0.02)">
+        <div style="font-size:0.9rem;color:#888;margin-bottom:8px">五段評価の全文・市場規模データ・出典DOI</div>
+        <div style="font-size:0.85rem;color:#666;margin-bottom:12px">光貨決済後に会長へ申請 → 手動でアクセス権を付与</div>
+        <button onclick="startPurchase()" class="cta-btn" style="border:none;cursor:pointer;font-family:inherit;display:inline-block;padding:8px 24px;background:linear-gradient(135deg,#ffd700,#ffa500);color:#0a0a0f;font-weight:600;border-radius:20px;font-size:0.85rem">光貨を購入する — ¥30,000</button>
       </div>
-    ` : '';
+    `;
 
     return `
     <div class="idea-card" data-industry="${idea.industry||''}">
