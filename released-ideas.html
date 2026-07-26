@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TheYKHC Tower — 公開事業アーカイブ</title>
-<meta name="description" content="TheYKHC Towerの公開事業アイデアアーカイブ。問い、判定、V=N/Dスコアを無料公開。五段評価の全文は光貨決済後に閲覧可能。">
+<meta name="description" content="TheYKHC Towerから世界へ還元する事業アイデアの公開アーカイブ。問い、判定、V=N/Dスコアを無料公開。">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Noto Sans JP','Helvetica Neue',sans-serif;background:#0a0a0f;color:#e8e8f0;line-height:1.8}
@@ -33,14 +33,9 @@ header .meta{margin-top:24px;color:#666;font-size:0.85rem}
 .idea-card h3{font-size:1.1rem;font-weight:500;margin:16px 0 8px;color:#f0f0f5}
 .idea-card .industry{color:#888;font-size:0.85rem}
 .idea-card .vnd-score{display:inline-block;margin-top:12px;padding:4px 12px;background:rgba(255,215,0,0.08);border-radius:8px;color:#ffd700;font-size:0.9rem}
-/* 有料コンテンツ */
-.locked-section{margin-top:20px;position:relative;overflow:hidden;border-radius:12px}
-
-.purchase-notice{text-align:center;margin:40px 20px;padding:24px;background:rgba(255,215,0,0.04);border:1px solid rgba(255,215,0,0.15);border-radius:12px}
-.purchase-notice p{color:#888;font-size:0.9rem;margin:8px 0}
-.purchase-notice .highlight{color:#ffd700;font-weight:600}
-.purchase-notice .cta-btn{display:inline-block;margin-top:16px;padding:12px 32px;background:linear-gradient(135deg,#ffd700,#ffa500);color:#0a0a0f;font-weight:600;border-radius:24px;text-decoration:none;font-size:0.95rem;transition:all 0.3s}
-.purchase-notice .cta-btn:hover{transform:scale(1.05);box-shadow:0 4px 20px rgba(255,215,0,0.3)}
+.contact-note{margin-top:20px;padding:16px;border:1px solid rgba(255,255,255,0.08);border-radius:12px;background:rgba(255,255,255,0.02);text-align:center}
+.contact-note p{color:#666;font-size:0.85rem;margin:4px 0}
+.contact-note .label{color:#888;font-weight:500}
 footer{text-align:center;padding:40px 20px;color:#555;font-size:0.8rem;border-top:1px solid rgba(255,255,255,0.06);margin-top:60px}
 .loading{text-align:center;padding:60px;color:#666}
 @media(max-width:768px){.idea-card{padding:20px}.idea-card .header-row{flex-direction:column}.stats{grid-template-columns:repeat(2,1fr)}}
@@ -51,7 +46,7 @@ footer{text-align:center;padding:40px 20px;color:#555;font-size:0.8rem;border-to
 <header>
 <h1>公開事業アーカイブ</h1>
 <p class="subtitle">TheYKHC Towerから世界へ還元する事業アイデア</p>
-<p class="meta">適度な徳のストックを保ちながら、古きを新しきに変える</p>
+<p class="meta">問いは種として世界へ。判断は會長が胸に刻む。</p>
 <p class="meta" id="last-update">読み込み中...</p>
 </header>
 
@@ -63,17 +58,9 @@ footer{text-align:center;padding:40px 20px;color:#555;font-size:0.8rem;border-to
 <div class="loading">公開アーカイブを読み込んでいます...</div>
 </div>
 
-<div class="purchase-notice" id="purchase-notice">
-<p>五段評価の全文・市場規模データ・出典DOIは<span class="highlight">サブスクリプション登録後</span>に閲覧可能です。</p>
-<p><strong style="color:#ccc">¥10,000/月</strong> — 毎週日曜に新規公開される事業アイデアの五段評価全文にアクセス</p>
-<p style="margin-top:12px;color:#666">決済後、会長が確認してアクセス権を付与します（最大5分）</p>
-<p style="margin-top:8px;color:#666">金に変われば、差し引き済み。 — モラロジー</p>
-<button onclick="startPurchase()" class="cta-btn" style="border:none;cursor:pointer;font-family:inherit">光貨を購入する</button>
-</div>
-
 <footer>
 <p>TheYKHC Tower — 片山佳光</p>
-<p style="margin-top:8px">V=N/D · 知徳一体 · 金に変われば差し引き済み</p>
+<p style="margin-top:8px">V=N/D · 知徳一体 · 無料で残す</p>
 <p style="margin-top:8px"><a href="https://theykhc.com" style="color:#6b9eff;text-decoration:none">theykhc.com</a></p>
 </footer>
 </div>
@@ -107,8 +94,6 @@ async function loadIdeas(){
 
     window.allIdeas = data.ideas;
     renderIdeas(data.ideas);
-    
-    // purchase-notice は常に表示
   }catch(e){
     document.getElementById('ideas').innerHTML =
       '<div class="loading">公開アーカイブはまだありません。毎週日曜日に更新されます。</div>';
@@ -123,15 +108,6 @@ function renderIdeas(ideas){
   }
   container.innerHTML = ideas.map((idea,idx)=>{
     const verdictClass = 'verdict-' + (idea.verdict||'go');
-    
-    // 有料セクション — データは静的ファイルに含めない（案内のみ）
-    const lockedSection = `
-      <div class="locked-section" style="margin-top:20px;padding:20px;border:1px solid rgba(255,215,0,0.15);border-radius:12px;text-align:center;background:rgba(255,215,0,0.02)">
-        <div style="font-size:0.9rem;color:#888;margin-bottom:8px">五段評価の全文・市場規模データ・出典DOI</div>
-        <div style="font-size:0.85rem;color:#666;margin-bottom:12px">決済後、会長が確認してアクセス権を付与（最大5分）</div>
-        <button onclick="startPurchase()" class="cta-btn" style="border:none;cursor:pointer;font-family:inherit;display:inline-block;padding:8px 24px;background:linear-gradient(135deg,#ffd700,#ffa500);color:#0a0a0f;font-weight:600;border-radius:20px;font-size:0.85rem">サブスクリプション登録 — ¥10,000/月</button>
-      </div>
-    `;
 
     return `
     <div class="idea-card" data-industry="${idea.industry||''}">
@@ -145,7 +121,6 @@ function renderIdeas(ideas){
       <h3>${idea.text||''}</h3>
       <div class="industry">${idea.industry||'未分類'}</div>
       <div class="vnd-score">V=N/Dスコア: ${idea.vnd_score||'N/A'}/10</div>
-      ${lockedSection}
     </div>`;
   }).join('');
 }
@@ -162,14 +137,6 @@ function filterIdeas(industry){
 }
 
 loadIdeas();
-
-function startPurchase(){
-  window.location.href = 'https://buy.stripe.com/cNi6oIfek8BP9KKgzE6kg0r';
-}
-function startSubscription(){
-  window.location.href = 'https://buy.stripe.com/cNi6oIfek8BP9KKgzE6kg0r';
-}
-
 </script>
 </body>
 </html>
