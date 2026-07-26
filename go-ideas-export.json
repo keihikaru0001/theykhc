@@ -1,112 +1,179 @@
 [
   {
+    "id": "6a654f6450259ce0a5d71883",
     "text": "地政学リスク早期警告SaaS: GDELTデータを用いたサプライチェーン中断予測プラットフォーム",
     "industry": "物流/地政学リスク",
-    "vnd": null,
+    "vnd": 4.0,
     "depth": 4.0,
     "source_doi": "10.5281/zenodo.21465753",
     "source_title": "From Detection to Decision",
     "created_date": "2026-07-26",
-    "insight": "GDELTの大規模データを精密較正すれば、サプライチェーン中断の事前警告が可能"
+    "insight": "GDELTの大規模データを精密較正すれば、サプライチェーン中断の事前警告が可能。D（解釈の曖昧性）を階層化することで意思決定までの距離を縮められる。",
+    "tags": [
+      "地政学",
+      "SaaS",
+      "GDELT",
+      "サプライチェーン"
+    ]
   },
   {
+    "id": "6a654f6450259ce0a5d71884",
     "text": "IQEM統合管理クラウド: 中小製造業者向けISO 3規格統合運用SaaS",
     "industry": "製造/環境",
-    "vnd": null,
+    "vnd": 3.0,
     "depth": 3.0,
     "source_doi": "10.5281/zenodo.21465738",
     "source_title": "INTEGRATED MANAGEMENT SYSTEMS FOR SUSTAINABLE AUTOMOTIVE MANUFACTURING",
     "created_date": "2026-07-26",
-    "insight": "ISO 3規格の統合運用をクラウド化すれば、中小製造業者のD（導入摩擦）を大幅に削減"
+    "insight": "ISO 3規格の統合運用をクラウド化すれば、中小製造業者のD（導入摩擦）を大幅に削減。N（適用範囲）を拡大できる。",
+    "tags": [
+      "ISO",
+      "SaaS",
+      "中小企業",
+      "持続可能製造"
+    ]
   },
   {
+    "id": "6a654f6450259ce0a5d71885",
     "text": "ラグジュアリー再流通プラットフォーム: ブランド認証付きリセールmarketplace",
     "industry": "ファッション/サステナビリティ",
-    "vnd": null,
+    "vnd": 4.0,
     "depth": 4.0,
     "source_doi": "10.64823/ijter.2605009",
-    "source_title": "Reselling Desire: Luxury Resale Market",
+    "source_title": "Reselling Desire: Socio-economic and Cultural Forces of Luxury Resale Market",
     "created_date": "2026-07-26",
-    "insight": "リセール市場のNを最大化しつつDを制御するブランド認証付きプラットフォーム"
+    "insight": "リセール市場のN（再流通商品総量）を最大化しつつ、D（偽物・品質劣化）を制御するブランド認証付きプラットフォームは、循環経済のVを高める。",
+    "tags": [
+      "リセール",
+      "marketplace",
+      "循環経済",
+      "ブランド認証"
+    ]
   },
   {
-    "text": "物理原理に基づく神経アーキテクチャ自動選択をSaaS化",
+    "id": "6a63fd737a88fde019e267b4",
+    "text": "物理原理に基づく神経アーキテクチャ自動選択をSaaS化し、企業のAI導入コストと設計摩擦を削減する事業",
     "industry": "AI/ML SaaS",
-    "vnd": null,
+    "vnd": 4.0,
     "depth": 4.0,
     "source_doi": "10.5281/zenodo.21542050",
     "source_title": "Ilmarinen: a physics-principled neural-architecture meta-optimizer",
     "created_date": "2026-07-25",
-    "insight": "MLエンジニア不在の企業でも最適アーキテクチャを物理法則ベースで自動設計"
+    "insight": "MLエンジニア不在の企業でも最適アーキテクチャを物理法則ベースで自動設計——D削減を直接価値として販売",
+    "tags": [
+      "AI-SaaS",
+      "auto-architecture",
+      "D-reduction"
+    ]
   },
   {
-    "text": "行政プラットフォーム化の進捗をV=N/D指標で可視化するコンサルティング事業",
+    "id": "6a63fd737a88fde019e267b5",
+    "text": "行政プラットフォーム化の進捗をV=N/D指標で可視化し、自治体間のベンチマークと改善提案を提供するコンサルティング事業",
     "industry": "Public Sector Consulting",
-    "vnd": null,
+    "vnd": 4.0,
     "depth": 4.0,
     "source_doi": "10.5281/zenodo.21541792",
     "source_title": "Platformization and Organizational Intelligence in Public Administration",
     "created_date": "2026-07-25",
-    "insight": "デジタル政府の効果をV=N/Dで定量化し、自治体に摩擦の見える化を販売"
+    "insight": "デジタル政府の効果をV=N/Dで定量化し、自治体に「摩擦の見える化」を販売——D削減額がコンサル報酬の指標",
+    "tags": [
+      "govtech",
+      "benchmarking",
+      "V=N/D"
+    ]
   },
   {
-    "text": "都市の交通・空気質・気象データを統合する都市管理ダッシュボード事業",
+    "id": "6a63fd737a88fde019e267b6",
+    "text": "都市の交通・空気質・気象データを統合し、リアルタイムで都市V値を算出・表示する都市管理ダッシュボード事業",
     "industry": "Urban Tech/Smart City",
-    "vnd": null,
+    "vnd": 4.0,
     "depth": 4.0,
     "source_doi": "10.5281/zenodo.21539315",
     "source_title": "Synthetic Traffic–Air Quality–Meteorology Time Series",
     "created_date": "2026-07-25",
-    "insight": "5分解像度の都市データをV=N/Dで処理し、行政の意思決定Dを削減するダッシュボード"
+    "insight": "5分解像度の都市データをV=N/Dで処理し、行政の意思決定Dを削減するダッシュボード——自治体向けサブスク",
+    "tags": [
+      "urban-dashboard",
+      "real-time",
+      "V=N/D"
+    ]
   },
   {
-    "text": "統合コンプライアンスSaaS：IQEM Frameworkをクラウド化",
+    "id": "6a62ab60ed8c8b46cec84013",
+    "text": "統合コンプライアンスSaaS：IQEM Frameworkをクラウド化し、中小製造業がISO 9001+14001+10012の統合管理を月額制で導入できるプラットフォーム",
     "industry": "製造業・コンプライアンスSaaS",
     "vnd": null,
     "depth": null,
     "source_doi": "10.5281/zenodo.21465738",
     "source_title": "INTEGRATED MANAGEMENT SYSTEMS FOR SUSTAINABLE AUTOMOTIVE MANUFACTURING",
     "created_date": "2026-07-24",
-    "insight": "IQEM FrameworkをSaaS化し中小製造業がISO統合管理を低コストで導入できるプラットフォーム"
+    "insight": "IQEM FrameworkをSaaS化し、中小製造業がISO統合管理を低コストで導入できるプラットフォームは、D（導入摩擦）を劇的に削減する。",
+    "tags": [
+      "verdict:pending",
+      "vnd:pending",
+      "source:zenodo",
+      "morning:2026-07-24",
+      "type:business"
+    ]
   },
   {
-    "text": "プロセス存在論AI設計スタジオ",
+    "id": "6a62ab60ed8c8b46cec84014",
+    "text": "プロセス存在論AI設計スタジオ：プロセス存在論に基づくAIシステム設計手法を商品化し、物理現象をモデル化するAIの設計効率を向上させるコンサルティング+ツール",
     "industry": "AI・計算哲学",
     "vnd": null,
     "depth": null,
     "source_doi": "10.5281/zenodo.21467650",
     "source_title": "A Process Ontology of the Computational Universe",
     "created_date": "2026-07-24",
-    "insight": "計算宇宙のプロセス存在論をAI学習環境に実装し物理AIの設計効率を向上"
+    "insight": "計算宇宙のプロセス存在論をAI学習環境に実装し、物理現象をプロセスとしてAIに学習させるシミュレータは、物理AIの設計効率を革命的に向上させる。",
+    "tags": [
+      "verdict:pending",
+      "vnd:pending",
+      "source:zenodo",
+      "morning:2026-07-24",
+      "type:business"
+    ]
   },
   {
-    "text": "地政学サプライチェーン早期警告プラットフォーム",
+    "id": "6a62ab60ed8c8b46cec84012",
+    "text": "地政学サプライチェーン早期警告プラットフォーム：GDELTデータとV=N/Dを組み合わせ、地政学リスクの早期警告をサプライチェーン意思決定に直接統合するSaaS",
     "industry": "ロジスティクス・地政学リスク",
     "vnd": null,
     "depth": null,
     "source_doi": "10.5281/zenodo.21465753",
-    "source_title": "From Detection to Decision",
+    "source_title": "From Detection to Decision: Calibrating the Operational Value of Open-Source Geopolitical Early Warning for the China–Europe Railway Express",
     "created_date": "2026-07-24",
-    "insight": "GDELTデータとV=N/Dを組み合わせ地政学リスク早期警告をサプライチェーン意思決定に統合"
+    "insight": "GDELTデータとV=N/Dを組み合わせ、地政学リスク早期警告をサプライチェーン意思決定に直接組み込むSaaSは、日米欧の貿易企業で高い需要がある。",
+    "tags": [
+      "verdict:pending",
+      "vnd:pending",
+      "source:zenodo",
+      "morning:2026-07-24",
+      "type:business"
+    ]
   },
   {
+    "id": "6a5eebc9fe3fa8e0c155e0fd",
     "text": "運ぶ量を予想して稼ぐサービス",
     "industry": "仕事とビジネス",
-    "vnd": null,
+    "vnd": 1.0,
     "depth": 1.0,
     "source_doi": "10.5281/zenodo.21465753",
     "source_title": "From Detection to Decision",
     "created_date": "2026-07-21",
-    "insight": "中国からヨーロッパまでのルートで枠を管理し効率よく利益を出す"
+    "insight": "鉄道で荷物を運ぶための場所（枠）を管理するお仕事です。中国からヨーロッパまでのルートで、どれくらいの荷物が運べるかを予測し、世界情勢に合わせて賢く「枠」を確保したり売りに出したりすることで、効率よく利益を出します。",
+    "tags": []
   },
   {
+    "id": "6a5eebc9fe3fa8e0c155e103",
     "text": "物流と世界情勢のリスク相談サービス",
     "industry": "仕事とビジネス",
-    "vnd": null,
+    "vnd": 1.0,
     "depth": 1.0,
     "source_doi": "10.5281/zenodo.21465753",
     "source_title": "From Detection to Decision",
     "created_date": "2026-07-21",
-    "insight": "危ない地域での荷物運送のシステム調整をサポート"
+    "insight": "運送会社が、危ない地域で荷物を運ぶときに使うシステムの調整をお手伝いします。いらぬ心配を減らして、本当に必要なときだけ警告が出るように設定を整えます。",
+    "tags": []
   }
 ]
