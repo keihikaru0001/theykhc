@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TheYKHC Tower — 公開事業アーカイブ</title>
+<meta name="description" content="TheYKHC Towerから世界へ還元する事業アイデアアーカイブ。知徳一体の実践。">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans JP','Helvetica Neue',sans-serif;background:#0a0a0f;color:#e8e8f0;line-height:1.8}
+.container{max-width:1200px;margin:0 auto;padding:40px 20px}
+header{text-align:center;padding:60px 20px 40px;border-bottom:1px solid rgba(255,255,255,0.08)}
+header h1{font-size:2.4rem;font-weight:300;letter-spacing:0.05em;background:linear-gradient(135deg,#ffd700,#ffa500);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+header .subtitle{margin-top:16px;color:#888;font-size:0.95rem}
+header .meta{margin-top:24px;color:#666;font-size:0.85rem}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin:40px 0}
+.stat{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:24px;text-align:center}
+.stat .num{font-size:1.8rem;font-weight:600;color:#ffd700}
+.stat .label{font-size:0.8rem;color:#888;margin-top:4px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0;justify-content:center}
+.filter-btn{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#ccc;padding:6px 16px;border-radius:20px;cursor:pointer;font-size:0.85rem;transition:all 0.2s}
+.filter-btn:hover,.filter-btn.active{background:rgba(255,215,0,0.15);border-color:rgba(255,215,0,0.3);color:#ffd700}
+.idea-list{margin-top:32px}
+.idea-card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:32px;margin-bottom:24px;transition:all 0.3s}
+.idea-card:hover{border-color:rgba(255,215,0,0.2);background:rgba(255,255,255,0.04)}
+.idea-card .header-row{display:flex;justify-content:space-between;align-items:start;flex-wrap:wrap;gap:12px}
+.idea-card .code{font-family:monospace;color:#666;font-size:0.85rem}
+.idea-card .verdict{padding:4px 12px;border-radius:12px;font-size:0.8rem;font-weight:600}
+.verdict-go{background:rgba(34,197,94,0.15);color:#22c55e;border:1px solid rgba(34,197,94,0.3)}
+.verdict-hold{background:rgba(234,179,8,0.15);color:#eab308;border:1px solid rgba(234,179,8,0.3)}
+.verdict-pivot{background:rgba(59,130,246,0.15);color:#3b82f6;border:1px solid rgba(59,130,246,0.3)}
+.verdict-no-go{background:rgba(239,68,68,0.15);color:#ef4444;border:1px solid rgba(239,68,68,0.3)}
+.idea-card h3{font-size:1.1rem;font-weight:500;margin:16px 0 8px;color:#f0f0f5}
+.idea-card .industry{color:#888;font-size:0.85rem}
+.idea-card .vnd-score{display:inline-block;margin-top:12px;padding:4px 12px;background:rgba(255,215,0,0.08);border-radius:8px;color:#ffd700;font-size:0.9rem}
+.idea-card .layers{margin-top:20px;display:grid;gap:16px}
+.idea-card .layer{padding:16px;background:rgba(255,255,255,0.02);border-left:3px solid rgba(255,215,0,0.3);border-radius:0 8px 8px 0}
+.idea-card .layer-title{font-weight:600;color:#ffd700;font-size:0.85rem;margin-bottom:8px}
+.idea-card .layer-content{font-size:0.9rem;color:#ccc;white-space:pre-wrap}
+.idea-card .market-data{margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px}
+.market-item{padding:12px;background:rgba(255,255,255,0.03);border-radius:8px;text-align:center}
+.market-item .label{font-size:0.75rem;color:#888}
+.market-item .value{font-size:1rem;font-weight:600;color:#f0f0f5;margin-top:4px}
+.idea-card .source{margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.06);font-size:0.8rem;color:#666}
+.idea-card .source a{color:#6b9eff;text-decoration:none}
+.idea-card .source a:hover{text-decoration:underline}
+.idea-card .insight{margin-top:12px;padding:12px;background:rgba(255,215,0,0.04);border-radius:8px;font-size:0.85rem;color:#d4af37;font-style:italic}
+footer{text-align:center;padding:40px 20px;color:#555;font-size:0.8rem;border-top:1px solid rgba(255,255,255,0.06);margin-top:60px}
+.loading{text-align:center;padding:60px;color:#666}
+@media(max-width:768px){.idea-card{padding:20px}.idea-card .header-row{flex-direction:column}.stats{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<h1>公開事業アーカイブ</h1>
+<p class="subtitle">TheYKHC Towerから世界へ還元する事業アイデア</p>
+<p class="meta">知徳一体 — 知識は徳に還ることで初めて光になる</p>
+<p class="meta" id="last-update">読み込み中...</p>
+</header>
+
+<div class="stats" id="stats"></div>
+
+<div class="filters" id="filters"></div>
+
+<div class="idea-list" id="ideas">
+<div class="loading">公開アーカイブを読み込んでいます...</div>
+</div>
+
+<footer>
+<p>TheYKHC Tower — 片山佳光</p>
+<p style="margin-top:8px">V=N/D · 知徳一体 · 無料で残す</p>
+<p style="margin-top:8px"><a href="https://theykhc.com" style="color:#6b9eff;text-decoration:none">theykhc.com</a></p>
+</footer>
+</div>
+
+<script>
+async function loadIdeas(){
+  try{
+    const resp = await fetch('https://theykhc.com/released-ideas.json');
+    if(!resp.ok) throw new Error('Not found');
+    const data = await resp.json();
+
+    // Stats
+    const total = data.ideas.length;
+    const goCount = data.ideas.filter(i=>i.verdict==='go').length;
+    const industries = [...new Set(data.ideas.map(i=>i.industry).filter(Boolean))];
+    const totalTam = data.ideas.reduce((s,i)=>s+(i.tam_num||0),0);
+
+    document.getElementById('last-update').textContent =
+      '最終更新: ' + new Date(data.published_at).toLocaleDateString('ja-JP', {year:'numeric',month:'long',day:'long'});
+
+    document.getElementById('stats').innerHTML = `
+      <div class="stat"><div class="num">${total}</div><div class="label">公開事業数</div></div>
+      <div class="stat"><div class="num">${goCount}</div><div class="label">GO判定</div></div>
+      <div class="stat"><div class="num">${industries.length}</div><div class="label">産業分野</div></div>
+      <div class="stat"><div class="num">${(totalTam/10000).toFixed(1)}兆</div><div class="label">TAM合計</div></div>
+    `;
+
+    // Filters
+    const allIndustries = ['全て', ...industries.sort()];
+    document.getElementById('filters').innerHTML = allIndustries.map((ind,i)=>
+      `<button class="filter-btn ${i===0?'active':''}" onclick="filterIdeas('${ind}')">${ind}</button>`
+    ).join('');
+
+    // Ideas
+    window.allIdeas = data.ideas;
+    renderIdeas(data.ideas);
+  }catch(e){
+    document.getElementById('ideas').innerHTML =
+      '<div class="loading">公開アーカイブはまだありません。毎週日曜日に更新されます。</div>';
+  }
+}
+
+function renderIdeas(ideas){
+  const container = document.getElementById('ideas');
+  if(ideas.length === 0){
+    container.innerHTML = '<div class="loading">該当する事業がありません。</div>';
+    return;
+  }
+  container.innerHTML = ideas.map((idea,idx)=>{
+    const verdictClass = 'verdict-' + (idea.verdict||'go');
+    const layers = [
+      {title:'研究の層', content:idea.research_layer},
+      {title:'感情の層', content:idea.emotion_layer},
+      {title:'知恵の層', content:idea.wisdom_layer},
+      {title:'市場の層', content:idea.market_layer},
+      {title:'リスクの層', content:idea.risk_layer},
+    ].filter(l=>l.content);
+
+    const layersHtml = layers.map(l=>
+      `<div class="layer"><div class="layer-title">${l.title}</div><div class="layer-content">${l.content}</div></div>`
+    ).join('');
+
+    const marketHtml = [
+      idea.tam ? `<div class="market-item"><div class="label">TAM</div><div class="value">${idea.tam}</div></div>` : '',
+      idea.sam ? `<div class="market-item"><div class="label">SAM</div><div class="value">${idea.sam}</div></div>` : '',
+      idea.som ? `<div class="market-item"><div class="label">SOM</div><div class="value">${idea.som}</div></div>` : '',
+      idea.cagr ? `<div class="market-item"><div class="label">CAGR</div><div class="value">${idea.cagr}</div></div>` : '',
+    ].filter(Boolean).join('');
+
+    const sourceHtml = idea.source_doi
+      ? `<div class="source">出典: <a href="https://doi.org/${idea.source_doi}" target="_blank">${idea.source_title||idea.source_doi}</a></div>`
+      : idea.source_title ? `<div class="source">出典: ${idea.source_title}</div>` : '';
+
+    const insightHtml = idea.insight
+      ? `<div class="insight">💡 ${idea.insight}</div>` : '';
+
+    return `
+    <div class="idea-card" data-industry="${idea.industry||''}">
+      <div class="header-row">
+        <div>
+          <span class="code">${idea.code || 'TYKHC-'+String(idx+1).padStart(3,'0')}</span>
+          <span style="margin-left:12px;color:#666;font-size:0.8rem">${idea.created_date||''}</span>
+        </div>
+        <span class="verdict ${verdictClass}">${(idea.verdict||'go').toUpperCase()}</span>
+      </div>
+      <h3>${idea.text||''}</h3>
+      <div class="industry">${idea.industry||'未分類'}</div>
+      <div class="vnd-score">V=N/Dスコア: ${idea.vnd_score||'N/A'}/10</div>
+      ${insightHtml}
+      ${layersHtml ? `<div class="layers">${layersHtml}</div>` : ''}
+      ${marketHtml ? `<div class="market-data">${marketHtml}</div>` : ''}
+      ${sourceHtml}
+    </div>`;
+  }).join('');
+}
+
+function filterIdeas(industry){
+  document.querySelectorAll('.filter-btn').forEach((btn,i)=>{
+    btn.classList.toggle('active', i===0 && industry==='全て' || btn.textContent===industry);
+  });
+  if(industry==='全て'){
+    renderIdeas(window.allIdeas);
+  }else{
+    renderIdeas(window.allIdeas.filter(i=>i.industry===industry));
+  }
+}
+
+loadIdeas();
+</script>
+</body>
+</html>
