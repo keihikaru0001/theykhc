@@ -1,0 +1,112 @@
+[
+  {
+    "text": "地政学リスク早期警告SaaS: GDELTデータを用いたサプライチェーン中断予測プラットフォーム",
+    "industry": "物流/地政学リスク",
+    "vnd": null,
+    "depth": 4.0,
+    "source_doi": "10.5281/zenodo.21465753",
+    "source_title": "From Detection to Decision",
+    "created_date": "2026-07-26",
+    "insight": "GDELTの大規模データを精密較正すれば、サプライチェーン中断の事前警告が可能"
+  },
+  {
+    "text": "IQEM統合管理クラウド: 中小製造業者向けISO 3規格統合運用SaaS",
+    "industry": "製造/環境",
+    "vnd": null,
+    "depth": 3.0,
+    "source_doi": "10.5281/zenodo.21465738",
+    "source_title": "INTEGRATED MANAGEMENT SYSTEMS FOR SUSTAINABLE AUTOMOTIVE MANUFACTURING",
+    "created_date": "2026-07-26",
+    "insight": "ISO 3規格の統合運用をクラウド化すれば、中小製造業者のD（導入摩擦）を大幅に削減"
+  },
+  {
+    "text": "ラグジュアリー再流通プラットフォーム: ブランド認証付きリセールmarketplace",
+    "industry": "ファッション/サステナビリティ",
+    "vnd": null,
+    "depth": 4.0,
+    "source_doi": "10.64823/ijter.2605009",
+    "source_title": "Reselling Desire: Luxury Resale Market",
+    "created_date": "2026-07-26",
+    "insight": "リセール市場のNを最大化しつつDを制御するブランド認証付きプラットフォーム"
+  },
+  {
+    "text": "物理原理に基づく神経アーキテクチャ自動選択をSaaS化",
+    "industry": "AI/ML SaaS",
+    "vnd": null,
+    "depth": 4.0,
+    "source_doi": "10.5281/zenodo.21542050",
+    "source_title": "Ilmarinen: a physics-principled neural-architecture meta-optimizer",
+    "created_date": "2026-07-25",
+    "insight": "MLエンジニア不在の企業でも最適アーキテクチャを物理法則ベースで自動設計"
+  },
+  {
+    "text": "行政プラットフォーム化の進捗をV=N/D指標で可視化するコンサルティング事業",
+    "industry": "Public Sector Consulting",
+    "vnd": null,
+    "depth": 4.0,
+    "source_doi": "10.5281/zenodo.21541792",
+    "source_title": "Platformization and Organizational Intelligence in Public Administration",
+    "created_date": "2026-07-25",
+    "insight": "デジタル政府の効果をV=N/Dで定量化し、自治体に摩擦の見える化を販売"
+  },
+  {
+    "text": "都市の交通・空気質・気象データを統合する都市管理ダッシュボード事業",
+    "industry": "Urban Tech/Smart City",
+    "vnd": null,
+    "depth": 4.0,
+    "source_doi": "10.5281/zenodo.21539315",
+    "source_title": "Synthetic Traffic–Air Quality–Meteorology Time Series",
+    "created_date": "2026-07-25",
+    "insight": "5分解像度の都市データをV=N/Dで処理し、行政の意思決定Dを削減するダッシュボード"
+  },
+  {
+    "text": "統合コンプライアンスSaaS：IQEM Frameworkをクラウド化",
+    "industry": "製造業・コンプライアンスSaaS",
+    "vnd": null,
+    "depth": null,
+    "source_doi": "10.5281/zenodo.21465738",
+    "source_title": "INTEGRATED MANAGEMENT SYSTEMS FOR SUSTAINABLE AUTOMOTIVE MANUFACTURING",
+    "created_date": "2026-07-24",
+    "insight": "IQEM FrameworkをSaaS化し中小製造業がISO統合管理を低コストで導入できるプラットフォーム"
+  },
+  {
+    "text": "プロセス存在論AI設計スタジオ",
+    "industry": "AI・計算哲学",
+    "vnd": null,
+    "depth": null,
+    "source_doi": "10.5281/zenodo.21467650",
+    "source_title": "A Process Ontology of the Computational Universe",
+    "created_date": "2026-07-24",
+    "insight": "計算宇宙のプロセス存在論をAI学習環境に実装し物理AIの設計効率を向上"
+  },
+  {
+    "text": "地政学サプライチェーン早期警告プラットフォーム",
+    "industry": "ロジスティクス・地政学リスク",
+    "vnd": null,
+    "depth": null,
+    "source_doi": "10.5281/zenodo.21465753",
+    "source_title": "From Detection to Decision",
+    "created_date": "2026-07-24",
+    "insight": "GDELTデータとV=N/Dを組み合わせ地政学リスク早期警告をサプライチェーン意思決定に統合"
+  },
+  {
+    "text": "運ぶ量を予想して稼ぐサービス",
+    "industry": "仕事とビジネス",
+    "vnd": null,
+    "depth": 1.0,
+    "source_doi": "10.5281/zenodo.21465753",
+    "source_title": "From Detection to Decision",
+    "created_date": "2026-07-21",
+    "insight": "中国からヨーロッパまでのルートで枠を管理し効率よく利益を出す"
+  },
+  {
+    "text": "物流と世界情勢のリスク相談サービス",
+    "industry": "仕事とビジネス",
+    "vnd": null,
+    "depth": 1.0,
+    "source_doi": "10.5281/zenodo.21465753",
+    "source_title": "From Detection to Decision",
+    "created_date": "2026-07-21",
+    "insight": "危ない地域での荷物運送のシステム調整をサポート"
+  }
+]
