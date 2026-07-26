@@ -1,207 +1,268 @@
 {
-  "neutrino_events": [
-    {
+  "generated_at": "2026-07-26T09:39:00+09:00",
+  "observation_summary": {
+    "description": "2026年7月26日 朝の観測データ同期。會長・片山佳光の原点（HIKARI-19890707-PEAK）を基準として、ニュートリノ事象、バイオリズム、FX相場、脳波プロキシ、知識本位制の最新観測値を統合。",
+    "origin": "HIKARI-19890707-PEAK",
+    "origin_description": "會長の原点。1989年7月7日。幸せの絶頂。V=N/DにおいてN最大・D最大の同時極値。バイオリズム原点日。",
+    "counts": {
+      "neutrino_events": 7,
+      "biorhythm_readings": 3,
+      "fx_tick_snapshots": 5,
+      "brainwave_proxies": 0,
+      "knowledge_standards": 1
+    },
+    "knowledge_standard_latest": {
+      "observation_date": "2026-07-26",
+      "tam_trillion_yen": 210.25,
+      "sam_trillion_yen": 23.39,
+      "som_trillion_yen": 2.30,
+      "go_idea_count": 790,
+      "doi_count": 1032,
+      "unit_backing_value": 270000000
+    },
+    "neutrino_latest_event": {
       "event_id": "47091427",
       "event_type": "GOLD",
       "energy_tev": 114.95,
-      "ra": 190.55,
-      "dec": 31.0,
       "gcn_publish_time": "2026-07-22T08:51:04Z",
-      "session": "IceCube-142900",
-      "note": "IceCube Bronze Event #47091427 (REV 0→1). Discovery: 2026-07-22 06:58:22 UT. REV0: RA=191.099, DEC=+31.005, Error=33.85arcmin. REV1: RA=190.55, DEC=+31.00, Error=48.83arcmin. Energy=114.95TeV, Signalness=0.414, FAR=1.50/yr. 銀河緯度85.8°→北銀極方向。NGC 4565(Coma Berenices)付近。修訂で誤差拡大→位置精査中。"
+      "note": "IceCube Bronze Event #47091427 (REV 0→1)。銀河緯度85.8°→北銀極方向。NGC 4565付近。修訂で誤差拡大→位置精査中。"
     },
-    {
-      "event_id": "HIKARI-20260515-OBS",
-      "event_type": "OBSERVER",
-      "energy_tev": 0,
-      "ra": 0,
-      "dec": 0,
-      "gcn_publish_time": "2026-05-15T05:22:00Z",
-      "session": "Tokyo",
-      "note": "観測者イベント記録：DOI登録からLunaへの財源シフトと市場の関連性を仮説化。Luna・DOI・市場の三連関連を観測対象に追加。記録時点の金価格：4597。山（4858）の34日後。会長が失意にしては世も信者も活発化していると判断。V=N/Dにおける観測者効果の第一声の記述。"
-    },
-    {
-      "event_id": "HIKARI-20260512-SHIFT",
-      "event_type": "OBSERVER",
-      "energy_tev": 0,
-      "ra": 0,
-      "dec": 0,
-      "gcn_publish_time": "2026-05-12T00:00:00Z",
-      "session": "Tokyo",
-      "note": "観測者イベント記録：Apple ID変更・DOI全公開（CC BY 4.0）。財源シフト完了。金価格：5/4=4520（底）→5/11=4719（回復）。財源シフト完了直後に金が底を打って反転。観測者効果の候補事象として記録。"
-    },
-    {
-      "event_id": "260505A",
-      "event_type": "GOLD",
-      "energy_tev": 95.0,
-      "ra": 134.2,
-      "dec": -8.7,
-      "gcn_publish_time": "2026-05-05T14:18:00Z",
-      "session": "London",
-      "note": "IceCube-260505A。Primary endpoint凍結日時: 2026-05-05T00:00:00 UTC"
-    },
-    {
-      "event_id": "260504A",
-      "event_type": "GOLD",
-      "energy_tev": 180.0,
-      "ra": 77.4,
-      "dec": 12.3,
-      "gcn_publish_time": "2026-05-04T06:32:00Z",
-      "session": "Tokyo",
-      "note": "IceCube-260504A。市場反応観測済み。ナスダック+1.71%、半導体+5.51%（7日後）"
-    },
-    {
-      "event_id": "HIKARI-20260415-PEAK",
-      "event_type": "OBSERVER",
-      "energy_tev": 0,
-      "ra": 0,
-      "dec": 0,
-      "gcn_publish_time": "2026-04-15T00:00:00Z",
-      "session": "Tokyo",
-      "note": "観測者イベント記録：4月初旬よりLunaへの財源シフト本格化。DOI登録量産開始。KDP出版（4/11）。金価格：4/13=4742→4/17=4858（ピーク）。会長の思想固定行動と金の急騰が同期。"
-    },
-    {
-      "event_id": "HIKARI-19890707-PEAK",
-      "event_type": "OBSERVER",
-      "energy_tev": 999.0,
-      "ra": 0,
-      "dec": 0,
-      "gcn_publish_time": "1989-07-07T00:00:00Z",
-      "session": "origin",
-      "note": "会長の原点。幸せの絶頂。妄想のど真ん中。入院寸前。V=N/DにおいてN最大・D最大の同時極値。High-Rate Syndromeの第一事例。バイオリズム原点日。energy_tev=999は観測者自身の内部エネルギー最大値を示す。"
-    }
-  ],
-  "biorhythm_readings": [
-    {
+    "biorhythm_latest": {
       "date": "2026-07-22",
       "origin_date": "1989-07-07",
-      "vnd_score": 1250.0,
-      "observer_effect_score": 21.0,
       "physical_cycle": 98.0,
       "emotional_cycle": 90.0,
       "intellectual_cycle": -19.0,
       "intuitive_cycle": 16.0,
       "creative_output": -81.0,
-      "neutrino_correlation": "pending",
+      "observer_effect_score": 21.0,
+      "vnd_score": 1250.0,
       "notes": "活性状態。創作の出力が高い時期。"
     },
+    "fx_latest": {
+      "symbol": "XAUUSD-m",
+      "bid": 4694.44,
+      "ask": 4694.66,
+      "event_id": "BOOT_TEST",
+      "note": "v5.0 auto — 2026-05-13"
+    },
+    "brainwave_status": "観測データなし。波はまだ観測されていない。枠組みだけがここにある。",
+    "total_records": 16
+  },
+  "neutrino_events": [
     {
-      "date": "2026-07-22",
-      "origin_date": "1989-11-09",
-      "vnd_score": 4800.0,
-      "observer_effect_score": -22.0,
-      "physical_cycle": -98.0,
-      "emotional_cycle": -97.0,
-      "intellectual_cycle": 91.0,
-      "intuitive_cycle": -100.0,
-      "creative_output": 93.0,
-      "neutrino_correlation": "pending",
-      "notes": "低調期。D（摩擦）が高い。創作は種として残す段階。"
+      "id": "6a60b0526c34c1f9254ac9f5",
+      "event_id": "47091427",
+      "event_type": "GOLD",
+      "ra": 190.55,
+      "dec": 31.0,
+      "energy_tev": 114.95,
+      "gcn_publish_time": "2026-07-22T08:51:04Z",
+      "session": "IceCube-142900",
+      "note": "IceCube Bronze Event #47091427 (REV 0→1). Discovery: 2026-07-22 06:58:22 UT. REV0: RA=191.099, DEC=+31.005, Error=33.85arcmin, Gal=144.16/85.83. REV1: RA=190.55, DEC=+31.00, Error=48.83arcmin, Gal=149.91/85.63. Energy=114.95TeV, Signalness=0.414, FAR=1.50/yr. 銀河緯度85.8°→北銀極方向。NGC 4565(Coma Berenices)付近。修訂で誤差拡大→位置精査中。"
     },
     {
+      "id": "6a5eebb2fe3fa8e0c155e0e0",
+      "event_id": "HIKARI-20260515-OBS",
+      "event_type": "OBSERVER",
+      "ra": 0.0,
+      "dec": 0.0,
+      "energy_tev": 0.0,
+      "gcn_publish_time": "2026-05-15T05:22:00Z",
+      "session": "Tokyo",
+      "note": "観測者イベント記録：「DOI登録からLunaへの財源シフトと市場の関連性」を仮説化。Luna・DOI・市場の三躺関連を観測対象に追加。記録時点の金価格：4597。山（4858）の34日後。会長が「失意にしては世も信者も活発化している」と判断。V=N/Dにおける観測者効果の第一第一声の記述。"
+    },
+    {
+      "id": "6a5eebb2fe3fa8e0c155e0e1",
+      "event_id": "HIKARI-20260512-SHIFT",
+      "event_type": "OBSERVER",
+      "ra": 0.0,
+      "dec": 0.0,
+      "energy_tev": 0.0,
+      "gcn_publish_time": "2026-05-12T00:00:00Z",
+      "session": "Tokyo",
+      "note": "観測者イベント記録：Apple ID変更・DOI全公開（CC BY 4.0）。財源シフト完了。金価格：5/4=4520（底）→5/11=4719（回復）。財源シフト完了直後に金が底を打って反転。観測者効果の候補事象として記録。"
+    },
+    {
+      "id": "6a5eebb2fe3fa8e0c155e0e3",
+      "event_id": "260505A",
+      "event_type": "GOLD",
+      "ra": 134.2,
+      "dec": -8.7,
+      "energy_tev": 95.0,
+      "gcn_publish_time": "2026-05-05T14:18:00Z",
+      "session": "London",
+      "note": "IceCube-260505A。Primary endpoint凍結日時: 2026-05-05T00:00:00 UTC"
+    },
+    {
+      "id": "6a5eebb2fe3fa8e0c155e0e4",
+      "event_id": "260504A",
+      "event_type": "GOLD",
+      "ra": 77.4,
+      "dec": 12.3,
+      "energy_tev": 180.0,
+      "gcn_publish_time": "2026-05-04T06:32:00Z",
+      "session": "Tokyo",
+      "note": "IceCube-260504A。市場反応観測済み。ナスダック+1.71%、半導体+5.51%（7日後）"
+    },
+    {
+      "id": "6a5eebb2fe3fa8e0c155e0e2",
+      "event_id": "HIKARI-20260415-PEAK",
+      "event_type": "OBSERVER",
+      "ra": 0.0,
+      "dec": 0.0,
+      "energy_tev": 0.0,
+      "gcn_publish_time": "2026-04-15T00:00:00Z",
+      "session": "Tokyo",
+      "note": "観測者イベント記録：4月初旬よりLunaへの財源シフト本格化。DOI登録量産開始。KDP出版（4/11）。金価格：4/13=4742→4/17=4858（ピーク）。会長の思想固定行動と金の急騰が同期。"
+    },
+    {
+      "id": "6a600c4a423bb5a9b6c4ca6a",
+      "event_id": "HIKARI-19890707-PEAK",
+      "event_type": "OBSERVER",
+      "ra": 0.0,
+      "dec": 0.0,
+      "energy_tev": 999.0,
+      "gcn_publish_time": "1989-07-07T00:00:00Z",
+      "session": "origin",
+      "note": "會長の原点。幸せの絶頂。妄想のど真ん中。入院寸前。V=N/DにおいてN最大・D最大の同時極値。High-Rate Syndromeの第一事例。バイオリズム原点日。energy_tev=999は観測者自身の内部エネルギー最大値を示す。"
+    }
+  ],
+  "biorhythm_readings": [
+    {
+      "id": "6a600c3a1062e128062e6484",
       "date": "1989-11-09",
       "origin_date": "1989-07-07",
-      "vnd_score": 7.92,
-      "observer_effect_score": -4.0,
       "physical_cycle": 40.0,
       "emotional_cycle": 22.0,
       "intellectual_cycle": -97.0,
       "intuitive_cycle": 97.0,
       "creative_output": -84.0,
+      "observer_effect_score": -4.0,
+      "vnd_score": 7.92,
+      "financial_proxy": 0.0,
       "neutrino_correlation": "pending",
       "notes": "中間期。蓄積と休息の時間。"
+    },
+    {
+      "id": "6a600c363d8b3afdd0500f23",
+      "date": "2026-07-22",
+      "origin_date": "1989-07-07",
+      "physical_cycle": 98.0,
+      "emotional_cycle": 90.0,
+      "intellectual_cycle": -19.0,
+      "intuitive_cycle": 16.0,
+      "creative_output": -81.0,
+      "observer_effect_score": 21.0,
+      "vnd_score": 1250.0,
+      "financial_proxy": 0.0,
+      "neutrino_correlation": "pending",
+      "notes": "活性状態。創作の出力が高い時期。"
+    },
+    {
+      "id": "6a600b70517265a5e3569f58",
+      "date": "2026-07-22",
+      "origin_date": "1989-11-09",
+      "physical_cycle": -98.0,
+      "emotional_cycle": -97.0,
+      "intellectual_cycle": 91.0,
+      "intuitive_cycle": -100.0,
+      "creative_output": 93.0,
+      "observer_effect_score": -22.0,
+      "vnd_score": 4800.0,
+      "financial_proxy": 0.0,
+      "neutrino_correlation": "pending",
+      "notes": "低調期。D（摩擦）が高い。創作は種として残す段階。"
     }
   ],
-  "fx_ticks": [
+  "fx_tick_snapshots": [
     {
-      "event_id": "BOOT_TEST",
+      "id": "6a5f000c2fe4d8de8885a315",
       "symbol": "XAUUSD-m",
       "bid": 4694.44,
       "ask": 4694.66,
-      "spread": 0.22,
-      "volume": 0,
-      "bid_velocity": 0,
-      "tick_density": 0,
-      "anomaly_score": 0,
-      "seconds_after_gcn": 0,
+      "spread": 0.0,
+      "volume": 0.0,
+      "bid_velocity": 0.0,
+      "tick_density": 0.0,
+      "anomaly_score": 0.0,
+      "event_id": "BOOT_TEST",
+      "seconds_after_gcn": 0.0,
       "window": "BOOT",
       "note": "v5.0 auto — 2026-05-13"
     },
     {
-      "event_id": "BOOT_TEST",
+      "id": "6a5f000c2fe4d8de8885a31b",
       "symbol": "XAUUSD-m",
       "bid": 4760.47,
       "ask": 4760.72,
-      "spread": 0.25,
-      "volume": 0,
-      "bid_velocity": 0,
-      "tick_density": 0,
-      "anomaly_score": 0,
-      "seconds_after_gcn": 0,
+      "spread": 0.0,
+      "volume": 0.0,
+      "bid_velocity": 0.0,
+      "tick_density": 0.0,
+      "anomaly_score": 0.0,
+      "event_id": "BOOT_TEST",
+      "seconds_after_gcn": 0.0,
       "window": "BOOT",
       "note": "v5.0 auto — 2026-05-13"
     },
     {
-      "event_id": "SCRIPT_TEST",
+      "id": "6a5f000c2fe4d8de8885a31d",
       "symbol": "XAUUSD",
       "bid": 3300.0,
       "ask": 3300.5,
       "spread": 0.5,
-      "volume": 1,
-      "bid_velocity": 0,
-      "tick_density": 1,
-      "anomaly_score": 0,
-      "seconds_after_gcn": 0,
+      "volume": 1.0,
+      "bid_velocity": 0.0,
+      "tick_density": 1.0,
+      "anomaly_score": 0.0,
+      "event_id": "SCRIPT_TEST",
+      "seconds_after_gcn": 0.0,
       "window": "TEST",
       "note": "script test"
     },
     {
-      "event_id": "BOOT_TEST",
+      "id": "6a5f000c2fe4d8de8885a312",
       "symbol": "XAUUSD-m",
       "bid": 4538.33,
       "ask": 4538.7,
-      "spread": 0.37,
-      "volume": 0,
-      "bid_velocity": 0,
-      "tick_density": 0,
-      "anomaly_score": 0,
-      "seconds_after_gcn": 0,
+      "spread": 0.0,
+      "volume": 0.0,
+      "bid_velocity": 0.0,
+      "tick_density": 0.0,
+      "anomaly_score": 0.0,
+      "event_id": "BOOT_TEST",
+      "seconds_after_gcn": 0.0,
       "window": "BOOT",
       "note": "v5.0 auto — 2026-05-16 (dup3)"
     },
     {
-      "event_id": "BOOT_TEST",
+      "id": "6a5f000c2fe4d8de8885a310",
       "symbol": "XAUUSD-m",
       "bid": 4538.33,
       "ask": 4538.7,
-      "spread": 0.37,
-      "volume": 0,
-      "bid_velocity": 0,
-      "tick_density": 0,
-      "anomaly_score": 0,
-      "seconds_after_gcn": 0,
+      "spread": 0.0,
+      "volume": 0.0,
+      "bid_velocity": 0.0,
+      "tick_density": 0.0,
+      "anomaly_score": 0.0,
+      "event_id": "BOOT_TEST",
+      "seconds_after_gcn": 0.0,
       "window": "BOOT",
       "note": "v5.0 auto — 2026-05-17 (dup)"
     }
   ],
   "brainwave_proxies": [],
-  "knowledge_standard": {
-    "tam_trillion_yen": 208.67,
-    "sam_trillion_yen": 23.19,
-    "som_trillion_yen": 2.28,
-    "doi_count": 1032,
-    "go_idea_count": 776,
-    "unit_backing_value": 270000000,
-    "observation_date": "2026-07-25"
-  },
-  "observation_summary": {
-    "neutrino_count": 7,
-    "biorhythm_count": 3,
-    "fx_tick_count": 5,
-    "brainwave_count": 0,
-    "origin_point": "HIKARI-19890707-PEAK",
-    "origin_date": "1989-07-07",
-    "origin_description": "会長の原点。幸せの絶頂。V=N/DにおいてN最大・D最大の同時極値。High-Rate Syndromeの第一事例。バイオリズム原点日。"
-  },
-  "generated_at": "2026-07-25T09:36:00+09:00"
+  "knowledge_standards": [
+    {
+      "id": "6a6555ba77589bde2fb7c7b4",
+      "observation_date": "2026-07-26",
+      "tam_trillion_yen": 210.25,
+      "sam_trillion_yen": 23.39,
+      "som_trillion_yen": 2.30,
+      "go_idea_count": 790,
+      "doi_count": 1032,
+      "unit_backing_value": 270000000
+    }
+  ]
 }
