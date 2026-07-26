@@ -64,9 +64,10 @@ footer{text-align:center;padding:40px 20px;color:#555;font-size:0.8rem;border-to
 </div>
 
 <div class="purchase-notice" id="purchase-notice">
-<p>五段評価の全文・市場規模データ・出典DOIは<span class="highlight">光貨決済後</span>に閲覧可能です。</p>
-<p><strong style="color:#ccc">¥30,000 = 100,000光貨</strong> — 決済後、会長が確認して光貨を付与します（最大5分）</p>
-<p style="margin-top:12px;color:#666">金に変われば、差し引き済み。 — モラロジー</p>
+<p>五段評価の全文・市場規模データ・出典DOIは<span class="highlight">サブスクリプション登録後</span>に閲覧可能です。</p>
+<p><strong style="color:#ccc">¥10,000/月</strong> — 毎週日曜に新規公開される事業アイデアの五段評価全文にアクセス</p>
+<p style="margin-top:12px;color:#666">決済後、会長が確認してアクセス権を付与します（最大5分）</p>
+<p style="margin-top:8px;color:#666">金に変われば、差し引き済み。 — モラロジー</p>
 <button onclick="startPurchase()" class="cta-btn" style="border:none;cursor:pointer;font-family:inherit">光貨を購入する</button>
 </div>
 
@@ -128,7 +129,7 @@ function renderIdeas(ideas){
       <div class="locked-section" style="margin-top:20px;padding:20px;border:1px solid rgba(255,215,0,0.15);border-radius:12px;text-align:center;background:rgba(255,215,0,0.02)">
         <div style="font-size:0.9rem;color:#888;margin-bottom:8px">五段評価の全文・市場規模データ・出典DOI</div>
         <div style="font-size:0.85rem;color:#666;margin-bottom:12px">決済後、会長が確認してアクセス権を付与（最大5分）</div>
-        <button onclick="startPurchase()" class="cta-btn" style="border:none;cursor:pointer;font-family:inherit;display:inline-block;padding:8px 24px;background:linear-gradient(135deg,#ffd700,#ffa500);color:#0a0a0f;font-weight:600;border-radius:20px;font-size:0.85rem">光貨を購入する — ¥30,000</button>
+        <button onclick="startPurchase()" class="cta-btn" style="border:none;cursor:pointer;font-family:inherit;display:inline-block;padding:8px 24px;background:linear-gradient(135deg,#ffd700,#ffa500);color:#0a0a0f;font-weight:600;border-radius:20px;font-size:0.85rem">サブスクリプション登録 — ¥10,000/月</button>
       </div>
     `;
 
@@ -163,7 +164,10 @@ function filterIdeas(industry){
 loadIdeas();
 
 function startPurchase(){
-  window.location.href = 'https://buy.stripe.com/28E28s8PW9FT9KK8386kg0q';
+  window.location.href = 'https://buy.stripe.com/cNi6oIfek8BP9KKgzE6kg0r';
+}
+function startSubscription(){
+  window.location.href = 'https://buy.stripe.com/cNi6oIfek8BP9KKgzE6kg0r';
 }
 
 </script>
