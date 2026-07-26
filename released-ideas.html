@@ -183,34 +183,8 @@ function filterIdeas(industry){
 
 loadIdeas();
 
-async function startPurchase(){
-  const btn = event.target;
-  const originalText = btn.textContent;
-  btn.textContent = '決済ページへ移動中...';
-  btn.disabled = true;
-  try{
-    const resp = await fetch('https://app.base44.com/api/agents/69c53e05c969d16a2d7cbd0c/functions/purchaseRedirect', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        service: 'released_ideas',
-        success_url: 'https://theykhc.com/released-ideas.html',
-        cancel_url: 'https://theykhc.com/released-ideas.html'
-      })
-    });
-    const data = await resp.json();
-    if(data.checkout_url){
-      window.location.href = data.checkout_url;
-    } else {
-      btn.textContent = originalText;
-      btn.disabled = false;
-      alert('決済の準備中にエラーが発生しました: ' + (data.error || '不明なエラー'));
-    }
-  } catch(e){
-    btn.textContent = originalText;
-    btn.disabled = false;
-    alert('決済サーバーに接続できませんでした。しばらくしてから再試行してください。');
-  }
+function startPurchase(){
+  window.location.href = 'https://buy.stripe.com/28E28s8PW9FT9KK8386kg0q';
 }
 
 </script>
