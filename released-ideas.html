@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TheYKHC Tower — 公開事業アーカイブ</title>
-<meta name="description" content="TheYKHC Towerから世界へ還元する事業アイデアの公開アーカイブ。問い、判定、V=N/Dスコアを無料公開。">
+<meta name="description" content="TheYKHC Towerから世界へ還元する事業アイデアの公開アーカイブ。問い、判定、V=N/Dスコア、読解難度を無料公開。">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Noto Sans JP','Helvetica Neue',sans-serif;background:#0a0a0f;color:#e8e8f0;line-height:1.8}
@@ -13,10 +13,10 @@ header{text-align:center;padding:60px 20px 40px;border-bottom:1px solid rgba(255
 header h1{font-size:2.4rem;font-weight:300;letter-spacing:0.05em;background:linear-gradient(135deg,#ffd700,#ffa500);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 header .subtitle{margin-top:16px;color:#888;font-size:0.95rem}
 header .meta{margin-top:24px;color:#666;font-size:0.85rem}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin:40px 0}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px;margin:40px 0}
 .stat{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:24px;text-align:center}
-.stat .num{font-size:1.8rem;font-weight:600;color:#ffd700}
-.stat .label{font-size:0.8rem;color:#888;margin-top:4px}
+.stat .num{font-size:1.6rem;font-weight:600;color:#ffd700}
+.stat .label{font-size:0.75rem;color:#888;margin-top:4px}
 .filters{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0;justify-content:center}
 .filter-btn{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);color:#ccc;padding:6px 16px;border-radius:20px;cursor:pointer;font-size:0.85rem;transition:all 0.2s}
 .filter-btn:hover,.filter-btn.active{background:rgba(255,215,0,0.15);border-color:rgba(255,215,0,0.3);color:#ffd700}
@@ -32,10 +32,19 @@ header .meta{margin-top:24px;color:#666;font-size:0.85rem}
 .verdict-no-go{background:rgba(239,68,68,0.15);color:#ef4444;border:1px solid rgba(239,68,68,0.3)}
 .idea-card h3{font-size:1.1rem;font-weight:500;margin:16px 0 8px;color:#f0f0f5}
 .idea-card .industry{color:#888;font-size:0.85rem}
-.idea-card .vnd-score{display:inline-block;margin-top:12px;padding:4px 12px;background:rgba(255,215,0,0.08);border-radius:8px;color:#ffd700;font-size:0.9rem}
-.contact-note{margin-top:20px;padding:16px;border:1px solid rgba(255,255,255,0.08);border-radius:12px;background:rgba(255,255,255,0.02);text-align:center}
-.contact-note p{color:#666;font-size:0.85rem;margin:4px 0}
-.contact-note .label{color:#888;font-weight:500}
+.idea-card .meta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px;align-items:center}
+.idea-card .vnd-score{display:inline-block;padding:4px 12px;background:rgba(255,215,0,0.08);border-radius:8px;color:#ffd700;font-size:0.9rem}
+.idea-card .difficulty-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:8px;font-size:0.85rem;font-weight:500}
+.diff-general{background:rgba(34,197,94,0.1);color:#22c55e;border:1px solid rgba(34,197,94,0.2)}
+.diff-grad{background:rgba(59,130,246,0.1);color:#3b82f6;border:1px solid rgba(59,130,246,0.2)}
+.diff-research{background:rgba(168,85,247,0.1);color:#a855f7;border:1px solid rgba(168,85,247,0.2)}
+.diff-expert{background:rgba(234,179,8,0.1);color:#eab308;border:1px solid rgba(234,179,8,0.2)}
+.diff-super{background:rgba(239,68,68,0.1);color:#ef4444;border:1px solid rgba(239,68,68,0.2)}
+.idea-card .difficulty-bar{margin-top:12px;height:6px;background:rgba(255,255,255,0.05);border-radius:3px;overflow:hidden}
+.idea-card .difficulty-fill{height:100%;border-radius:3px;transition:width 0.5s}
+.difficulty-legend{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin:20px 0;padding:16px;background:rgba(255,255,255,0.02);border-radius:12px;border:1px solid rgba(255,255,255,0.06)}
+.difficulty-legend .item{display:flex;align-items:center;gap:8px;font-size:0.8rem;color:#888}
+.difficulty-legend .dot{width:12px;height:12px;border-radius:50%;display:inline-block}
 footer{text-align:center;padding:40px 20px;color:#555;font-size:0.8rem;border-top:1px solid rgba(255,255,255,0.06);margin-top:60px}
 .loading{text-align:center;padding:60px;color:#666}
 @media(max-width:768px){.idea-card{padding:20px}.idea-card .header-row{flex-direction:column}.stats{grid-template-columns:repeat(2,1fr)}}
@@ -52,6 +61,14 @@ footer{text-align:center;padding:40px 20px;color:#555;font-size:0.8rem;border-to
 
 <div class="stats" id="stats"></div>
 
+<div class="difficulty-legend">
+<div class="item"><span class="dot" style="background:#22c55e"></span>一般 (IQ 90-110)</div>
+<div class="item"><span class="dot" style="background:#3b82f6"></span>大卒 (IQ 110-125)</div>
+<div class="item"><span class="dot" style="background:#a855f7"></span>研究者 (IQ 125-140)</div>
+<div class="item"><span class="dot" style="background:#eab308"></span>専門研究者 (IQ 140-155)</div>
+<div class="item"><span class="dot" style="background:#ef4444"></span>超専門 (IQ 155+)</div>
+</div>
+
 <div class="filters" id="filters"></div>
 
 <div class="idea-list" id="ideas">
@@ -66,6 +83,14 @@ footer{text-align:center;padding:40px 20px;color:#555;font-size:0.8rem;border-to
 </div>
 
 <script>
+const DIFF_COLORS = {
+  '一般': { class: 'diff-general', color: '#22c55e' },
+  '大卒': { class: 'diff-grad', color: '#3b82f6' },
+  '研究者': { class: 'diff-research', color: '#a855f7' },
+  '専門研究者': { class: 'diff-expert', color: '#eab308' },
+  '超専門': { class: 'diff-super', color: '#ef4444' }
+};
+
 async function loadIdeas(){
   try{
     const resp = await fetch('https://theykhc.com/released-ideas.json');
@@ -76,6 +101,13 @@ async function loadIdeas(){
     const goCount = data.ideas.filter(i=>i.verdict==='go').length;
     const industries = [...new Set(data.ideas.map(i=>i.industry).filter(Boolean))];
     const holdCount = data.ideas.filter(i=>i.verdict==='hold').length;
+    
+    // 難度別集計
+    const diffCounts = {};
+    data.ideas.forEach(i => {
+      const level = i.difficulty_level || '大卒';
+      diffCounts[level] = (diffCounts[level] || 0) + 1;
+    });
 
     document.getElementById('last-update').textContent =
       '最終更新: ' + new Date(data.published_at).toLocaleDateString('ja-JP', {year:'numeric',month:'long',day:'long'});
@@ -84,7 +116,7 @@ async function loadIdeas(){
       <div class="stat"><div class="num">${total}</div><div class="label">公開事業数</div></div>
       <div class="stat"><div class="num">${goCount}</div><div class="label">GO判定</div></div>
       <div class="stat"><div class="num">${industries.length}</div><div class="label">産業分野</div></div>
-      <div class="stat"><div class="num">${holdCount}</div><div class="label">HOLD判定</div></div>
+      <div class="stat"><div class="num">${(diffCounts['研究者']||0)+(diffCounts['専門研究者']||0)+(diffCounts['超専門']||0)}</div><div class="label">研究者レベル+</div></div>
     `;
 
     const allIndustries = ['全て', ...industries.sort()];
@@ -108,6 +140,10 @@ function renderIdeas(ideas){
   }
   container.innerHTML = ideas.map((idea,idx)=>{
     const verdictClass = 'verdict-' + (idea.verdict||'go');
+    const diffLevel = idea.difficulty_level || '大卒';
+    const diffScore = idea.difficulty_score || 25;
+    const diffIQ = idea.difficulty_iq || '110-125';
+    const diffInfo = DIFF_COLORS[diffLevel] || DIFF_COLORS['大卒'];
 
     return `
     <div class="idea-card" data-industry="${idea.industry||''}">
@@ -120,7 +156,15 @@ function renderIdeas(ideas){
       </div>
       <h3>${idea.text||''}</h3>
       <div class="industry">${idea.industry||'未分類'}</div>
-      <div class="vnd-score">V=N/Dスコア: ${idea.vnd_score||'N/A'}/10</div>
+      <div class="meta-row">
+        <span class="vnd-score">V=N/Dスコア: ${idea.vnd_score||'N/A'}/10</span>
+        <span class="difficulty-badge ${diffInfo.class}">
+          読解難度: ${diffLevel} (IQ ${diffIQ})
+        </span>
+      </div>
+      <div class="difficulty-bar">
+        <div class="difficulty-fill" style="width:${Math.min(diffScore,100)}%;background:${diffInfo.color}"></div>
+      </div>
     </div>`;
   }).join('');
 }
