@@ -87,7 +87,7 @@ async function loadIdeas(){
     const total = data.ideas.length;
     const goCount = data.ideas.filter(i=>i.verdict==='go').length;
     const industries = [...new Set(data.ideas.map(i=>i.industry).filter(Boolean))];
-    const totalTam = data.ideas.reduce((s,i)=>s+(i.tam_num||0),0);
+    const holdCount = data.ideas.filter(i=>i.verdict==='hold').length;
 
     document.getElementById('last-update').textContent =
       '最終更新: ' + new Date(data.published_at).toLocaleDateString('ja-JP', {year:'numeric',month:'long',day:'long'});
@@ -96,7 +96,7 @@ async function loadIdeas(){
       <div class="stat"><div class="num">${total}</div><div class="label">公開事業数</div></div>
       <div class="stat"><div class="num">${goCount}</div><div class="label">GO判定</div></div>
       <div class="stat"><div class="num">${industries.length}</div><div class="label">産業分野</div></div>
-      <div class="stat"><div class="num">${(totalTam/10000).toFixed(1)}兆</div><div class="label">TAM合計</div></div>
+      <div class="stat"><div class="num">${holdCount}</div><div class="label">HOLD判定</div></div>
     `;
 
     const allIndustries = ['全て', ...industries.sort()];
