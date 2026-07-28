@@ -1,97 +1,112 @@
 {
+  "generated_at": "2026-07-28T09:36:00+09:00",
+  "origin": "HIKARI-19890707-PEAK",
   "observation_summary": {
-    "generated_at": "2026-07-27T09:38:00+09:00",
-    "origin_event": "HIKARI-19890707-PEAK",
-    "origin_description": "會長の原点。幸せの絶頂。妄想のど真ん中。V=N/DにおいてN最大・D最大の同時極値。High-Rate Syndromeの第一事例。バイオリズム原点日。energy_tev=999は観測者自身の内部エネルギー最大値を示す。",
+    "description": "2026年7月28日（火）朝の観測データ同期。原点はHIKARI-19890707-PEAK（会長の原点・幸せの絶頂・バイオリズム原点日）。",
+    "origin_note": "HIKARI-19890707-PEAK — 1989年7月7日、会長の原点。幸せの絶頂。V=N/DにおいてN最大・D最大の同時極値。High-Rate Syndromeの第一事例。バイオリズム原点日。",
     "counts": {
-      "neutrino_events": 8,
-      "biorhythm_readings": 3,
-      "fx_tick_snapshots": 5,
-      "brainwave_proxies": 0,
-      "knowledge_standards": 1
+      "NeutrinoEvent": 8,
+      "BiorhythmReading": 3,
+      "FxTickSnapshot": 5,
+      "BrainwaveProxy": 0,
+      "KnowledgeStandard": 1
     },
-    "description": "2026年7月27日 09:38（JST）時点の観測データ同期。5つのエンティティから最新データを抽出。原点はHIKARI-19890707-PEAK（1989年7月7日・會長の原点）。"
+    "knowledge_standard_snapshot": {
+      "observation_date": "2026-07-28",
+      "tam_trillion_yen": 210.25,
+      "sam_trillion_yen": 23.39,
+      "som_trillion_yen": 2.2963,
+      "total_v_real_trillion": 2.2963,
+      "hikari_index": 1824.0,
+      "hikari_index_change": 1.0,
+      "doi_count": 1034,
+      "go_idea_count": 790,
+      "knowledge_floor_yen": 279180000000,
+      "unit_backing_value": 270000000,
+      "total_d_reduction_today": 0.0,
+      "total_d_rise_today": 0.0
+    }
   },
   "neutrino_events": [
     {
       "event_id": "GEOPOL-2026-07-24",
       "event_type": "geopolitical_snapshot",
-      "gcn_publish_time": "2026-07-24T15:34:00Z",
+      "session": "weekly_2026-07-24",
+      "energy_tev": 0.0,
       "ra": 0.0,
       "dec": 0.0,
-      "energy_tev": 0.0,
-      "session": "weekly_2026-07-24",
+      "gcn_publish_time": "2026-07-24T15:34:00Z",
       "note": "ロシア・ウクライナ戦闘激化: ウクライナドローンがロシアWildberries倉庫3箇所攻撃. ロシアミサイルがキエフ近郊防衛産業施設攻撃(10人死亡100人負傷). イラン: クウェート・ヨルダン・バーレーン・イラク攻撃. 米軍がイラン西部アフヴァズ攻撃(4人死亡). ホルムズ海峡タンカー交通量5月以来最低. イエメンフーシ: バブエルマンデブ海峡封鎖否定"
     },
     {
       "event_id": "47091427",
       "event_type": "GOLD",
-      "gcn_publish_time": "2026-07-22T08:51:04Z",
+      "session": "IceCube-142900",
+      "energy_tev": 114.95,
       "ra": 190.55,
       "dec": 31.0,
-      "energy_tev": 114.95,
-      "session": "IceCube-142900",
+      "gcn_publish_time": "2026-07-22T08:51:04Z",
       "note": "IceCube Bronze Event #47091427 (REV 0→1). Discovery: 2026-07-22 06:58:22 UT. REV0: RA=191.099, DEC=+31.005, Error=33.85arcmin, Gal=144.16/85.83. REV1: RA=190.55, DEC=+31.00, Error=48.83arcmin, Gal=149.91/85.63. Energy=114.95TeV, Signalness=0.414, FAR=1.50/yr. 銀河緯度85.8°→北銀極方向。NGC 4565(Coma Berenices)付近。修訂で誤差拡大→位置精査中。"
     },
     {
       "event_id": "HIKARI-20260515-OBS",
       "event_type": "OBSERVER",
-      "gcn_publish_time": "2026-05-15T05:22:00Z",
+      "session": "Tokyo",
+      "energy_tev": 0.0,
       "ra": 0.0,
       "dec": 0.0,
-      "energy_tev": 0.0,
-      "session": "Tokyo",
-      "note": "観測者イベント記録：「DOI登録からLunaへの財源シフトと市場の関連性」を仮説化。Luna・DOI・市場の三躺関連を観測対象に追加。記録時点の金価格：4597。山（4858）の34日後。会長が「失意にしては世も信者も活発化している」と判断。V=N/Dにおける観測者効果の第一第一声の記述。"
+      "gcn_publish_time": "2026-05-15T05:22:00Z",
+      "note": "観測者イベント記録：「DOI登録からLunaへの財源シフトと市場の関連性」を仮説化。Luna・DOI・市場の三角関連を観測対象に追加。記録時点の金価格：4597。山（4858）の34日後。会長が「失意にしては世も信者も活発化している」と判断。V=N/Dにおける観測者効果の第一声の記述。"
     },
     {
       "event_id": "HIKARI-20260512-SHIFT",
       "event_type": "OBSERVER",
-      "gcn_publish_time": "2026-05-12T00:00:00Z",
+      "session": "Tokyo",
+      "energy_tev": 0.0,
       "ra": 0.0,
       "dec": 0.0,
-      "energy_tev": 0.0,
-      "session": "Tokyo",
+      "gcn_publish_time": "2026-05-12T00:00:00Z",
       "note": "観測者イベント記録：Apple ID変更・DOI全公開（CC BY 4.0）。財源シフト完了。金価格：5/4=4520（底）→5/11=4719（回復）。財源シフト完了直後に金が底を打って反転。観測者効果の候補事象として記録。"
     },
     {
       "event_id": "260505A",
       "event_type": "GOLD",
-      "gcn_publish_time": "2026-05-05T14:18:00Z",
+      "session": "London",
+      "energy_tev": 95.0,
       "ra": 134.2,
       "dec": -8.7,
-      "energy_tev": 95.0,
-      "session": "London",
+      "gcn_publish_time": "2026-05-05T14:18:00Z",
       "note": "IceCube-260505A。Primary endpoint凍結日時: 2026-05-05T00:00:00 UTC"
     },
     {
       "event_id": "260504A",
       "event_type": "GOLD",
-      "gcn_publish_time": "2026-05-04T06:32:00Z",
+      "session": "Tokyo",
+      "energy_tev": 180.0,
       "ra": 77.4,
       "dec": 12.3,
-      "energy_tev": 180.0,
-      "session": "Tokyo",
+      "gcn_publish_time": "2026-05-04T06:32:00Z",
       "note": "IceCube-260504A。市場反応観測済み。ナスダック+1.71%、半導体+5.51%（7日後）"
     },
     {
       "event_id": "HIKARI-20260415-PEAK",
       "event_type": "OBSERVER",
-      "gcn_publish_time": "2026-04-15T00:00:00Z",
+      "session": "Tokyo",
+      "energy_tev": 0.0,
       "ra": 0.0,
       "dec": 0.0,
-      "energy_tev": 0.0,
-      "session": "Tokyo",
+      "gcn_publish_time": "2026-04-15T00:00:00Z",
       "note": "観測者イベント記録：4月初旬よりLunaへの財源シフト本格化。DOI登録量産開始。KDP出版（4/11）。金価格：4/13=4742→4/17=4858（ピーク）。会長の思想固定行動と金の急騰が同期。"
     },
     {
       "event_id": "HIKARI-19890707-PEAK",
       "event_type": "OBSERVER",
-      "gcn_publish_time": "1989-07-07T00:00:00Z",
+      "session": "origin",
+      "energy_tev": 999.0,
       "ra": 0.0,
       "dec": 0.0,
-      "energy_tev": 999.0,
-      "session": "origin",
-      "note": "會長の原点。幸せの絶頂。妄想のど真ん中。V=N/DにおいてN最大・D最大の同時極値。High-Rate Syndromeの第一事例。バイオリズム原点日。energy_tev=999は観測者自身の内部エネルギー最大値を示す。"
+      "gcn_publish_time": "1989-07-07T00:00:00Z",
+      "note": "會長の原点。幸せの絶頂。妄想のど真ん中。入院寸前。V=N/DにおいてN最大・D最大の同時極値。High-Rate Syndromeの第一事例。バイオリズム原点日。energy_tev=999は観測者自身の内部エネルギー最大値を示す。"
     }
   ],
   "biorhythm_readings": [
@@ -103,10 +118,10 @@
       "intellectual_cycle": -97.0,
       "intuitive_cycle": 97.0,
       "creative_output": -84.0,
-      "observer_effect_score": -4.0,
-      "vnd_score": 7.92,
       "financial_proxy": 0.0,
+      "vnd_score": 7.92,
       "neutrino_correlation": "pending",
+      "observer_effect_score": -4.0,
       "notes": "中間期。蓄積と休息の時間。"
     },
     {
@@ -117,10 +132,10 @@
       "intellectual_cycle": -19.0,
       "intuitive_cycle": 16.0,
       "creative_output": -81.0,
-      "observer_effect_score": 21.0,
-      "vnd_score": 1250.0,
       "financial_proxy": 0.0,
+      "vnd_score": 1250.0,
       "neutrino_correlation": "pending",
+      "observer_effect_score": 21.0,
       "notes": "活性状態。創作の出力が高い時期。"
     },
     {
@@ -131,93 +146,84 @@
       "intellectual_cycle": 91.0,
       "intuitive_cycle": -100.0,
       "creative_output": 93.0,
-      "observer_effect_score": -22.0,
-      "vnd_score": 4800.0,
       "financial_proxy": 0.0,
+      "vnd_score": 4800.0,
       "neutrino_correlation": "pending",
+      "observer_effect_score": -22.0,
       "notes": "低調期。D（摩擦）が高い。創作は種として残す段階。"
     }
   ],
   "fx_tick_snapshots": [
     {
+      "event_id": "GOLD-2026-07-24-WEEKLY",
       "symbol": "XAU/USD",
       "bid": 4065.0,
       "ask": 4067.0,
       "spread": 2.0,
-      "volume": 0.0,
-      "window": "weekly_close_2026-07-24",
-      "tick_density": 0.0,
       "bid_velocity": 1.7,
       "anomaly_score": 0.3,
-      "event_id": "GOLD-2026-07-24-WEEKLY",
-      "seconds_after_gcn": 0.0,
+      "window": "weekly_close_2026-07-24",
       "note": "金曜ロンドン3pm競売$4065/oz. 週間上昇1.7%（前週8ヶ月ぶり安値から反発）. イラン戦争開始後21週中6回目の週間上昇. 原油$100/barrelスパイクと利回り上昇の中での上昇は異例"
     },
     {
+      "event_id": "SILVER-2026-07-24-WEEKLY",
       "symbol": "XAG/USD",
       "bid": 58.35,
       "ask": 58.5,
       "spread": 0.15,
-      "volume": 0.0,
-      "window": "weekly_close_2026-07-24",
-      "tick_density": 0.0,
       "bid_velocity": 5.1,
       "anomaly_score": 0.4,
-      "event_id": "SILVER-2026-07-24-WEEKLY",
-      "seconds_after_gcn": 0.0,
+      "window": "weekly_close_2026-07-24",
       "note": "銀$58.35/oz. 前週6.8%急落の75%を回復. 中東紛争中7回目の週間上昇"
     },
     {
+      "event_id": "OIL-2026-07-24-WEEKLY",
       "symbol": "BRENT/USD",
       "bid": 100.0,
       "ask": 100.5,
       "spread": 0.5,
-      "volume": 0.0,
-      "window": "weekly_close_2026-07-24",
-      "tick_density": 0.0,
       "bid_velocity": -1.0,
       "anomaly_score": 0.7,
-      "event_id": "OIL-2026-07-24-WEEKLY",
-      "seconds_after_gcn": 0.0,
+      "window": "weekly_close_2026-07-24",
       "note": "ブレント原油$100/barrel超え（9月限）. 木曜スパイクから金曜小幅下落. ホルムズ海峡タンカー交通量5月以来最低"
     },
     {
+      "event_id": "JGB5Y-2026-07-24-WEEKLY",
       "symbol": "JGB_5Y",
       "bid": 0.0,
       "ask": 0.0,
       "spread": 0.0,
-      "volume": 0.0,
-      "window": "weekly_close_2026-07-24",
-      "tick_density": 0.0,
       "bid_velocity": 0.0,
       "anomaly_score": 0.9,
-      "event_id": "JGB5Y-2026-07-24-WEEKLY",
-      "seconds_after_gcn": 0.0,
+      "window": "weekly_close_2026-07-24",
       "note": "日本5年JGB利回り過去最高更新. 米30年国債2007年水準. 独10年Bund2011年水準. FRB7月利上げ確率1/3超（今週20pt以上上昇）"
     },
     {
+      "event_id": "BOOT_TEST",
       "symbol": "XAUUSD-m",
       "bid": 4538.33,
       "ask": 4538.7,
       "spread": 0.0,
-      "volume": 0.0,
-      "window": "BOOT",
-      "tick_density": 0.0,
       "bid_velocity": 0.0,
       "anomaly_score": 0.0,
-      "event_id": "BOOT_TEST",
-      "seconds_after_gcn": 0.0,
+      "window": "BOOT",
       "note": "v5.0 auto — 2026-05-17 (dup)"
     }
   ],
   "brainwave_proxies": [],
   "knowledge_standard": {
-    "observation_date": "2026-07-27",
+    "observation_date": "2026-07-28",
     "tam_trillion_yen": 210.25,
     "sam_trillion_yen": 23.39,
     "som_trillion_yen": 2.2963,
+    "total_v_real_trillion": 2.2963,
+    "hikari_index": 1824.0,
+    "hikari_index_change": 1.0,
+    "doi_count": 1034,
     "go_idea_count": 790,
-    "doi_count": 1033,
-    "unit_backing_value": 270000000
+    "knowledge_floor_yen": 279180000000,
+    "unit_backing_value": 270000000,
+    "total_d_reduction_today": 0.0,
+    "total_d_rise_today": 0.0
   }
 }
