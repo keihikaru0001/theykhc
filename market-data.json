@@ -1,0 +1,317 @@
+{
+  "meta": {
+    "last_updated": "2026-07-28 09:35 JST",
+    "tower_name": "TheYKHC Tower",
+    "owner": "片山佳光 (Yoshimitsu Katayama)",
+    "doi_count": 1466,
+    "idea_count": 27,
+    "note": "光貨は共鳴の指標であり、金融商品ではありません。V=N/Dは哲学的メタファーであり、科学的法則ではありません。本サイトは藝術・哲学プロジェクトの一部です。"
+  },
+  "stats": {
+    "idea_count": 27,
+    "hikari_index": 1821.6,
+    "hikari_index_change": -0.13,
+    "doi_count": 1466,
+    "entry_fee_yen": 30000,
+    "entry_fee_hikari": 100000
+  },
+  "ideas": [
+    {
+      "name": "再生可能エネルギー転換点",
+      "industry": "ENERGY",
+      "n": 13.78,
+      "d": 5.995,
+      "v": 118.2,
+      "tier": "S",
+      "change": "down",
+      "changePct": -1.5,
+      "code": "TYKHC-001"
+    },
+    {
+      "name": "光借財エネルギー還元システム",
+      "industry": "ENERGY/循環",
+      "n": 13.78,
+      "d": 5.995,
+      "v": 118.2,
+      "tier": "S",
+      "change": "down",
+      "changePct": -1.5,
+      "code": "TYKHC-002"
+    },
+    {
+      "name": "問い連鎖型教育プラットフォーム",
+      "industry": "EDUCATION",
+      "n": 10.88,
+      "d": 5.995,
+      "v": 37.1,
+      "tier": "S",
+      "change": "down",
+      "changePct": -0.96,
+      "code": "TYKHC-003"
+    },
+    {
+      "name": "ISO統合簡素化SaaS",
+      "industry": "MANUFACTURING",
+      "n": 0,
+      "d": 0,
+      "v": 35.0,
+      "tier": "S",
+      "change": "up",
+      "changePct": 1.5,
+      "code": "TYKHC-004"
+    },
+    {
+      "name": "光通信教育インフラ",
+      "industry": "TELECOM/EDU",
+      "n": 11.99,
+      "d": 4.995,
+      "v": 34.3,
+      "tier": "S",
+      "change": "up",
+      "changePct": 0.03,
+      "code": "TYKHC-005"
+    },
+    {
+      "name": "災害知識継承プラットフォーム",
+      "industry": "DISASTER/知識",
+      "n": 9.92,
+      "d": 6.99,
+      "v": 21.3,
+      "tier": "A",
+      "change": "down",
+      "changePct": -0.68,
+      "code": "TYKHC-006"
+    },
+    {
+      "name": "リセール三層V定量化",
+      "industry": "FASHION/循環",
+      "n": 0,
+      "d": 0,
+      "v": 14.0,
+      "tier": "A",
+      "change": "down",
+      "changePct": -1.2,
+      "code": "TYKHC-007"
+    },
+    {
+      "name": "都市呼吸指標",
+      "industry": "URBAN/環境",
+      "n": 0,
+      "d": 0,
+      "v": 13.3,
+      "tier": "A",
+      "change": "flat",
+      "changePct": 0,
+      "code": "TYKHC-008"
+    },
+    {
+      "name": "材料哲学設計スタジオ",
+      "industry": "MATERIALS",
+      "n": 8.09,
+      "d": 4.99,
+      "v": 12.7,
+      "tier": "A",
+      "change": "up",
+      "changePct": 1.26,
+      "code": "TYKHC-009"
+    },
+    {
+      "name": "閉鎖系ヘルスケア循環",
+      "industry": "HEALTHCARE",
+      "n": 12.12,
+      "d": 5.995,
+      "v": 10.1,
+      "tier": "A",
+      "change": "up",
+      "changePct": 1.06,
+      "code": "TYKHC-010"
+    },
+    {
+      "name": "無料アート種蒔き",
+      "industry": "ART/文化",
+      "n": 5.03,
+      "d": 3.99,
+      "v": 10.0,
+      "tier": "A",
+      "change": "down",
+      "changePct": -20.37,
+      "code": "TYKHC-011"
+    },
+    {
+      "name": "地政学リスク予測ダッシュボード",
+      "industry": "LOGISTICS/DEF",
+      "n": 10.11,
+      "d": 4.995,
+      "v": 8.8,
+      "tier": "B",
+      "change": "up",
+      "changePct": 1.25,
+      "code": "TYKHC-012"
+    },
+    {
+      "name": "水循環借財返済型農業",
+      "industry": "AGRI/水循環",
+      "n": 11.85,
+      "d": 6.99,
+      "v": 7.8,
+      "tier": "B",
+      "change": "down",
+      "changePct": -1.11,
+      "code": "TYKHC-013"
+    },
+    {
+      "name": "行政V可視化",
+      "industry": "PUBLIC/行政",
+      "n": 0,
+      "d": 0,
+      "v": 6.0,
+      "tier": "B",
+      "change": "flat",
+      "changePct": 0,
+      "code": "TYKHC-014"
+    },
+    {
+      "name": "精密農業×伝統知恵AI",
+      "industry": "AGRI/AI",
+      "n": 11.95,
+      "d": 5.99,
+      "v": 5.4,
+      "tier": "B",
+      "change": "down",
+      "changePct": -0.25,
+      "code": "TYKHC-015"
+    },
+    {
+      "name": "知識還元プラットフォーム",
+      "industry": "EDU/知識",
+      "n": 9.92,
+      "d": 4.995,
+      "v": 5.0,
+      "tier": "B",
+      "change": "down",
+      "changePct": -0.71,
+      "code": "TYKHC-016"
+    },
+    {
+      "name": "医療burnout D削減プログラム",
+      "industry": "HEALTHCARE",
+      "n": 9.16,
+      "d": 4.995,
+      "v": 3.3,
+      "tier": "B",
+      "change": "up",
+      "changePct": 1.87,
+      "code": "TYKHC-017"
+    },
+    {
+      "name": "物質-情報境界D削減",
+      "industry": "SCIENCE",
+      "n": 0,
+      "d": 0,
+      "v": 2.7,
+      "tier": "B",
+      "change": "flat",
+      "changePct": 0,
+      "code": "TYKHC-018"
+    },
+    {
+      "name": "計算宇宙観測者システム",
+      "industry": "SCIENCE",
+      "n": 0,
+      "d": 0,
+      "v": 2.7,
+      "tier": "B",
+      "change": "flat",
+      "changePct": 0,
+      "code": "TYKHC-019"
+    },
+    {
+      "name": "宗教哲学翻訳D削減",
+      "industry": "GOVERNANCE",
+      "n": 0,
+      "d": 0,
+      "v": 2.0,
+      "tier": "B",
+      "change": "flat",
+      "changePct": 0,
+      "code": "TYKHC-020"
+    },
+    {
+      "name": "アンベードカル共苦制度化",
+      "industry": "GOVERNANCE",
+      "n": 0,
+      "d": 0,
+      "v": 2.0,
+      "tier": "B",
+      "change": "flat",
+      "changePct": 0,
+      "code": "TYKHC-021"
+    },
+    {
+      "name": "無常→変革権翻訳",
+      "industry": "GOVERNANCE",
+      "n": 0,
+      "d": 0,
+      "v": 2.0,
+      "tier": "B",
+      "change": "flat",
+      "changePct": 0,
+      "code": "TYKHC-022"
+    },
+    {
+      "name": "学ぶ喜びD削減教育設計",
+      "industry": "EDUCATION",
+      "n": 9.91,
+      "d": 4.995,
+      "v": 1.4,
+      "tier": "B",
+      "change": "down",
+      "changePct": -0.76,
+      "code": "TYKHC-023"
+    },
+    {
+      "name": "共通問い対立解消",
+      "industry": "PEACE/対立",
+      "n": 0,
+      "d": 0,
+      "v": 1.1,
+      "tier": "B",
+      "change": "flat",
+      "changePct": 0,
+      "code": "TYKHC-024"
+    },
+    {
+      "name": "職人知識の阿吽継承",
+      "industry": "CRAFT/伝統",
+      "n": 7.01,
+      "d": 5.99,
+      "v": 1.1,
+      "tier": "B",
+      "change": "up",
+      "changePct": 0.33,
+      "code": "TYKHC-025"
+    },
+    {
+      "name": "プロセス存在論×デジタル遺産",
+      "industry": "CULTURE/TECH",
+      "n": 7.08,
+      "d": 4.99,
+      "v": 1.0,
+      "tier": "B",
+      "change": "up",
+      "changePct": 1.34,
+      "code": "TYKHC-026"
+    },
+    {
+      "name": "CRISPR倫理D削減コンサル",
+      "industry": "BIOTECH/倫理",
+      "n": 7.86,
+      "d": 5.995,
+      "v": 0.5,
+      "tier": "B",
+      "change": "down",
+      "changePct": -1.77,
+      "code": "TYKHC-027"
+    }
+  ]
+}
