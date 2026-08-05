@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ポリゴン超えの4つの道 — SUN-Scaffold</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:wght@400;600&display=swap');
+  
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  body {
+    background: #0a0a0a;
+    color: #e0e0e0;
+    font-family: 'Noto Sans JP', sans-serif;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+  
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+  
+  .header { padding: 100px 0 60px; text-align: center; border-bottom: 1px solid rgba(196,164,132,0.15); }
+  .header .label { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: #c4a484; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 16px; }
+  .header h1 { font-size: clamp(28px, 4vw, 42px); font-weight: 700; color: #fff; letter-spacing: 0.1em; margin-bottom: 20px; }
+  .header .subtitle { font-size: 16px; color: #888; font-weight: 300; max-width: 600px; margin: 0 auto; }
+  
+  .intro { padding: 60px 0; text-align: center; }
+  .intro p { font-size: 18px; font-weight: 300; color: #aaa; max-width: 640px; margin: 0 auto; line-height: 2.2; }
+  .intro strong { color: #c4a484; font-weight: 500; }
+  
+  .routes { padding: 40px 0 80px; }
+  .routes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin-top: 40px; }
+  @media (max-width: 900px) { .routes-grid { grid-template-columns: 1fr; } }
+  
+  .route-card { border: 1px solid rgba(196,164,132,0.2); border-radius: 8px; padding: 40px 30px; background: rgba(255,255,255,0.02); transition: border-color 0.3s; }
+  .route-card:hover { border-color: rgba(196,164,132,0.4); }
+  .route-card.new { border-color: rgba(196,164,132,0.45); background: rgba(196,164,132,0.04); }
+  .route-number { font-family: 'Cormorant Garamond', serif; font-size: 40px; color: rgba(196,164,132,0.3); margin-bottom: 12px; }
+  .route-card.new .route-number { color: rgba(196,164,132,0.6); }
+  .route-title { font-size: 20px; font-weight: 700; color: #c4a484; margin-bottom: 8px; letter-spacing: 0.05em; }
+  .route-subtitle { font-size: 14px; color: #666; margin-bottom: 20px; letter-spacing: 0.1em; }
+  .route-body { font-size: 15px; font-weight: 300; color: #ccc; line-height: 2; margin-bottom: 20px; }
+  .route-body strong { color: #e0e0e0; font-weight: 500; }
+  .route-ref { font-size: 12px; color: #555; border-top: 1px solid rgba(196,164,132,0.1); padding-top: 16px; line-height: 1.6; }
+  .route-ref a { color: #c4a484; text-decoration: none; }
+  
+  .rtm-section { padding: 80px 0; border-top: 1px solid rgba(196,164,132,0.15); border-bottom: 1px solid rgba(196,164,132,0.15); background: rgba(196,164,132,0.02); }
+  .rtm-section .label { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: #c4a484; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 16px; text-align: center; }
+  .rtm-section h2 { font-size: clamp(24px, 3vw, 32px); font-weight: 700; color: #fff; text-align: center; margin-bottom: 20px; letter-spacing: 0.1em; }
+  .rtm-subtitle { text-align: center; font-size: 16px; color: #c4a484; font-weight: 500; margin-bottom: 40px; letter-spacing: 0.05em; }
+  .rtm-body { max-width: 700px; margin: 0 auto; font-size: 16px; font-weight: 300; color: #aaa; line-height: 2.2; }
+  .rtm-body strong { color: #c4a484; font-weight: 500; }
+  .rtm-diagram { max-width: 700px; margin: 40px auto; display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
+  .rtm-box { border: 1px solid rgba(196,164,132,0.3); border-radius: 8px; padding: 24px 30px; text-align: center; min-width: 160px; }
+  .rtm-box .box-label { font-family: 'Cormorant Garamond', serif; font-size: 12px; color: rgba(196,164,132,0.6); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px; }
+  .rtm-box .box-title { font-size: 16px; color: #e0e0e0; font-weight: 500; margin-bottom: 6px; }
+  .rtm-box .box-desc { font-size: 13px; color: #888; font-weight: 300; line-height: 1.6; }
+  .rtm-plus { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: rgba(196,164,132,0.4); }
+  .rtm-arrow { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: rgba(196,164,132,0.4); }
+  .rtm-result { border: 1px solid rgba(196,164,132,0.5); border-radius: 8px; padding: 24px 30px; text-align: center; min-width: 200px; background: rgba(196,164,132,0.05); }
+  .rtm-comparison { max-width: 850px; margin: 50px auto; }
+  .rtm-comparison table { width: 100%; border-collapse: collapse; }
+  .rtm-comparison th, .rtm-comparison td { padding: 14px 18px; text-align: left; border-bottom: 1px solid rgba(196,164,132,0.1); font-size: 14px; font-weight: 300; }
+  .rtm-comparison th { color: #c4a484; font-weight: 500; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; }
+  .rtm-comparison td { color: #aaa; }
+  .rtm-comparison td:first-child { color: #c4a484; font-weight: 500; }
+  .rtm-comparison tr.new-row td:first-child { color: #c4a484; font-weight: 700; }
+  .rtm-comparison tr.new-row { background: rgba(196,164,132,0.04); }
+  
+  .order-section { padding: 80px 0; border-bottom: 1px solid rgba(196,164,132,0.15); }
+  .order-section .label { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: #c4a484; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 16px; text-align: center; }
+  .order-section h2 { font-size: clamp(24px, 3vw, 32px); font-weight: 700; color: #fff; text-align: center; margin-bottom: 20px; letter-spacing: 0.1em; }
+  .order-subtitle { text-align: center; font-size: 16px; color: #c4a484; font-weight: 500; margin-bottom: 50px; letter-spacing: 0.05em; }
+  .order-body { max-width: 700px; margin: 0 auto; font-size: 16px; font-weight: 300; color: #aaa; line-height: 2.2; }
+  .order-body strong { color: #c4a484; font-weight: 500; }
+  .order-steps { max-width: 700px; margin: 50px auto; }
+  .order-step { display: flex; align-items: flex-start; gap: 24px; margin-bottom: 30px; }
+  .order-step-num { font-family: 'Cormorant Garamond', serif; font-size: 48px; color: rgba(196,164,132,0.3); min-width: 60px; text-align: right; line-height: 1; }
+  .order-step-content { flex: 1; }
+  .order-step-label { font-family: 'Cormorant Garamond', serif; font-size: 12px; color: rgba(196,164,132,0.6); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 4px; }
+  .order-step-title { font-size: 18px; color: #c4a484; font-weight: 500; margin-bottom: 6px; }
+  .order-step-desc { font-size: 14px; color: #999; font-weight: 300; line-height: 1.8; }
+  .order-step-desc strong { color: #e0e0e0; }
+  .order-question { max-width: 700px; margin: 50px auto; padding: 30px; border: 1px solid rgba(196,164,132,0.2); border-radius: 8px; background: rgba(196,164,132,0.03); }
+  .order-question p { font-size: 16px; font-weight: 300; color: #ccc; line-height: 2.2; }
+  .order-question strong { color: #c4a484; font-weight: 500; }
+  .order-recording { max-width: 700px; margin: 50px auto; padding: 40px; border: 1px solid rgba(196,164,132,0.3); border-radius: 8px; background: rgba(196,164,132,0.05); text-align: center; }
+  .order-recording .rec-label { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: #c4a484; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 12px; }
+  .order-recording .rec-title { font-size: 18px; color: #fff; font-weight: 500; margin-bottom: 20px; }
+  .order-recording .rec-lines { font-size: 15px; color: #999; font-weight: 300; line-height: 2.4; }
+  .order-recording .rec-lines strong { color: #c4a484; }
+  
+  .connection { padding: 60px 0; border-bottom: 1px solid rgba(196,164,132,0.15); }
+  .connection .label { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: #c4a484; letter-spacing: 6px; text-transform: uppercase; margin-bottom: 16px; text-align: center; }
+  .connection h2 { font-size: clamp(24px, 3vw, 32px); font-weight: 700; color: #fff; text-align: center; margin-bottom: 40px; letter-spacing: 0.1em; }
+  .connection-body { max-width: 700px; margin: 0 auto; font-size: 16px; font-weight: 300; color: #aaa; line-height: 2.2; }
+  .connection-body strong { color: #c4a484; font-weight: 500; }
+  .options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin: 30px 0; }
+  @media (max-width: 900px) { .options { grid-template-columns: 1fr; } }
+  .option-card { border: 1px solid rgba(196,164,132,0.15); border-radius: 6px; padding: 24px 20px; text-align: center; }
+  .option-card.new { border-color: rgba(196,164,132,0.3); background: rgba(196,164,132,0.03); }
+  .option-number { font-family: 'Cormorant Garamond', serif; font-size: 24px; color: rgba(196,164,132,0.4); margin-bottom: 8px; }
+  .option-text { font-size: 14px; color: #aaa; font-weight: 300; line-height: 1.8; }
+  .option-text strong { color: #c4a484; }
+  
+  .summary { padding: 80px 0; text-align: center; }
+  .summary p { font-size: 18px; font-weight: 300; color: #888; max-width: 600px; margin: 0 auto; line-height: 2.4; }
+  .summary strong { color: #c4a484; font-weight: 500; }
+  .formula { font-family: 'Cormorant Garamond', serif; font-size: 32px; color: #c4a484; margin: 30px 0; letter-spacing: 0.15em; }
+  
+  .footer { padding: 40px 0; text-align: center; border-top: 1px solid rgba(196,164,132,0.1); }
+  .footer p { font-family: 'Cormorant Garamond', serif; font-size: 13px; color: rgba(196,164,132,0.4); letter-spacing: 0.2em; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="container">
+    <div class="label">FOUR ROUTES</div>
+    <h1>ポリゴン超えの4つの道</h1>
+    <div class="subtitle">
+      2Dシート（ポリゴン）から3D連続位相（ポリゴン超え）へ至る道は4つある。<br>
+      4つ目の道は、細胞そのものが繊維であり、融合して境界面を溶かす。
+    </div>
+  </div>
+</div>
+
+<div class="intro">
+  <div class="container">
+    <p>
+      2Dの繊維シートを重ねても3Dのスポンジにはならない。<br>
+      層と層の間に境界面が残るからだ。<br>
+      <strong>境界面を消す。</strong>それがポリゴン超えだ。<br>
+      境界面を消す方法は、4つある。
+    </p>
+  </div>
+</div>
+
+<div class="routes">
+  <div class="container">
+    <div class="routes-grid">
+      <div class="route-card">
+        <div class="route-number">01</div>
+        <div class="route-title">層を溶かす</div>
+        <div class="route-subtitle">川﨑和男の道 — 光造形</div>
+        <div class="route-body">
+          光造形（3Dプリンティング）は層から積み上げる。<br>
+          だが次の層の<strong>液状レジンが前の層と分子レベルで混ざり合ってから硬化する</strong>。<br><br>
+          層の境界面が消える。液体→固化のプロセスで連続位相が生まれる。<br><br>
+          川﨑和男はこの方法で<strong>クラインボトルのトポロジーを人工心臓の形態設計に応用</strong>した。
+        </div>
+        <div class="route-ref">
+          川﨑和男『光造形システムによる全置換型人工心臓の基本的形態化デザイン』<br>
+          医学博士論文、名古屋市立大学
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-number">02</div>
+        <div class="route-title">最初から層を作らない</div>
+        <div class="route-subtitle">ヘチマの道 — 生物的3D成長</div>
+        <div class="route-body">
+          ヘチマの維管束は、細胞が<strong>3方向に同時に分裂・伸長</strong>して作られる。<br><br>
+          2Dを重ねて3Dにしたのではない。<br>
+          最初から3次元連続位相として成長する。<br><br>
+          内外の境界面がない。<br>
+          <strong>クラインボトルと同じで、表も裏もない。</strong>
+        </div>
+        <div class="route-ref">
+          片山佳光『Luffa cylindrica as a Bio-Mimetic Template for Vascular-Neural Co-Regeneration』<br>
+          <a href="https://doi.org/10.5281/zenodo.21670514">DOI: 10.5281/zenodo.21670514</a>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-number">03</div>
+        <div class="route-title">層を縫い抜く</div>
+        <div class="route-subtitle">3D織物の道 — 繊維の貫通</div>
+        <div class="route-body">
+          3D織物は縦・横・厚さの<strong>3方向で繊維を交差</strong>させる。<br><br>
+          Z方向のバインダー糸が層の境界面を貫通する。<br>
+          層を作るが、層が消える。<br><br>
+          <strong>繊維の貫通で境界面を無効化</strong>する。<br>
+          セーレン既存の繊維加工技術の延長線上に位置する。
+        </div>
+        <div class="route-ref">
+          3D woven fabric technology — through-thickness Z-direction fiber reinforcement
+        </div>
+      </div>
+      <div class="route-card new">
+        <div class="route-number">04</div>
+        <div class="route-title">細胞を編み、融合させる</div>
+        <div class="route-subtitle">会長の道 — 細胞融合による境界面の溶解</div>
+        <div class="route-body">
+          筋芽細胞（myoblast）は<strong>自然に膜融合</strong>し、多核の筋管（myotube）を形成する。<br>
+          MyomakerとMyomergerというタンパク質が膜を融合させる。<br><br>
+          細胞入り複合繊維（CLF）を3D織物にして編めば、<br>
+          <strong>細胞が自分で溶け合って境界面が消える。</strong><br><br>
+          器（スキャフォールド）が不要。<br>
+          細胞そのものが繊維であり、融合して現物になる。<br><br>
+          <strong>第1の道（川崎・レジン融合）の生物版。</strong><br>
+          レジンが混ざり合う代わりに、細胞膜が融合する。
+        </div>
+        <div class="route-ref">
+          Composite Living Fibers (CLF): Milano Politecnico, PMC4910159<br>
+          Myoblast fusion: Myomaker/Myomerger, PMC7849503<br>
+          Scaffold-free muscle tissue: Stanford, 2026<br>
+          心筋細胞をらせん状に編んで融合 → 生きた心臓筋肉の3D織物
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RTM Unification -->
+<div class="rtm-section">
+  <div class="container">
+    <div class="label">UNIFICATION</div>
+    <h2>4つの道は1つの原理に収束する</h2>
+    <div class="rtm-subtitle">RTM — Resin Transfer Molding / 樹脂トランスファー成形</div>
+    <div class="rtm-body">
+      3D繊維のプレフォームに液状のマトリクスを注入し、硬化させる。繊維とマトリクスが一体化し、境界面が消える。<br><br>
+      これは航空機の機体を毎日作っている<strong>複合材料の標準プロセス</strong>だ。<br>
+      同じプロセスを生体材料に置き換えればいい。
+    </div>
+    <div class="rtm-diagram">
+      <div class="rtm-box">
+        <div class="box-label">FIBER</div>
+        <div class="box-title">3D織物<br>プレフォーム</div>
+        <div class="box-desc">キトサン<br>ナノファイバー<br>縦・横・Z</div>
+      </div>
+      <div class="rtm-plus">+</div>
+      <div class="rtm-box">
+        <div class="box-label">MATRIX</div>
+        <div class="box-title">ハイドロゲル<br>注入</div>
+        <div class="box-desc">コラーゲン<br>フィブリン<br>キトサンゲル</div>
+      </div>
+      <div class="rtm-arrow">→</div>
+      <div class="rtm-result">
+        <div class="box-label">RESULT</div>
+        <div class="box-title">3D複合体</div>
+        <div class="box-desc" style="color:#c4a484">境界面ゼロ<br>連続位相<br>ポリゴン超え</div>
+      </div>
+    </div>
+    <div class="rtm-body" style="text-align:center">
+      <strong>4つの道はすべてこの同じプロセスだ。</strong>
+    </div>
+    <div class="rtm-comparison">
+      <table>
+        <tr><th>道</th><th>プレフォーム（繊維）</th><th>マトリクス（注入物）</th><th>本質</th></tr>
+        <tr><td>第1の道<br>川﨑・光造形</td><td>なし<br>（繊維ゼロ）</td><td>光硬化レジン<br>そのものを3D固化</td><td>RTMの<br>繊維ゼロ版</td></tr>
+        <tr><td>第2の道<br>ヘチマ</td><td>ヘチマ維管束<br>（自然の3D織物）</td><td>キトサン液<br>流し込んで凝固</td><td>生物版RTM</td></tr>
+        <tr><td>第3の道<br>3D織物</td><td>人工3D織物<br>キトサンナノファイバー</td><td>ハイドロゲル<br>真空注入</td><td>医療版RTM</td></tr>
+        <tr class="new-row"><td>第4の道<br>会長・細胞融合</td><td>細胞入り複合繊維<br>（CLF: 生きた繊維）</td><td>不要<br>（細胞が自ら融合）</td><td>RTMの<br>マトリクスゼロ版</td></tr>
+      </table>
+    </div>
+    <div class="rtm-body" style="text-align:center">
+      第4の道はRTMの<strong>マトリクスゼロ版</strong>だ。<br>
+      外から注入するマトリクスが要らない。細胞自身がマトリクスになる。<br>
+      繊維（細胞）が融合して一体化する。器が消え、細胞そのものが現物になる。<br><br>
+      実際に論文が出ている：3D織物スキャフォールドに<strong>真空注入</strong>でハイドロゲルを充填した研究（PMC3933181）。<br>
+      細胞入り複合繊維を織物にする概念（PMC4910159、ミラノ工科大学）。<br>
+      scaffold-free筋肉組織（Stanford, 2026）。
+    </div>
+  </div>
+</div>
+
+<!-- Developmental Order -->
+<div class="order-section">
+  <div class="container">
+    <div class="label">DEVELOPMENTAL ORDER</div>
+    <h2>血管が先か、神経が先か</h2>
+    <div class="order-subtitle">設計順序の問い</div>
+    <div class="order-question">
+      <p>
+        3D繊維の土台に肉を盛り、後から神経繊維を通すか。<br>
+        神経の3D編みや血管に肉を盛るか。<br><br>
+        どちらが正しいのか。
+      </p>
+    </div>
+    <div class="order-body" style="text-align:center; margin-top:30px">
+      答えは、身体が既に出している。
+    </div>
+    <div class="order-steps">
+      <div class="order-step">
+        <div class="order-step-num">1</div>
+        <div class="order-step-content">
+          <div class="order-step-label">FIRST</div>
+          <div class="order-step-title">血管 — Vessels</div>
+          <div class="order-step-desc">
+            胚発生において、血管は最初に形成される。<br>
+            <strong>血管がなければ、何も届かない。</strong>酸素も栄養も。再生の前提として血管が先にいる。
+          </div>
+        </div>
+      </div>
+      <div class="order-step">
+        <div class="order-step-num">2</div>
+        <div class="order-step-content">
+          <div class="order-step-label">SECOND</div>
+          <div class="order-step-title">肉 — Tissue (Matrix)</div>
+          <div class="order-step-desc">
+            血管ができた後、その周囲に組織が充填される。<br>
+            <strong>血管が先、肉が後。</strong>器の上に肉が盛られる。
+          </div>
+        </div>
+      </div>
+      <div class="order-step">
+        <div class="order-step-num">3</div>
+        <div class="order-step-content">
+          <div class="order-step-label">THIRD</div>
+          <div class="order-step-title">神経 — Nerves</div>
+          <div class="order-step-desc">
+            神経は血管の経路に沿って伸びる。これを<strong>神経血管一致（neurovascular congruence）</strong>と呼ぶ。<br>
+            <strong>血管が書いた経路の上を、神経がなぞる。</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="order-body" style="text-align:center">
+      <strong>3D繊維の土台に肉を盛って後から神経を通すのは不自然。</strong><br>
+      正しい順序は<strong>血管テンプレートに肉を盛り、神経が血管に沿って伸びる</strong>。<br>
+      これが身体の発生順序であり、SUN-Scaffoldの設計順序である。
+    </div>
+    <div class="order-recording">
+      <div class="rec-label">RECORDING MEDIUM</div>
+      <div class="rec-title">記録媒体が刻む順序</div>
+      <div class="rec-lines">
+        <strong>第1刻：</strong>血管の経路（ヘチマ管 = マクロ管）<br>
+        <strong>第2刻：</strong>肉の充填（キトサン = マトリクス）<br>
+        <strong>第3刻：</strong>神経の誘導（ナノファイバー = 軸索方向）<br><br>
+        スキャフォールドは細胞を入れる「器」ではない。<br>
+        <strong>再生の順序を物理的に刻み込んだ「記録媒体」である。</strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Seiren Connection -->
+<div class="connection">
+  <div class="container">
+    <div class="label">SEIREN CONNECTION</div>
+    <h2>微分から積分へ</h2>
+    <div class="connection-body">
+      セーレンは現在、電界紡糸でキトサンナノファイバーを<strong>2Dシートとして製造</strong>している。<br><br>
+      これは「微分」だ。25年かけて世界水準に達した。<br><br>
+      でも積分していない。細かくした繊維を3D連続位相に組み立てていない。それがセーレンが越えられなかった壁だ。<br><br>
+      <strong>積分（3D連続位相の構築）には4つの選択肢がある：</strong>
+    </div>
+    <div class="options">
+      <div class="option-card">
+        <div class="option-number">1</div>
+        <div class="option-text">
+          <strong>ヘチマ鋳型に注型</strong><br>
+          自然の血管テンプレート + キトサンマトリクス<br>
+          （生物版RTM） → 第2の道
+        </div>
+      </div>
+      <div class="option-card">
+        <div class="option-number">2</div>
+        <div class="option-text">
+          <strong>3D織物 + ゲル注入</strong><br>
+          人工プレフォーム + ゲルマトリクス<br>
+          （医療版RTM） → 第3の道
+        </div>
+      </div>
+      <div class="option-card">
+        <div class="option-number">3</div>
+        <div class="option-text">
+          <strong>光造形</strong><br>
+          繊維なし、液そのものを3D固化<br>
+          （RTMの繊維ゼロ版） → 第1の道
+        </div>
+      </div>
+      <div class="option-card new">
+        <div class="option-number">4</div>
+        <div class="option-text">
+          <strong>細胞を編み、融合させる</strong><br>
+          生きた繊維（CLF）、器不要<br>
+          （RTMのマトリクスゼロ版） → 第4の道<br>
+          <span style="color:#c4a484">— 会長の道 —</span>
+        </div>
+      </div>
+    </div>
+    <div class="connection-body" style="text-align:center">
+      微分だけではポリゴン。<br>
+      <strong>積分が入って初めてポリゴン超え。</strong>
+    </div>
+  </div>
+</div>
+
+<div class="summary">
+  <div class="container">
+    <p>
+      川﨑和男は層を溶かして心臓を作った。<br>
+      ヘチマは最初から層を作らずに育った。<br>
+      3D織物は層を作ってから層を縫い抜く。<br>
+      <strong>会長は細胞を編み、細胞融合で境界面を溶かした。</strong><br><br>
+      <strong>4つの道は同じ場所に着く。</strong><br>
+      境界面のない、連続した3次元。<br><br>
+      第4の道は第1の道の生物版だ。<br>
+      川﨑はレジンの融合で境界面を消した。<br>
+      会長は細胞膜の融合で境界面を消す。<br>
+      しかも筋芽細胞の融合は自然に起こる。<br>
+      編めば、細胞が自分で溶け合う。<br><br>
+      器が消え、細胞そのものが現物になる。<br><br>
+      セーレンが選ぶのはどの道か。<br>
+      それを決めるのが、次の面談だ。
+    </p>
+    <div class="formula">V = N / D</div>
+    <p style="font-size:14px;color:#666">
+      D → 0 で V は発散する<br>
+      微分（D）を極小化し、積分（N）を注入する
+    </p>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="container">
+    <p>SUN-Scaffold 脊髄再生プロジェクト / TheYKHC / KOKU COSMOLOGY</p>
+  </div>
+</div>
+
+</body>
+</html>
