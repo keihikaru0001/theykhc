@@ -1,10 +1,25 @@
-.agents/.env
+.agents/
+base44/
+incoming_files/
+functions/
+pages/
+entities/
+import_env/
+papers/
 node_modules/
 .npm/
 __pycache__/
 .cache/
 blobs/
-.agents/
 *.py
-__pycache__/
-incoming_files/
+*.ts
+*.tsx
+*.jsx
+*.mq4
+*.docx
+*.xlsx
+*.csv
+*.md
+!README.md
+# Keep only web files
+# Allow HTML, JSON, CSS, JS, images

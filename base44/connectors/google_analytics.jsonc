@@ -1,6 +1,0 @@
-{
-  "type": "google_analytics",
-  "scopes": [
-    "email"
-  ]
-}
