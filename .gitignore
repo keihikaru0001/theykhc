@@ -4,3 +4,7 @@ node_modules/
 __pycache__/
 .cache/
 blobs/
+.agents/
+*.py
+__pycache__/
+incoming_files/
