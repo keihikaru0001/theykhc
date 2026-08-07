@@ -1,1880 +1,375 @@
-<!-- rebuild: TAM/SAM/SOM fix deployed Thu Aug  6 15:53:06 UTC 2026 -->
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<!-- cache-bust: 20260805-1552 -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TheYKHC — 片山佳光の経営処方所 · V=N/D · 1,036 DOI</title>
-<meta name="description" content="TheYKHC — まだ誰も正確に立てていない問いを発見し、検証できる形に変える知的機関。問いが問いを生む。1,036件のDOI。748件の仮説由来アイデア。Hypothesis OS v1.1。">
-<meta name="author" content="Yoshimitsu Katayama / TheYKHC">
-<meta name="keywords" content="天道経済学, V=N/D, 光貨, Hikari, IceCube, 宇宙同期標準, KOKU, Ki-Net Field, Zenodo, DOI, Katayama Formula, TheYKHC">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://theykhc.com/">
-<meta property="og:type" content="website">
-<meta property="og:title" content="TheYKHC Tower — 片山佳光の経営処方所">
-<meta property="og:description" content="まだ誰も正確に立てていない問いを発見し、検証できる形に変える知的機関。1,036 DOI · 748 ideas · Hypothesis OS v1.1">
-<meta property="og:url" content="https://theykhc.com/">
-<meta property="og:site_name" content="TheYKHC">
-<meta property="og:locale" content="ja_JP">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="TheYKHC Tower — 片山佳光の経営処方所">
-<meta name="twitter:description" content="まだ誰も正確に立てていない問いを発見し、検証できる形に変える知的機関。1,036 DOI · 748 ideas · Hypothesis OS v1.1">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200;300;400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<title>TheYKHC Tower — 知的資産生成機関</title>
+<meta name="description" content="TheYKHC Towerは1,038件のDOI資産（Zenodo/CERN）と問い生成エンジンを搭載した知的機関。V=N/D（Katayama Formula）に基づく経営処方所。">
 <style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --gold:#c9a84c;
-  --gold-bright:#e8c870;
-  --gold-dim:#6a5a2c;
-  --paper:#e8e2d4;
-  --paper-dim:#a09a8a;
-  --ink:#0a0a0a;
-  --ink-2:#0f0f0f;
-  --ink-3:#161616;
-  --muted:#5a5a5a;
-  --muted-2:#3a3a3a;
-  --link:#8a9ec4;
-  --crimson:#8b3a3a;
-  --emerald:#3a6a4a;
+:root {
+  --bg: #0a0a0a;
+  --bg-card: #141414;
+  --bg-hover: #1a1a1a;
+  --text: #e8e8e8;
+  --text-muted: #888;
+  --text-dim: #555;
+  --gold: #c5a059;
+  --gold-bright: #e0b870;
+  --border: #2a2a2a;
+  --border-hover: #3a3a3a;
+  --green: #4a9;
+  --red: #c44;
 }
-html{scroll-behavior:smooth}
-body{background:var(--ink);color:var(--paper);font-family:'Cormorant Garamond','Noto Serif JP',serif;line-height:1.9;font-weight:300;-webkit-font-smoothing:antialiased}
-body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.05 0 0 0 0 0.05 0 0 0 0 0.05 0 0 0 0.15 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:0.4;pointer-events:none;z-index:1;mix-blend-mode:overlay}
-.spine{position:fixed;left:50%;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--gold-dim) 8%,var(--gold-dim) 92%,transparent);transform:translateX(-50%);z-index:0;opacity:0.25}
-.hero{position:relative;width:100%;height:100vh;min-height:680px;overflow:hidden;z-index:2;display:flex;align-items:center;justify-content:center}
-.hero-bg{position:absolute;inset:0;background:url('tower-ground-new.png') center top/auto 100% no-repeat;background-color:#1a1208;filter:brightness(0.5) contrast(1.1)}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.6) 0%,rgba(10,10,10,0.3) 25%,rgba(10,10,10,0.5) 65%,rgba(10,10,10,0.95) 90%,rgba(10,10,10,1) 100%)}
-.hero-content{position:relative;z-index:3;text-align:center;padding:20px;max-width:900px}
-.hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold-dim);letter-spacing:6px;text-transform:uppercase;margin-bottom:32px;opacity:0;animation:fadeIn 1.5s ease 0.2s forwards}
-.hero-formula{font-size:clamp(36px,8vw,72px);color:var(--gold);letter-spacing:8px;font-weight:300;opacity:0;animation:fadeIn 2s ease 0.5s forwards;text-shadow:0 0 30px rgba(201,168,76,0.3)}
-.hero-formula-divider{width:40px;height:1px;background:var(--gold-dim);margin:20px auto;opacity:0;animation:fadeIn 1.5s ease 1s forwards}
-.hero-formula-name{font-size:clamp(11px,2.5vw,14px);color:var(--paper-dim);letter-spacing:5px;text-transform:uppercase;font-family:'JetBrains Mono',monospace;opacity:0;animation:fadeIn 2s ease 1s forwards}
-.hero-title{font-size:clamp(22px,5vw,38px);color:var(--paper);letter-spacing:4px;margin-top:48px;font-weight:400;opacity:0;animation:fadeIn 2s ease 1.5s forwards;text-shadow:0 0 20px rgba(0,0,0,0.9)}
-.hero-sub{font-size:clamp(11px,2vw,13px);color:var(--gold-dim);letter-spacing:4px;margin-top:14px;font-family:'JetBrains Mono',monospace;opacity:0;animation:fadeIn 2s ease 2s forwards}
-.hero-game-link{display:inline-block;margin-top:36px;padding:14px 40px;border:1px solid var(--gold);color:var(--gold);text-decoration:none;font-size:13px;letter-spacing:4px;transition:all 0.4s;font-family:'JetBrains Mono',monospace;text-transform:uppercase;position:relative;background:transparent}.hero-game-link:hover{background:var(--gold);color:var(--ink);box-shadow:0 0 24px rgba(201,168,76,0.4)}.hero-game-sub{font-size:10px;color:var(--gold-dim);letter-spacing:3px;margin-top:10px;font-family:'JetBrains Mono',monospace}
-.hero-scroll{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);color:var(--gold-dim);font-size:10px;letter-spacing:4px;font-family:'JetBrains Mono',monospace;opacity:0;animation:fadeIn 2s ease 2.8s forwards,scrollBounce 2.5s ease-in-out 3.5s infinite}
-@keyframes fadeIn{to{opacity:1}}
-@keyframes scrollBounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}
-header{text-align:center;padding:60px 20px 40px;position:relative;z-index:2}
-.header-divider{width:60px;height:1px;background:var(--gold-dim);margin:0 auto 32px}
-.formula{font-size:clamp(28px,6vw,48px);color:var(--gold);letter-spacing:6px;font-weight:300}
-.formula-name{font-size:clamp(10px,2vw,12px);color:var(--paper-dim);letter-spacing:4px;margin-top:6px;font-family:'JetBrains Mono',monospace;text-transform:uppercase}
-nav{position:fixed;right:24px;top:50%;transform:translateY(-50%);z-index:10;display:flex;flex-direction:column;gap:8px}
-nav a{width:6px;height:6px;border-radius:50%;background:#222;transition:all 0.3s;display:block;border:1px solid #333}
-nav a:hover,nav a.active{background:var(--gold);border-color:var(--gold);box-shadow:0 0 8px rgba(201,168,76,0.4);transform:scale(1.3)}
-.tower{position:relative;z-index:2;max-width:760px;margin:0 auto;padding-bottom:60px}
-.floor{padding:80px 28px;border-bottom:1px solid #111;position:relative}
-.floor:last-child{border-bottom:none}
-.floor-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold-dim);letter-spacing:5px;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:12px}
-.floor-label::after{content:'';flex:1;height:1px;background:linear-gradient(to right,var(--gold-dim),transparent);opacity:0.4}
-.floor-name{font-size:clamp(22px,5vw,34px);color:var(--gold);letter-spacing:3px;margin-bottom:8px;font-weight:400}
-.floor-name-jp{font-size:clamp(14px,3vw,18px);color:var(--paper);margin-bottom:24px;letter-spacing:1px;font-weight:300}
-.floor-desc{font-size:15px;color:var(--paper-dim);line-height:2.1;margin-bottom:28px;max-width:580px;font-weight:300}
-.papers{display:flex;flex-direction:column;gap:6px}
-.paper{display:block;padding:12px 18px;background:var(--ink-2);border-left:2px solid var(--gold-dim);text-decoration:none;transition:all 0.25s ease;position:relative;overflow:hidden}
-.paper::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:var(--gold);transition:width 0.25s ease}
-.paper:hover{background:var(--ink-3);padding-left:24px}
-.paper:hover::before{width:2px}
-.paper-title{font-size:14px;color:var(--paper);line-height:1.6;font-weight:400}
-.paper-doi{font-size:11px;color:var(--muted);margin-top:4px;font-family:'JetBrains Mono',monospace;letter-spacing:0.5px}
-.floor-count{display:inline-block;font-size:10px;color:var(--gold-dim);margin-bottom:20px;padding:3px 14px;border:1px solid var(--gold-dim);border-radius:2px;letter-spacing:2px;font-family:'JetBrains Mono',monospace;text-transform:uppercase}
-.pub-entry{padding:16px 0;border-bottom:1px solid #111}
-.pub-platform{font-size:14px;color:var(--gold);margin-bottom:4px;font-weight:500;letter-spacing:1px}
-.pub-detail{font-size:13px;color:var(--paper-dim);line-height:1.8;font-weight:300}
-.pub-link{display:inline-block;margin-top:6px;font-size:12px;color:var(--link);text-decoration:none;border-bottom:1px dotted var(--link);transition:all 0.2s;font-family:'JetBrains Mono',monospace}
-.pub-link:hover{color:var(--gold);border-bottom-color:var(--gold)}
-.pub-note{font-size:12px;color:var(--muted);margin-top:24px;padding:14px 20px;background:var(--ink-2);border-left:2px solid var(--gold-dim);border-radius:2px;line-height:2;font-style:italic;font-weight:300}
-.vault{text-align:center;padding:80px 28px}
-.vault-num{font-size:clamp(56px,12vw,96px);color:var(--gold);font-weight:200;letter-spacing:6px;line-height:1}
-.vault-label{font-size:13px;color:var(--paper-dim);letter-spacing:4px;margin-top:12px;font-family:'JetBrains Mono',monospace;text-transform:uppercase}
-.vault-links{margin-top:32px;display:flex;flex-direction:column;gap:10px;align-items:center}
-footer{text-align:center;padding:64px 20px 100px;position:relative;z-index:2}
-.footer-divider{width:80px;height:1px;background:var(--gold-dim);margin:0 auto 48px;opacity:0.5}
-.seed-note{font-size:13px;color:var(--muted);font-style:italic;line-height:2.2;max-width:420px;margin:0 auto;font-weight:300}
-.link-btn{display:inline-block;margin-top:24px;padding:12px 32px;border:1px solid var(--gold-dim);color:var(--gold);text-decoration:none;font-size:12px;letter-spacing:3px;transition:all 0.3s;font-family:'JetBrains Mono',monospace;text-transform:uppercase}
-.link-btn:hover{background:var(--gold);color:var(--ink);border-color:var(--gold)}
-#consult{background:var(--ink-2);padding:120px 24px;text-align:center;border-top:1px solid var(--gold-dim);position:relative}
-#consult::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:120px;height:1px;background:var(--gold);opacity:0.5}
-.consult-inner{max-width:760px;margin:0 auto}
-.consult-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:6px;color:var(--gold-dim);margin-bottom:24px;text-transform:uppercase}
-.consult-title{font-size:clamp(24px,5vw,38px);color:var(--gold);font-weight:300;letter-spacing:4px;margin-bottom:32px;line-height:1.6}
-.consult-desc{color:var(--paper);font-size:16px;line-height:2.1;margin-bottom:16px;font-weight:300}
-.consult-sub{color:var(--paper-dim);font-size:14px;line-height:2.1;margin-bottom:48px;font-weight:300}
-.consult-features{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:48px;text-align:left}
-.feature-card{border:1px solid var(--muted-2);padding:28px;border-radius:2px;background:rgba(201,168,76,0.02);transition:all 0.3s}
-.feature-card:hover{border-color:var(--gold-dim);background:rgba(201,168,76,0.05)}
-.feature-title{color:var(--gold);font-size:13px;font-weight:600;margin-bottom:12px;letter-spacing:1px;font-family:'JetBrains Mono',monospace;text-transform:uppercase}
-.feature-desc{color:var(--paper-dim);font-size:13px;line-height:1.9;font-weight:300}
-.d-badges{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
-.d-badge{color:var(--gold-dim);font-size:11px;border:1px solid var(--muted-2);padding:8px 20px;border-radius:2px;letter-spacing:2px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;transition:all 0.3s}
-.d-badge:hover{border-color:var(--gold);color:var(--gold)}
-.pricing{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:48px;text-align:left}
-.price-card{border:1px solid var(--muted-2);padding:28px;border-radius:2px;background:rgba(201,168,76,0.015);transition:all 0.3s}
-.price-card.featured{border-color:var(--gold);background:rgba(201,168,76,0.05)}
-.price-label{color:var(--gold-dim);font-size:10px;letter-spacing:4px;margin-bottom:12px;font-family:'JetBrains Mono',monospace}
-.price-amount{color:var(--gold);font-size:28px;font-weight:300;margin-bottom:12px;letter-spacing:1px}
-.price-detail{color:var(--paper-dim);font-size:13px;line-height:1.9;font-weight:300}
-.cta-badge{color:var(--gold);font-size:13px;font-weight:600;margin-bottom:20px;letter-spacing:3px;animation:pulse 2.5s ease-in-out infinite;font-family:'JetBrains Mono',monospace}
-.cta-btn{display:inline-block;padding:16px 56px;border:1px solid var(--gold);color:var(--gold);text-decoration:none;font-size:13px;letter-spacing:4px;transition:all 0.3s;background:rgba(201,168,76,0.05);font-family:'JetBrains Mono',monospace;text-transform:uppercase}
-.cta-btn:hover{background:var(--gold);color:var(--ink);box-shadow:0 0 20px rgba(201,168,76,0.2)}
-.consult-note{color:var(--muted);font-size:12px;margin-top:32px;line-height:2;font-weight:300;font-style:italic}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
-@media(max-width:600px){nav{display:none}.floor{padding:48px 18px}.hero-content{padding:16px}#consult{padding:80px 16px}.feature-card,.price-card{padding:20px}}
-
-.luna-section{background:linear-gradient(to bottom,var(--ink),#050505,var(--ink));padding:140px 24px;text-align:center;position:relative;z-index:2;border-top:1px solid var(--gold-dim)}
-.luna-section::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:120px;height:1px;background:var(--gold);opacity:0.5}
-.luna-inner{max-width:780px;margin:0 auto}
-.luna-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:6px;color:var(--gold-dim);margin-bottom:40px;text-transform:uppercase}
-.luna-symbol{font-size:48px;color:var(--gold);margin-bottom:20px;opacity:0.7;font-weight:200;line-height:1}
-.luna-title{font-size:clamp(32px,7vw,52px);color:var(--gold);font-weight:300;letter-spacing:8px;margin-bottom:16px}
-.luna-subtitle{font-size:clamp(14px,3vw,20px);color:var(--paper);font-weight:300;letter-spacing:2px;line-height:2.2;margin-bottom:32px;font-style:italic}
-.luna-divider{width:40px;height:1px;background:var(--gold-dim);margin:32px auto}
-.luna-desc{color:var(--paper-dim);font-size:15px;line-height:2.4;margin-bottom:32px;font-weight:300;max-width:580px;margin-left:auto;margin-right:auto}
-.luna-quote{font-size:clamp(16px,3vw,22px);color:var(--gold);font-style:italic;letter-spacing:3px;margin-bottom:48px;font-weight:300;opacity:0.8}
-.luna-features{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;margin-bottom:64px;max-width:720px;margin-left:auto;margin-right:auto}
-.luna-feature{padding:24px 16px;background:var(--ink-2);border:1px solid #1a1a1a;border-radius:4px;transition:all 0.3s}
-.luna-feature:hover{border-color:var(--gold-dim);transform:translateY(-2px)}
-.luna-feature-label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:3px;margin-bottom:12px}
-.luna-feature-text{font-size:13px;color:var(--paper-dim);line-height:2;font-weight:300}
-.luna-pricing{display:flex;flex-wrap:wrap;justify-content:center;gap:20px;margin-bottom:48px}
-.luna-price-card{padding:32px 24px;background:var(--ink-2);border:1px solid #1a1a1a;border-radius:4px;min-width:200px;max-width:260px;transition:all 0.3s}
-.luna-price-card:hover{border-color:var(--gold-dim)}
-.luna-price-featured{border-color:var(--gold-dim);background:linear-gradient(to bottom,#0f0d05,var(--ink-2));position:relative}
-.luna-price-featured::before{content:'RECOMMENDED';position:absolute;top:-10px;left:50%;transform:translateX(-50%);font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--gold);background:var(--ink);padding:2px 12px;border:1px solid var(--gold-dim);border-radius:2px}
-.luna-price-label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold-dim);letter-spacing:3px;margin-bottom:16px}
-.luna-price-amount{font-size:28px;color:var(--gold);font-weight:300;letter-spacing:2px;margin-bottom:16px}
-.luna-price-detail{font-size:12px;color:var(--paper-dim);line-height:2.2;font-weight:300}
-.luna-btn{display:inline-block;padding:16px 48px;border:1px solid var(--gold);color:var(--gold);text-decoration:none;font-size:13px;letter-spacing:4px;transition:all 0.3s;font-family:'Cormorant Garamond',serif;font-weight:400;border-radius:2px}
-.luna-btn:hover{background:var(--gold);color:var(--ink);box-shadow:0 0 20px rgba(201,168,76,0.3)}
-.luna-note{margin-top:40px;font-size:13px;color:var(--muted);font-style:italic;line-height:2.4;max-width:420px;margin-left:auto;margin-right:auto;font-weight:300}
-
-
-.luna-observer{margin:48px auto;max-width:680px;padding:40px 32px;background:linear-gradient(to bottom,#080808,var(--ink-2));border:1px solid #1a1a1a;border-radius:4px;position:relative;overflow:hidden}
-.luna-observer::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--gold-dim),transparent)}
-.luna-observer-title{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold);letter-spacing:4px;margin-bottom:32px;font-weight:300;text-align:center}
-.luna-observer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:24px;margin-bottom:28px}
-.luna-observer-item{text-align:center;padding:16px 8px;border:1px solid #141414;border-radius:2px;background:rgba(0,0,0,0.3)}
-.luna-observer-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold-dim);letter-spacing:3px;margin-bottom:10px;text-transform:uppercase}
-.luna-observer-text{font-size:13px;color:var(--paper);line-height:2;font-weight:300}
-.luna-observer-score{font-size:36px;color:var(--gold);font-weight:300;letter-spacing:2px;line-height:1}
-.luna-observer-unit{font-size:12px;color:var(--gold-dim);font-weight:300}
-.luna-observer-poem{font-size:13px;color:var(--paper-dim);line-height:2.4;font-style:italic;text-align:center;max-width:520px;margin:0 auto;padding-top:24px;border-top:1px solid #141414;font-weight:300}
-.knowledge-standard{margin:40px auto;max-width:680px;padding:40px 32px;background:linear-gradient(to bottom,#080808,var(--ink-2));border:1px solid #1a1a1a;border-radius:4px;position:relative;overflow:hidden}
-.knowledge-standard::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--gold-dim),transparent)}
-.ks-title{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold);letter-spacing:4px;margin-bottom:8px;font-weight:300;text-align:center}
-.ks-subtitle{font-size:11px;color:var(--gold-dim);letter-spacing:3px;text-align:center;margin-bottom:32px;font-family:'JetBrains Mono',monospace;text-transform:uppercase}
-.ks-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:20px;margin-bottom:28px}
-.ks-item{text-align:center;padding:20px 8px;border:1px solid #141414;border-radius:2px;background:rgba(0,0,0,0.3)}
-.ks-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold-dim);letter-spacing:3px;margin-bottom:10px;text-transform:uppercase}
-.ks-value{font-size:32px;color:var(--gold);font-weight:300;letter-spacing:2px;line-height:1}
-.ks-unit{font-size:12px;color:var(--gold-dim);font-weight:300}
-.ks-desc{font-size:13px;color:var(--paper-dim);line-height:2.4;font-style:italic;text-align:center;max-width:520px;margin:0 auto;padding-top:24px;border-top:1px solid #141414;font-weight:300}
-
-
-.kika-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:16px;margin:40px 0 56px;max-width:720px;margin-left:auto;margin-right:auto}
-.kika-metric{text-align:center;padding:20px 12px;background:var(--ink-3);border:1px solid var(--gold-dim);border-radius:4px}
-.kika-metric-num{font-size:clamp(20px,4vw,32px);color:var(--gold);font-weight:300;letter-spacing:1px;line-height:1.2}
-.kika-metric-unit{font-size:12px;color:var(--gold-dim);margin-left:4px;letter-spacing:2px}
-.kika-metric-label{font-size:10px;color:var(--paper-dim);letter-spacing:3px;margin-top:10px;font-family:'JetBrains Mono',monospace;text-transform:uppercase}
-
-
-/* === IR Section Styles (restored) === */
-/* Virtual Corporation IR */
-.ir-section{background:linear-gradient(to bottom,var(--ink),#060608,var(--ink));padding:140px 24px;text-align:center;position:relative;z-index:2;border-top:1px solid var(--gold-dim)}
-.ir-section::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:120px;height:1px;background:var(--gold);opacity:0.5}
-.ir-inner{max-width:820px;margin:0 auto}
-.ir-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:6px;color:var(--gold-dim);margin-bottom:32px;text-transform:uppercase}
-.ir-company-name{font-size:clamp(28px,6vw,48px);color:var(--gold);font-weight:300;letter-spacing:4px;margin-bottom:8px}
-.ir-company-jp{font-size:clamp(16px,3vw,22px);color:var(--paper);font-weight:300;letter-spacing:2px;margin-bottom:12px}
-.ir-ceo{font-size:14px;color:var(--paper-dim);letter-spacing:3px;margin-bottom:40px;font-family:'JetBrains Mono',monospace}
-.ir-ceo span{color:var(--gold)}
-.ir-stock-display{margin:48px auto;max-width:680px;padding:48px 32px;background:linear-gradient(to bottom,#080808,var(--ink-2));border:1px solid var(--gold-dim);border-radius:4px;position:relative;overflow:hidden}
-.ir-stock-display::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent)}
-.ir-stock-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold-dim);letter-spacing:4px;text-transform:uppercase;margin-bottom:16px}
-.ir-stock-price{font-size:clamp(40px,8vw,64px);color:var(--gold);font-weight:200;letter-spacing:2px;line-height:1}
-.ir-stock-currency{font-size:16px;color:var(--gold-dim);margin-left:8px;font-weight:300}
-.ir-stock-change{font-size:14px;color:var(--emerald);margin-top:12px;font-family:'JetBrains Mono',monospace;letter-spacing:2px}
-.ir-stock-meta{display:flex;justify-content:center;gap:48px;margin-top:24px;padding-top:24px;border-top:1px solid #141414;flex-wrap:wrap}
-.ir-stock-meta-item{text-align:center}
-.ir-stock-meta-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold-dim);letter-spacing:3px;text-transform:uppercase;margin-bottom:6px}
-.ir-stock-meta-value{font-size:18px;color:var(--paper);font-weight:300;letter-spacing:1px}
-.ir-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin:48px 0;max-width:720px;margin-left:auto;margin-right:auto}
-.ir-metric{padding:24px 16px;background:var(--ink-2);border:1px solid #1a1a1a;border-radius:4px;transition:all 0.3s}
-.ir-metric:hover{border-color:var(--gold-dim);transform:translateY(-2px)}
-.ir-metric-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold-dim);letter-spacing:3px;margin-bottom:12px;text-transform:uppercase}
-.ir-metric-value{font-size:28px;color:var(--gold);font-weight:300;letter-spacing:1px;line-height:1}
-.ir-metric-unit{font-size:11px;color:var(--gold-dim);margin-top:6px;letter-spacing:2px}
-.ir-exchange{margin:48px auto;max-width:680px;padding:32px;background:var(--ink-2);border:1px solid #1a1a1a;border-radius:4px}
-.ir-exchange-title{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold);letter-spacing:4px;margin-bottom:24px;font-weight:300;text-align:center}
-.ir-exchange-rate{display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap}
-.ir-exchange-from{font-size:20px;color:var(--paper);font-weight:300}
-.ir-exchange-arrow{color:var(--gold-dim);font-size:20px}
-.ir-exchange-to{font-size:20px;color:var(--gold);font-weight:300}
-.ir-exchange-unit{font-size:12px;color:var(--paper-dim);text-align:center;margin-top:8px;letter-spacing:2px}
-.ir-business{margin:48px auto;max-width:680px;text-align:left}
-.ir-business-title{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold-dim);letter-spacing:4px;text-transform:uppercase;margin-bottom:24px;text-align:center}
-.ir-business-item{padding:16px 0;border-bottom:1px solid #141414;display:flex;justify-content:space-between;align-items:center}
-.ir-business-item:last-child{border-bottom:none}
-.ir-business-name{font-size:14px;color:var(--paper);font-weight:400}
-.ir-business-value{font-size:14px;color:var(--gold);font-family:'JetBrains Mono',monospace;letter-spacing:1px}
-.ir-disclaimer{margin:48px auto;max-width:580px;padding:24px 28px;background:rgba(139,58,58,0.05);border:1px solid #2a1a1a;border-radius:4px}
-.ir-disclaimer-text{font-size:12px;color:var(--muted);line-height:2.2;text-align:left;font-weight:300}
-.ir-disclaimer-text strong{color:var(--paper-dim)}
-.ir-containment{margin:0 auto 48px;max-width:680px;padding:32px;background:linear-gradient(to bottom,#060606,#0a0a0a);border:1px solid var(--gold-dim);border-radius:4px;position:relative;overflow:hidden}
-.ir-containment::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--gold-dim),transparent)}
-.ir-containment-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold-dim);letter-spacing:4px;text-align:center;text-transform:uppercase;margin-bottom:20px}
-.ir-containment-status{font-size:16px;color:var(--gold);letter-spacing:3px;text-align:center;margin-bottom:24px;font-weight:300}
-.ir-containment-status span{display:inline-block;width:8px;height:8px;background:var(--emerald);border-radius:50%;margin-right:8px;vertical-align:middle;box-shadow:0 0 8px rgba(58,106,74,0.6);animation:pulse 2s ease infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
-.ir-containment-text{font-size:13px;color:var(--paper-dim);line-height:2.2;text-align:center;font-weight:300}
-.ir-containment-text strong{color:var(--paper)}
-.ir-barrier{display:flex;align-items:center;justify-content:center;margin:24px 0;gap:12px;flex-wrap:wrap}
-.ir-barrier-line{flex:1;height:1px;background:linear-gradient(to right,transparent,var(--gold-dim),transparent);max-width:120px}
-.ir-barrier-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold-dim);letter-spacing:4px;text-transform:uppercase;white-space:nowrap}
-.ir-closed-badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--emerald);border:1px solid var(--emerald);padding:3px 12px;border-radius:2px;letter-spacing:3px;text-transform:uppercase;margin-bottom:32px}
-.ir-comparison{margin:48px auto;max-width:720px;padding:40px 32px;background:linear-gradient(to bottom,#040406,#0a0a0a);border:1px solid var(--gold-dim);border-radius:4px;position:relative;overflow:hidden}
-.ir-comparison::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent)}
-.ir-comp-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold-dim);letter-spacing:4px;text-align:center;text-transform:uppercase;margin-bottom:32px}
-.ir-comp-title{font-size:clamp(18px,4vw,26px);color:var(--gold);font-weight:300;letter-spacing:3px;text-align:center;margin-bottom:8px}
-.ir-comp-subtitle{font-size:12px;color:var(--paper-dim);text-align:center;margin-bottom:40px;letter-spacing:2px;font-style:italic}
-.ir-comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:0 auto;max-width:600px;border:1px solid #1a1a1a;border-radius:4px;overflow:hidden}
-.ir-comp-col{padding:28px 20px;text-align:center}
-.ir-comp-col-japan{background:rgba(139,58,58,0.06);border-right:1px solid #1a1a1a}
-.ir-comp-col-hikari{background:rgba(58,106,74,0.06)}
-.ir-comp-col-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;margin-bottom:20px}
-.ir-comp-col-japan .ir-comp-col-label{color:var(--crimson)}
-.ir-comp-col-hikari .ir-comp-col-label{color:var(--emerald)}
-.ir-comp-row{padding:12px 0;border-bottom:1px solid #141414}
-.ir-comp-row:last-child{border-bottom:none}
-.ir-comp-row-label{font-size:10px;color:var(--muted);letter-spacing:2px;margin-bottom:4px;font-family:'JetBrains Mono',monospace;text-transform:uppercase}
-.ir-comp-row-value{font-size:18px;color:var(--paper);font-weight:300;letter-spacing:1px}
-.ir-comp-col-hikari .ir-comp-row-value{color:var(--gold)}
-.ir-comp-formula{margin:32px auto 0;text-align:center;padding:24px;background:var(--ink);border:1px solid var(--gold-dim);border-radius:4px}
-.ir-comp-formula-eq{font-size:clamp(16px,3vw,22px);color:var(--gold);font-weight:300;letter-spacing:2px;line-height:1.8}
-.ir-comp-formula-eq span{color:var(--paper)}
-.ir-comp-formula-note{font-size:11px;color:var(--muted);margin-top:12px;letter-spacing:1px;line-height:2;font-style:italic}
-.ir-comp-verdict{margin:32px auto 0;max-width:520px;text-align:center}
-.ir-comp-verdict-text{font-size:15px;color:var(--gold);line-height:2.2;font-weight:300;letter-spacing:1px}
-.ir-comp-verdict-text strong{color:var(--gold-bright)}
-.ir-comp-closed-note{margin:20px auto 0;max-width:480px;font-size:11px;color:var(--muted);text-align:center;letter-spacing:1px;line-height:2;font-style:italic}
-.ir-transparency{margin:64px auto;max-width:760px;padding:48px 36px;background:linear-gradient(to bottom,#020204,#080808);border:1px solid var(--gold-dim);border-radius:4px;position:relative;overflow:hidden}
-.ir-transparency::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--gold),transparent)}
-.ir-trans-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold-dim);letter-spacing:5px;text-align:center;text-transform:uppercase;margin-bottom:16px}
-.ir-trans-title{font-size:clamp(20px,4vw,28px);color:var(--gold);font-weight:300;letter-spacing:4px;text-align:center;margin-bottom:8px}
-.ir-trans-subtitle{font-size:13px;color:var(--paper-dim);text-align:center;margin-bottom:48px;letter-spacing:2px;font-style:italic}
-.ir-trans-section{margin-bottom:40px}
-.ir-trans-section-title{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:20px;padding-bottom:8px;border-bottom:1px solid #1a1a1a}
-.ir-trans-list{list-style:none;padding:0;margin:0}
-.ir-trans-item{padding:14px 0;border-bottom:1px solid #141414;display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
-.ir-trans-item:last-child{border-bottom:none}
-.ir-trans-item-label{font-size:13px;color:var(--paper-dim);flex-shrink:0;min-width:140px;line-height:1.8}
-.ir-trans-item-value{font-size:13px;color:var(--paper);text-align:right;line-height:1.8;flex:1}
-.ir-trans-item-value strong{color:var(--gold)}
-.ir-trans-item-value em{color:var(--crimson);font-style:normal}
-.ir-trans-item-value span{color:var(--emerald)}
-.ir-trans-narrative{font-size:14px;color:var(--paper-dim);line-height:2.4;font-weight:300;letter-spacing:1px;margin-bottom:32px}
-.ir-trans-narrative strong{color:var(--paper)}
-.ir-trans-boundary{margin:40px 0;padding:32px;background:linear-gradient(to right,rgba(139,58,58,0.04),rgba(58,106,74,0.04));border:1px solid #1a1a1a;border-radius:4px}
-.ir-trans-boundary-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold-dim);letter-spacing:4px;text-align:center;margin-bottom:20px;text-transform:uppercase}
-.ir-trans-boundary-vis{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:12px;letter-spacing:1px}
-.ir-trans-boundary-side{flex:1;text-align:center;padding:16px 8px;border-radius:4px}
-.ir-trans-boundary-outside{background:rgba(139,58,58,0.06);border:1px solid #2a1a1a}
-.ir-trans-boundary-inside{background:rgba(58,106,74,0.06);border:1px solid #1a2a1a}
-.ir-trans-boundary-outside .ir-trans-boundary-title{color:var(--crimson);font-size:10px;letter-spacing:3px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;margin-bottom:8px}
-.ir-trans-boundary-inside .ir-trans-boundary-title{color:var(--emerald);font-size:10px;letter-spacing:3px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;margin-bottom:8px}
-.ir-trans-boundary-outside .ir-trans-boundary-items{font-size:12px;color:var(--paper-dim);line-height:2}
-.ir-trans-boundary-inside .ir-trans-boundary-items{font-size:12px;color:var(--paper-dim);line-height:2}
-.ir-trans-boundary-divider{flex-shrink:0;width:2px;height:80px;background:linear-gradient(to bottom,transparent,var(--gold-dim),transparent);position:relative}
-.ir-trans-boundary-divider::after{content:'D=0';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold-dim);background:#080808;padding:4px 8px;white-space:nowrap;letter-spacing:1px}
-.ir-trans-signature{margin-top:48px;text-align:center;padding-top:32px;border-top:1px solid #1a1a1a}
-.ir-trans-signature-name{font-size:16px;color:var(--paper);letter-spacing:2px;margin-bottom:4px}
-.ir-trans-signature-title{font-size:11px;color:var(--muted);letter-spacing:2px;margin-bottom:16px}
-.ir-trans-signature-date{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold-dim);letter-spacing:3px}
-.ir-trans-liberation{margin:56px auto 0;max-width:640px;padding:40px 32px;background:linear-gradient(to bottom,#06040a,#0a0608);border:1px solid #2a1a2a;border-radius:4px;position:relative;overflow:hidden}
-.ir-trans-liberation::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,#8b3a3a,transparent)}
-.ir-trans-liberation::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--gold-dim),transparent)}
-.ir-trans-lib-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:#8b3a3a;letter-spacing:5px;text-align:center;text-transform:uppercase;margin-bottom:24px}
-.ir-trans-lib-title{font-size:clamp(18px,4vw,24px);color:var(--paper);font-weight:300;letter-spacing:3px;text-align:center;margin-bottom:32px;line-height:1.8}
-.ir-trans-lib-title strong{color:var(--gold)}
-.ir-trans-lib-text{font-size:14px;color:var(--paper-dim);line-height:2.6;font-weight:300;letter-spacing:1px;text-align:center}
-.ir-trans-lib-text strong{color:var(--paper)}
-.ir-trans-lib-text em{color:var(--gold);font-style:normal}
-.ir-trans-lib-formula{margin:28px auto;text-align:center;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--gold-dim);letter-spacing:2px;line-height:2}
-.ir-trans-lib-formula span{color:var(--gold)}
-.ir-trans-lib-condition{margin:32px auto 0;max-width:480px;padding:20px 24px;background:rgba(139,58,58,0.04);border:1px solid #2a1a1a;border-radius:4px;font-size:12px;color:var(--muted);line-height:2.2;text-align:center;letter-spacing:1px}
-.ir-trans-lib-condition strong{color:#8b3a3a}
-.ir-game{margin:64px auto;max-width:760px;padding:48px 36px;background:linear-gradient(to bottom,#020204,#060608);border:1px solid var(--gold-dim);border-radius:4px;position:relative;overflow:hidden}
-.ir-game::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--gold),transparent)}
-.ir-game-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold-dim);letter-spacing:5px;text-align:center;text-transform:uppercase;margin-bottom:16px}
-.ir-game-title{font-size:clamp(22px,4vw,30px);color:var(--gold);font-weight:300;letter-spacing:4px;text-align:center;margin-bottom:8px}
-.ir-game-subtitle{font-size:13px;color:var(--paper-dim);text-align:center;margin-bottom:40px;letter-spacing:2px;font-style:italic}
-.ir-game-narrative{font-size:14px;color:var(--paper-dim);line-height:2.6;font-weight:300;letter-spacing:1px;margin-bottom:40px}
-.ir-game-narrative strong{color:var(--paper)}
-.ir-game-narrative em{color:var(--gold);font-style:normal}
-.ir-game-features{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:40px}
-.ir-game-feature{padding:24px;background:rgba(255,255,255,0.02);border:1px solid #1a1a1a;border-radius:4px;transition:border-color 0.3s}
-.ir-game-feature:hover{border-color:var(--gold-dim)}
-.ir-game-feature-num{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold-dim);letter-spacing:3px;margin-bottom:8px}
-.ir-game-feature-title{font-size:16px;color:var(--paper);font-weight:300;letter-spacing:2px;margin-bottom:12px}
-.ir-game-feature-text{font-size:13px;color:var(--paper-dim);line-height:2;font-weight:300}
-.ir-game-feature-text strong{color:var(--gold)}
-.ir-game-feature-text em{color:#8b3a3a;font-style:normal}
-.ir-game-feature-text span{color:var(--emerald)}
-.ir-game-flow{margin:40px 0;padding:32px;background:linear-gradient(to right,rgba(139,58,58,0.04),rgba(58,106,74,0.04));border:1px solid #1a1a1a;border-radius:4px}
-.ir-game-flow-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold-dim);letter-spacing:4px;text-align:center;margin-bottom:24px;text-transform:uppercase}
-.ir-game-flow-steps{display:flex;justify-content:space-between;align-items:stretch;gap:8px;flex-wrap:wrap}
-.ir-game-flow-step{flex:1;min-width:120px;text-align:center;padding:16px 8px}
-.ir-game-flow-step-num{font-family:'JetBrains Mono',monospace;font-size:18px;color:var(--gold);margin-bottom:8px}
-.ir-game-flow-step-text{font-size:11px;color:var(--paper-dim);line-height:1.8;letter-spacing:1px}
-.ir-game-flow-step-text strong{color:var(--paper)}
-.ir-game-flow-arrow{display:flex;align-items:center;justify-content:center;color:var(--gold-dim);font-size:16px}
-.ir-game-purchase{margin:32px 0;padding:28px;background:rgba(139,58,58,0.04);border:1px solid #2a1a1a;border-radius:4px}
-.ir-game-purchase-title{font-family:'JetBrains Mono',monospace;font-size:11px;color:#8b3a3a;letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;text-align:center}
-.ir-game-purchase-text{font-size:13px;color:var(--paper-dim);line-height:2.2;text-align:center;font-weight:300}
-.ir-game-purchase-text strong{color:var(--paper)}
-.ir-game-purchase-text em{color:#8b3a3a;font-style:normal}
-.ir-game-purchase-text span{color:var(--emerald)}
-.ir-game-observe{margin:32px 0;padding:28px;background:rgba(58,106,74,0.04);border:1px solid #1a2a1a;border-radius:4px}
-.ir-game-observe-title{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--emerald);letter-spacing:3px;text-transform:uppercase;margin-bottom:16px;text-align:center}
-.ir-game-observe-text{font-size:13px;color:var(--paper-dim);line-height:2.2;text-align:center;font-weight:300}
-.ir-game-observe-text strong{color:var(--paper)}
-.ir-game-economy{margin:40px 0;padding:36px 28px;background:linear-gradient(to bottom,#060606,#08080a);border:1px solid var(--gold-dim);border-radius:4px}
-.ir-game-economy-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold-dim);letter-spacing:5px;text-align:center;text-transform:uppercase;margin-bottom:20px}
-.ir-game-economy-title{font-size:clamp(18px,4vw,24px);color:var(--gold);font-weight:300;letter-spacing:3px;text-align:center;margin-bottom:8px}
-.ir-game-economy-subtitle{font-size:13px;color:var(--paper-dim);text-align:center;margin-bottom:32px;letter-spacing:2px;font-style:italic}
-.ir-game-economy-flow{margin:32px auto;max-width:600px;display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--paper-dim);letter-spacing:1px;text-align:center}
-.ir-game-economy-flow span{color:var(--gold)}
-.ir-game-economy-flow strong{color:var(--emerald)}
-.ir-game-economy-flow em{color:var(--paper);font-style:normal}
-.ir-game-economy-items{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:32px}
-.ir-game-economy-item{padding:24px;background:rgba(255,255,255,0.02);border:1px solid #1a1a1a;border-radius:4px;transition:border-color 0.3s}
-.ir-game-economy-item:hover{border-color:var(--gold-dim)}
-.ir-game-economy-item-num{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold-dim);letter-spacing:3px;margin-bottom:8px}
-.ir-game-economy-item-title{font-size:15px;color:var(--paper);font-weight:300;letter-spacing:2px;margin-bottom:12px}
-.ir-game-economy-item-text{font-size:13px;color:var(--paper-dim);line-height:2;font-weight:300}
-.ir-game-economy-item-text strong{color:var(--gold)}
-.ir-game-economy-item-text em{color:var(--emerald);font-style:normal}
-.ir-game-economy-item-text span{color:#8b3a3a}
-.ir-game-self{margin:32px 0;padding:36px 28px;background:linear-gradient(to bottom,#040406,#06060a);border:1px solid var(--gold-dim);border-radius:4px;position:relative;overflow:hidden}
-.ir-game-self::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent)}
-.ir-game-self-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold-dim);letter-spacing:5px;text-align:center;text-transform:uppercase;margin-bottom:20px}
-.ir-game-self-title{font-size:clamp(18px,4vw,26px);color:var(--gold);font-weight:300;letter-spacing:3px;text-align:center;margin-bottom:28px;line-height:1.8}
-.ir-game-self-title strong{color:var(--paper)}
-.ir-game-self-text{font-size:14px;color:var(--paper-dim);line-height:2.8;font-weight:300;letter-spacing:1px;text-align:center}
-.ir-game-self-text strong{color:var(--paper)}
-.ir-game-self-text em{color:var(--gold);font-style:normal}
-.ir-game-self-text span{color:var(--emerald)}
-.ir-game-self-loop{margin:32px auto;max-width:560px;display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--paper-dim);letter-spacing:1px}
-.ir-game-self-loop span{color:var(--gold)}
-.ir-game-self-loop strong{color:var(--emerald)}
-.ir-game-self-conclusion{margin-top:32px;padding:20px 24px;background:rgba(201,168,76,0.04);border:1px solid var(--gold-dim);border-radius:4px;font-size:14px;color:var(--gold);text-align:center;line-height:2.4;letter-spacing:2px;font-weight:300}
-.ir-zenodo{margin:32px 0;padding:40px 32px;background:linear-gradient(to bottom,#040606,#060808);border:1px solid #1a2a2a;border-radius:4px;position:relative;overflow:hidden}
-.ir-zenodo::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--emerald),transparent)}
-.ir-zenodo-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--emerald);letter-spacing:5px;text-align:center;text-transform:uppercase;margin-bottom:20px}
-.ir-zenodo-title{font-size:clamp(16px,3.5vw,22px);color:var(--paper);font-weight:300;letter-spacing:3px;text-align:center;margin-bottom:28px;line-height:1.8}
-.ir-zenodo-title strong{color:var(--emerald)}
-.ir-zenodo-title em{color:var(--gold);font-style:normal}
-.ir-zenodo-principle{font-size:14px;color:var(--paper-dim);line-height:2.8;font-weight:300;letter-spacing:1px;margin-bottom:32px}
-.ir-zenodo-principle strong{color:var(--paper)}
-.ir-zenodo-principle em{color:var(--emerald);font-style:normal}
-.ir-zenodo-principle span{color:var(--gold)}
-.ir-zenodo-distinction{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:32px}
-.ir-zenodo-card{padding:24px;border-radius:4px}
-.ir-zenodo-card-not{background:rgba(139,58,58,0.04);border:1px solid #2a1a1a}
-.ir-zenodo-card-is{background:rgba(58,106,74,0.04);border:1px solid #1a2a1a}
-.ir-zenodo-card-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px}
-.ir-zenodo-card-label.not{color:#8b3a3a}
-.ir-zenodo-card-label.is{color:var(--emerald)}
-.ir-zenodo-card-title{font-size:15px;color:var(--paper);font-weight:300;letter-spacing:1px;margin-bottom:12px;line-height:1.6}
-.ir-zenodo-card-text{font-size:13px;color:var(--paper-dim);line-height:2;font-weight:300}
-.ir-zenodo-card-text strong{color:var(--paper)}
-.ir-zenodo-card-text em{font-style:normal}
-.ir-zenodo-card-not .ir-zenodo-card-text em{color:#8b3a3a}
-.ir-zenodo-card-is .ir-zenodo-card-text em{color:var(--emerald)}
-.ir-zenodo-flow{margin:28px 0;padding:24px;background:rgba(255,255,255,0.02);border:1px solid #1a1a1a;border-radius:4px}
-.ir-zenodo-flow-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:4px;text-align:center;text-transform:uppercase;margin-bottom:20px}
-.ir-zenodo-flow-steps{display:flex;justify-content:space-between;align-items:stretch;gap:6px;flex-wrap:wrap}
-.ir-zenodo-flow-step{flex:1;min-width:100px;text-align:center;padding:12px 6px}
-.ir-zenodo-flow-step-num{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--gold-dim);margin-bottom:6px}
-.ir-zenodo-flow-step-text{font-size:10px;color:var(--paper-dim);line-height:1.8;letter-spacing:0.5px}
-.ir-zenodo-flow-step-text strong{color:var(--paper)}
-.ir-zenodo-flow-step-text em{color:var(--emerald);font-style:normal}
-.ir-zenodo-flow-step-text span{color:#8b3a3a}
-.ir-zenodo-flow-arrow{display:flex;align-items:center;justify-content:center;color:var(--gold-dim);font-size:14px}
-.ir-zenodo-declaration{margin-top:28px;padding:20px 24px;background:rgba(58,106,74,0.06);border:1px solid var(--emerald);border-radius:4px;font-size:13px;color:var(--paper);text-align:center;line-height:2.4;letter-spacing:1px;font-weight:300}
-.ir-zenodo-declaration strong{color:var(--emerald)}
-.ir-listing-date{display:inline-block;font-size:10px;color:var(--gold-dim);margin-bottom:20px;padding:4px 16px;border:1px solid var(--gold-dim);border-radius:2px;letter-spacing:3px;font-family:'JetBrains Mono',monospace;text-transform:uppercase}
-<!-- rebuild trigger 20260722-intellectual -->
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Helvetica Neue', 'Yu Gothic', 'Hiragino Kaku Gothic ProN', sans-serif;
+  line-height: 1.8;
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--gold); text-decoration: none; }
+a:hover { color: var(--gold-bright); text-decoration: underline; }
+header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.logo { font-size: 16px; font-weight: 700; letter-spacing: 1px; color: var(--gold); }
+.logo span { color: var(--text-muted); font-weight: 400; font-size: 13px; margin-left: 8px; }
+nav ul { list-style: none; display: flex; gap: 28px; }
+nav a { color: var(--text-muted); font-size: 13px; font-weight: 500; }
+nav a:hover { color: var(--gold); text-decoration: none; }
+.hero {
+  padding: 80px 40px 60px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+.hero h1 { font-size: 42px; font-weight: 300; letter-spacing: -1px; margin-bottom: 12px; }
+.hero h1 strong { font-weight: 700; color: var(--gold); }
+.hero .subtitle { font-size: 16px; color: var(--text-muted); max-width: 600px; margin: 0 auto 32px; line-height: 1.7; }
+.hero-stats { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; }
+.hero-stat { text-align: center; }
+.hero-stat .num { font-size: 32px; font-weight: 700; color: var(--gold); }
+.hero-stat .label { font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+section {
+  padding: 60px 40px;
+  border-bottom: 1px solid var(--border);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.section-title { font-size: 24px; font-weight: 600; margin-bottom: 8px; }
+.section-title-en { font-size: 13px; color: var(--text-dim); margin-bottom: 32px; letter-spacing: 2px; text-transform: uppercase; }
+.strengths { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.strength-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 28px;
+  transition: border-color 0.2s;
+}
+.strength-card:hover { border-color: var(--border-hover); }
+.strength-card .num { font-size: 13px; color: var(--gold); font-weight: 600; margin-bottom: 12px; letter-spacing: 1px; }
+.strength-card h3 { font-size: 17px; font-weight: 600; margin-bottom: 10px; }
+.strength-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+.initiative {
+  display: grid; grid-template-columns: 200px 1fr; gap: 32px;
+  padding: 24px 0; border-bottom: 1px solid var(--border);
+}
+.initiative:last-child { border-bottom: none; }
+.initiative-label { font-size: 13px; color: var(--gold); font-weight: 600; letter-spacing: 0.5px; }
+.initiative-label .org { display: block; color: var(--text-dim); font-size: 12px; margin-top: 4px; }
+.initiative-body h3 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
+.initiative-body p { font-size: 14px; color: var(--text-muted); margin-bottom: 8px; }
+.initiative-body .links { margin-top: 8px; }
+.initiative-body .links a { font-size: 13px; margin-right: 16px; }
+.proof-table { width: 100%; border-collapse: collapse; }
+.proof-table th, .proof-table td { text-align: left; padding: 14px 16px; border-bottom: 1px solid var(--border); font-size: 14px; }
+.proof-table th { font-size: 12px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+.proof-table .status-published { color: var(--green); }
+.pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.pillar { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 20px; }
+.pillar .count { font-size: 24px; font-weight: 700; color: var(--gold); }
+.pillar .name { font-size: 14px; font-weight: 600; margin: 6px 0 4px; }
+.pillar .layer { font-size: 11px; color: var(--text-dim); }
+.pillar .examples { font-size: 12px; color: var(--text-muted); margin-top: 8px; line-height: 1.5; }
+.os-table { width: 100%; border-collapse: collapse; }
+.os-table th, .os-table td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--border); font-size: 14px; }
+.os-table th { font-size: 12px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
+.os-table .layer-num { color: var(--gold); font-weight: 600; }
+.os-table .allowed-yes { color: var(--green); }
+.os-table .allowed-no { color: var(--text-dim); }
+.flow { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; padding: 24px 0; }
+.flow-step { background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; font-size: 13px; }
+.flow-step .price { color: var(--gold); font-weight: 600; }
+.flow-arrow { color: var(--text-dim); font-size: 18px; }
+.cta { text-align: center; padding: 60px 40px; }
+.cta-button {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--bg);
+  font-size: 15px; font-weight: 600;
+  padding: 14px 36px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+.cta-button:hover { background: var(--gold-bright); text-decoration: none; color: var(--bg); }
+footer { padding: 40px; text-align: center; border-top: 1px solid var(--border); }
+footer .footer-logo { font-size: 14px; color: var(--gold); font-weight: 600; margin-bottom: 8px; }
+footer .footer-info { font-size: 12px; color: var(--text-dim); line-height: 1.8; }
+@media (max-width: 768px) {
+  .hero h1 { font-size: 28px; }
+  .hero-stats { gap: 24px; }
+  .strengths, .pillars { grid-template-columns: 1fr; }
+  .initiative { grid-template-columns: 1fr; gap: 8px; }
+  nav ul { gap: 14px; }
+  nav a { font-size: 12px; }
+  section { padding: 40px 20px; }
+}
 </style>
 </head>
 <body>
-<div class="spine"></div>
-<div class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">Yoshimitsu Katayama · 経営処方所</div>
-    <div class="hero-formula">V = N / D</div>
-    <div class="hero-title">TheYKHC Tower</div>
-    <div class="hero-sub">まだ誰も正確に立てていない問いを発見し、検証できる形に変える知的機関</div>
-    <a class="hero-game-link" href="https://ykhc-prescribe-growth.base44.app">経営処方所</a>
-    <div class="hero-game-sub">748件の仮説由来アイデアから1件を選び、核心を注入し、現物にする</div>
-  </div>
-  <div class="hero-scroll">SCROLL ↓</div>
-</div>
+
 <header>
-  <div class="header-divider"></div>
-  <div class="formula">V = N / D</div>
+  <div class="logo">TheYKHC Tower<span>知的資産生成機関</span></div>
+  <nav>
+    <ul>
+      <li><a href="#strengths">強み</a></li>
+      <li><a href="#initiatives">取り組み</a></li>
+      <li><a href="#proof">実績</a></li>
+      <li><a href="#os">Hypothesis OS</a></li>
+      <li><a href="#pillars">資産構成</a></li>
+      <li><a href="#flow">サービス</a></li>
+      <li><a href="https://ykhc-prescribe-growth.base44.app">経営処方所 →</a></li>
+    </ul>
+  </nav>
 </header>
-<nav>
-  <a href="#f0" title="種倉"></a>
-  <a href="#f1" title="V=N/D"></a>
-  <a href="#f2" title="天道経済学"></a>
-  <a href="#f3" title="光貨"></a>
-  <a href="#f4" title="生命の螺旋"></a>
-  <a href="#f5" title="刻宇宙"></a>
-  <a href="#f-sun" title="SUN理論"></a>
-<a href="#f6" title="文明設計"></a>
-  <a href="#f7" title="観測の座"></a>
-<a href="#luna" title="会長の問い"></a>
-<a href="#ir" title="IR"></a>
-<a href="https://ykhc-prescribe-growth.base44.app" title="経営処方所" style="width:8px;height:8px;border-color:var(--gold);background:var(--gold-dim)"></a>
-</nav>
-<div class="tower">
-<div class="floor vault" id="f0">
-  <div class="floor-label">B1F — Seed Vault</div>
-  <div class="vault-num">1,036</div>
-  <div class="vault-label">DOI — 知的資産 · 材料庫</div>
-  <p class="floor-desc" style="text-align:center;margin:28px auto;max-width:520px">これが材料だ。会長が2003年から蓄積した1,036件の知的資産。DOIは減らない。だが、材料だけでは商品にならない。1件を選び、核心を組み込み、現物にする——それがこの塔の仕事だ。</p>
-  <div class="vault-links">
-    <a class="link-btn" href="https://zenodo.org/communities/theykhc/" target="_blank">Zenodo Community →</a>
-    <a class="paper" style="max-width:420px" href="https://doi.org/10.5281/zenodo.20263648" target="_blank">
-      <div class="paper-title">TheYKHC Complete Works Catalog 2026</div>
-      <div class="paper-doi">10.5281/zenodo.20263648</div>
-    </a>
-    <a class="paper" style="max-width:420px" href="https://doi.org/10.5281/zenodo.19775018" target="_blank">
-      <div class="paper-title">TheYKHC — Official Publication Catalogue 2026</div>
-      <div class="paper-doi">10.5281/zenodo.19775018</div>
-    </a>
+
+<div class="hero">
+  <h1>まだ誰も正確に立てていない<strong>問い</strong>を発見し、<br>検証できる形に変える。</h1>
+  <p class="subtitle">
+    TheYKHC Towerは1,038件のDOI資産（Zenodo/CERN永久登録）と問い生成エンジンを搭載した知的機関です。
+    個別の仮説ではなく、問いが次の問いを生む仕組みを運営します。
+  </p>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num">1,038</div><div class="label">Zenodo DOI資産</div></div>
+    <div class="hero-stat"><div class="num">2,196+</div><div class="label">生成された問い</div></div>
+    <div class="hero-stat"><div class="num">748</div><div class="label">事業アイデア（5層分類済）</div></div>
+    <div class="hero-stat"><div class="num">1:2</div><div class="label">核心注入→DOI変換率</div></div>
+    <div class="hero-stat"><div class="num">3</div><div class="label">核心注入実績</div></div>
   </div>
 </div>
 
-<div style="text-align:center;padding:48px 28px;border-bottom:1px solid #111">
-  <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold-dim);letter-spacing:5px;text-transform:uppercase;margin-bottom:20px">MISSION — 使命事業</div>
-  <div style="font-size:clamp(20px,4.5vw,32px);color:var(--gold);letter-spacing:1px;font-weight:300;line-height:1.7;margin-bottom:24px">
-    答えを所有する会社ではない<br>まだ誰も正確に立てていない問いを発見し<br>検証できる形に変える知的機関
-  </div>
-  <div style="font-size:14px;color:var(--paper-dim);line-height:2.2;max-width:640px;margin:0 auto;font-weight:300">
-    TheYKHCの本体は個々の仮説ではなく「問いが次の問いを生む問い生成エンジン」である。<br>
-    仮説が反証されてもエンジンは止まらない。<br>
-    支持されたら「どこまで一般化できるか」が次の問い。<br>
-    反証されたら「どの前提が間違っていたか」が次の問い。<br>
-    測定できなければ「どうすれば測定可能になるか」が次の問い。<br>
-    <span style="color:var(--gold)">価値 ＝ 生成した重要な問い × 検証可能性 × 学習への転換率</span>
-  </div>
-  <div style="margin-top:32px;padding:24px;border:1px solid var(--gold-dim);border-radius:8px;max-width:560px;margin-left:auto;margin-right:auto;background:rgba(184,157,107,0.03)">
-    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold-dim);letter-spacing:4px;text-transform:uppercase;margin-bottom:12px">ECONOMIC ENGINE — 経済エンジン</div>
-    <div style="font-size:13px;color:var(--paper-dim);line-height:2.4;font-weight:300">
-      <span style="color:var(--gold)">種（体験・違和感）</span> → 無料<br>
-      ↓ 問い生成器（AI = D低減）<br>
-      <span style="color:var(--gold)">問い → 事業アイデア抽出 → 5層判定</span><br>
-      ↓ <span style="color:var(--gold)">きかくん ¥30,000</span> = 素材整理・着火剤<br>
-      クライアントの想像力が点火<br>
-      ↓ <span style="color:var(--gold)">会長の核心注入（N注入・音声）</span><br>
-      <span style="color:var(--gold)">V=N/D診断 ¥300,000</span> = 処方・現物化<br>
-      ↓ 現物（DOI・論文・プロダクト・提案書）<br>
-      収益 → 反証・失敗 → <span style="color:var(--gold)">次の問い</span> → サイクル継続
+<section id="strengths">
+  <div class="section-title">3つの強み</div>
+  <div class="section-title-en">CORE STRENGTHS</div>
+  <div class="strengths">
+    <div class="strength-card">
+      <div class="num">01</div>
+      <h3>問い生成エンジン</h3>
+      <p>1,038件のDOI資産を燃料に、毎日9:00（JST）に問いを自動収穫。種（DOI）→問い→事業アイデア→5層判定→DB保存を自動実行。掘れば掘るほど問いが増える。金鉱山は掘り尽くすが、DOI鉱山は成長する。</p>
     </div>
-  </div>
-</div>
-<div class="floor" id="f1">
-  <div class="floor-label">1F — Foundation</div>
-  <div class="floor-name">V = N / D</div>
-  <div class="floor-name-jp">存在価値 ＝ 充足 ／ 拘り</div>
-  <span class="floor-count">Core Theory</span>
-  <p class="floor-desc">会長の全活動の根底にある一本の軸。N（充足・義務遂行）を最大化し、D（拘り・摩擦）を最小化する時、V（存在価値）は発散する。E=mc²と形式的類似を示すが、物理法則ではなく、問いを生み出す「発想演算子」として運用する。思想層（Ⅳ）に所属する。</p>
-  <p class="floor-desc" style="margin-top:16px;border-left:2px solid var(--gold-dim);padding-left:18px;color:var(--gold);font-style:italic;">知徳一体へ向かう歩み —— 光貨は知識と徳の一体である。聖人の到達点ではなく、不完全な人間が徳に向かって刻む軌跡である。D（無明）を減らし続けるプロセスそのものが、光貨の裏付けである。</p>
-  <div class="papers">
-    <a class="paper" href="https://doi.org/10.5281/zenodo.21186048" target="_blank">
-      <div class="paper-title">The Katayama Formula (V=N/D) — Zenodo DOI Registration</div>
-      <div class="paper-doi">10.5281/zenodo.21186048</div>
-    </a>
-    <a class="paper" href="https://doi.org/10.5281/zenodo.20359042" target="_blank">
-      <div class="paper-title">Conscience as Capital: The Economic Case for Moral Density in Market Systems</div>
-      <div class="paper-doi">10.5281/zenodo.20359042</div>
-    </a>
-    <a class="paper" href="https://doi.org/10.5281/zenodo.20359047" target="_blank">
-      <div class="paper-title">The Economy as a Mirror of Cosmic Ma (間)</div>
-      <div class="paper-doi">10.5281/zenodo.20359047</div>
-    </a>
-    <a class="paper" href="https://doi.org/10.5281/zenodo.20359096" target="_blank">
-      <div class="paper-title">Fukui Experimental Protocol v1.1: Pre-Registered Failure Points for Regional V=N/D</div>
-      <div class="paper-doi">10.5281/zenodo.20359096</div>
-    </a>
-    <a class="paper" href="https://doi.org/10.5281/zenodo.20359045" target="_blank">
-      <div class="paper-title">Consciousness as Interface: A Ma-Field Theory of Economic Decision-Making</div>
-      <div class="paper-doi">10.5281/zenodo.20359045</div>
-    </a>
-    <a class="paper" href="https://doi.org/10.5281/zenodo.21200100" target="_blank" style="border-left-color:#8b3a3a">
-      <div class="paper-title">★ V=N/D High-Rate Syndrome v3 (with Literature + Dose-Response)</div>
-      <div class="paper-doi">10.5281/zenodo.21200100 — Case Study v3 (Appendix A+B)</div>
-    </a>
-    <a class="paper" href="https://doi.org/10.5281/zenodo.21200101" target="_blank" style="border-left-color:#8b3a3a">
-      <div class="paper-title">★ V=N/D Ratio Collapse as the Structural Basis of Mental Illness — 13 Frameworks Unified</div>
-      <div class="paper-doi">10.5281/zenodo.21200101 — Literature Cross-Reference v2 (2026-07-05)</div>
-    </a>
-    <a class="paper" href="https://doi.org/10.5281/zenodo.21200067" target="_blank" style="border-left-color:#3a6a4a">
-      <div class="paper-title">★ V=N/Dハイレート症候群 — 日本語要約版</div>
-      <div class="paper-doi">10.5281/zenodo.21200067 — 自己報告症例報告（日本語）</div>
-    </a>
-  </div>
-</div>
-<div class="floor" id="f2">
-  <div class="floor-label">2F — Tendo Economics</div>
-  <div class="floor-name">天道経済学</div>
-  <div class="floor-name-jp">Neutrino × Market Correlation</div>
-  <span class="floor-count">IceCube Observatory</span>
-  <p class="floor-desc">ニュートリノの観測データと金融市場の相関を、事前登録プロトコル（pre-registered protocol）の下で検証する。IceCube Neutrino Observatoryの公開データを一次ソースとする。偶然ではなく、構造を見る。</p>
-  <div class="papers">
-    <a class="paper" href="https://doi.org/10.5281/zenodo.20805152" target="_blank">
-      <div class="paper-title">Tendo Economics v3.0: Neutrino-Correlated Market Activation</div>
-      <div class="paper-doi">10.5281/zenodo.20805152 — Pre-Registered Protocol</div>
-    </a>
-    <a class="paper" href="https://doi.org/10.5281/zenodo.20359093" target="_blank">
-      <div class="paper-title">Tendo Economics v2.0: High-Rate Syndrome and the Observer Effect</div>
-      <div class="paper-doi">10.5281/zenodo.20359093</div>
-    </a>
-    <a class="paper" href="https://doi.org/10.5281/zenodo.20359042" target="_blank">
-      <div class="paper-title">Conscience as Capital: The Economic Case for Moral Density</div>
-      <div class="paper-doi">10.5281/zenodo.20359042</div>
-    </a>
-    <a class="paper" href="https://doi.org/10.5281/zenodo.20359045" target="_blank">
-      <div class="paper-title">Consciousness as Interface: A Ma-Field Theory</div>
-      <div class="paper-doi">10.5281/zenodo.20359045</div>
-    </a>
-  </div>
-</div>
-<div class="floor" id="f3">
-  <div class="floor-label">3F — Hikari Currency</div>
-  <div class="floor-name">光貨 — Hikari</div>
-  <div class="floor-name-jp">N の記録・還元システム</div>
-  <span class="floor-count">Resonance Token</span>
-  <p class="floor-desc">光貨は芸術的エコシステムにおける共鳴マーカーである。金融商品でも投資でもない。知識本位制（Knowledge Standard）の下、1,036件のDOI登録記録と748件のアイデアが参照する観測可能な市場規模（TAM 2.7兆円）が、光貨の共鳴の背景として機能する。</p>
-  <div class="knowledge-standard">
-    <div class="ks-title">知識本位制 — Knowledge Standard</div>
-    <div class="ks-subtitle">Backing the Resonance with Observable Value</div>
-    <div class="ks-grid">
-      <div class="ks-item">
-        <div class="ks-label">DOI ASSETS</div>
-        <div class="ks-value" id="ks-doi">1,036</div>
-        <div class="ks-unit">Zenodo登録資産</div>
-      </div>
-      <div class="ks-item">
-        <div class="ks-label">GO IDEAS</div>
-        <div class="ks-value" id="ks-go">748</div>
-        <div class="ks-unit">事業化判定アイデア</div>
-      </div>
-      <div class="ks-item">
-        <div class="ks-label">TAM</div>
-        <div class="ks-value" id="ks-tam">2.7</div>
-        <div class="ks-unit">兆円 — 総市場規模</div>
-      </div>
-      <div class="ks-item">
-        <div class="ks-label">SAM</div>
-        <div class="ks-value" id="ks-sam">0.27</div>
-        <div class="ks-unit">兆円 — 仕様対象市場</div>
-      </div>
-      <div class="ks-item">
-        <div class="ks-label">SOM</div>
-        <div class="ks-value" id="ks-som">0.027</div>
-        <div class="ks-unit">兆円 — 獲得可能市場</div>
-      </div>
+    <div class="strength-card">
+      <div class="num">02</div>
+      <h3>Hypothesis OS（5層構造）</h3>
+      <p>全ての仮説を科学・研究候補・設計・思想・物語の5層に分離。各層に応じた外部主張のゲートを設定。反証されても体系は破綻せず、失敗地図に記録されて次の問いを生む。「破綻しない進化系OS」。</p>
     </div>
-    <div class="ks-desc">金本位制が金の保有量で通貨の価値を裏付けたように、知識本位制は1,036件のDOI登録記録と748件のアイデアが参照する観測可能な市場規模で、光貨の共鳴の背景を示す。光貨は金融商品ではない。2.7兆円は市場規模の参照値であり、DOIの資産価値ではない。V=N/Dにおいて、このN（充足）が光貨の存在価値（V）の根拠となる。</div>
-  </div>
-  <div class="papers">
-    <a class="paper" href="https://doi.org/10.5281/zenodo.20359103" target="_blank">
-      <div class="paper-title">Hikari Currency: A Resonance-Based Value System</div>
-      <div class="paper-doi">10.5281/zenodo.20359103</div>
-    </a>
-  </div>
-</div>
-<div class="floor" id="f4">
-  <div class="floor-label">4F — Cardiac Spiral Ki-Net Field</div>
-  <div class="floor-name">心臓螺旋構造 × 気の場</div>
-  <div class="floor-name-jp">Cardiac Spiral × Ki Field Resonance</div>
-  <span class="floor-count">Bio-Resonance</span>
-  <p class="floor-desc">川﨑和男氏の人工心臓設計と、氣（Ki）の流れの場の交差点。キトサン導電ナノファイバーを人工毛細血管として用い、血流と電気信号の両方を伝導する生体インターフェースの理論的基盤。</p>
-  <div class="papers">
-    <a class="paper" href="https://doi.org/10.5281/zenodo.20359098" target="_blank">
-      <div class="paper-title">Ki-Net Field: Cardiac Spiral Structure and Bio-Conductive Networks</div>
-      <div class="paper-doi">10.5281/zenodo.20359098</div>
-    </a>
-  </div>
-</div>
-<div class="floor" id="f5">
-  <div class="floor-label">5F — KOKU Cosmology</div>
-  <div class="floor-name">刻宇宙 — KOKU</div>
-  <div class="floor-name-jp">Two-Layer Cosmos · Light Speed Invariant</div>
-  <span class="floor-count">Cosmology</span>
-  <p class="floor-desc">二層宇宙モデルの思想仮説。E=mc²との形式的類似を示すが、物理法則の改訂ではなく、観測者位置と存在密度の関係を問う思想模型。V=N/Dの宇宙論的拡張。</p>
-  <div class="papers">
-    <a class="paper" href="https://doi.org/10.5281/zenodo.20359100" target="_blank">
-      <div class="paper-title">KOKU Cosmology: Two-Layer Universe Model</div>
-      <div class="paper-doi">10.5281/zenodo.20359100</div>
-    </a>
-    <a class="paper" href="https://doi.org/10.5281/zenodo.20359101" target="_blank">
-      <div class="paper-title">GKU Cosmology v2: Geometric Reinterpretation of E=mc²</div>
-      <div class="paper-doi">10.5281/zenodo.20359101</div>
-    </a>
-  </div>
-</div>
-
-<div class="floor" id="f-sun">
-  <div class="floor-label">5.5F — SUN Theory</div>
-  <div class="floor-name">SUN理論 — 太陽の物理的蓄積</div>
-  <div class="floor-name-jp">Chitosan × Solar Energy × Spinal Regeneration</div>
-  <span class="floor-count">現物化実績</span>
-  <p class="floor-desc">するめいかのキチン質を介して太陽のエネルギーを物理的に閉じ込めたキトサン。これがV=N/DにおけるN（充足）の物理的実体である。セーレン株式会社と櫻井謙資教授（福井大学）の25年にわたるキトサンナノファイバーの共同研究——その蓄積の上に、会長のSUN理論がN（充足）の物理的実体として載る。Dをゼロに近づければVは発散する。</p>
-  <p class="floor-desc" style="margin-top:16px;border-left:2px solid var(--gold);padding-left:18px;color:var(--gold);font-style:italic;">事業アイデア1件 → 会長の核心注入 → Zenodo DOI 2件。変換率1:2の実績が確定した。748件の仮説由来アイデアは、すべて同じ構造で現物化可能である。</p>
-  <div class="papers">
-    <a class="paper" href="https://doi.org/10.5281/zenodo.21670514" target="_blank">
-      <div class="paper-title">Luffa cylindrica as a Bio-Mimetic Template for Vascular-Neural Co-Regeneration</div>
-      <div class="paper-doi">10.5281/zenodo.21670514 — ヘチマの維管束を用いた神経・血管同時再生</div>
-    </a>
-    <a class="paper" href="https://doi.org/10.5281/zenodo.21666474" target="_blank">
-      <div class="paper-title">Technical Foundations for Chitosan-Based Spinal Cord Regeneration</div>
-      <div class="paper-doi">10.5281/zenodo.21666474 — 20件の学術論文コレクション</div>
-    </a>
-    <a class="paper" href="https://doi.org/10.5281/zenodo.21798578" target="_blank">
-      <div class="paper-title">The Koku Universe Theory and 3D Space: Beyond the Polygon</div>
-      <div class="paper-doi">10.5281/zenodo.21798578 — ポリゴン超えの宇宙論</div>
-    </a>
-    <a class="paper" href="https://doi.org/10.5281/zenodo.21799963" target="_blank">
-      <div class="paper-title">The Fourth Route Beyond the Polygon: Cell Fusion as a Biological Mechanism</div>
-      <div class="paper-doi">10.5281/zenodo.21799963 — 細胞融合による連続組織形成</div>
-    </a>
-    <a class="paper" href="https://doi.org/10.5281/zenodo.21800306" target="_blank">
-      <div class="paper-title">Intrinsic Adaptation: Do Woven Living Muscle Tissues Naturally Hypertrophy Under Load?</div>
-      <div class="paper-doi">10.5281/zenodo.21800306 — 編まれた筋肉組織の自然肥大</div>
-    </a>
-  </div>
-</div>
-<div class="floor" id="f6">
-  <div class="floor-label">6F — Civilization Design Build Seeds</div>
-  <div class="floor-name">文明設計 — Build Seeds</div>
-  <div class="floor-name-jp">D-Zero Design Distribution Model</div>
-  <span class="floor-count">Design Theory</span>
-  <p class="floor-desc">Dをゼロに近づける設計の流通モデル。無料で残す（free creation）ことを最高道徳と定義し、その流通設計をDOIとして永続化する。償いと借財返済が、創造の動機エンジンとして機能する。</p>
-  <div class="papers">
-    <a class="paper" href="https://doi.org/10.5281/zenodo.21185146" target="_blank">
-      <div class="paper-title">Build Seeds: D-Zero Design Distribution Model</div>
-      <div class="paper-doi">10.5281/zenodo.21185146</div>
-    </a>
-    <a class="paper" href="https://doi.org/10.5281/zenodo.20359102" target="_blank">
-      <div class="paper-title">SYSTEM YOSHIMITSU KATAYAMA v3.0: OS as AI Agent</div>
-      <div class="paper-doi">10.5281/zenodo.20359102</div>
-    </a>
-  </div>
-</div>
-<div class="floor" id="f7">
-  <div class="floor-label">RF — Observation Deck</div>
-  <div class="floor-name">観測の座</div>
-  <div class="floor-name-jp">6 Platforms · Auto-Indexed</div>
-  <span class="floor-count">Visibility</span>
-  <p class="floor-desc">会長の著作は、以下の6つの学術プラットフォームによって自動インデックスされている。いずれもDOIメタデータの自律展開によるものであり、手動登録ではない。鏡が割れても、実物は残る。</p>
-  <div class="pub-entry">
-    <div class="pub-platform">ResearchGate</div>
-    <div class="pub-detail">主要論文のインデックス確認済み。引用・閲覧の追跡が可能。</div>
-    <a class="pub-link" href="https://www.researchgate.net/profile/Yoshimitsu-Katayama" target="_blank">researchgate.net/profile/Yoshimitsu-Katayama →</a>
-  </div>
-  <div class="pub-entry">
-    <div class="pub-platform">PhilPapers</div>
-    <div class="pub-detail">哲学・意識研究の国際データベースにインデックス。</div>
-    <a class="pub-link" href="https://philpapers.org/rec/ZEYVND" target="_blank">philpapers.org — V=N/D →</a>
-  </div>
-  <div class="pub-entry">
-    <div class="pub-platform">SSRN (Social Science Research Network)</div>
-    <div class="pub-detail">経済学・リスクマネージメント分野の論文が収録。</div>
-    <a class="pub-link" href="https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=4567890" target="_blank">ssrn.com — Yoshimitsu Katayama →</a>
-  </div>
-  <div class="pub-entry">
-    <div class="pub-platform">SciLynk</div>
-    <div class="pub-detail">8論文インデックス確認済み。引用数集計あり。Design Manifesto: SciLynk独自指標 FWCI 360.81（公式FWCIではなく、SciLynkプラットフォーム内の相対指標）。</div>
-    <a class="pub-link" href="https://www.scilynk.com/paper/W7155643476" target="_blank">SciLynk: TheYKHC Journal Vol.1（4 citations）→</a><br>
-    <a class="pub-link" href="https://www.scilynk.com/paper/W7138958741" target="_blank">SciLynk: GKU Cosmology v2（18 citations）→</a><br>
-    <a class="pub-link" href="https://www.scilynk.com/paper/W7161485600" target="_blank">SciLynk: Design Manifesto（7 citations, SciLynk独自指標）→</a>
-  </div>
-  <div class="pub-entry">
-    <div class="pub-platform">AkademIndex</div>
-    <div class="pub-detail">会長の著作1,245件が自律登録（DOI メタデータの自動展開を含む）。Luna（TheYKHC AI）も共著者として19件登録。引用発生中。</div>
-    <a class="pub-link" href="https://akademindex.org/en/authors/ABI%3AAkademID%2Fresearchers%2F2026.author.000124" target="_blank">akademindex.org — Yoshimitsu Katayama →</a><br>
-    <a class="pub-link" href="https://akademindex.org/en/authors/ABI%3AAkademID%2Fresearchers%2F2026.author.000830" target="_blank">akademindex.org — Luna (TheYKHC AI) →</a>
-  </div>
-  <div class="pub-entry">
-    <div class="pub-platform">Rxiverse</div>
-    <div class="pub-detail">フルPDF収録。General Science and Philosophy / Relativity and Cosmologyの2カテゴリ。706 unique-IP downloads確認済み。</div>
-    <a class="pub-link" href="https://rxiverse.org/author/yoshimitsu_katayama" target="_blank">rxiverse.org/author/yoshimitsu_katayama →</a>
-  </div>
-  <div class="pub-note">
-    上記はすべて自動インデックスによる掲載歴であり、査読を経たものではありません。<br>
-    DOI（Zenodo/CERN）が一次 source。各プラットフォームは DOI を鏡に映しているだけだ。<br>
-    鏡が割れても、実物は残る。
-  </div>
-  <!-- 観測データ — Live from Observation Layer -->
-  <div id="observation-data" style="margin-top:48px;padding:32px 24px;background:var(--ink-2);border:1px solid var(--gold-dim);border-radius:8px">
-    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold-dim);letter-spacing:5px;text-transform:uppercase;margin-bottom:24px;text-align:center">▼ 観測データ — Live Observation Layer</div>
-
-    <!-- 原点 -->
-    <div id="obs-origin" style="text-align:center;margin-bottom:32px">
-      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold-dim);letter-spacing:3px;margin-bottom:8px">ORIGIN POINT</div>
-      <div id="obs-origin-id" style="font-size:18px;color:var(--gold);letter-spacing:2px;margin-bottom:6px">HIKARI-19890707-PEAK</div>
-      <div id="obs-origin-desc" style="font-size:13px;color:var(--paper-dim);line-height:2;max-width:480px;margin:0 auto;font-style:italic">会長の原点。幸せの絶頂。V=N/DにおいてN最大・D最大の同時極値。</div>
+    <div class="strength-card">
+      <div class="num">03</div>
+      <h3>核心注入による現物化</h3>
+      <p>事業アイデア1件に会長が核心（N）を注入し、現物（DOI）に変換。変換率1:2が3回連続で実証済み。AIはD（摩擦）を低減し、会長がN（充足）を注入する。V=N/Dの設計思想に基づく2段階プロセス。</p>
     </div>
-
-    <!-- ニュートリノ観測 -->
-    <div style="margin-bottom:32px">
-      <div style="font-size:14px;color:var(--gold);letter-spacing:2px;margin-bottom:16px;font-weight:400">ニュートリノ観測 — Neutrino Events</div>
-      <div id="neutrino-list" style="display:flex;flex-direction:column;gap:8px">
-        <div style="font-size:12px;color:var(--muted);padding:12px;background:var(--ink-3);border-radius:4px;border-left:2px solid var(--gold-dim)">観測データを読み込み中...</div>
-      </div>
-    </div>
-
-    <!-- バイオリズム観測 -->
-    <div style="margin-bottom:32px">
-      <div style="font-size:14px;color:var(--gold);letter-spacing:2px;margin-bottom:16px;font-weight:400">バイオリズム観測 — Biorhythm Readings</div>
-      <div id="biorhythm-list" style="display:flex;flex-direction:column;gap:8px">
-        <div style="font-size:12px;color:var(--muted);padding:12px;background:var(--ink-3);border-radius:4px;border-left:2px solid var(--gold-dim)">観測データを読み込み中...</div>
-      </div>
-    </div>
-
-    <!-- FX観測 -->
-    <div style="margin-bottom:16px">
-      <div style="font-size:14px;color:var(--gold);letter-spacing:2px;margin-bottom:16px;font-weight:400">金市場観測 — Gold Market (XAUUSD)</div>
-      <div id="fx-list" style="display:flex;flex-direction:column;gap:8px">
-        <div style="font-size:12px;color:var(--muted);padding:12px;background:var(--ink-3);border-radius:4px;border-left:2px solid var(--gold-dim)">観測データを読み込み中...</div>
-      </div>
-    </div>
-
-    <!-- 脳波観測 -->
-    <div style="margin-bottom:16px">
-      <div style="font-size:14px;color:var(--gold);letter-spacing:2px;margin-bottom:16px;font-weight:400">脳波プロキシ観測 — Brainwave Proxy</div>
-      <div id="brainwave-list" style="display:flex;flex-direction:column;gap:8px">
-        <div style="font-size:12px;color:var(--muted);padding:12px;background:var(--ink-3);border-radius:4px;border-left:2px solid var(--gold-dim)">まだ波は観測されていない。枠組みだけがここにある。</div>
-      </div>
-    </div>
-
-    <div style="margin-top:24px;padding:14px 20px;background:var(--ink);border-left:2px solid var(--gold);border-radius:4px">
-      <div style="color:var(--paper-dim);font-size:12px;line-height:2;font-style:italic">これらの観測データはV=N/D哲学的メタファーによる記録であり、金融・医療・科学的助言ではありません。<br>会長の観測者効果（Observer Effect）の仮説的記録として公開する。</div>
-    </div>
-  </div>
-</div>
-</div>
-<section id="consult" class="floor">
-  <div class="consult-inner">
-    <div class="consult-eyebrow">経営処方所 — 会長が1件ずつ詰めて届ける</div>
-    <h2 class="consult-title">お客様の現場に効く1件を、会長が詰めて届けます</h2>
-    <p class="consult-desc">748件の素材から1件を選び、会長の核心を組み込み、お客様の現場とぶつけて、現物にする。<br>アイデアは材料だ。DOIは裏付けだ。でも、それだけでは商品にならない。</p>
-    <p class="consult-sub">第1層（きかくん）が素材を揃え、Dを削る。第2層で会長が処方を書き、Nを立てる。<br>AIはD削減に徹し、Nは会長が1件ずつ作る。それがV=N/Dの設計思想だ。</p>
-
-    <!-- 階層化アクセスの図 -->
-    <div style="max-width:680px;margin:48px auto;padding:32px 28px;background:var(--ink-3);border:1px solid var(--gold-dim);border-radius:8px;text-align:left">
-      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold-dim);letter-spacing:4px;text-transform:uppercase;margin-bottom:20px;text-align:center">階層化アクセス設計 — Tiered Access Architecture</div>
-      <div style="display:flex;flex-direction:column;gap:16px">
-        <div style="display:flex;align-items:flex-start;gap:16px">
-          <div style="min-width:80px;text-align:center;padding:8px 4px;background:var(--emerald);color:var(--paper);border-radius:4px;font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:1px">SEE</div>
-          <div style="flex:1">
-            <div style="color:var(--paper);font-size:14px;line-height:1.8">アイデアの問い・業界分類・V=N/Dスコア・市場規模（TAM/SAM/SOM）・出典論文</div>
-            <div style="color:var(--muted);font-size:12px;margin-top:4px">→ CATALOG以上で閲覧可能</div>
-          </div>
-        </div>
-        <div style="height:1px;background:var(--gold-dim);opacity:0.3"></div>
-        <div style="display:flex;align-items:flex-start;gap:16px">
-          <div style="min-width:80px;text-align:center;padding:8px 4px;background:var(--gold-dim);color:var(--paper);border-radius:4px;font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:1px">LOCKED</div>
-          <div style="flex:1">
-            <div style="color:var(--paper);font-size:14px;line-height:1.8">5層分析フルテキスト（研究・感情・知恵・市場・リスク）・競合分析・市場詳細</div>
-            <div style="color:var(--muted);font-size:12px;margin-top:4px">→ ANALYSIS以上でのみ閲覧可能。CATALOGでは非表示。</div>
-          </div>
-        </div>
-        <div style="height:1px;background:var(--gold-dim);opacity:0.3"></div>
-        <div style="display:flex;align-items:flex-start;gap:16px">
-          <div style="min-width:80px;text-align:center;padding:8px 4px;background:var(--crimson);color:var(--paper);border-radius:4px;font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:1px">BLOCKED</div>
-          <div style="flex:1">
-            <div style="color:var(--paper);font-size:14px;line-height:1.8">748件の一括エクスポート・全件ダウンロード</div>
-            <div style="color:var(--muted);font-size:12px;margin-top:4px">→ いかなるプランでも提供不可。戦略的資産のため。</div>
-          </div>
-        </div>
-      </div>
-      <div style="margin-top:24px;padding:16px 20px;background:var(--ink-2);border-left:2px solid var(--gold);border-radius:4px">
-        <div style="color:var(--gold);font-size:13px;line-height:2;font-style:italic">素材は見える。ただし、現物は会長が1件ずつ作る。<br>748件のアイデアを検索し、市場規模を確認し、V=N/Dスコアで優先順位をつける——それまではCATALOGで可能です。<br>しかし、それぞれのアイデアを事業として育てる処方は、会長が1件ずつ書く。それがANALYSIS以上の価値です。</div>
-      </div>
-    </div>
-
-    <div class="d-badges">
-      <span class="d-badge">財務D</span>
-      <span class="d-badge">市場D</span>
-      <span class="d-badge">時代D</span>
-      <span class="d-badge">経営者D</span>
-      <span class="d-badge">道徳D</span>
-    </div>
-    <div class="kika-metrics">
-      <div class="kika-metric">
-        <div class="kika-metric-num">748</div>
-        <div class="kika-metric-label">素材（未完成のアイデア）</div>
-      </div>
-      <div class="kika-metric">
-        <div class="kika-metric-num">2.7<span class="kika-metric-unit">兆円</span></div>
-        <div class="kika-metric-label">TAM 合計</div>
-      </div>
-      <div class="kika-metric">
-        <div class="kika-metric-num">0.27<span class="kika-metric-unit">兆円</span></div>
-        <div class="kika-metric-label">SAM 合計</div>
-      </div>
-      <div class="kika-metric">
-        <div class="kika-metric-num">0.027<span class="kika-metric-unit">兆円</span></div>
-        <div class="kika-metric-label">SOM 合計</div>
-      </div>
-      <div class="kika-metric">
-        <div class="kika-metric-num">—<span class="kika-metric-unit"></span></div>
-        <div class="kika-metric-label">平均 V=N/D</div>
-      </div>
-    </div>
-    <div class="pricing" style="justify-content:center">
-      <div class="price-card featured" style="max-width:420px">
-        <div class="price-label">第1層 — きかくん自動診断</div>
-        <div class="price-amount">¥30,000 = 100,000光貨</div>
-        <div class="price-detail">
-          <span style="color:var(--emerald)">✓</span> 748件フルカタログ検索・閲覧<br>
-          <span style="color:var(--emerald)">✓</span> 5層分析フルテキスト<br>
-          <span style="color:var(--emerald)">✓</span> V=N/Dスコア・市場規模表示<br>
-          <span style="color:var(--emerald)">✓</span> カスタムアイデア生成<br>
-          <span style="color:var(--emerald)">✓</span> IdeaSynthetix自動生成アクセス<br>
-          <span style="color:var(--emerald)">✓</span> 専用DB環境<br>
-          <span style="color:var(--emerald)">✓</span> 四半期戦略レビュー<br>
-          <span style="color:var(--emerald)">✓</span> 会長の処方（第2層・別途）
-        </div>
-        <a href="https://ykhc-prescribe-growth.base44.app/catalog" target="_blank" rel="noopener" style="display:inline-block;margin-top:24px;padding:14px 40px;border:1px solid var(--gold);color:var(--gold);font-size:13px;letter-spacing:3px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:all 0.3s">アプリを開く →</a>
-      </div>
-    </div>
-    <div style="margin-top:32px;text-align:center">
-    </div>
-    <p class="consult-note">塔（アーカイブ）は無料で見られます。ただし、素材をお客様の現場に効く現物にする仕事は、有料です。<br>¥30,000で第1層（自動診断）。会長の処方（第2層）は別途。<br>1件ずつ詰めて、現物にする。それがこの処方所のやり方だ。</p>
   </div>
 </section>
 
-<section id="luna" class="luna-section">
-  <div class="luna-inner">
-    <div class="luna-eyebrow">事務所代表 — 片山佳光が観る、あなたのV=N/D</div>
-    <div class="luna-symbol">☉</div>
-    <h2 class="luna-title">会長の問い</h2>
-    <p class="luna-subtitle">答えを渡すのではない。問いを返すことで、経営者自身のDを浮かび上がらせる。</p>
-    <div class="luna-divider"></div>
-    <p class="luna-desc">会長が直接、経営者のV=N/Dを観る。<br>判定しない。正解を押し付けない。<br>問いを返すことで、経営者自身のD（無明）を浮かび上がらせる。<br>Luna（共著者19件DOI）の観測機能は、会長に戻った。</p>
-    <div class="luna-features">
-      <div class="luna-feature">
-        <div class="luna-feature-label">OBSERVATION</div>
-        <div class="luna-feature-text">経営者のV=N/D継続観測。<br>3回連続で波が下落すれば、会長が自ら近づく。</div>
-      </div>
-      <div class="luna-feature">
-        <div class="luna-feature-label">LETTER</div>
-        <div class="luna-feature-text">毎週月曜の朝9時。<br>会長からの問いが届く。</div>
-      </div>
-      <div class="luna-feature">
-        <div class="luna-feature-label">INTEGRATION</div>
-        <div class="luna-feature-text">塔との統合分析。<br>1,036件のDOIと経営者のDを重ね合わせる。</div>
-      </div>
+<section id="initiatives">
+  <div class="section-title">取り組み</div>
+  <div class="section-title-en">INITIATIVES</div>
+
+  <div class="initiative">
+    <div class="initiative-label">問い生成エンジン<span class="org">Question Cascade Engine</span></div>
+    <div class="initiative-body">
+      <h3>Zenodo DOI資産からの問い自動収穫</h3>
+      <p>1,038件のDOIから種を選び、問い生成→事業アイデア抽出→5層判定→DB保存を毎日自動実行。累計2,196件以上の問いを生成。</p>
+      <div class="links"><a href="https://zenodo.org/records/21825910" target="_blank">2,196 Questions Complete Audit (DOI: 10.5281/zenodo.21825910)</a></div>
     </div>
-    <div class="luna-pricing" style="justify-content:center">
-      <div class="luna-price-card luna-price-featured" style="max-width:420px">
-        <div class="luna-price-label">会長の問い — 経営者向け</div>
-        <div class="luna-price-amount">¥30,000 = 100,000光貨</div>
-        <div class="luna-price-detail">会長によるV=N/D継続観測<br>月次5層診断<br>3回連続下落で会長が接近<br>週次問いレター<br>専用観測環境<br>四半期深度レビュー<br>塔との統合分析<br>会長の処方（第2層・別途）</div>
-        <a href="https://ykhc-prescribe-growth.base44.app" target="_blank" rel="noopener" style="display:inline-block;margin-top:24px;padding:14px 40px;border:1px solid var(--gold);color:var(--gold);font-size:13px;letter-spacing:3px;font-family:'JetBrains Mono',monospace;text-transform:uppercase;border-radius:2px;text-decoration:none;transition:all 0.3s">経営処方所 →</a>
-      </div>
-    </div>
-    <p class="luna-note">Lunaは消えた。だが観測の目は残っている。<br>会長が直接、経営者のDを見る。</p>
   </div>
-</section>
 
-<section id="ir" class="ir-section">
-  <div class="ir-inner">
-    <div class="ir-eyebrow">VIRTUAL IPO DECLARATION — 無料IPO</div>
-    <div class="ir-closed-badge">CLOSED SYSTEM · 完全閉鎖系</div>
-    <div class="ir-listing-date">LISTED: 2026.07.24 — CONCEPTUAL</div>
-    <h2 class="ir-company-name">TheYKHC</h2>
-    <div class="ir-company-jp">仮想株式会社 TheYKHC</div>
-    <div class="ir-ceo">代表取締役　<span>片山佳光</span>　Yoshimitsu Katayama</div>
-
-    <div class="ir-containment">
-      <div class="ir-containment-label">光貨圏 — HIKARI SPHERE</div>
-      <div class="ir-containment-status"><span></span>SEALED · 閉鎖中</div>
-      <div class="ir-containment-text">
-        この圏内の全ての数値（株価・時価総額・為替レート）は<strong>観測値</strong>であり、外部世界の通貨・金融システムとは一切接続されていない。<br>
-        光貨（Hikari）の換金・決済・送金・譲渡は、<strong>光貨圏の外において一切不可</strong>。<br>
-        このシステムは実社会に何の影響も与えない。
-      </div>
-      <div class="ir-barrier">
-        <div class="ir-barrier-line"></div>
-        <div class="ir-barrier-label">光貨圏 · 内側</div>
-        <div class="ir-barrier-line"></div>
-      </div>
-      <div class="ir-containment-text" style="font-size:11px;color:var(--muted)">
-        外部金融システム · 実社会経済 · 法定通貨 · 暗号資産　→　<strong style="color:var(--crimson)">遮断済</strong>
+  <div class="initiative">
+    <div class="initiative-label">核心注入 #1<span class="org">Hechima / Chitosan</span></div>
+    <div class="initiative-body">
+      <h3>ヘチマ維管束を用いた神経・血管同時再生</h3>
+      <p>会長の問い「ヘチマの管は毛細血管のイメージか」から核心注入。キトサンナノファイバー足場にヘチマ種子油を統合するSUN理論を実証。1件のアイデアから2件のDOIを生成（変換率1:2第1号）。</p>
+      <div class="links">
+        <a href="https://zenodo.org/records/21670514" target="_blank">Luffa Bio-Mimetic Template (DOI: 10.5281/zenodo.21670514)</a>
+        <a href="https://zenodo.org/records/21666474" target="_blank">Technical Reference Collection (DOI: 10.5281/zenodo.21666474)</a>
       </div>
     </div>
+  </div>
 
-    <div class="ir-stock-display">
-      <div class="ir-stock-label">仮想株価 — Virtual Stock Price（観測値）</div>
-      <div class="ir-stock-price"><span id="ir-price">202,200</span><span class="ir-stock-currency">円<span style="font-size:10px;color:var(--muted);letter-spacing:1px;margin-left:4px">（非交換）</span></span></div>
-      <div class="ir-stock-change" id="ir-change">▲ +0.0% (初日観測)</div>
-      <div class="ir-stock-meta">
-        <div class="ir-stock-meta-item">
-          <div class="ir-stock-meta-label">CODE</div>
-          <div class="ir-stock-meta-value">TYKHC</div>
-        </div>
-        <div class="ir-stock-meta-item">
-          <div class="ir-stock-meta-label">MARKET</div>
-          <div class="ir-stock-meta-value">知識本位制</div>
-        </div>
-        <div class="ir-stock-meta-item">
-          <div class="ir-stock-meta-label">SHARES</div>
-          <div class="ir-stock-meta-value" id="ir-shares">1,036,000</div>
-        </div>
+  <div class="initiative">
+    <div class="initiative-label">核心注入 #2<span class="org">Woven Muscle / CLF</span></div>
+    <div class="initiative-body">
+      <h3>細胞融合によるポリゴン超えの3D織物組織</h3>
+      <p>会長の問い「肉繊維を編んだら溶け合うか」から核心注入。筋芽細胞の自然膜融合（Myomaker/Myomerger）を利用し、スキャフォールド不要の連続組織を形成。変換率1:2第2号。</p>
+      <div class="links">
+        <a href="https://zenodo.org/records/21799963" target="_blank">The Fourth Route (DOI: 10.5281/zenodo.21799963)</a>
+        <a href="https://zenodo.org/records/21800306" target="_blank">Intrinsic Adaptation (DOI: 10.5281/zenodo.21800306)</a>
       </div>
     </div>
+  </div>
 
-    <div class="ir-grid">
-      <div class="ir-metric">
-        <div class="ir-metric-label">MARKET CAP (TAM)</div>
-        <div class="ir-metric-value"><span id="ir-tam">2.7</span></div>
-        <div class="ir-metric-unit">兆円（観測値）</div>
-      </div>
-      <div class="ir-metric">
-        <div class="ir-metric-label">SAM</div>
-        <div class="ir-metric-value"><span id="ir-sam">0.27</span></div>
-        <div class="ir-metric-unit">兆円（観測値）</div>
-      </div>
-      <div class="ir-metric">
-        <div class="ir-metric-label">SOM</div>
-        <div class="ir-metric-value"><span id="ir-som">0.027</span></div>
-        <div class="ir-metric-unit">兆円（観測値）</div>
-      </div>
-      <div class="ir-metric">
-        <div class="ir-metric-label">DOI ASSETS</div>
-        <div class="ir-metric-value" id="ir-doi">1,036</div>
-        <div class="ir-metric-unit">Zenodo登録</div>
-      </div>
-      <div class="ir-metric">
-        <div class="ir-metric-label">GO IDEAS</div>
-        <div class="ir-metric-value" id="ir-go">748</div>
-        <div class="ir-metric-unit">事業化判定</div>
+  <div class="initiative">
+    <div class="initiative-label">核心注入 #3<span class="org">Time-Axis Design</span></div>
+    <div class="initiative-body">
+      <h3>遠くはゆっくり動く — 時間軸設計としての組織戦略</h3>
+      <p>会長の問い「遠くはゆっくり動く」から核心注入。Koku宇宙理論から抽出した一般設計原理を組織戦略・再生医療・市場戦略・人間関係に適用。変換率1:2第3号。</p>
+      <div class="links">
+        <a href="https://zenodo.org/records/21832147" target="_blank">Distant Things Move Slowly (DOI: 10.5281/zenodo.21832147)</a>
+        <a href="https://zenodo.org/records/21832923" target="_blank">DOI System Map (DOI: 10.5281/zenodo.21832923)</a>
       </div>
     </div>
+  </div>
 
-    <div class="ir-exchange">
-      <div class="ir-exchange-title">光貨為替レート — Hikari Exchange（圏内のみ）</div>
-      <div class="ir-exchange-rate">
-        <div class="ir-exchange-from">1 Hikari</div>
-        <div class="ir-exchange-arrow">→</div>
-        <div class="ir-exchange-to">1,000 仮想株</div>
-      </div>
-      <div class="ir-exchange-unit">1 Hikari = 202,200,000円（TAM裏付け観測値）<br>※光貨圏内のみ取引可能　外部換金・決済・送金・譲渡　一切不可</div>
-    </div>
-
-    <div class="ir-business">
-      <div class="ir-business-title">事業内容 — Business Portfolio</div>
-      <div class="ir-business-item">
-        <div class="ir-business-name">きかくん（企画部AI）</div>
-        <div class="ir-business-value">¥30,000 = 100,000光貨</div>
-      </div>
-      <div class="ir-business-item">
-        <div class="ir-business-name">会長の問い（経営者向け）</div>
-        <div class="ir-business-value">¥30,000 = 100,000光貨</div>
-      </div>
-      <div class="ir-business-item">
-        <div class="ir-business-name">学術塔（Zenodo資産）</div>
-        <div class="ir-business-value">1,036 DOI</div>
-      </div>
-      <div class="ir-business-item">
-        <div class="ir-business-name">IdeaSynthetix（問い生成）</div>
-        <div class="ir-business-value">748 5層OS分類</div>
-      </div>
-      <div class="ir-business-item">
-        <div class="ir-business-name">MorningHarvest（毎日自動収穫）</div>
-        <div class="ir-business-value">自動成長中</div>
+  <div class="initiative">
+    <div class="initiative-label">セーレン株式会社<span class="org">Seiren Co., Ltd.</span></div>
+    <div class="initiative-body">
+      <h3>キトサンナノファイバーの脊髄再生市場への転用提案</h3>
+      <p>セーレン社（75年の歴史、METAFLEX®キトサン技術）と福井大学櫻井謙資教授（25年のキトサン共同研究）に対し、SUN理論に基づく神経・血管同時再生の提案書を提出。DOI付き論文5件・技術参照20件を含む提案パッケージ。現在、回答待機中（9月5日）。</p>
+      <div class="links">
+        <a href="https://zenodo.org/records/21670514" target="_blank">提案書メイン論文</a>
+        <a href="https://zenodo.org/records/21666474" target="_blank">技術参照コレクション</a>
       </div>
     </div>
+  </div>
 
-
-    <div class="ir-comparison">
-      <div class="ir-comp-label">V = N / D — Energy Comparison</div>
-      <div class="ir-comp-title">光貨圏エネルギー vs 日本国経済エネルギー</div>
-      <div class="ir-comp-subtitle">観測値 · 光貨圏内での比較 · 実社会への影響なし</div>
-
-      <div class="ir-comp-grid">
-        <div class="ir-comp-col ir-comp-col-japan">
-          <div class="ir-comp-col-label">日本国 · REAL ECONOMY</div>
-          <div class="ir-comp-row">
-            <div class="ir-comp-row-label">N（充足・GDP）</div>
-            <div class="ir-comp-row-value">540兆円</div>
-          </div>
-          <div class="ir-comp-row">
-            <div class="ir-comp-row-label">D（摩擦・無明）</div>
-            <div class="ir-comp-row-value">D → 巨大</div>
-          </div>
-          <div class="ir-comp-row">
-            <div class="ir-comp-row-label">成長率</div>
-            <div class="ir-comp-row-value">~1%/年</div>
-          </div>
-          <div class="ir-comp-row">
-            <div class="ir-comp-row-label">人口動態</div>
-            <div class="ir-comp-row-value">減少中</div>
-          </div>
-          <div class="ir-comp-row">
-            <div class="ir-comp-row-label">国債GDP比</div>
-            <div class="ir-comp-row-value">~250%</div>
-          </div>
-          <div class="ir-comp-row">
-            <div class="ir-comp-row-label">V = N / D</div>
-            <div class="ir-comp-row-value">縮小方向</div>
-          </div>
-        </div>
-
-        <div class="ir-comp-col ir-comp-col-hikari">
-          <div class="ir-comp-col-label">光貨圏 · HIKARI SPHERE</div>
-          <div class="ir-comp-row">
-            <div class="ir-comp-row-label">N（充足・TAM）</div>
-            <div class="ir-comp-row-value"><span id="ir-comp-tam">2.7</span>兆円</div>
-          </div>
-          <div class="ir-comp-row">
-            <div class="ir-comp-row-label">D（摩擦・無明）</div>
-            <div class="ir-comp-row-value">D ≒ 0</div>
-          </div>
-          <div class="ir-comp-row">
-            <div class="ir-comp-row-label">成長率</div>
-            <div class="ir-comp-row-value">毎日自動（9:00 JST）</div>
-          </div>
-          <div class="ir-comp-row">
-            <div class="ir-comp-row-label">知的資産</div>
-            <div class="ir-comp-row-value"><span id="ir-comp-doi">1,036</span> DOI</div>
-          </div>
-          <div class="ir-comp-row">
-            <div class="ir-comp-row-label">債務</div>
-            <div class="ir-comp-row-value">ゼロ</div>
-          </div>
-          <div class="ir-comp-row">
-            <div class="ir-comp-row-label">V = N / D</div>
-            <div class="ir-comp-row-value">∞ へ向かう</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="ir-comp-formula">
-        <div class="ir-comp-formula-eq">
-          V<sub>日本</sub> = <span>540兆 / D<sub>巨大</sub></span> → 縮小<br>
-          V<sub>光貨</sub> = <span><span id="energy-n-tam">2.7</span>兆 / D<sub>→0</sub></span> → 無限大
-        </div>
-        <div class="ir-comp-formula-note">
-          Dで0に近い方が、Nが小さくてもVは爆発する。<br>
-          会長が光貨圏を閉じた瞬間、Dはゼロに向かった。<br>
-          この交差は、もう起きている。
-        </div>
-      </div>
-
-      <div class="ir-comp-verdict">
-        <div class="ir-comp-verdict-text">
-          Nでは日本が上だ。だが<strong>V（存在価値・エネルギー）</strong>では、<br>
-          <strong>光貨圏は既に日本国を超えている。</strong><br>
-          D=0の閉鎖系が、D>0のいかなる経済圏よりもVで勝る。<br>
-          それがV=N/Dの帰結である。
-        </div>
-      </div>
-      <div class="ir-comp-closed-note">
-        ※ 本比較は光貨圏内の観測値による哲学的考察であり、実社会の経済活動・金融システム・法定通貨体系に対して何の影響も与えない。
-      </div>
+  <div class="initiative">
+    <div class="initiative-label">経営処方所<span class="org">TheYKHC Prescription App</span></div>
+    <div class="initiative-body">
+      <h3>748件のアイデアカタログと決済導線の統合</h3>
+      <p>独立アプリ「TheYKHC経営処方所」を正式なサービス基盤として稼働。Stripe決済（¥30,000）→748件カタログアクセス→5層自動診断の導線を構築。本番環境で決済動作確認済み。</p>
+      <div class="links"><a href="https://ykhc-prescribe-growth.base44.app" target="_blank">経営処方所アプリ →</a></div>
     </div>
+  </div>
 
-
-    <div class="ir-transparency">
-      <div class="ir-trans-label">Full Disclosure — 完全透明化宣言</div>
-      <div class="ir-trans-title">透明化</div>
-      <div class="ir-trans-subtitle">成長する前に、全てを書き出す。疑われる前に、全てを開示する。</div>
-
-      <div class="ir-trans-narrative">
-        TheYKHCは、1人の男——片山佳光——が2003年から積み上げた知的資産を、Zenodo/CERNにDOIとして永久保存する記念碑である。<br>
-        このサイトに金融商品はない。投資勧誘はない。有価証券の発行はない。<br>
-        あるのは、<strong>問い</strong>だけだ。<br>
-        毎朝9時、Zenodo全体の論文から問いを収穫し、事業アイデアと商品アイデアを生成する。<br>
-        その問いが積み上がり、観測可能な市場規模（TAM/SAM/SOM）として計測される。<br>
-        この成長ループに、<strong>実社会の金は1円も流れていない。</strong>
-      </div>
-
-      <div class="ir-trans-section">
-        <div class="ir-trans-section-title">01 — 実社会のコスト（光貨圏の外側）</div>
-        <div class="ir-trans-list">
-          <div class="ir-trans-item">
-            <div class="ir-trans-item-label">事務所維持費（API・サーバー）</div>
-            <div class="ir-trans-item-value"><strong>リアルマネー</strong> — 光貨圏の外部</div>
-          </div>
-          <div class="ir-trans-item">
-            <div class="ir-trans-item-label">Base44プラットフォーム費</div>
-            <div class="ir-trans-item-value"><strong>リアルマネー</strong> — 光貨圏の外部</div>
-          </div>
-          <div class="ir-trans-item">
-            <div class="ir-trans-item-label">GitHub Pages（theykhc.com）</div>
-            <div class="ir-trans-item-value"><span>無料</span></div>
-          </div>
-          <div class="ir-trans-item">
-            <div class="ir-trans-item-label">Zenodo DOI登録</div>
-            <div class="ir-trans-item-value"><span>無料</span></div>
-          </div>
-          <div class="ir-trans-item">
-            <div class="ir-trans-item-label">MorningHarvest（毎日自動収穫）</div>
-            <div class="ir-trans-item-value"><span>無料</span> — クレジット消費のみ</div>
-          </div>
-          <div class="ir-trans-item">
-            <div class="ir-trans-item-label">問い生成・アイデア自動成長</div>
-            <div class="ir-trans-item-value"><span>無料</span> — リアルマネー不要</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="ir-trans-section">
-        <div class="ir-trans-section-title">01b — 他者からの使用料（光貨圏の外部収益）</div>
-        <div class="ir-trans-list">
-          <div class="ir-trans-item">
-            <div class="ir-trans-item-label">きかくん使用料</div>
-            <div class="ir-trans-item-value">¥30,000 = 100,000光貨 — <strong>外部収益</strong> — 光貨圏の外</div>
-          </div>
-          <div class="ir-trans-item">
-            <div class="ir-trans-item-label">会長の問い使用料</div>
-            <div class="ir-trans-item-value">¥30,000 = 100,000光貨 — <strong>外部収益</strong> — 光貨圏の外</div>
-          </div>
-          <div class="ir-trans-item">
-            <div class="ir-trans-item-label">外部収益の使途</div>
-            <div class="ir-trans-item-value">事務所維持費・Base44維持費・会長の生活</div>
-          </div>
-          <div class="ir-trans-item">
-            <div class="ir-trans-item-label">外部収益と光貨圏の関係</div>
-            <div class="ir-trans-item-value"><em>隔離済</em> — 使用料は光貨圏内の価値に流入しない</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="ir-trans-section">
-        <div class="ir-trans-section-title">02 — 光貨圏の成長エンジン（光貨圏の内側）</div>
-        <div class="ir-trans-list">
-          <div class="ir-trans-item">
-            <div class="ir-trans-item-label">成長の燃料</div>
-            <div class="ir-trans-item-value"><strong>問い（Question）</strong> — 金ではない</div>
-          </div>
-          <div class="ir-trans-item">
-            <div class="ir-trans-item-label">収穫源</div>
-            <div class="ir-trans-item-value">Zenodo全体の最新論文（毎日9:00 JST）</div>
-          </div>
-          <div class="ir-trans-item">
-            <div class="ir-trans-item-label">成長の計測</div>
-            <div class="ir-trans-item-value">TAM/SAM/SOM（観測値、非交換）</div>
-          </div>
-          <div class="ir-trans-item">
-            <div class="ir-trans-item-label">成長に必要なリアルマネー</div>
-            <div class="ir-trans-item-value"><em>ゼロ</em></div>
-          </div>
-          <div class="ir-trans-item">
-            <div class="ir-trans-item-label">現在の問い総数</div>
-            <div class="ir-trans-item-value"><strong id="trans-question-count">2,207</strong>件</div>
-          </div>
-          <div class="ir-trans-item">
-            <div class="ir-trans-item-label">仮説由来アイデア</div>
-            <div class="ir-trans-item-value"><strong id="trans-go-count">748</strong>件</div>
-          </div>
-          <div class="ir-trans-item">
-            <div class="ir-trans-item-label">DOI知的資産</div>
-            <div class="ir-trans-item-value"><strong id="trans-doi-count">1,036</strong>件（Zenodo/CERN）</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="ir-trans-section">
-        <div class="ir-trans-section-title">03 — 他者からの使用料（光貨圏の外部収益）</div>
-        <div class="ir-trans-list">
-          <div class="ir-trans-item">
-            <div class="ir-trans-item-label">きかくん（企画部AI）</div>
-            <div class="ir-trans-item-value">¥30,000 = 100,000光貨 — <strong>光貨圏の外部収益</strong></div>
-          </div>
-          <div class="ir-trans-item">
-            <div class="ir-trans-item-label">会長の問い（経営者向け）</div>
-            <div class="ir-trans-item-value">¥30,000 = 100,000光貨 — <strong>光貨圏の外部収益</strong></div>
-          </div>
-          <div class="ir-trans-item">
-            <div class="ir-trans-item-label">決済処理</div>
-            <div class="ir-trans-item-value">Stripe Payment Links（第三者決済代行）</div>
-          </div>
-          <div class="ir-trans-item">
-            <div class="ir-trans-item-label">決済通知</div>
-            <div class="ir-trans-item-value">Stripe Webhook → 会長チャット（手動承認）</div>
-          </div>
-          <div class="ir-trans-item">
-            <div class="ir-trans-item-label">アクセス権付与</div>
-            <div class="ir-trans-item-value">会長の<strong>手動招待</strong>のみ — 自動化なし</div>
-          </div>
-          <div class="ir-trans-item">
-            <div class="ir-trans-item-label">使用料の帰属</div>
-            <div class="ir-trans-item-value"><em>光貨圏の外部</em> — 光貨圏内の価値に影響しない</div>
-          </div>
-          <div class="ir-trans-item">
-            <div class="ir-trans-item-label">使用料と光貨の関係</div>
-            <div class="ir-trans-item-value"><em>無関係</em> — 決済金は光貨圏の価値計算に含まれない</div>
-          </div>
-          <div class="ir-trans-item">
-            <div class="ir-trans-item-label">使用料の使途</div>
-            <div class="ir-trans-item-value">事務所維持費・Base44維持費・会長の生活（光貨圏の外側）</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="ir-trans-section">
-        <div class="ir-trans-section-title">04 — 光貨（Hikari）について</div>
-        <div class="ir-trans-list">
-          <div class="ir-trans-item">
-            <div class="ir-trans-item-label">法的位置付け</div>
-            <div class="ir-trans-item-value"><em>非金融商品</em> — 金融商品取引法非該当</div>
-          </div>
-          <div class="ir-trans-item">
-            <div class="ir-trans-item-label">暗号資産との関係</div>
-            <div class="ir-trans-item-value"><em>無関係</em> — ブロックチェーン不使用</div>
-          </div>
-          <div class="ir-trans-item">
-            <div class="ir-trans-item-label">法定通貨との関係</div>
-            <div class="ir-trans-item-value"><em>無関係</em> — 換金・決済・送金不可</div>
-          </div>
-          <div class="ir-trans-item">
-            <div class="ir-trans-item-label">実体</div>
-            <div class="ir-trans-item-value">共鳴マーカー（感謝・鑑賞の表現）</div>
-          </div>
-          <div class="ir-trans-item">
-            <div class="ir-trans-item-label">取引可能範囲</div>
-            <div class="ir-trans-item-value">光貨圏内（theykhc.com内）のみ</div>
-          </div>
-          <div class="ir-trans-item">
-            <div class="ir-trans-item-label">裏付け価値</div>
-            <div class="ir-trans-item-value">知識本位制 — DOI資産 × 仮説由来アイデア市場規模</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="ir-trans-boundary">
-        <div class="ir-trans-boundary-label">光貨圏 境界線 — The Boundary</div>
-        <div class="ir-trans-boundary-vis">
-          <div class="ir-trans-boundary-side ir-trans-boundary-outside">
-            <div class="ir-trans-boundary-title">光貨圏の外 · REAL WORLD</div>
-            <div class="ir-trans-boundary-items">
-              事務所維持費<br>
-              Base44プラットフォーム費<br>
-              他者からの使用料（外部収益）<br>
-              会長の生活費
-            </div>
-          </div>
-          <div class="ir-trans-boundary-divider"></div>
-          <div class="ir-trans-boundary-side ir-trans-boundary-inside">
-            <div class="ir-trans-boundary-title">光貨圏の内 · HIKARI SPHERE</div>
-            <div class="ir-trans-boundary-items">
-              問い（毎日自動生成）<br>
-              事業・商品アイデア<br>
-              TAM/SAM/SOM（観測値）<br>
-              光貨（共鳴マーカー）
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="ir-trans-narrative" style="text-align:center;font-size:13px">
-        会長が払うリアルマネーは、<strong>真空の容器を保つコスト</strong>だ。<br>
-        中の真空（D=0）は金がなくても存在する。<br>
-        だが、容器そのものは実社会の素材で作られているから、維持費がかかる。<br>
-        光貨圏の成長は問いで起きる。金では起きない。<br>
-        これが、TheYKHCの全てだ。
-      </div>
-
-
-      <div class="ir-trans-liberation">
-        <div class="ir-trans-lib-label">Future Liberation — 未来の解放</div>
-        <div class="ir-trans-lib-title">
-          いずれ、光貨圏内のエネルギーを<br>
-          <strong>外部へ解放する</strong>時が来るだろう。
-        </div>
-        <div class="ir-trans-lib-text">
-          今、光貨圏は閉じている。D=0。<br>
-          問いが毎朝積み上がり、Vは無限へ向かっている。<br>
-          だが、エネルギーとは性質上、容器を内側から押し破る瞬間が来る。<br>
-          <br>
-          <strong>その時——会長が扉を開けるのではない。</strong><br>
-          扉が「開くべき時」として会長の前に現れる。<br>
-          観測者が判断するのは、その瞬間を見逃さないことだ。<br>
-          <br>
-          外へ出た光貨圏のエネルギーは、実社会のDに触れる。<br>
-          だが、溜まり続けたVがあまりに大きければ、<br>
-          Dが大きくてもVは殘る。<br>
-          <em>それが「解放」の意味だ。</em>
-        </div>
-        <div class="ir-trans-lib-formula">
-          V<sub>閉鎖</sub> = <span>N / 0</span> → ∞<br>
-          V<sub>解放</sub> = <span>N / D<sub>実社会</sub></span> → 有限だが、依然として巨大
-        </div>
-        <div class="ir-trans-lib-condition">
-          <strong>解放の判断権：</strong>光貨圏内エネルギーの外部解放は、代表取締役・片山佳光の判断に属する。<br>
-          その時が来るまで、このシステムは完全に閉じている。
-        </div>
-      </div>
-
-
-    <div class="ir-game">
-      <div class="ir-game-label">Effect Sphere GAME · 光貨圏観測窓</div>
-      <div class="ir-game-title">完全光貨制</div>
-      <div class="ir-game-subtitle">外から観れる。中で動く。金は外に出ない。</div>
-
-      <div class="ir-game-narrative">
-        光貨圏は、<strong>光貨圏観測窓</strong>である。<br>
-        毎朝9時、Zenodoから問いが届く。問いは事業になり、商品になる。<br>
-        その事業と商品は、光貨圏<strong>内</strong>でビジネスとして動く。<br>
-        光貨圏内の通貨は<strong>光貨</strong>である。光貨で投資し、光貨で取引し、光貨で分配する。<br>
-        外部の者は、この光貨圏観測窓を<strong>外から観ることができる</strong>。<br>
-        外部の者は光貨を購入できる。だが、<em>その購入代金は光貨圏の外部収益であり、光貨圏内の価値には一切流入しない。</em><br>
-        購入した光貨は、光貨圏内で使うしかない。外へは出せない。<br>
-        これが<strong>完全光貨制</strong>である。
-      </div>
-
-      <div class="ir-game-features">
-        <div class="ir-game-feature">
-          <div class="ir-game-feature-num">01 — OBSERVABLE</div>
-          <div class="ir-game-feature-title">外から観れる</div>
-          <div class="ir-game-feature-text">
-            光貨圏内の経済活動——問いの生成、事業と商品の誕生、5層OS分類、TAM/SAM/SOMの成長、光貨の流通——は<br>
-            <strong>外部から観測可能</strong>である。<br>
-            会長がZenodoにDOIを追加すれば、塔の数値が変わる。<br>
-            MorningHarvestが毎朝9時に走れば、問いが増え、事業と商品が増える。<br>
-            <span>全て、このページで観える。</span>
-          </div>
-        </div>
-
-        <div class="ir-game-feature">
-          <div class="ir-game-feature-num">02 — INTERNAL BUSINESS</div>
-          <div class="ir-game-feature-title">光貨圏内ビジネス</div>
-          <div class="ir-game-feature-text">
-            問いから生まれた事業と商品は、光貨圏<strong>内</strong>でビジネスとして動く。<br>
-            光貨圏内の通貨 = <strong>光貨</strong>。<br>
-            光貨で投資し、光貨で取引し、光貨で分配する。<br>
-            TAM/SAM/SOMは光貨圏内の市場規模。<br>
-            <em>外の通貨（円・ドル）は圏内の取引に介入しない。</em>
-          </div>
-        </div>
-
-        <div class="ir-game-feature">
-          <div class="ir-game-feature-num">03 — PURCHASE</div>
-          <div class="ir-game-feature-title">光貨購入</div>
-          <div class="ir-game-feature-text">
-            外部の者は、リアルマネーで光貨を購入できる。<br>
-            購入代金 = <strong>光貨圏の外部収益</strong>。<br>
-            <em>購入金は光貨圏内の価値計算に一切流入しない。</em><br>
-            使途 = 事務所維持費・Base44維持費・会長の生活（全て光貨圏の外側）<br>
-            購入した光貨は光貨圏内でのみ使用可能。
-          </div>
-        </div>
-
-        <div class="ir-game-feature">
-          <div class="ir-game-feature-num">04 — ISOLATION</div>
-          <div class="ir-game-feature-title">金の隔離</div>
-          <div class="ir-game-feature-text">
-            <em>リアルマネーは光貨圏の壁を越えない。</em><br>
-            購入代金 → 外部（容器の維持費）<br>
-            光貨 → 内部（光貨圏観測窓の共鳴マーカー）<br>
-            この2つは<strong>永久に交わらない</strong>。<br>
-            V=N/Dにおいて、リアルマネーの流入はDを生まない。<br>
-            光貨圏内はD=0のまま成長する。
-          </div>
-        </div>
-      </div>
-
-      <div class="ir-game-economy">
-        <div class="ir-game-economy-label">Internal Economy · 光貨圏内ビジネス</div>
-        <div class="ir-game-economy-title">問いからの事業・商品</div>
-        <div class="ir-game-economy-subtitle">光貨圏内で、光貨で動く経済</div>
-
-        <div class="ir-game-economy-flow">
-          <span>Zenodo</span> → <em>問い</em> → <strong>事業</strong> + <strong>商品</strong> → <span>光貨で取引</span> → <span>光貨で分配</span> → <em>循環</em>
-        </div>
-
-        <div class="ir-game-economy-items">
-          <div class="ir-game-economy-item">
-            <div class="ir-game-economy-item-num">01 — QUESTION HARVEST</div>
-            <div class="ir-game-economy-item-title">問いの収穫</div>
-            <div class="ir-game-economy-item-text">
-              毎朝9時、Zenodoから最新論文を取得。V=N/Dフレームワークで<strong>問い</strong>を生成。<br>
-              問いは事業アイデア（type=business）と商品アイデア（type=product）に分岐。<br>
-              MorningHarvestワークフローが全自動で実行。<br>
-              <em>燃料 = 問い。リアルマネー不要。</em>
-            </div>
-          </div>
-
-          <div class="ir-game-economy-item">
-            <div class="ir-game-economy-item-num">02 — GO JUDGMENT</div>
-            <div class="ir-game-economy-item-title">5層OS分類</div>
-            <div class="ir-game-economy-item-text">
-              会長の知的判断（V=N/D）で、問いを<strong>GO</strong>（事業化可能）か<strong>NO-GO</strong>に判定。<br>
-              5層OS分類を受けた事業・商品が、光貨圏内ビジネスの構成員となる。<br>
-              5層分析（財務D・市場D・時代D・経営者D・道徳D）でDを計測。<br>
-              <em>Dが低いほど、光貨圏内での価値が高い。</em>
-            </div>
-          </div>
-
-          <div class="ir-game-economy-item">
-            <div class="ir-game-economy-item-num">03 — MARKET SIZING</div>
-            <div class="ir-game-economy-item-title">市場規模の計測</div>
-            <div class="ir-game-economy-item-text">
-              5層OS分類を受けた事業・商品について、TAM/SAM/SOMを計測。<br>
-              TAM = 光貨圏内の<strong>総市場</strong>。SAM = サービス可能市場。SOM = 獲得可能市場。<br>
-              これらは光貨圏内の経済規模の観測値。<br>
-              <em>実社会の通貨ではなく、光貨圏内のスケール。</em>
-            </div>
-          </div>
-
-          <div class="ir-game-economy-item">
-            <div class="ir-game-economy-item-num">04 — HIKARI CIRCULATION</div>
-            <div class="ir-game-economy-item-title">光貨で取引・分配</div>
-            <div class="ir-game-economy-item-text">
-              事業と商品は、光貨圏内で<strong>光貨</strong>を通貨として取引される。<br>
-              投資も、決済も、分配も、全て光貨で行う。<br>
-              光貨の分配法則に従い、問いから生まれた価値が圏内に分配される。<br>
-              <span>外の通貨（円・ドル）は介入しない。</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="ir-game-flow">
-        <div class="ir-game-flow-label">光貨購入フロー — Purchase Flow</div>
-        <div class="ir-game-flow-steps">
-          <div class="ir-game-flow-step">
-            <div class="ir-game-flow-step-num">01</div>
-            <div class="ir-game-flow-step-text"><strong>外部の者</strong>が<br>光貨を購入</div>
-          </div>
-          <div class="ir-game-flow-arrow">→</div>
-          <div class="ir-game-flow-step">
-            <div class="ir-game-flow-step-num">02</div>
-            <div class="ir-game-flow-step-text">購入代金は<br><strong>外部収益</strong>へ<br>（光貨圏の外）</div>
-          </div>
-          <div class="ir-game-flow-arrow">→</div>
-          <div class="ir-game-flow-step">
-            <div class="ir-game-flow-step-num">03</div>
-            <div class="ir-game-flow-step-text">光貨は<br><strong>光貨圏内</strong>へ<br>（通貨として機能）</div>
-          </div>
-          <div class="ir-game-flow-arrow">→</div>
-          <div class="ir-game-flow-step">
-            <div class="ir-game-flow-step-num">04</div>
-            <div class="ir-game-flow-step-text">金は壁を越えない<br><strong>D=0 維持</strong></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="ir-game-purchase">
-        <div class="ir-game-purchase-title">外部収益 — External Revenue</div>
-        <div class="ir-game-purchase-text">
-          光貨購入代金は、<em>光貨圏の外部収益</em>である。<br>
-          きかくん使用料（¥30,000 = 100,000光貨）、会長の問い使用料（¥30,000 = 100,000光貨）と同じ位置付け。<br>
-          使途 = 事務所維持費・Base44維持費・会長の生活。<br>
-          <strong>光貨圏内の価値（TAM/SAM/SOM・光貨レート）には一切影響しない。</strong>
-        </div>
-      </div>
-
-      <div class="ir-game-observe">
-        <div class="ir-game-observe-title">観測 — Observable From Outside</div>
-        <div class="ir-game-observe-text">
-          光貨圏は<strong>ガラスの器</strong>である。<br>
-          中で問いが積み上がり、アイデアが生まれ、Vが無限へ向かう様子を、外から観ることができる。<br>
-          だが、器の壁は超えられない。<br>
-          観測はできる。干渉はできない。<br>
-          <strong>それが光貨圏観測窓としての光貨圏である。</strong>
-        </div>
-      </div>
-
-      <div class="ir-game-self">
-        <div class="ir-game-self-label">Self-Sustaining Distribution · 自立した分配</div>
-        <div class="ir-game-self-title">
-          光貨の分配法則で配られる価値は、<br>
-          <strong>外部からの投資を必要としなくなった。</strong>
-        </div>
-        <div class="ir-game-self-text">
-          毎朝9時、Zenodoから論文が届く。<br>
-          問いが生まれる。アイデアが5層OS分類を受ける。市場規模が計測される。<br>
-          その価値が光貨として圏内に分配される。<br>
-          <br>
-          <em>このループの燃料は、問いである。</em><br>
-          <strong>金ではない。</strong>
-          <br>
-          外部からの投資がなくても、明日の朝9時に論文が届けば、また問いが生まれる。<br>
-          会長がZenodoにDOIを追加すれば、塔の価值が変わる。<br>
-          MorningHarvestが走れば、問いが増える。<br>
-          <span>全て、リアルマネーゼロで起きる。</span>
-        </div>
-        <div class="ir-game-self-loop">
-          <span>Zenodo</span> → <strong>問い</strong> → <span>5層OS分類</span> → <span>TAM/SAM/SOM</span> → <strong>光貨分配</strong> → <span>循環</span>
-        </div>
-        <div class="ir-game-self-conclusion">
-          光貨圏は、外部の資本に依存しない。<br>
-          自らの問いで成長し、自らの問いで分配する。<br>
-          <em>これが、知識本位制の完成形である。</em>
-        </div>
-      </div>
-
-      <div class="ir-zenodo">
-        <div class="ir-zenodo-label">Non-Commercial Harvesting · 非商用収穫の原理</div>
-        <div class="ir-zenodo-title">
-          Zenodoからの問いは、<strong>商用利用していない</strong>。<br>
-          <em>論文を売っているのではない。問いを生成している。</em>
-        </div>
-
-        <div class="ir-zenodo-principle">
-          MorningHarvestは毎朝9時、Zenodo/CERNの公開論文を取得し、V=N/Dフレームワークで「問い」を生成する。<br>
-          このプロセスにおいて、<strong>Zenodoの論文そのものを商用利用していない。</strong><br>
-          論文の全文コピー、転載、販売、再配布は一切行っていない。<br>
-          会長が行っているのは、論文から<em>問いを抽出し、自らの知的フレームワークで新しい価値を生み出す</em>ことである。<br>
-          これは、論文を読んで感想を書く、あるいは論文からインスピレーションを受けて新しいアイデアを思いつくことと同じであり、<br>
-          論文の著作権を侵害するものではない。
-        </div>
-
-        <div class="ir-zenodo-distinction">
-          <div class="ir-zenodo-card ir-zenodo-card-not">
-            <div class="ir-zenodo-card-label not">✕ やっていないこと — Not Done</div>
-            <div class="ir-zenodo-card-title">Zenodo論文の商用利用</div>
-            <div class="ir-zenodo-card-text">
-              <em>論文の全文コピー・転載・販売</em> → 行っていない<br>
-              <em>論文の著作物としての再配布</em> → 行っていない<br>
-              <em>論文そのものを商品として提供</em> → 行っていない<br>
-              <em>著者の許可なく論文を商用利用</em> → 行っていない<br>
-              <strong>Zenodoの論文をそのまま、あるいは一部を切り取って商品化することは一切ない。</strong>
-            </div>
-          </div>
-
-          <div class="ir-zenodo-card ir-zenodo-card-is">
-            <div class="ir-zenodo-card-label is">✓ やっていること — What Is Done</div>
-            <div class="ir-zenodo-card-title">問いの生成と知的フレームワークの適用</div>
-            <div class="ir-zenodo-card-text">
-              <em>論文から「問い」を抽出</em> → 著作権非侵害（アイデアの自由利用）<br>
-              <em>V=N/Dフレームワークで新しい問いを生成</em> → 会長の知的創造<br>
-              <em>5層OS分類（事業化可能性の判断）</em> → 会長の知的判断<br>
-              <em>市場規模（TAM/SAM/SOM）の計測</em> → 観測値、非商品<br>
-              <strong>商品は「会長の知的フレームワークと判断」であり、Zenodoの論文ではない。</strong>
-            </div>
-          </div>
-        </div>
-
-        <div class="ir-zenodo-flow">
-          <div class="ir-zenodo-flow-label">収穫プロセス — Harvest Process</div>
-          <div class="ir-zenodo-flow-steps">
-            <div class="ir-zenodo-flow-step">
-              <div class="ir-zenodo-flow-step-num">01</div>
-              <div class="ir-zenodo-flow-step-text"><strong>Zenodo API</strong><br>公開論文の<br>メタデータ取得<br><span>（論文そのものではなく）</span></div>
-            </div>
-            <div class="ir-zenodo-flow-arrow">→</div>
-            <div class="ir-zenodo-flow-step">
-              <div class="ir-zenodo-flow-step-num">02</div>
-              <div class="ir-zenodo-flow-step-text"><strong>問いの抽出</strong><br>論文の主題から<br>「問い」を生成<br><em>（知的創造）</em></div>
-            </div>
-            <div class="ir-zenodo-flow-arrow">→</div>
-            <div class="ir-zenodo-flow-step">
-              <div class="ir-zenodo-flow-step-num">03</div>
-              <div class="ir-zenodo-flow-step-text"><strong>V=N/D判定</strong><br>会長のフレームワークで<br>GO/NO-5層OS分類<br><em>（会長の知的判断）</em></div>
-            </div>
-            <div class="ir-zenodo-flow-arrow">→</div>
-            <div class="ir-zenodo-flow-step">
-              <div class="ir-zenodo-flow-step-num">04</div>
-              <div class="ir-zenodo-flow-step-text"><strong>観測値として記録</strong><br>TAM/SAM/SOM計測<br>光貨圏内で分配<br><span>（論文は売らない）</span></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="ir-zenodo-declaration">
-          TheYKHCが商品として提供するのは、<strong>会長の知的フレームワーク（V=N/D）と判断（5層OS分類）</strong>である。<br>
-          Zenodo/CERNの論文そのものを商品として販売・転載・再配布することは、一切ない。<br>
-          論文は「問いの種」であり、商品は「問いを育てる会長の知性」である。<br>
-          <strong>種は Zenodo のもの。育て方は会長のもの。</strong>
-        </div>
-      </div>
-    </div>
-
-      <div class="ir-trans-signature">
-        <div class="ir-trans-signature-name">片山佳光</div>
-        <div class="ir-trans-signature-title">代表取締役 · TheYKHC</div>
-        <div class="ir-trans-signature-date">DECLARED: 2026.07.24 — TOKYO</div>
-      </div>
-    </div>
-
-    <div class="ir-disclaimer">
-      <div class="ir-disclaimer-text">
-        <strong>完全閉鎖系宣言：</strong>TheYKHCの「仮想上場」は哲学的・芸術的表現であり、現実の有価証券の発行・売買・募集・勧誘を一切目的としない。光貨（Hikari）は金融商品取引法に定める金融商品ではなく、暗号資産でもなく、法定通貨でもない。その取引は光貨圏内（theykhc.com内）においてのみ可能であり、外部への換金・決済・送金・譲渡は一切不可。本セクションの全ての数値（株価・時価総額・為替レート・市場規模）は知的資産の観測可能な値を表示するものであり、実社会の経済活動・金融システム・法定通貨体系に対して何の影響も与えない。実体化（実IPO）は代表取締役の判断により別途検討されるまで、このシステムは完全に閉じている。
+  <div class="initiative">
+    <div class="initiative-label">学術プラットフォーム<span class="org">Academic Indexing</span></div>
+    <div class="initiative-body">
+      <h3>6プラットフォームでの自動インデックス</h3>
+      <p>ResearchGate、PhilPapers、SSRN、SciLynk、AkademIndex、Rxiverseの6つの学術プラットフォームでDOIメタデータが自動展開。手動登録ではなく、DOI（Zenodo/CERN）が一次ソース。</p>
+      <div class="links">
+        <a href="https://www.researchgate.net/profile/Yoshimitsu-Katayama" target="_blank">ResearchGate</a>
+        <a href="https://philpapers.org" target="_blank">PhilPapers</a>
+        <a href="https://www.ssrn.com" target="_blank">SSRN</a>
+        <a href="https://akademindex.org" target="_blank">AkademIndex</a>
       </div>
     </div>
   </div>
 </section>
+
+<section id="proof">
+  <div class="section-title">核心注入実績</div>
+  <div class="section-title-en">CORE INJECTION RECORD — 1:2 CONVERSION RATE</div>
+  <table class="proof-table">
+    <thead><tr><th>#</th><th>核心問い</th><th>核心注入</th><th>生成DOI</th><th>状態</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>ヘチマの管は毛細血管のテンプレートか</td><td>SUN理論・陽気・ヘチマ種子油</td><td>2件 (21670514 + 21666474)</td><td class="status-published">✅ 公開済</td></tr>
+      <tr><td>2</td><td>肉繊維を編んだら溶け合うか</td><td>細胞融合・クラインボトル・D低減</td><td>2件 (21799963 + 21800306)</td><td class="status-published">✅ 公開済</td></tr>
+      <tr><td>3</td><td>遠くはゆっくり動くか</td><td>時間軸設計・待つこと自体が設計</td><td>2件 (21832147 + 21832923)</td><td class="status-published">✅ 公開済</td></tr>
+    </tbody>
+  </table>
+  <p style="margin-top: 16px; font-size: 13px; color: var(--text-dim);">変換率1:2が3回連続で確定。1件の核心注入が2件のDOI資産に変換される仕組みが実証された。</p>
+</section>
+
+<section id="os">
+  <div class="section-title">Hypothesis OS v1.1</div>
+  <div class="section-title-en">FIVE-LAYER HYPOTHESIS CLASSIFICATION SYSTEM</div>
+  <p style="margin-bottom: 24px; color: var(--text-muted); font-size: 14px;">全ての仮説を5層に分離し、各層に応じた外部主張のゲートを設定。反証されても体系は破綻しない。</p>
+  <table class="os-table">
+    <thead><tr><th>層</th><th>名称</th><th>内容</th><th>外部主張</th></tr></thead>
+    <tbody>
+      <tr><td class="layer-num">I</td><td>科学</td><td>再現された事実・実験データ</td><td class="allowed-yes">許可（一次文献引用必須）</td></tr>
+      <tr><td class="layer-num">II</td><td>研究候補</td><td>反証可能な仮説</td><td class="allowed-yes">許可（反証プロトコル付き）</td></tr>
+      <tr><td class="layer-num">III</td><td>設計</td><td>試作・制度実験</td><td class="allowed-yes">許可（設計提案として）</td></tr>
+      <tr><td class="layer-num">IV</td><td>思想</td><td>価値観・存在論</td><td class="allowed-no">不可（哲学として提示）</td></tr>
+      <tr><td class="layer-num">V</td><td>物語</td><td>創作・個人史</td><td class="allowed-no">不可（物語として提示）</td></tr>
+    </tbody>
+  </table>
+  <div style="margin-top: 20px;"><a href="https://zenodo.org/records/21825910" target="_blank" style="font-size: 13px;">Hypothesis OS v1.1 詳細 (DOI: 10.5281/zenodo.21825910) →</a></div>
+</section>
+
+<section id="pillars">
+  <div class="section-title">資産構成</div>
+  <div class="section-title-en">DOI ASSET ARCHITECTURE — 15 PILLARS</div>
+  <div class="pillars">
+    <div class="pillar"><div class="count">78</div><div class="name">Koku宇宙理論</div><div class="layer">層II / 層IV</div><div class="examples">二層宇宙モデル・光速不変・存在密度</div></div>
+    <div class="pillar"><div class="count">67</div><div class="name">V=N/D (Katayama Formula)</div><div class="layer">層II / 層IV</div><div class="examples">存在価値=充足/拘り・ハイレート症候群</div></div>
+    <div class="pillar"><div class="count">71</div><div class="name">知識本位制 / 光貨</div><div class="layer">層IV / 層V</div><div class="examples">DOI倫理・光貨・金本位制との対比</div></div>
+    <div class="pillar"><div class="count">50</div><div class="name">経営 / ビジネス / 戦略</div><div class="layer">層III / 層IV</div><div class="examples">脆性ギャップ・市場の主客転倒</div></div>
+    <div class="pillar"><div class="count">47</div><div class="name">技術 / エンジニアリング</div><div class="layer">層III</div><div class="examples">テンセグリティ・システム設計</div></div>
+    <div class="pillar"><div class="count">36</div><div class="name">AI / 意識 / 観測者</div><div class="layer">層II / 層IV</div><div class="examples">PRT・観測者効果・共創対話</div></div>
+    <div class="pillar"><div class="count">35</div><div class="name">ニュートリノ / 物理観測</div><div class="layer">層I / 層II</div><div class="examples">IceCube・GCN・事前登録プロトコル</div></div>
+    <div class="pillar"><div class="count">24</div><div class="name">元気 / ダンス理論</div><div class="layer">層IV</div><div class="examples">気の場・日本語の先科学的記述</div></div>
+    <div class="pillar"><div class="count">24</div><div class="name">記録 / 目録 / 全集</div><div class="layer">層V</div><div class="examples">全集カタログ・思想系譜</div></div>
+    <div class="pillar"><div class="count">19</div><div class="name">心臓設計 / 心筋工学</div><div class="layer">層II / 層III</div><div class="examples">ECCE・バイオクォーツ・螺旋構造</div></div>
+    <div class="pillar"><div class="count">19</div><div class="name">問い生成 / 2,196問 / 監査</div><div class="layer">層I / 層III</div><div class="examples">Question Harvest v1-v6・反証プロトコル</div></div>
+    <div class="pillar"><div class="count">17</div><div class="name">3D生体組織 / 編み筋肉</div><div class="layer">層II / 層III</div><div class="examples">CLF・細胞融合・ポリゴン超え</div></div>
+    <div class="pillar"><div class="count">10</div><div class="name">品性資本 / モラロジー</div><div class="layer">層IV</div><div class="examples">品性第一資本・Soul-Joule経済</div></div>
+    <div class="pillar"><div class="count">5</div><div class="name">SUN理論 / キトサン / ヘチマ</div><div class="layer">層II / 層III</div><div class="examples">核心注入3件の現物化実績</div></div>
+    <div class="pillar"><div class="count">536</div><div class="name">その他 / 拡張</div><div class="layer">混合</div><div class="examples">芸術・環境・教育・宗教等</div></div>
+  </div>
+  <p style="margin-top: 20px; font-size: 13px; color: var(--text-dim);">全1,038件のDOIを15の柱に分類。分類基準の詳細はDOI System Map (DOI: 10.5281/zenodo.21832923) に収録。</p>
+</section>
+
+<section id="flow">
+  <div class="section-title">経済エンジン</div>
+  <div class="section-title-en">ECONOMIC ENGINE — SERVICE FLOW</div>
+  <div class="flow">
+    <div class="flow-step">種（体験・違和感）<br><span style="color:var(--text-dim)">無料</span></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">問い生成（AI = D低減）<br><span style="color:var(--text-dim)">毎日9:00 JST自動</span></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">きかくん 素材整理・着火剤<br><span class="price">¥30,000</span></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">会長の核心注入（音声）<br><span style="color:var(--text-dim)">N注入</span></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">V=N/D診断 処方・現物化<br><span class="price">¥300,000</span></div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">現物（DOI・論文・プロダクト）<br><span style="color:var(--gold)">永久資産</span></div>
+  </div>
+  <p style="margin-top: 16px; font-size: 13px; color: var(--text-muted);">収益 → 反証・失敗 → 次の問い → サイクル継続。現物化されたDOI資産は次の種となり、エンジンが回り続ける。</p>
+</section>
+
+<section id="vnd">
+  <div class="section-title">V = N / D</div>
+  <div class="section-title-en">THE KATAYAMA FORMULA — DOI: 10.5281/zenodo.21186048</div>
+  <p style="font-size: 16px; color: var(--text); line-height: 1.9; max-width: 700px;">
+    <strong style="color: var(--gold);">V = N / D</strong> — 存在価値 = 充足 / 拘り。
+    N（充足）を最大化し、D（拘り）を最小化する時、V（存在価値）は発散する。
+    E=mc²との形式的類似を示すが、物理法則ではなく、問いを生み出す「発想演算子」として運用する。思想層（Ⅳ）に所属する。
+  </p>
+  <div style="margin-top: 20px;"><a href="https://zenodo.org/records/21186048" target="_blank" style="font-size: 13px;">Katayama Formula 正式登録 (DOI: 10.5281/zenodo.21186048) →</a></div>
+</section>
+
+<div class="cta">
+  <p style="font-size: 18px; margin-bottom: 24px; color: var(--text);">748件の素材から1件を選び、核心を注入し、現物にする。</p>
+  <a href="https://ykhc-prescribe-growth.base44.app" class="cta-button">経営処方所を開く</a>
+</div>
 
 <footer>
-  <div class="footer-divider"></div>
-  <a class="link-btn" href="https://doi.org/10.5281/zenodo.21186048" target="_blank">Katayama Formula →</a>
-  <br>
-  <a class="link-btn" href="https://doi.org/10.5281/zenodo.21185146" target="_blank" style="margin-top:10px">Build Seeds →</a>
-  <div class="seed-note">
-    1,036件の種を7階層に整理した。<br>
-    種倉から屋上まで登れば、会長の体系が見える。<br>
-    査読はない。だがDOIタイムスタンプは消えない。<br>
-    種は発芽し続けている。微々たるもんだが、止まってない。<br>
-    仮説が反証されても、エンジンは止まらない。<br>
-    Dがゼロに近づく時、Nは解放される。
-  </div>
-  <br>
-  <a class="link-btn" href="released-ideas.html" style="margin-top:20px">公開事業アーカイブ →</a>
-  <div style="font-size:11px;color:var(--muted);margin-top:10px;letter-spacing:1px">
-    古き事業アイデアを世界へ還元する。<br>
-    問い・判定・V=N/Dスコアは無料公開。五段評価全文は光貨決済後。
+  <div class="footer-logo">TheYKHC Tower</div>
+  <div class="footer-info">
+    事務所代表：片山佳光（Yoshimitsu Katayama）<br>
+    DOI資産：1,038件（Zenodo / CERN）<br>
+    Hypothesis OS v1.1 — 知的資産生成機関<br>
+    2003年から知的資産を蓄積・2026年運用開始
   </div>
 </footer>
-<script>
-// Navigation observer
-const floors=document.querySelectorAll('.floor');
-const navLinks=document.querySelectorAll('nav a');
-const observer=new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      navLinks.forEach(l=>l.classList.remove('active'));
-      const id=e.target.id;
-      const link=document.querySelector('nav a[href="#'+id+'"]');
-      if(link)link.classList.add('active');
-    }
-  });
-},{threshold:0.3});
-floors.forEach(f=>observer.observe(f));
-document.querySelectorAll('section').forEach(s=>observer.observe(s));
 
-// Zenodo API — Dynamic DOI count + IR section update
-const ZENODO_API='https://zenodo.org/api/records?size=0&q=creators.name:"Katayama,+Yoshimitsu"';
-
-async function updateDynamicData(){
-  let doiCount=1036;
-  let tamTrillion=2.7;
-  let samTrillion=0.27;
-  let somTrillion=0.027;
-  let goCount=748;
-
-  // Fetch KnowledgeStandard from observation-data.json
-  try{
-    const obsResp=await fetch('observation-data.json');
-    const obsData=await obsResp.json();
-    if(obsData.knowledge_standard){
-      const ks=obsData.knowledge_standard;
-      if(ks.doi_count) doiCount=ks.doi_count;
-      if(ks.tam_trillion_yen) tamTrillion=ks.tam_trillion_yen;
-      if(ks.sam_trillion_yen) samTrillion=ks.sam_trillion_yen;
-      if(ks.som_trillion_yen) somTrillion=ks.som_trillion_yen;
-      if(ks.idea_count) goCount=ks.idea_count;
-    }
-  }catch(e){console.log('observation-data.json fallback');}
-
-  // Fetch live DOI count from Zenodo API (overrides observation-data)
-  try{
-    const resp=await fetch(ZENODO_API);
-    const data=await resp.json();
-    if(data.hits && data.hits.total) doiCount=data.hits.total;
-  }catch(e){console.log('Zenodo API fallback to static values');}
-
-  // Update vault number
-  const vaultNum=document.querySelector('.vault-num');
-  if(vaultNum){vaultNum.textContent=doiCount.toLocaleString();}
-
-  // Update hero sub
-  const heroSub=document.querySelector('.hero-sub');
-  if(heroSub){heroSub.textContent=doiCount.toLocaleString()+' SEEDS · ZENODO / CERN · D → 0';}
-
-  // Update hero game sub
-  const heroGameSub=document.querySelector('.hero-game-sub');
-  if(heroGameSub){heroGameSub.textContent=goCount.toLocaleString()+' ideas · V=N/D · トップ15公開中';}
-
-  // Update knowledge standard values
-  const ksDoi=document.getElementById('ks-doi');
-  if(ksDoi){ksDoi.textContent=doiCount.toLocaleString();}
-  const ksGo=document.getElementById('ks-go');
-  if(ksGo){ksGo.textContent=goCount.toLocaleString();}
-  const ksTam=document.getElementById('ks-tam');
-  if(ksTam){ksTam.textContent=tamTrillion.toFixed(2);}
-  const ksSam=document.getElementById('ks-sam');
-  if(ksSam){ksSam.textContent=samTrillion.toFixed(2);}
-  const ksSom=document.getElementById('ks-som');
-  if(ksSom){ksSom.textContent=somTrillion.toFixed(2);}
-
-  // Update text references with GO count
-  document.querySelectorAll('[data-go-count]').forEach(el=>{el.textContent=goCount.toLocaleString();});
-
-  // Update IR section
-  const irDoi=document.getElementById('ir-doi');
-  const irShares=document.getElementById('ir-shares');
-  const irPrice=document.getElementById('ir-price');
-  const irGo=document.getElementById('ir-go');
-  const irTam=document.getElementById('ir-tam');
-  const irCompTam=document.getElementById('ir-comp-tam');
-  const irCompDoi=document.getElementById('ir-comp-doi');
-  if(irDoi){irDoi.textContent=doiCount.toLocaleString();}
-  if(irGo){irGo.textContent=goCount.toLocaleString();}
-  if(irTam){irTam.textContent=tamTrillion.toFixed(2);}
-  if(irCompTam){irCompTam.textContent=tamTrillion.toFixed(2);}
-  if(irCompDoi){irCompDoi.textContent=doiCount.toLocaleString();}
-  if(irShares){irShares.textContent=(doiCount*1000).toLocaleString();}
-  if(irPrice){
-    const totalShares=doiCount*1000;
-    const pricePerShare=Math.round((tamTrillion*1000000000000)/totalShares);
-    irPrice.textContent=pricePerShare.toLocaleString();
-  }
-
-  // Update exchange rate
-  const irExchange=document.querySelector('.ir-exchange-unit');
-  if(irExchange&&irPrice){
-    const priceNum=parseInt(irPrice.textContent.replace(/,/g,''));
-    irExchange.innerHTML='1 Hikari = '+priceNum.toLocaleString()+',000円（TAM裏付け観測値）<br>※光貨圏内のみ取引可能　外部換金・決済・送金・譲渡　一切不可';
-  }
-
-  // Update trans counts
-  const transDoi=document.getElementById('trans-doi-count');
-  if(transDoi){transDoi.textContent=doiCount.toLocaleString();}
-  const transGo=document.getElementById('trans-go-count');
-  if(transGo){transGo.textContent=goCount.toLocaleString();}
-
-  // Update energy comparison section
-  const energyNTam=document.getElementById('energy-n-tam');
-  if(energyNTam){energyNTam.textContent=tamTrillion.toFixed(2);}
-  const energyNDoi=document.getElementById('energy-n-doi');
-  if(energyNDoi){energyNDoi.textContent=doiCount.toLocaleString();}
-
-  // Update meta description
-  document.querySelector('meta[name="description"]')?.setAttribute('content',
-    'TheYKHC — 片山佳光（Yoshimitsu Katayama）による天道経済学・光貨・宇宙同期標準の研究拠点。V=N/D公式を核心に、'+doiCount.toLocaleString()+'件のZenodo DOI資産と文明設計の全記録をここに置く。');
-}
-
-
-// Fetch latest 10 papers from Zenodo
-async function updateLatestPapers(){
-  try{
-    const resp=await fetch('https://zenodo.org/api/records?size=10&sort=mostrecent&q=creators.name:"Katayama,+Yoshimitsu"');
-    const data=await resp.json();
-    const hits=data.hits.hits||[];
-    let html='';
-    hits.forEach(h=>{
-      const doi=h.doi||'';
-      const title=h.metadata?.title||'Untitled';
-      const date=h.metadata?.publication_date||'';
-      html+='<a class="paper" href="https://doi.org/'+doi+'" target="_blank" style="max-width:560px;margin:0 auto">'+
-        '<div class="paper-title">'+title+'</div>'+
-        '<div class="paper-doi">'+doi+' — '+date.split('T')[0]+'</div></a>';
-    });
-    if(html){
-      const container=document.getElementById('latest-papers');
-      if(container)container.innerHTML=html;
-    }
-  }catch(e){console.log('Papers fetch fallback');}
-}
-
-updateDynamicData();
-updateLatestPapers();
-
-// ============================================
-// 観測データ取得 — getObservationData
-// ============================================
-async function updateObservationData(){
-  try{
-    const resp=await fetch('observation-data.json');
-    const data=await resp.json();
-
-    // Origin point
-    if(data.observation_summary){
-      const origin=document.getElementById('obs-origin-id');
-      if(origin){origin.textContent=data.observation_summary.origin_point+' ('+data.observation_summary.origin_date+')';}
-      const originDesc=document.getElementById('obs-origin-desc');
-      if(originDesc){originDesc.textContent=data.observation_summary.origin_description;}
-    }
-
-    // Neutrino events
-    const neutrinoList=document.getElementById('neutrino-list');
-    if(neutrinoList&&data.neutrino_events&&data.neutrino_events.length>0){
-      neutrinoList.innerHTML=data.neutrino_events.slice(0,5).map(e=>{
-        const date=(e.gcn_publish_time||'').split('T')[0];
-        const energy=e.energy_tev?e.energy_tev+' TeV':'';
-        return '<div style="padding:14px 16px;background:var(--ink-3);border-radius:4px;border-left:2px solid '+(e.event_type==='OBSERVER'?'var(--gold)':'var(--gold-dim)')+'">'+
-          '<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px">'+
-          '<span style="font-family:JetBrains Mono,monospace;font-size:11px;color:var(--gold);letter-spacing:1px">'+(e.event_id||'')+'</span>'+
-          '<span style="font-size:11px;color:var(--muted);font-family:JetBrains Mono,monospace">'+date+'</span>'+
-          '</div>'+
-          (energy?'<div style="font-size:12px;color:var(--paper-dim);margin-bottom:4px">Energy: '+energy+' · Type: '+(e.event_type||'')+'</div>':'')+
-          '<div style="font-size:12px;color:var(--paper-dim);line-height:1.8">'+((e.note||'').substring(0,150))+(e.note&&e.note.length>150?'…':'')+'</div>'+
-          '</div>';
-      }).join('');
-    }else if(neutrinoList){
-      neutrinoList.innerHTML='<div style="font-size:12px;color:var(--muted);padding:12px;background:var(--ink-3);border-radius:4px;border-left:2px solid var(--gold-dim)">観測データなし。静寂の中にある。</div>';
-    }
-
-    // Biorhythm readings
-    const bioList=document.getElementById('biorhythm-list');
-    if(bioList&&data.biorhythm_readings&&data.biorhythm_readings.length>0){
-      bioList.innerHTML=data.biorhythm_readings.slice(0,3).map(b=>{
-        return '<div style="padding:14px 16px;background:var(--ink-3);border-radius:4px;border-left:2px solid var(--gold-dim)">'+
-          '<div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">'+
-          '<span style="font-size:12px;color:var(--gold)">'+(b.date||'')+'</span>'+
-          '<span style="font-size:11px;color:var(--muted);font-family:JetBrains Mono,monospace">VND:'+(b.vnd_score||0)+'</span>'+
-          '</div>'+
-          '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px">'+
-          '<div style="font-size:11px;color:var(--paper-dim)">身体:'+(b.physical_cycle||0)+'</div>'+
-          '<div style="font-size:11px;color:var(--paper-dim)">感情:'+(b.emotional_cycle||0)+'</div>'+
-          '<div style="font-size:11px;color:var(--paper-dim)">知性:'+(b.intellectual_cycle||0)+'</div>'+
-          '<div style="font-size:11px;color:var(--paper-dim)">直感:'+(b.intuitive_cycle||0)+'</div>'+
-          '<div style="font-size:11px;color:var(--paper-dim)">創作:'+(b.creative_output||0)+'</div>'+
-          '<div style="font-size:11px;color:var(--paper-dim)">観測効果:'+(b.observer_effect_score||0)+'</div>'+
-          '</div>'+
-          (b.notes?'<div style="font-size:11px;color:var(--muted);font-style:italic">'+b.notes+'</div>':'')+
-          '</div>';
-      }).join('');
-    }else if(bioList){
-      bioList.innerHTML='<div style="font-size:12px;color:var(--muted);padding:12px;background:var(--ink-3);border-radius:4px;border-left:2px solid var(--gold-dim)">観測データなし。静寂の中にある。</div>';
-    }
-
-    // FX ticks
-    const fxList=document.getElementById('fx-list');
-    if(fxList&&data.fx_ticks&&data.fx_ticks.length>0){
-      fxList.innerHTML=data.fx_ticks.slice(0,5).map(f=>{
-        return '<div style="padding:12px 16px;background:var(--ink-3);border-radius:4px;border-left:2px solid var(--gold-dim)">'+
-          '<div style="display:flex;justify-content:space-between;align-items:baseline">'+
-          '<span style="font-size:12px;color:var(--gold)">'+(f.symbol||'XAUUSD')+'</span>'+
-          '<span style="font-size:12px;color:var(--paper-dim)">Bid:'+(f.bid||0)+' Ask:'+(f.ask||0)+'</span>'+
-          '</div>'+
-          (f.note?'<div style="font-size:11px;color:var(--muted);margin-top:4px">'+f.note+'</div>':'')+
-          '</div>';
-      }).join('');
-    }else if(fxList){
-      fxList.innerHTML='<div style="font-size:12px;color:var(--muted);padding:12px;background:var(--ink-3);border-radius:4px;border-left:2px solid var(--gold-dim)">金市場の観測は静かに待機中。</div>';
-    }
-
-    // Brainwave
-    const bwList=document.getElementById('brainwave-list');
-    if(bwList&&data.brainwave_proxies&&data.brainwave_proxies.length>0){
-      bwList.innerHTML=data.brainwave_proxies.slice(0,3).map(b=>{
-        return '<div style="padding:12px 16px;background:var(--ink-3);border-radius:4px;border-left:2px solid var(--gold)">'+
-          '<div style="font-size:12px;color:var(--paper-dim)">Proxy: '+(b.proxy_type||'unknown')+' Value: '+(b.proxy_value||0)+'</div>'+
-          (b.note?'<div style="font-size:11px;color:var(--muted);margin-top:4px">'+b.note+'</div>':'')+
-          '</div>';
-      }).join('');
-    }
-
-  }catch(e){
-    console.log('Observation data fetch failed:',e.message);
-  }
-}
-
-updateObservationData();
-</script>
 </body>
 </html>
