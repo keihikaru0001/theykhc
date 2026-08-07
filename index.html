@@ -572,7 +572,7 @@ footer{text-align:center;padding:64px 20px 100px;position:relative;z-index:2}
       </div>
       <div class="ks-item">
         <div class="ks-label">GO IDEAS</div>
-        <div class="ks-value" id="ks-go">754</div>
+        <div class="ks-value" id="ks-go">748</div>
         <div class="ks-unit">事業化判定アイデア</div>
       </div>
       <div class="ks-item">
@@ -820,7 +820,7 @@ footer{text-align:center;padding:64px 20px 100px;position:relative;z-index:2}
     </div>
     <div class="kika-metrics">
       <div class="kika-metric">
-        <div class="kika-metric-num">754</div>
+        <div class="kika-metric-num">748</div>
         <div class="kika-metric-label">素材（未完成のアイデア）</div>
       </div>
       <div class="kika-metric">
@@ -989,7 +989,7 @@ footer{text-align:center;padding:64px 20px 100px;position:relative;z-index:2}
       </div>
       <div class="ir-metric">
         <div class="ir-metric-label">GO IDEAS</div>
-        <div class="ir-metric-value" id="ir-go">754</div>
+        <div class="ir-metric-value" id="ir-go">748</div>
         <div class="ir-metric-unit">事業化判定</div>
       </div>
     </div>
@@ -1020,7 +1020,7 @@ footer{text-align:center;padding:64px 20px 100px;position:relative;z-index:2}
       </div>
       <div class="ir-business-item">
         <div class="ir-business-name">IdeaSynthetix（問い生成）</div>
-        <div class="ir-business-value">754 5層OS分類</div>
+        <div class="ir-business-value">748 5層OS分類</div>
       </div>
       <div class="ir-business-item">
         <div class="ir-business-name">MorningHarvest（毎日自動収穫）</div>
@@ -1209,7 +1209,7 @@ footer{text-align:center;padding:64px 20px 100px;position:relative;z-index:2}
           </div>
           <div class="ir-trans-item">
             <div class="ir-trans-item-label">仮説由来アイデア</div>
-            <div class="ir-trans-item-value"><strong id="trans-go-count">754</strong>件</div>
+            <div class="ir-trans-item-value"><strong id="trans-go-count">748</strong>件</div>
           </div>
           <div class="ir-trans-item">
             <div class="ir-trans-item-label">DOI知的資産</div>
@@ -1685,7 +1685,7 @@ async function updateDynamicData(){
   let tamTrillion=2.7;
   let samTrillion=0.27;
   let somTrillion=0.027;
-  let goCount=754;
+  let goCount=748;
 
   // Fetch KnowledgeStandard from observation-data.json
   try{
@@ -1697,7 +1697,7 @@ async function updateDynamicData(){
       if(ks.tam_trillion_yen) tamTrillion=ks.tam_trillion_yen;
       if(ks.sam_trillion_yen) samTrillion=ks.sam_trillion_yen;
       if(ks.som_trillion_yen) somTrillion=ks.som_trillion_yen;
-      if(ks.go_idea_count) goCount=ks.go_idea_count;
+      if(ks.idea_count) goCount=ks.idea_count;
     }
   }catch(e){console.log('observation-data.json fallback');}
 
