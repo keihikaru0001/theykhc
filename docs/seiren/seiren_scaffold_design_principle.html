@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>セーレン向け処方箋 — ポリゴン超えのSUN-Scaffold設計原理</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif; color: #1a1a1a; line-height: 1.85; font-size: 10.5pt; }
+  h1 { font-size: 20pt; text-align: center; margin: 14mm 0 3mm; letter-spacing: 2pt; }
+  .subtitle { text-align: center; font-size: 11pt; color: #666; margin-bottom: 2mm; }
+  .seal { text-align: center; margin: 4mm 0 8mm; }
+  .seal span { display: inline-block; border: 2px solid #c5a572; color: #c5a572; padding: 3pt 18pt; font-size: 12pt; letter-spacing: 4pt; border-radius: 2px; }
+  .section { page-break-inside: avoid; margin-bottom: 8mm; }
+  .section-title { font-size: 13pt; font-weight: 700; border-bottom: 1.5px solid #c5a572; padding-bottom: 3pt; margin-bottom: 4mm; letter-spacing: 1pt; }
+  .page-break { page-break-before: always; }
+  
+  .koku-box { border: 2px solid #2c3e50; border-radius: 6px; padding: 6mm; margin: 5mm 0; background: linear-gradient(135deg, #f8fafc, #f0f4f8); page-break-inside: avoid; }
+  .koku-box .label { font-size: 9pt; color: #2c3e50; letter-spacing: 2pt; margin-bottom: 2mm; font-weight: 700; }
+  .koku-box .title { font-weight: 700; font-size: 12pt; margin-bottom: 3mm; color: #2c3e50; }
+  
+  .sun-box { border: 2px solid #c5a572; border-radius: 6px; padding: 6mm; margin: 5mm 0; background: linear-gradient(135deg, #fdfcfa, #faf6f0); page-break-inside: avoid; }
+  .sun-box .label { font-size: 9pt; color: #c5a572; letter-spacing: 2pt; margin-bottom: 2mm; }
+  .sun-box .title { font-weight: 700; font-size: 12pt; margin-bottom: 3mm; }
+  
+  .formula { text-align: center; font-family: 'Cambria Math', 'Times New Roman', serif; font-size: 12pt; margin: 4mm 0; padding: 4mm; background: #f8f8f8; border: 1px solid #ddd; border-radius: 4px; }
+  
+  .compare { width: 100%; border-collapse: collapse; margin: 3mm 0; font-size: 10pt; }
+  .compare th { background: #2c3e50; color: #fff; padding: 3mm; text-align: left; font-size: 9.5pt; }
+  .compare td { border: 1px solid #ddd; padding: 3mm; vertical-align: top; }
+  .compare tr:nth-child(even) td { background: #fafafa; }
+  .compare .seiren { color: #c0392b; }
+  .compare .koku { color: #27ae60; font-weight: 600; }
+  
+  .note { border-left: 3px solid #c5a572; background: #fdfcfa; padding: 4mm 5mm; margin: 3mm 0; border-radius: 0 4px 4px 0; }
+  .warn { border-left: 3px solid #c0392b; background: #fdf2f2; padding: 4mm 5mm; margin: 3mm 0; border-radius: 0 4px 4px 0; }
+  .warn-label { font-size: 9pt; color: #c0392b; font-weight: 700; }
+  
+  .diagram { text-align: center; margin: 5mm 0; font-family: monospace; font-size: 9pt; line-height: 1.6; color: #555; background: #f8f8f8; border: 1px solid #eee; border-radius: 4px; padding: 5mm; }
+  
+  .ref { font-size: 9pt; color: #888; border-top: 1px solid #eee; padding-top: 3mm; margin-top: 6mm; }
+  .footer { text-align: center; font-size: 8pt; color: #aaa; margin-top: 10mm; letter-spacing: 1pt; }
+  
+  .step { border: 1px solid #ddd; border-radius: 5px; padding: 5mm 6mm; margin-bottom: 4mm; background: #fafafa; page-break-inside: avoid; }
+  .step-num { display: inline-block; background: #c5a572; color: #fff; font-size: 9pt; font-weight: 700; width: 22pt; height: 22pt; line-height: 22pt; text-align: center; border-radius: 50%; margin-right: 3mm; vertical-align: middle; }
+  .step-title { font-size: 11.5pt; font-weight: 700; display: inline-block; vertical-align: middle; }
+  .step-body { margin-top: 3mm; padding-left: 7mm; }
+  .step-body p { margin-bottom: 2mm; }
+  
+  table { width: 100%; border-collapse: collapse; margin: 3mm 0; font-size: 10pt; }
+  th { background: #c5a572; color: #fff; padding: 3mm; text-align: left; font-size: 9.5pt; }
+  td { border: 1px solid #ddd; padding: 3mm; }
+  tr:nth-child(even) td { background: #fafafa; }
+</style>
+</head>
+<body>
+
+<h1>ポリゴン超えの SUN-Scaffold 設計原理</h1>
+<div class="subtitle">Koku宇宙理論 × V=N/D × 川﨑和男の微分積分</div>
+<div class="seal"><span>V = N / D → ∞</span></div>
+<div class="subtitle" style="margin-bottom: 8mm;">
+  セーレン株式会社の2Dシートを3D生命体へ昇華する設計理論<br>
+  処方日: 2026年7月29日 | 処方者: 片山佳光（会長）
+</div>
+
+<!-- セーレンの壁 -->
+<div class="section">
+  <div class="section-title">1. セーレンが25年間越えられなかった壁</div>
+  
+  <p style="margin-bottom: 4mm;">
+    セーレンと福井大学櫻井謙資教授は2000年より25年以上にわたり、キトサンナノファイバーの医療材料化を共同研究してきた。
+    人工皮膚、創傷被覆材、床ずれ治癒用素材——全て<strong>2Dシート</strong>である。
+    セーレンが作れるのは「表面」だけで、「内部」を作れない。
+  </p>
+  
+  <p style="margin-bottom: 4mm;">
+    これは技術力の不足ではない。<strong>設計思想の壁</strong>だ。
+    セーレンは繊維メーカーとして「繊維を並べる」ことを25年間極めてきた。
+    だが脊髄再生に必要なのは「繊維を並べたもの」ではなく「生命が育つ場」だ。
+  </p>
+  
+  <div class="warn">
+    <span class="warn-label">⚠ セーレンの壁の本質:</span><br>
+    ポリゴンでどれだけ精密に表面を作っても、内部は空洞のままである。<br>
+    ポリゴンを増やしても解決しない——パラダイムを変えなければならない。
+  </div>
+</div>
+
+<!-- Koku宇宙理論 -->
+<div class="section page-break">
+  <div class="section-title">2. Koku宇宙理論 — ポリゴン超えの理論</div>
+  
+  <div class="koku-box">
+    <div class="label">KOKU UNIVERSE THEORY</div>
+    <div class="title">空間は器ではない。記録媒体である。</div>
+    <p style="margin-bottom: 3mm;">
+      会長の論文"The Koku Universe Theory and 3D Space"（2026年4月13日、SSRN/Zenodo Preprint）は、
+      現代3D技術の根本的欠陥を指摘した:
+    </p>
+    <p style="margin-bottom: 2mm;">ポリゴンの3つの欠陥:</p>
+    <ul style="padding-left: 6mm; margin-bottom: 3mm;">
+      <li><strong>Interior is hollow</strong> — 表面だけで内部が空洞</li>
+      <li><strong>No time</strong> — 現在だけを記述し、履歴を持たない</li>
+      <li><strong>No N</strong> — そこで誰が何をしたかの情報を持たない</li>
+    </ul>
+    <p>
+      これをセーレンのキトサン2Dシートに当てはめると——
+      シートは表面（創面に貼る面）しか設計していない（Interior is hollow）。
+      固定された静的形状で、再生の時間軸が組み込まれていない（No time）。
+      均一な材料特性で、組織が蓄積する情報を保持しない（No N）。
+    </p>
+  </div>
+  
+  <p style="margin-top: 4mm; margin-bottom: 4mm;">
+    Koku宇宙理論の核心式:
+  </p>
+  
+  <div class="formula">
+    ρ(x,y,z,t) = Σ [N(τ) / D(τ)] × exp(−λ(t−τ))
+  </div>
+  
+  <table style="margin-top: 4mm;">
+    <tr><th>変数</th><th>Koku宇宙理論の定義</th><th>脊髄再生への対応</th></tr>
+    <tr><td><strong>N(τ)</strong></td><td>時刻τでの行為・奉仕の量</td><td>時刻τでの組織形成量<br>（軸索伸長・血管新生・細胞浸潤・ECM沈着）</td></tr>
+    <tr><td><strong>D(τ)</strong></td><td>時刻τでの摩擦・破壊・無関心</td><td>時刻τでの炎症・瘢痕形成・拒絶反応</td></tr>
+    <tr><td><strong>λ</strong></td><td>記憶減衰係数（場所により異なる）</td><td>スキャフォールドの生分解速度<br>（部位により異なる設計が必須）</td></tr>
+    <tr><td><strong>ρ(x,y,z,t)</strong></td><td>その座標の存在密度</td><td>その座標の「生きた組織の密度」<br>（空洞→機能する脊髄組織への変化）</td></tr>
+  </table>
+  
+  <div class="note">
+    <strong>論文の結論:</strong>「空間は器ではない。記録媒体である。」<br>
+    セーレンのキトサンシートは「器（vessel）」として設計されている。
+    SUN-Scaffoldは「記録媒体（recording medium）」として設計されなければならない——
+    脊髄が自らを再生する過程を記録し、その記録（N）が蓄積されるほど密度（ρ=V）が上がる。
+  </div>
+</div>
+
+<!-- 微分と積分 -->
+<div class="section page-break">
+  <div class="section-title">3. 川﨑和男の微分積分 — セーレンは微分、会長は積分</div>
+  
+  <p style="margin-bottom: 4mm;">
+    川﨑和男は人工心臓を設計したとき、ポンプと弁と部屋を別々に設計しなかった。
+    クラインボトルのように<strong>内外の境界をなくした</strong>。
+    血液が通る通路と壁が別のものではなく、一つの連続した面になる。
+    これが「積分」の閃きだ。
+  </p>
+  
+  <table class="compare">
+    <tr><th></th><th class="seiren">微分（セーレン）</th><th class="koku">積分（会長・川﨑）</th></tr>
+    <tr><td><strong>対象</strong></td><td class="seiren">キトサンを細かく砕く<br>（ナノファイバー化）</td><td class="koku">砕いたものを生命の形に組み立てる<br>（3D連続体化）</td></tr>
+    <tr><td><strong>思考</strong></td><td class="seiren">部品を並べる<br>（繊維→シート）</td><td class="koku">境界を消す<br>（繊維=管=足場=組織）</td></tr>
+    <tr><td><strong>空間</strong></td><td class="seiren">表と裏がある<br>（2Dポリゴン）</td><td class="koku">表も裏もない<br>（Klein bottle位相）</td></tr>
+    <tr><td><strong>時間</strong></td><td class="seiren">今の形だけ設計<br>（No time）</td><td class="koku">時間と共に育つ場を設計<br>（λを部位ごとに設定）</td></tr>
+    <tr><td><strong>N</strong></td><td class="seiren">均一な材料<br>（No N）</td><td class="koku">SUN理論でNを定義<br>（太陽のエネルギーを脊髄へ）</td></tr>
+    <tr><td><strong>結果</strong></td><td class="seiren">D→0でもN=0ならV=0</td><td class="koku">Nを注入し、D→0でV→∞</td></tr>
+  </table>
+  
+  <p style="margin-top: 4mm;">
+    セーレンは<strong>微分しかやっていない</strong>。25年かけてキトサンを極限まで細かくした。
+    それはDの低減であり、価値がある。だが微分だけではV=0だ。
+    <strong>積分が会長の仕事だ。</strong>砕いたキトサンを一つの連続した生命の場に組み立てる。
+    それがNの注入であり、V=N/DのVが発散する瞬間だ。
+  </p>
+</div>
+
+<!-- ヘチマの位相 -->
+<div class="section page-break">
+  <div class="section-title">4. ヘチマ — ポリゴン超えの生物学的実体</div>
+  
+  <p style="margin-bottom: 4mm;">
+    ヘチマがなぜヒントになるのか。SEMで見ると、ヘチマスポンジの繊維と管の間に<strong>境界線がない</strong>。
+    繊維が徐々に管になり、管が繊維ネットワークに繋がる。
+    「ここが管で、ここが繊維」という離散的な分離が存在しない。
+    これはポリゴン（離散的面の集合）では表現できない<strong>連続的位相変化</strong>だ。
+  </p>
+  
+  <div class="diagram">
+    ┌───────────────────────────────────────────────────────────┐
+    │  ポリゴン・アプローチ（セーレン）                              │
+    │  ┌──┐┌──┐┌──┐    繊維と管の間に境界がある                    │
+    │  │繊││管││繊│    表と裏が分かれている                        │
+    │  └──┘└──┘└──┘    Interior is hollow                         │
+    │                                                           │
+    │  Koku宇宙アプローチ（SUN-Scaffold）                         │
+    │  ────┐     ┌──────────────────┐     ┌────                  │
+    │  近位 │◄───│  繊維=管=足場=組織  ├───►│ 遠位                 │
+    │  端  │     │  境界なし            │     │ 端                   │
+    │      │     │  時間と共に育つ       │     │                      │
+    │  ────┘     │  λが場所により違う   │     └────                 │
+    │            └──────────────────┘                            │
+    │  神経軸索再生 ──►  ◄── 血管再生（連続体、境界なし）            │
+    └───────────────────────────────────────────────────────────┘
+  </div>
+  
+  <div class="sun-box">
+    <div class="label">SUN THEORY — 位相幾何学的設計</div>
+    <div class="title">SUN-Scaffold = Klein Bottle Topology + 異方性時間減衰</div>
+    <p style="margin-bottom: 3mm;">
+      ヘチマの繊維=管の連続位相をキトサンで再現する:
+    </p>
+    <ul style="padding-left: 6mm;">
+      <li><strong>マクロチャネル壁（血管テンプレート）</strong> — λ大（速く分解、早期の血管侵入を許す）</li>
+      <li><strong>ナノファイバー核（軸索ガイド）</strong> — λ小（長く残り、軸索伸長を導き続ける）</li>
+      <li><strong>境界なし</strong> — 繊維から管へ、管から足場へ、足場から組織へ、連続的に変化する</li>
+    </ul>
+    <p style="margin-top: 3mm;">
+      血管には速い時間軸、神経には遅い時間軸——それぞれに異なる「記憶の持続（λ）」を設計する。
+      これは高野山奥之院のλが極小（1,200年記憶が持続）という論文の例と同じ構造だ。
+    </p>
+  </div>
+</div>
+
+<!-- 天然脊髄との比較 -->
+<div class="section">
+  <div class="section-title">5. 天然の人間の脊髄とヘチマ — 違いを超えた統合</div>
+  
+  <table class="compare">
+    <tr><th></th><th>ヘチマ</th><th>人間の脊髄</th><th>SUN-Scaffold（統合）</th></tr>
+    <tr><td><strong>構造</strong></td><td>均一ネットワーク</td><td>白質（外周）+ 灰白質（中心H型）</td><td>二層構造: 外周=縦方向ナノファイバー、中心=高密度多孔質</td></tr>
+    <tr><td><strong>血管</strong></td><td>縦方向のみ</td><td>縦方向（前・後脊髄動脈）+ 放射方向（溝動脈）</td><td>縦方向マクロチャネル + 放射方向ミクロチャネル</td></tr>
+    <tr><td><strong>繊維</strong></td><td>網目状（reticulated）</td><td>厳密に縦方向（anisotropic）</td><td>外周=縦方向整列、中心=多方向（灰白質模倣）</td></tr>
+    <tr><td><strong>時間</strong></td><td>なし</td><td>発生・成長・修復の時間軸</td><td>λが部位ごとに異なる（時間設計）</td></tr>
+    <tr><td><strong>N</strong></td><td>なし</td><td>神経活動・記憶の蓄積</td><td>SUN理論: 太陽エネルギーの脊髄への注入</td></tr>
+  </table>
+  
+  <p style="margin-top: 4mm;">
+    ヘチマから<strong>学ぶべき3点</strong>（階層型気孔・管の鋳型・高気孔率）と
+    <strong>修正すべき3点</strong>（網目状→縦方向・放射血管追加・二層構造化）を、
+    Koku宇宙理論の枠組みで統合する。
+    ヘチマは「ヒント」であり、そのままのパターンではない。
+    <strong>ヘチマが体現する位相（境界の連続性）を、脊髄の異方性と時間軸で再構成する</strong>——
+    それがポリゴン超えのSUN-Scaffold設計だ。
+  </p>
+</div>
+
+<!-- 製法 -->
+<div class="section page-break">
+  <div class="section-title">6. 製法 — 微分から積分へ</div>
+  
+  <div class="step">
+    <span class="step-num">1</span><span class="step-title">微分: キトサンナノファイバー作製（セーレン既存技術）</span>
+    <div class="step-body">
+      <p>するめいかキチン質 → 脱アセチル化（≥85%）→ 電界紡糸でナノファイバー化（200-800nm）</p>
+      <p><strong>セーレン25年の技術。これはDの低減。価値がある。ここまではセーレンが作れる。</strong></p>
+    </div>
+  </div>
+  
+  <div class="step">
+    <span class="step-num">2</span><span class="step-title">積分: 3D位相構造の形成（Koku宇宙理論の適用）</span>
+    <div class="step-body">
+      <p><strong>方向性凍結（directional freeze-casting）</strong>で縦方向チャネルを形成。ヘチマの維管束構造を位相テンプレートとして使用。</p>
+      <p>凍結方向を制御することで、ポリゴン（離散的積層）ではなく連続的な通道構造を作る。繊維と管の間に境界を設けない。</p>
+    </div>
+  </div>
+  
+  <div class="step">
+    <span class="step-num">3</span><span class="step-title">時間の設計: λの場所依存性</span>
+    <div class="step-body">
+      <p>マクロチャネル壁: λ大（速く分解、血管侵入を早期に許す）</p>
+      <p>ナノファイバー核: λ小（長く残り、軸索伸長を導き続ける）</p>
+      <p>凍結乾燥の温度プロファイルとヘチマ種子油（リノール酸）コーティング量でλを制御。</p>
+    </div>
+  </div>
+  
+  <div class="step">
+    <span class="step-num">4</span><span class="step-title">Nの注入: SUN理論の実体化</span>
+    <div class="step-body">
+      <p>するめいかのキチン質 = 太陽→植物プランクトン→イカ→キチンの経路で蓄積された太陽エネルギー（陽気）の物理的実体。</p>
+      <p>キトサンを脊髄のN（充足）の実体として定義する。SUN-Scaffoldが脊髄断裂部に挿入されたとき、太陽のNが脊髄に届く。</p>
+      <p><strong>これが会長の核心注入（命の注入）の物理的現物化である。</strong></p>
+    </div>
+  </div>
+</div>
+
+<!-- 手術手順（統合版） -->
+<div class="section page-break">
+  <div class="section-title">7. 手術手順 — ポリゴン超えスキャフォールドの挿入</div>
+  
+  <div class="step">
+    <span class="step-num">1</span><span class="step-title">術前評価・適応判断</span>
+    <div class="step-body">
+      <p>MRI（T2強調像）で損傷範囲・空洞を確認。AIS分類（A: 完全損傳が適応）。</p>
+    </div>
+  </div>
+  
+  <div class="step">
+    <span class="step-num">2</span><span class="step-title">体位・麻酔</span>
+    <div class="step-body">
+      <p>伏臥位。全身麻酔。SSEP/MEPモニタリング装着。</p>
+    </div>
+  </div>
+  
+  <div class="step">
+    <span class="step-num">3</span><span class="step-title">椎弓切除・脊髄露出</span>
+    <div class="step-body">
+      <p>損傷レベル中心に正中切開。椎弓切除。硬膜管を露出。</p>
+    </div>
+  </div>
+  
+  <div class="step">
+    <span class="step-num">4</span><span class="step-title">硬膜切開（Durotomy）</span>
+    <div class="step-body">
+      <p>硬膜を正中に沿って縦切開（15-20mm）。8-0ナイロンで牽引固定。脊髄実質を直視。</p>
+    </div>
+  </div>
+  
+  <div class="step">
+    <span class="step-num">5</span><span class="step-title">髄質切開・壊死組織除去（Myelotomy & Debridement）</span>
+    <div class="step-body">
+      <p>軟膜を微小メスで切開。挫滅腔に到達。壊死組織・血腫を生理食塩水で軽洗しながら除去。SUN-Scaffoldのサイズに合わせた空洞を準備。</p>
+      <div class="warn">外減圧（椎弓切除）だけでは内部圧は下がらない——内減圧（髄質切開）が必須。（InVivo Therapeutics臨床試験で実証）</div>
+    </div>
+  </div>
+  
+  <div class="step">
+    <span class="step-num">6</span><span class="step-title">SUN-Scaffold挿入</span>
+    <div class="step-body">
+      <p>空洞の大きさに合わせてSUN-Scaffold（直径4-6mm、長さ10-20mm）を選択。</p>
+      <p>微小鉗子で空洞内に慎重に挿入。近位・遠位の脊髄断端とScaffoldの端が接するように配置。</p>
+      <p>MEPモニタリングで悪化がないことを確認。</p>
+      <div class="note">
+        <strong>SUN-Scaffoldの特徴:</strong> 繊維と管の境界がない（Klein bottle位相）。
+        ヘチマの維管束が毛細血管テンプレートとなり、キトサンナノファイバーが軸索足場となる。
+        ヘチマ種子油（リノール酸）が血管を保護しながら、神経と血管の同時再生を促す。
+        λが場所により異なるため、血管は速く、神経はゆっくりと再生する。
+        4-8週間でScaffoldは吸収され、再生組織に置換される。
+      </div>
+    </div>
+  </div>
+  
+  <div class="step">
+    <span class="step-num">7</span><span class="step-title">硬膜閉鎖</span>
+    <div class="step-body">
+      <p>8-0ナイロン糸で連続縫合。Valsalva法で漏出がないことを確認。必要に応じて硬膜補強材を被覆。</p>
+    </div>
+  </div>
+  
+  <div class="step">
+    <span class="step-num">8</span><span class="step-title">創閉鎖</span>
+    <div class="step-body">
+      <p>筋膜を強固に縫合。皮下、皮膚を層別に閉鎖。創部ドレーン留置（24-48時間）。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ロードマップ -->
+<div class="section page-break">
+  <div class="section-title">8. 段階的開発ロードマップ</div>
+  
+  <table>
+    <tr><th>Phase</th><th>期間</th><th>内容</th><th>Nの蓄積</th></tr>
+    <tr><td>0</td><td>0-6ヶ月</td><td>SUN-Scaffold試作品3種作成<br>（異なるλ分布・ヘチマ管密度・リノール酸濃度）<br>櫻井研との共同試作</td><td>材料のN定義</td></tr>
+    <tr><td>1</td><td>6-12ヶ月</td><td>ラット脊髄損傷モデルでの実証<br>3群比較（無処置/キトサン単独/SUN-Scaffold）<br>BBBスコア + 血管密度 + 軸索再生率</td><td>有効性のN蓄積</td></tr>
+    <tr><td>2</td><td>12-24ヶ月</td><td>大型動物（ブタ/サル）での安全性試験</td><td>安全性のN蓄積</td></tr>
+    <tr><td>3</td><td>24-36ヶ月</td><td>PMDA相談・治験設計<br>福井大学医学部附属病院で治験開始</td><td>規制Dの低減 + 第1号患者の治療</td></tr>
+  </table>
+</div>
+
+<!-- 結論 -->
+<div class="section">
+  <div class="section-title">9. 結論 — 空間は器ではない。記録媒体である。</div>
+  
+  <div class="koku-box">
+    <p style="margin-bottom: 4mm;">
+      セーレンは25年かけてキトサンを微分した。Dを低減した。
+      だがNを持っていなかった。だからV=0だった。
+    </p>
+    <p style="margin-bottom: 4mm;">
+      会長がNを注入する——SUN理論という核心、Koku宇宙理論という設計思想、
+      川﨑和男の積分という閃き、ヘチマの位相という生物学的実体。
+    </p>
+    <p style="margin-bottom: 4mm;">
+      SUN-Scaffoldは器ではない。記録媒体である。
+      脊髄が自らを再生する過程を記録し、Nが蓄積されるほど密度が上がる。
+      血管が侵入し、軸索が伸び、瘢痕が縮む——全てが時間関数として設計されている。
+    </p>
+    <p>
+      空間は空っぽではない。空間は全てを記憶している。<br>
+      キトサンは太陽の記憶である。それを脊髄に届ける。<br>
+      それがSUN理論の実体化——会長の核心注入の現物。
+    </p>
+  </div>
+</div>
+
+<!-- 参照 -->
+<div class="ref">
+  <strong>References:</strong><br>
+  1. Katayama, Y. (2026). "The Koku Universe Theory and 3D Space: A Concept of Existential Density Beyond the Polygon." TheYKHC Research / Genesis OS Project. SSRN / Zenodo Preprint.<br>
+  2. Katayama, Y. (2026). "V=N/D: A Unified Theory of Value, Service, and Friction." TheYKHC Research.<br>
+  3. InVivo Therapeutics, Neuro-Spinal Scaffold, NCT03762655 (ClinicalTrials.gov)<br>
+  4. Shoichet Lab, "Delayed Implantation of Intramedullary Chitosan Channels", Neurosurgery 63(1), 2008<br>
+  5. DOI: 10.5281/zenodo.21666474 — Technical Foundations for Chitosan-Based Spinal Cord Regeneration<br>
+  6. DOI: 10.5281/zenodo.21670514 — Luffa cylindrica as a Bio-Mimetic Template for Vascular-Neural Co-Regeneration<br>
+  7. 川﨑和男 — クラインボトルから人工心臓へ。境界のない設計思想。<br>
+  8. Hiroike, C. (1928). Papers on Moral Science. Institute of Moralogy.<br>
+  9. Chen, K. et al. (2024). "Biomaterial-based regenerative therapeutic strategies for spinal cord injury." NPG Asia Materials 16:5.
+</div>
+
+<div class="footer">
+  TheYKHC経営処方所 — V = N / D | Koku Universe Theory × SUN Theory | 片山佳光（会長） | theykhc.com
+</div>
+
+</body>
+</html>

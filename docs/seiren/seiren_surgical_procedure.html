@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>セーレン向け処方箋 — 外科的手術手順書</title>
+<style>
+  @page { size: A4; margin: 20mm 18mm; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Noto Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', sans-serif; color: #1a1a1a; line-height: 1.85; font-size: 10.5pt; }
+  h1 { font-size: 22pt; text-align: center; margin: 16mm 0 4mm; letter-spacing: 3pt; }
+  .subtitle { text-align: center; font-size: 11pt; color: #666; margin-bottom: 3mm; }
+  .seal { text-align: center; margin: 6mm 0 10mm; }
+  .seal span { display: inline-block; border: 2px solid #c5a572; color: #c5a572; padding: 3pt 18pt; font-size: 12pt; letter-spacing: 4pt; border-radius: 2px; }
+  .section { page-break-inside: avoid; margin-bottom: 10mm; }
+  .section-title { font-size: 13pt; font-weight: 700; border-bottom: 1.5px solid #c5a572; padding-bottom: 3pt; margin-bottom: 5mm; letter-spacing: 1pt; }
+  .step { border: 1px solid #ddd; border-radius: 5px; padding: 5mm 6mm; margin-bottom: 4mm; background: #fafafa; page-break-inside: avoid; }
+  .step-num { display: inline-block; background: #c5a572; color: #fff; font-size: 9pt; font-weight: 700; width: 22pt; height: 22pt; line-height: 22pt; text-align: center; border-radius: 50%; margin-right: 3mm; vertical-align: middle; }
+  .step-title { font-size: 11.5pt; font-weight: 700; display: inline-block; vertical-align: middle; }
+  .step-body { margin-top: 3mm; padding-left: 7mm; }
+  .step-body p { margin-bottom: 2mm; }
+  .warn { border-left: 3px solid #c0392b; background: #fdf2f2; padding: 4mm 5mm; margin: 3mm 0; border-radius: 0 4px 4px 0; }
+  .warn-label { font-size: 9pt; color: #c0392b; font-weight: 700; }
+  .note { border-left: 3px solid #c5a572; background: #fdfcfa; padding: 4mm 5mm; margin: 3mm 0; border-radius: 0 4px 4px 0; }
+  .sun-box { border: 2px solid #c5a572; border-radius: 6px; padding: 6mm; margin: 5mm 0; background: linear-gradient(135deg, #fdfcfa, #faf6f0); }
+  .sun-box .label { font-size: 9pt; color: #c5a572; letter-spacing: 2pt; margin-bottom: 2mm; }
+  .sun-box .title { font-weight: 700; font-size: 12pt; margin-bottom: 3mm; }
+  .scaffold-diagram { text-align: center; margin: 5mm 0; font-family: monospace; font-size: 9pt; line-height: 1.5; color: #555; background: #f8f8f8; border: 1px solid #eee; border-radius: 4px; padding: 5mm; }
+  .phase-box { border: 1px solid #c5a572; border-radius: 5px; padding: 5mm; margin-bottom: 4mm; background: #fdfcfa; }
+  .phase-box .phase-label { font-size: 9pt; color: #c5a572; font-weight: 700; letter-spacing: 1pt; }
+  .phase-box .phase-title { font-size: 11pt; font-weight: 700; margin: 2mm 0; }
+  .ref { font-size: 9pt; color: #888; border-top: 1px solid #eee; padding-top: 3mm; margin-top: 6mm; }
+  .footer { text-align: center; font-size: 8pt; color: #aaa; margin-top: 14mm; letter-spacing: 1pt; }
+  .page-break { page-break-before: always; }
+  table { width: 100%; border-collapse: collapse; margin: 3mm 0; font-size: 10pt; }
+  th { background: #c5a572; color: #fff; padding: 3mm; text-align: left; font-size: 9.5pt; }
+  td { border: 1px solid #ddd; padding: 3mm; }
+  tr:nth-child(even) td { background: #fafafa; }
+</style>
+</head>
+<body>
+
+<h1>外 科 的 手 術 手 順 書</h1>
+<div class="subtitle">SUN理論に基づくキトサン・ヘチマ複合スキャフォールド移植</div>
+<div class="seal"><span>V = N / D = 9.2 — GO</span></div>
+<div class="subtitle" style="margin-bottom: 10mm;">
+  対象: セーレン株式会社 × 福井大学医学部附属病院<br>
+  処方日: 2026年7月29日 | 処方者: 片山佳光（会長）
+</div>
+
+<!-- スキャフォールド仕様 -->
+<div class="section">
+  <div class="section-title">移植素材の仕様 — SUNスキャフォールド</div>
+  <div class="sun-box">
+    <div class="label">SUN THEORY — PHYSICAL ENTITY</div>
+    <div class="title">キトサン・ヘチマ複合スキャフォールド（SUN-Scaffold）</div>
+    <table>
+      <tr><th>構成要素</th><th>仕様</th><th>役割</th></tr>
+      <tr><td>キトサンナノファイバー</td><td>するめいかキチン質由来<br>脱アセチル化率 ≥85%<br>繊維径 200-800nm</td><td>神経再生の足場（Nの物理的実体）<br>太陽エネルギーの生物学的蓄積物</td></tr>
+      <tr><td>ヘチマ繊維構造</td><td>Luffa cylindrica 由来<br>維管束（導管・篩管）の中空管構造<br>気孔率 90%以上</td><td>毛細血管網の生物学的テンプレート<br>血管再生の物理的鋳型</td></tr>
+      <tr><td>ヘチマ種子油</td><td>リノール酸 48-74%<br>コーティング処理</td><td>血管保護・修復<br>神経と血管の同時再生を促進</td></tr>
+      <tr><td>形状</td><td>ヘチマスポンジ状円柱<br>直径 4-6mm<br>長さ 10-20mm（損傷範囲に応じ）</td><td>脊髄断裂部の橋渡し<br>髄内空洞への適合</td></tr>
+      <tr><td>生体内分解</td><td>4-8週間で吸収<br>分解物は糖アミン（無毒）</td><td>再生組織への置換<br>二次損傷の回避</td></tr>
+    </table>
+  </div>
+
+  <div class="scaffold-diagram">
+    ┌─────────────────────────────────────────────────────┐
+    │  脊髄（断裂部）                                       │
+    │  ────┐     ┌──────────────────┐     ┌────              │
+    │  近位 │◄───│  SUN-Scaffold      ├───►│ 遠位             │
+    │  端  │     │  ┌██┐┌██┐┌██┐    │     │ 端               │
+    │      │     │  │管││管││管│    │     │                  │
+    │      │     │  └██┘└██┘└██┘    │     │                  │
+    │      │     │  キトサンNF+ヘチマ油 │     │                  │
+    │  ────┘     └──────────────────┘     └────              │
+    │         神経軸索再生 ──►  ◄── 血管再生                  │
+    └─────────────────────────────────────────────────────┘
+  </div>
+
+  <div class="note">
+    <strong>SUN理論の位置づけ:</strong>
+    キトサンは太陽→植物プランクトン→イカ→キチン→キトサンの経路で蓄積された太陽エネルギー（陽気）を物理的に閉じ込めた材料。ヘチマの管構造は毛細血管網のテンプレート。両者を統合することで、神経と血管の同時再生が可能となる。
+  </div>
+</div>
+
+<!-- 手術手順 -->
+<div class="section page-break">
+  <div class="section-title">手術手順 — Phase 1: 急性期移植（受傷後72時間以内）</div>
+
+  <div class="step">
+    <span class="step-num">1</span><span class="step-title">術前評価・適応判断</span>
+    <div class="step-body">
+      <p><strong>画像診断:</strong> MRI（T2強調像）で損傷範囲・空洞の大きさ・脊髄の連続性を確認。CTで骨要素を評価。</p>
+      <p><strong>適応基準:</strong> 胸椎（T2-T12）の完全損傷（AIS A）。挫滅腔の存在。脊髄の連続性が保たれていること。</p>
+      <p><strong>非適応:</strong> 脊髄完全断裂、感染、重篤な全身合併症。</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="step-num">2</span><span class="step-title">体位・麻酔</span>
+    <div class="step-body">
+      <p><strong>体位:</strong> 伏臥位（うつぶせ）。胸部・腹部サポートで圧を分散。</p>
+      <p><strong>麻酔:</strong> 全身麻酔。体性感覚誘発電位（SSEP）・運動誘発電位（MEP）のモニタリングを装着。</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="step-num">3</span><span class="step-title">椎弓切除・脊髄露出</span>
+    <div class="step-body">
+      <p><strong>皮膚切開:</strong> 損傷レベルを中心に正中切開。X線透視でレベル確認。</p>
+      <p><strong>椎弓切除:</strong> 損傷レベルの上下1-2椎体の椎弓を切除。硬膜管を露出。</p>
+      <p><strong>脊髄の視認:</strong> 損傷部の硬膜の色調変化・膨隆を確認。</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="step-num">4</span><span class="step-title">硬膜切開（Durotomy）</span>
+    <div class="step-body">
+      <p><strong>硬膜露出:</strong> 損傷部の硬膜を正中に沿って縦切開（約15-20mm）。既存の硬膜損傷がある場合はそれを延長。</p>
+      <p><strong>硬膜吊り上げ:</strong> 切開縁を8-0ナイロン糸で牽引固定。脊髄実質を直視。</p>
+    </div>
+    <div class="warn">
+      <span class="warn-label">⚠ 注意:</span> 脊髄静脈叢の損傷を避ける。微小鉗子と顕微鏡下操作が必須。
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="step-num">5</span><span class="step-title">髄質切開・壊死組織除去（Myelotomy & Debridement）</span>
+    <div class="step-body">
+      <p><strong>軟膜切開:</strong> 脊髄表面の軟膜（pia mater）を正中に沿って微小メスで切開。</p>
+      <p><strong>髄質切開:</strong> 挫滅腔に到達。壊死組織・血腫を生理食塩水で軽洗しながら除去。</p>
+      <p><strong>空洞形成:</strong> SUN-Scaffoldのサイズに合わせた空洞を準備。過度な切除は避ける。</p>
+    </div>
+    <div class="warn">
+      <span class="warn-label">⚠ 重要:</span> InVivo Therapeuticsの臨床試験では「挫滅腔は存在し、容易にアクセス可能」だった。外減圧（椎弓切除）だけでは内部圧は下がらない——内減圧（髄質切開）が必須。
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="step-num">6</span><span class="step-title">SUN-Scaffold挿入</span>
+    <div class="step-body">
+      <p><strong>サイズ選択:</strong> 空洞の大きさに合わせてSUN-Scaffold（直径4-6mm、長さ10-20mm）を選択。</p>
+      <p><strong>挿入:</strong> 微小鉗子でScaffoldを空洞内に慎重に挿入。近位・遠位の脊髄断端とScaffoldの端が接するように配置。</p>
+      <p><strong>位置確認:</strong> Scaffoldが空洞内で安定していることを確認。MEPモニタリングで悪化がないことを確認。</p>
+    </div>
+    <div class="note">
+      <strong>SUN理論の実体化:</strong> Scaffoldのヘチマ管構造が毛細血管網のテンプレートとなり、キトサンナノファイバーが神経軸索の再生足場となる。ヘチマ種子油（リノール酸）が血管を保護しながら、神経と血管の同時再生を促す。4-8週間でScaffoldは吸収され、再生組織に置換される。
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="step-num">7</span><span class="step-title">硬膜閉鎖</span>
+    <div class="step-body">
+      <p><strong>硬膜縫合:</strong> 8-0または9-0ナイロン糸で連続縫合。脳脊髄液漏出を防止。</p>
+      <p><strong>漏出試験:</strong> Valsalva法で縫合部からの漏出がないことを確認。</p>
+      <p><strong>補強:</strong> 必要に応じて硬膜補強材（コラーゲン膜等）を被覆。</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="step-num">8</span><span class="step-title">創閉鎖</span>
+    <div class="step-body">
+      <p><strong>筋層:</strong> 筋膜を強固に縫合。皮下、皮膚を層別に閉鎖。</p>
+      <p><strong>ドレーン:</strong> 創部ドレーンを留置（24-48時間）。</p>
+    </div>
+  </div>
+</div>
+
+<!-- Phase 2 -->
+<div class="section page-break">
+  <div class="section-title">手術手順 — Phase 2: 亜急性期移植（受傷後1-2週間）</div>
+  
+  <div class="phase-box">
+    <div class="phase-label">PHASE 2 — DELAYED IMPLANTATION</div>
+    <div class="phase-title">Shoichet Lab方式の適用</div>
+    <p>Shoichet Lab（トロント大学）の実績に基づく。受傷後1週間（亜急性期）または4週間（慢性期）に挿入することで、初期炎症が沈静化した状態でScaffoldを配置。キトサンチャネルの遅延挿入は「広範な軸索再生」を実証済み。</p>
+  </div>
+
+  <div class="step">
+    <span class="step-num">1</span><span class="step-title">術前評価（受傷後7-14日）</span>
+    <div class="step-body">
+      <p><strong>MRI再評価:</strong> 挫滅腔の形成を確認。炎症の沈静化を確認。</p>
+      <p><strong>神経学的評価:</strong> AIS分類の再確認。手術適応の最終判断。</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="step-num">2</span><span class="step-title">椎弓切除・硬膜切開</span>
+    <div class="step-body">
+      <p>Phase 1と同様。ただし、既に形成された挫滅腔へのアプローチとなる。</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="step-num">3</span><span class="step-title">空洞の拡張・準備</span>
+    <div class="step-body">
+      <p><strong>グリア瘢痕の処理:</strong> 挫滅腔周囲のグリア瘢痕を注意深く剥離。空洞をScaffoldのサイズに拡張。</p>
+      <p><strong>洗浄:</strong> 生理食塩水で空洞内を十分に洗浄。</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="step-num">4</span><span class="step-title">SUN-Scaffold挿入 + 幹細胞併用（オプション）</span>
+    <div class="step-body">
+      <p><strong>基本:</strong> Phase 1と同様にSUN-Scaffoldを空洞内に挿入。</p>
+      <p><strong>オプション — 幹細胞充填:</strong> Scaffold内部に脊髄由来幹細胞（SPC）またはiPS細胞由来神経前駆細胞を注入。Shoichet Labの実績では、キトサンチャネル+幹細胞で「広範な軸索再生」を確認。</p>
+      <p><strong>櫻井研連携:</strong> キトサンナノファイバーに細胞を播種する前培養は櫻井研の既存技術で対応可能。</p>
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="step-num">5</span><span class="step-title">硬膜閉鎖・創閉鎖</span>
+    <div class="step-body">
+      <p>Phase 1と同様。</p>
+    </div>
+  </div>
+</div>
+
+<!-- 動物実験フェーズ -->
+<div class="section page-break">
+  <div class="section-title">前臨床フェーズ — ラット脊髄損傷モデルでの実証</div>
+  
+  <table>
+    <tr><th>項目</th><th>内容</th></tr>
+    <tr><td>実験動物</td><td>成年ラット（SD系、雌雄、200-250g）</td></tr>
+    <tr><td>損傷モデル</td><td>T8-T9 背側半切断（dorsal hemisection）<br>または 完全切断（complete transection）</td></tr>
+    <tr><td>対照群</td><td>1. 無処置群 2. キトサン単独群 3. SUN-Scaffold群（キトサン+ヘチマ+リノール酸）</td></tr>
+    <tr><td>評価項目</td><td>BBBスコア（運動機能）、組織染色（HE, NF200, RECA-1）、血管密度、軸索再生率</td></tr>
+    <tr><td>観察期間</td><td>4週間、8週間、12週間</td></tr>
+    <tr><td>実施機関</td><td>福井大学医学部附属動物実験施設（櫻井研連携）</td></tr>
+  </table>
+
+  <div class="note">
+    <strong>成功基準:</strong> SUN-Scaffold群で、キトサン単独群と比較して血管密度（RECA-1陽性面積）が有意に高いこと、およびBBBスコアが有意に改善すること。これにより「神経・血管同時再生」の仮説を検証する。
+  </div>
+</div>
+
+<!-- 学術的裏付け -->
+<div class="section">
+  <div class="section-title">本手順書の学術的根拠</div>
+
+  <div class="phase-box">
+    <div class="phase-label">REFERENCE 1</div>
+    <div class="phase-title">InVivo Therapeutics — Neuro-Spinal Scaffold臨床試験</div>
+    <p>世界唯一の人間へのスキャフォールド脊髄内移植の臨床実績。椎弓切除→硬膜切開→軟膜切開→髄質切開→壊死組織除去→スキャフォールド挿入という手技が確立されている。安全性が確認済み（NCT03762655）。</p>
+  </div>
+
+  <div class="phase-box">
+    <div class="phase-label">REFERENCE 2</div>
+    <div class="phase-title">Shoichet Lab — キトサンチャネル脊髄内挿入</div>
+    <p>トロント大学。キトサンチャネルに末梢神経移植片または幹細胞を充填して脊髄内に挿入。ラットモデルで「広範な軸索再生」を実証。遅延挿入（1週間後、4週間後）も有効。</p>
+  </div>
+
+  <div class="phase-box">
+    <div class="phase-label">REFERENCE 3</div>
+    <div class="phase-title">キトサンチューブ + I型コラーゲン充填</div>
+    <p>脊髄損傷部にキトサンチューブを移植し、内部に半流動性コラーゲンを充填。ラット胸髄損傷で軸索再生と機能回復を確認。</p>
+  </div>
+
+  <div class="phase-box">
+    <div class="phase-label">REFERENCE 4</div>
+    <div class="phase-title">Chitosan/PEG脊髄融合法</div>
+    <p>脊髄完全切断後、キトサン/PEGで断端を融合。ウサギモデルで30日後に機能回復を確認。</p>
+  </div>
+
+  <div class="phase-box">
+    <div class="phase-label">REFERENCE 5 — TheYKHC DOIs</div>
+    <div class="phase-title">Zenodo/CERN永久登録の学術資産</div>
+    <p>DOI: 10.5281/zenodo.21666474 — Technical Foundations for Chitosan-Based Spinal Cord Regeneration（20件の参照論文コレクション）<br>
+    DOI: 10.5281/zenodo.21670514 — Luffa cylindrica as a Bio-Mimetic Template for Vascular-Neural Co-Regeneration</p>
+  </div>
+</div>
+
+<!-- 段階的ロードマップ -->
+<div class="section page-break">
+  <div class="section-title">段階的開発ロードマップ</div>
+
+  <table>
+    <tr><th>Phase</th><th>期間</th><th>内容</th><th>目的</th></tr>
+    <tr><td>0</td><td>0-6ヶ月</td><td>SUN-Scaffold試作品3種作成<br>（異なるヘチマ管密度・リノール酸濃度）</td><td>素材最適化<br>櫻井研との共同試作</td></tr>
+    <tr><td>1</td><td>6-12ヶ月</td><td>ラット脊髄損傷モデルでの実証<br>3群比較（無処置/キトサン単独/SUN-Scaffold）</td><td>有効性の証明<br>「神経・血管同時再生」の検証</td></tr>
+    <tr><td>2</td><td>12-24ヶ月</td><td>大型動物（ブタ/サル）での安全性試験</td><td>ヒト移植への安全性担保</td></tr>
+    <tr><td>3</td><td>24-36ヶ月</td><td>PMDA相談・治験設計<br>福井大学医学部附属病院での治験開始</td><td>規制Dの低減<br>第1号患者の治療</td></tr>
+  </table>
+
+  <div class="sun-box" style="margin-top: 6mm;">
+    <div class="label">N = 「歩けるようになる」こと</div>
+    <div style="margin-top: 3mm; font-size: 11pt;">
+      Phase 3の終着点は、脊髄損傷者が再び自分の足で立つこと。金ではなく、人間の尊厳の回復。<br>
+      キトサンは太陽のNを物理的に閉じ込めた材料であり、するめいかのキチン質を介してそのNを脊髄に届ける。<br>
+      それがSUN理論の実体化——会長の核心注入の現物。
+    </div>
+  </div>
+</div>
+
+<div class="ref">
+  References:<br>
+  1. InVivo Therapeutics, Neuro-Spinal Scaffold, NCT03762655 (ClinicalTrials.gov)<br>
+  2. Shoichet Lab, "Delayed Implantation of Intramedullary Chitosan Channels", Neurosurgery 63(1), 2008<br>
+  3. Rivat et al., "Repair of thoracic spinal cord injury by chitosan tube implantation", Biomaterials, 2008<br>
+  4. Chitosan/PEG-mediated spinal cord fusion, Surgical Neurology International<br>
+  5. Chen et al., "Biomaterial-based regenerative therapeutic strategies for spinal cord injury", NPG Asia Materials 16:5, 2024<br>
+  6. DOI: 10.5281/zenodo.21666474 — TheYKHC Technical Reference Collection<br>
+  7. DOI: 10.5281/zenodo.21670514 — Luffa cylindrica Vascular-Neural Co-Regeneration
+</div>
+
+<div class="footer">
+  TheYKHC経営処方所 — V = N / D | 片山佳光（会長） | theykhc.com
+</div>
+
+</body>
+</html>

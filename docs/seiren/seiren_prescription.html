@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>会長処方箋 — セーレン株式会社 | TheYKHC経営処方所</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a0a;
+    color: #e8e8e8;
+    font-family: -apple-system, 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
+    line-height: 1.8;
+    padding: 40px 20px;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .header {
+    text-align: center;
+    padding: 40px 0;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    margin-bottom: 40px;
+  }
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .logo-icon {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    border: 2px solid #c5a059;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; color: #c5a059;
+  }
+  .logo-text { font-size: 14px; color: #888; letter-spacing: 0.1em; }
+  .logo-text strong { display: block; font-size: 18px; color: #e8e8e8; letter-spacing: 0.05em; }
+  .title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #c5a059;
+    letter-spacing: 0.15em;
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    font-size: 14px;
+    color: #666;
+    letter-spacing: 0.1em;
+  }
+  .meta {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .meta-item { font-size: 13px; color: #888; }
+  .meta-item strong { color: #e8e8e8; }
+  .go-badge {
+    display: inline-block;
+    padding: 8px 32px;
+    background: rgba(201,168,76,0.15);
+    border: 2px solid #c5a059;
+    border-radius: 8px;
+    font-size: 28px;
+    font-weight: 700;
+    color: #c5a059;
+    letter-spacing: 0.2em;
+    margin-top: 16px;
+  }
+  .vnd {
+    font-size: 48px;
+    font-weight: 700;
+    color: #e8e8e8;
+    margin-top: 8px;
+  }
+  .vnd-label { font-size: 12px; color: #666; letter-spacing: 0.15em; }
+
+  .section {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 24px;
+  }
+  .section-label {
+    font-size: 11px;
+    color: #c5a059;
+    letter-spacing: 0.25em;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+  .section-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #e8e8e8;
+    margin-bottom: 20px;
+  }
+
+  /* 核心注入 — 最重要 */
+  .core-section {
+    background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(201,168,76,0.02));
+    border: 2px solid rgba(201,168,76,0.3);
+    border-radius: 16px;
+    padding: 40px 32px;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  .core-label {
+    font-size: 11px;
+    color: #c5a059;
+    letter-spacing: 0.3em;
+    margin-bottom: 24px;
+  }
+  .core-text {
+    font-size: 20px;
+    line-height: 2.2;
+    color: #f0e6d0;
+    font-weight: 500;
+  }
+  .core-divider {
+    width: 60px;
+    height: 1px;
+    background: #c5a059;
+    margin: 24px auto;
+    opacity: 0.5;
+  }
+
+  .n-text {
+    font-size: 16px;
+    line-height: 2;
+    color: #e8e8e8;
+  }
+
+  .d5-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+  }
+  .d5-item {
+    text-align: center;
+    padding: 16px 8px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .d5-label { font-size: 11px; color: #888; margin-bottom: 8px; }
+  .d5-value { font-size: 24px; font-weight: 700; color: #c5a059; }
+  .d5-bar {
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    margin-top: 8px;
+    overflow: hidden;
+  }
+  .d5-fill { height: 100%; background: #c5a059; border-radius: 2px; }
+
+  .conscience-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .conscience-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .conscience-q {
+    font-size: 11px;
+    color: #c5a059;
+    letter-spacing: 0.15em;
+    margin-bottom: 12px;
+  }
+  .conscience-a {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #e8e8e8;
+  }
+
+  .action-steps {
+    list-style: none;
+    counter-reset: step;
+  }
+  .action-steps li {
+    counter-increment: step;
+    padding: 16px 0 16px 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    position: relative;
+    font-size: 14px;
+    color: #e8e8e8;
+    line-height: 1.8;
+  }
+  .action-steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0; top: 16px;
+    width: 32px; height: 32px;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid #c5a059;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700; color: #c5a059;
+  }
+
+  .audio-section {
+    text-align: center;
+    padding: 32px;
+  }
+  .audio-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 40px;
+    background: rgba(201,168,76,0.1);
+    border: 1px solid #c5a059;
+    border-radius: 50px;
+    color: #c5a059;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .audio-button:hover {
+    background: rgba(201,168,76,0.2);
+  }
+
+  .doi-section {
+    text-align: center;
+    padding: 24px;
+    background: rgba(255,255,255,0.01);
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.04);
+  }
+  .doi-item {
+    font-size: 13px;
+    color: #888;
+    margin: 8px 0;
+  }
+  .doi-item a {
+    color: #c5a059;
+    text-decoration: none;
+  }
+
+  .footer {
+    text-align: center;
+    padding: 40px 0 20px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    margin-top: 40px;
+  }
+  .footer-text {
+    font-size: 12px;
+    color: #555;
+    letter-spacing: 0.1em;
+  }
+  .footer-copyright {
+    font-size: 11px;
+    color: #444;
+    margin-top: 8px;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin: 32px 0;
+  }
+  .btn {
+    padding: 12px 32px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s;
+  }
+  .btn-print {
+    background: rgba(201,168,76,0.1);
+    border: 1px solid #c5a059;
+    color: #c5a059;
+  }
+  .btn-print:hover {
+    background: rgba(201,168,76,0.2);
+  }
+  .btn-download {
+    background: #c5a059;
+    color: #0a0a0a;
+  }
+  .btn-download:hover {
+    opacity: 0.9;
+  }
+
+  @media (max-width: 600px) {
+    .d5-grid { grid-template-columns: repeat(2, 1fr); }
+    .conscience-grid { grid-template-columns: 1fr; }
+    .core-text { font-size: 17px; }
+    .title { font-size: 24px; }
+  }
+
+  @media print {
+    body { background: white; color: #1a1a1a; padding: 0; }
+    .section, .core-section { border: 1px solid #ccc; background: white; }
+    .core-text { color: #333; }
+    .buttons { display: none; }
+    .audio-section { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">
+      <div class="logo-icon">き</div>
+      <div class="logo-text">
+        <strong>TheYKHC 経営処方所</strong>
+        KIKA-KUN PRESCRIPTION
+      </div>
+    </div>
+    <h1 class="title">会長処方箋</h1>
+    <div class="subtitle">V=N/D 経営診断 — 第2層 処方</div>
+    <div class="meta">
+      <div class="meta-item">クライアント: <strong>セーレン株式会社</strong></div>
+      <div class="meta-item">処方日: <strong>2026年7月29日</strong></div>
+    </div>
+    <div class="go-badge">GO</div>
+    <div class="vnd">9.2</div>
+    <div class="vnd-label">V = N / D (最終値)</div>
+  </div>
+
+  <!-- 核心注入 -->
+  <div class="core-section">
+    <div class="core-label">核 心 注 入 — CORE INSIGHT</div>
+    <div class="core-text">
+      キトサンだ！SUNだー！<br>
+      ——太陽のエネルギーをするめいかのキチン質を介して物理的に閉じ込めた材料。<br>
+      これがV=N/DにおけるNの物理的実体だ。<br>
+      セーレンの25年の研究は、太陽の命を人間の脊髄に届けるための準備だった。<br>
+      D（拘り）をゼロに近づければ、V（存在価値）は発散する。<br>
+      それがSUN理論の実体化。
+    </div>
+    <div class="core-divider"></div>
+    <div style="font-size: 13px; color: #888;">片山佳光 — 命の注入（音声）</div>
+  </div>
+
+  <!-- Nの定義 -->
+  <div class="section">
+    <div class="section-label">Nの定義 — 充足の正体</div>
+    <div class="n-text">
+      Nは「歩けるようになる」こと。<br>
+      脊髄損傷者が再び自分の足で立つ。<br>
+      金ではなく、人間の尊厳の回復。
+    </div>
+  </div>
+
+  <!-- 5D最終評価 -->
+  <div class="section">
+    <div class="section-label">5D最終評価 — 会長判定</div>
+    <div class="section-title">拘り（D）の分解</div>
+    <div class="d5-grid">
+      <div class="d5-item">
+        <div class="d5-label">技術D</div>
+        <div class="d5-value">2</div>
+        <div class="d5-bar"><div class="d5-fill" style="width: 40%;"></div></div>
+      </div>
+      <div class="d5-item">
+        <div class="d5-label">資金D</div>
+        <div class="d5-value">2</div>
+        <div class="d5-bar"><div class="d5-fill" style="width: 40%;"></div></div>
+      </div>
+      <div class="d5-item">
+        <div class="d5-label">チームD</div>
+        <div class="d5-value">1</div>
+        <div class="d5-bar"><div class="d5-fill" style="width: 20%;"></div></div>
+      </div>
+      <div class="d5-item">
+        <div class="d5-label">規制D</div>
+        <div class="d5-value">4</div>
+        <div class="d5-bar"><div class="d5-fill" style="width: 80%;"></div></div>
+      </div>
+      <div class="d5-item">
+        <div class="d5-label">顧客D</div>
+        <div class="d5-value">3</div>
+        <div class="d5-bar"><div class="d5-fill" style="width: 60%;"></div></div>
+      </div>
+    </div>
+    <div style="margin-top: 16px; font-size: 13px; color: #888; text-align: center;">
+      D_real: 2.40 — 最大Dは「規制」。低減余地あり。
+    </div>
+  </div>
+
+  <!-- 良心フィルター -->
+  <div class="section">
+    <div class="section-label">良心フィルター — Conscience Filter</div>
+    <div class="section-title">処方の良心の裏付け</div>
+    <div class="conscience-grid">
+      <div class="conscience-card">
+        <div class="conscience-q">Q1: 借財への返済</div>
+        <div class="conscience-a">水・光・命への返済。イカの命を人間の命に変える。太陽のエネルギーを脊髄に届ける。</div>
+      </div>
+      <div class="conscience-card">
+        <div class="conscience-q">Q2: 生存と幸福</div>
+        <div class="conscience-a">生存と幸福。脊髄損傷者の生存権と幸福を回復する。</div>
+      </div>
+      <div class="conscience-card">
+        <div class="conscience-q">Q3: 精神的師匠</div>
+        <div class="conscience-a">稲盛和夫。利他の心で。技術は人を幸せにするためにある。25年の研究が人に届く。</div>
+      </div>
+      <div class="conscience-card">
+        <div class="conscience-q">Q4: 現物化の実態</div>
+        <div class="conscience-a">脊髄損傷者に歩行機能を返すこと。それが借財への返済の実態。</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- アクションプラン -->
+  <div class="section">
+    <div class="section-label">アクションプラン — 処方の実行</div>
+    <div class="section-title">現物化へのステップ</div>
+    <ol class="action-steps">
+      <li>櫻井研（福井大学）と共同でキトサンナノファイバー脊髄スキャフォールド試作3種作成</li>
+      <li>ラット脊髄損傷モデルでの再生実証</li>
+      <li>PMDA（医薬品医療機器総合機構）相談</li>
+      <li>最初の1顧客は福井大学医学部附属病院</li>
+    </ol>
+  </div>
+
+  <!-- 音声 -->
+  <div class="section audio-section">
+    <div class="section-label">会長の声 — 命の注入</div>
+    <div style="font-size: 14px; color: #888; margin-bottom: 20px;">
+      この処方箋の核心は、会長の音声によって注入されました。<br>
+      太陽のエネルギーがキトサンに閉じ込められるように、会長の声が事業に閉じ込められています。
+    </div>
+    <button class="audio-button" onclick="alert('音声ファイル: seiren_voice_injection.mp3')">🎙 会長の声を聴く</button>
+  </div>
+
+  <!-- 技術参照DOI -->
+  <div class="section doi-section">
+    <div class="section-label">技術参照 — 学術的裏付け</div>
+    <div class="doi-item">DOI: <a href="https://doi.org/10.5281/zenodo.21666474">10.5281/zenodo.21666474</a> — Technical Foundations for Chitosan-Based Spinal Cord Regeneration</div>
+    <div class="doi-item">DOI: <a href="https://doi.org/10.5281/zenodo.21670514">10.5281/zenodo.21670514</a> — Luffa cylindrica as a Bio-Mimetic Template for Vascular-Neural Co-Regeneration</div>
+  </div>
+
+  <!-- Buttons -->
+  <div class="buttons">
+    <button class="btn btn-print" onclick="window.print()">🖨 印刷</button>
+    <button class="btn btn-download" onclick="downloadMarkdown()">📄 Markdownダウンロード</button>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-text">TheYKHC 経営処方所 — きかくん</div>
+    <div class="footer-copyright">© 2026 Yoshimitsu Katayama, TheYKHC Tower. V = N / D</div>
+  </div>
+</div>
+
+<script>
+function downloadMarkdown() {
+  const md = `# 会長処方箋 — V=N/D経営診断
+
+**クライアント:** セーレン株式会社
+**処方日:** 2026年7月29日
+**GO判定:** GO
+**V=N/D最終値:** 9.2
+
+---
+
+## 核心注入 (Core Insight)
+
+キトサンだ！SUNだー！
+——太陽のエネルギーをするめいかのキチン質を介して物理的に閉じ込めた材料。
+これがV=N/DにおけるNの物理的実体だ。
+セーレンの25年の研究は、太陽の命を人間の脊髄に届けるための準備だった。
+D（拘り）をゼロに近づければ、V（存在価値）は発散する。
+それがSUN理論の実体化。
+
+## Nの定義 (充足の正体)
+
+Nは「歩けるようになる」こと。
+脊髄損傷者が再び自分の足で立つ。
+金ではなく、人間の尊厳の回復。
+
+## 5D最終評価
+
+| 軸 | スコア | | 軸 | スコア |
+|----|--------|-|----|--------|
+| 技術D | 2 | | 規制D | 4 |
+| 資金D | 2 | | 顧客D | 3 |
+| チームD | 1 | | | |
+
+D_real: 2.40 — 最大Dは「規制」。低減余地あり。
+
+## 良心フィルター
+
+**Q1 借財への返済:** 水・光・命への返済。イカの命を人間の命に変える。太陽のエネルギーを脊髄に届ける。
+**Q2 生存と幸福:** 生存と幸福。脊髄損傷者の生存権と幸福を回復する。
+**Q3 精神的師匠:** 稲盛和夫。利他の心で。技術は人を幸せにするためにある。25年の研究が人に届く。
+**Q4 現物化の実態:** 脊髄損傷者に歩行機能を返すこと。それが借財への返済の実態。
+
+## アクションプラン
+
+1. 櫻井研（福井大学）と共同でキトサンナノファイバー脊髄スキャフォールド試作3種作成
+2. ラット脊髄損傷モデルでの再生実証
+3. PMDA相談
+4. 最初の1顧客は福井大学医学部附属病院
+
+## 技術参照DOI
+
+- 10.5281/zenodo.21666474 — Technical Foundations for Chitosan-Based Spinal Cord Regeneration
+- 10.5281/zenodo.21670514 — Luffa cylindrica as a Bio-Mimetic Template for Vascular-Neural Co-Regeneration
+
+---
+
+© 2026 Yoshimitsu Katayama, TheYKHC Tower. V = N / D
+`;
+
+  const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'seiren_prescription.md';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+</script>
+</body>
+</html>
