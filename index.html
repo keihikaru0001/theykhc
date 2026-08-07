@@ -93,11 +93,11 @@ section {
 .proof-table th { font-size: 12px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
 .proof-table .status-published { color: var(--green); }
 .pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.pillar { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 20px; }
+.pillar { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 20px; cursor: pointer; transition: border-color 0.2s }
 .pillar .count { font-size: 24px; font-weight: 700; color: var(--gold); }
 .pillar .name { font-size: 14px; font-weight: 600; margin: 6px 0 4px; }
 .pillar .layer { font-size: 11px; color: var(--text-dim); }
-.pillar .examples { font-size: 12px; color: var(--text-muted); margin-top: 8px; line-height: 1.5; }
+.pillar .examples { font-size: 12px; color: var(--text-muted); margin-top: 8px; line-height: 1.5; } .pillar:hover { border-color: var(--gold); }
 .os-table { width: 100%; border-collapse: collapse; }
 .os-table th, .os-table td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--border); font-size: 14px; }
 .os-table th { font-size: 12px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
@@ -307,23 +307,42 @@ footer .footer-info { font-size: 12px; color: var(--text-dim); line-height: 1.8;
   <div class="section-title">資産構成</div>
   <div class="section-title-en">DOI ASSET ARCHITECTURE — 15 PILLARS</div>
   <div class="pillars">
-    <div class="pillar"><div class="count">78</div><div class="name">Koku宇宙理論</div><div class="layer">層II / 層IV</div><div class="examples">二層宇宙モデル・光速不変・存在密度</div></div>
-    <div class="pillar"><div class="count">67</div><div class="name">V=N/D (Katayama Formula)</div><div class="layer">層II / 層IV</div><div class="examples">存在価値=充足/拘り・ハイレート症候群</div></div>
-    <div class="pillar"><div class="count">71</div><div class="name">知識本位制 / 光貨</div><div class="layer">層IV / 層V</div><div class="examples">DOI倫理・光貨・金本位制との対比</div></div>
-    <div class="pillar"><div class="count">50</div><div class="name">経営 / ビジネス / 戦略</div><div class="layer">層III / 層IV</div><div class="examples">脆性ギャップ・市場の主客転倒</div></div>
-    <div class="pillar"><div class="count">47</div><div class="name">技術 / エンジニアリング</div><div class="layer">層III</div><div class="examples">テンセグリティ・システム設計</div></div>
-    <div class="pillar"><div class="count">36</div><div class="name">AI / 意識 / 観測者</div><div class="layer">層II / 層IV</div><div class="examples">PRT・観測者効果・共創対話</div></div>
-    <div class="pillar"><div class="count">35</div><div class="name">ニュートリノ / 物理観測</div><div class="layer">層I / 層II</div><div class="examples">IceCube・GCN・事前登録プロトコル</div></div>
-    <div class="pillar"><div class="count">24</div><div class="name">元気 / ダンス理論</div><div class="layer">層IV</div><div class="examples">気の場・日本語の先科学的記述</div></div>
-    <div class="pillar"><div class="count">24</div><div class="name">記録 / 目録 / 全集</div><div class="layer">層V</div><div class="examples">全集カタログ・思想系譜</div></div>
-    <div class="pillar"><div class="count">19</div><div class="name">心臓設計 / 心筋工学</div><div class="layer">層II / 層III</div><div class="examples">ECCE・バイオクォーツ・螺旋構造</div></div>
-    <div class="pillar"><div class="count">19</div><div class="name">問い生成 / 2,196問 / 監査</div><div class="layer">層I / 層III</div><div class="examples">Question Harvest v1-v6・反証プロトコル</div></div>
-    <div class="pillar"><div class="count">17</div><div class="name">3D生体組織 / 編み筋肉</div><div class="layer">層II / 層III</div><div class="examples">CLF・細胞融合・ポリゴン超え</div></div>
-    <div class="pillar"><div class="count">10</div><div class="name">品性資本 / モラロジー</div><div class="layer">層IV</div><div class="examples">品性第一資本・Soul-Joule経済</div></div>
-    <div class="pillar"><div class="count">5</div><div class="name">SUN理論 / キトサン / ヘチマ</div><div class="layer">層II / 層III</div><div class="examples">核心注入3件の現物化実績</div></div>
-    <div class="pillar"><div class="count">536</div><div class="name">その他 / 拡張</div><div class="layer">混合</div><div class="examples">芸術・環境・教育・宗教等</div></div>
+    <div class="pillar" onclick="showGate()"><div class="count">78</div><div class="name">Koku宇宙理論</div><div class="layer">層II / 層IV</div><div class="examples">分類体系はZenodo DOI System Mapに収録</div></div>
+    <div class="pillar" onclick="showGate()"><div class="count">67</div><div class="name">V=N/D (Katayama Formula)</div><div class="layer">層II / 層IV</div><div class="examples">分類体系はZenodo DOI System Mapに収録</div></div>
+    <div class="pillar" onclick="showGate()"><div class="count">71</div><div class="name">知識本位制 / 光貨</div><div class="layer">層IV / 層V</div><div class="examples">分類体系はZenodo DOI System Mapに収録</div></div>
+    <div class="pillar" onclick="showGate()"><div class="count">50</div><div class="name">経営 / ビジネス / 戦略</div><div class="layer">層III / 層IV</div><div class="examples">分類体系はZenodo DOI System Mapに収録</div></div>
+    <div class="pillar" onclick="showGate()"><div class="count">47</div><div class="name">技術 / エンジニアリング</div><div class="layer">層III</div><div class="examples">分類体系はZenodo DOI System Mapに収録</div></div>
+    <div class="pillar" onclick="showGate()"><div class="count">36</div><div class="name">AI / 意識 / 観測者</div><div class="layer">層II / 層IV</div><div class="examples">分類体系はZenodo DOI System Mapに収録</div></div>
+    <div class="pillar" onclick="showGate()"><div class="count">35</div><div class="name">ニュートリノ / 物理観測</div><div class="layer">層I / 層II</div><div class="examples">分類体系はZenodo DOI System Mapに収録</div></div>
+    <div class="pillar" onclick="showGate()"><div class="count">24</div><div class="name">元気 / ダンス理論</div><div class="layer">層IV</div><div class="examples">分類体系はZenodo DOI System Mapに収録</div></div>
+    <div class="pillar" onclick="showGate()"><div class="count">24</div><div class="name">記録 / 目録 / 全集</div><div class="layer">層V</div><div class="examples">分類体系はZenodo DOI System Mapに収録</div></div>
+    <div class="pillar" onclick="showGate()"><div class="count">19</div><div class="name">心臓設計 / 心筋工学</div><div class="layer">層II / 層III</div><div class="examples">分類体系はZenodo DOI System Mapに収録</div></div>
+    <div class="pillar" onclick="showGate()"><div class="count">19</div><div class="name">問い生成 / 2,196問 / 監査</div><div class="layer">層I / 層III</div><div class="examples">分類体系はZenodo DOI System Mapに収録</div></div>
+    <div class="pillar" onclick="showGate()"><div class="count">17</div><div class="name">3D生体組織 / 編み筋肉</div><div class="layer">層II / 層III</div><div class="examples">分類体系はZenodo DOI System Mapに収録</div></div>
+    <div class="pillar" onclick="showGate()"><div class="count">10</div><div class="name">品性資本 / モラロジー</div><div class="layer">層IV</div><div class="examples">分類体系はZenodo DOI System Mapに収録</div></div>
+    <div class="pillar" onclick="showGate()"><div class="count">5</div><div class="name">SUN理論 / キトサン / ヘチマ</div><div class="layer">層II / 層III</div><div class="examples">核心注入3件の現物化実績</div></div>
+    <div class="pillar" onclick="showGate()"><div class="count">536</div><div class="name">その他 / 拡張</div><div class="layer">混合</div><div class="examples">分類体系はZenodo DOI System Mapに収録</div></div>
   </div>
-  <p style="margin-top: 20px; font-size: 13px; color: var(--text-dim);">全1,038件のDOIを15の柱に分類。分類基準の詳細はDOI System Map (DOI: 10.5281/zenodo.21832923) に収録。</p>
+  <p style="margin-top: 20px; font-size: 13px; color: var(--text-dim);">全1,038件のDOIを15の柱に分類。各柱のDOI一覧・5層分析は経営処方所（¥30,000）でアクセス可能。一括エクスポートは不可。</p>
+  
+  <!-- GATE MODAL -->
+  <div id="gateModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:200; justify-content:center; align-items:center;">
+    <div style="background:var(--bg-card); border:1px solid var(--gold); border-radius:12px; padding:40px; max-width:440px; text-align:center;">
+      <div style="font-size:13px; color:var(--gold); letter-spacing:1px; margin-bottom:16px;">TIERED ACCESS</div>
+      <h3 style="font-size:20px; font-weight:600; margin-bottom:12px;">この柱の中身を見るには</h3>
+      <p style="font-size:14px; color:var(--text-muted); line-height:1.7; margin-bottom:24px;">
+        各柱のDOI一覧・5層分析・事業アイデアは<br>
+        経営処方所（¥30,000）でアクセスできます。<br>
+        一括エクスポートはいかなる場合も不可。
+      </p>
+      <a href="https://ykhc-prescribe-growth.base44.app" class="cta-button">経営処方所を開く</a>
+      <button onclick="closeGate()" style="display:block; margin:16px auto 0; background:none; border:none; color:var(--text-dim); font-size:13px; cursor:pointer;">閉じる</button>
+    </div>
+  </div>
+  <script>
+  function showGate(){ document.getElementById('gateModal').style.display='flex'; }
+  function closeGate(){ document.getElementById('gateModal').style.display='none'; }
+  </script>
 </section>
 
 <section id="flow">
