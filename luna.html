@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luna — TheYKHC事業統合・新事業生成</title>
+<meta name="description" content="TheYKHCの公開リポジトリを統合し、根拠状態と安全ゲートを伴う新事業候補を生成するLunaのスナップショット。">
+<style>
+:root{--bg:#08090b;--card:#12151a;--line:#252a32;--text:#ece8df;--muted:#99958d;--gold:#c5a059;--cyan:#79b8c9;--red:#d17a73}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -20%,#202630 0,var(--bg) 44%);color:var(--text);font-family:"Helvetica Neue","Yu Gothic",sans-serif;line-height:1.75}
+header{max-width:1180px;margin:auto;padding:22px 28px;display:flex;justify-content:space-between;border-bottom:1px solid var(--line)}a{color:var(--gold);text-decoration:none}.brand{letter-spacing:.12em;font-weight:700}.back{color:var(--muted)}
+main{max-width:1180px;margin:auto;padding:72px 28px}.eyebrow{color:var(--gold);letter-spacing:.32em;font-size:12px}.hero h1{font-family:Georgia,serif;font-size:clamp(40px,8vw,86px);font-weight:400;margin:8px 0}.hero p{max-width:760px;color:var(--muted);font-size:17px}.boundary{margin:30px 0 54px;padding:18px 22px;border-left:3px solid var(--gold);background:rgba(197,160,89,.06);color:#c7c2b8}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.stat,.panel,.venture{background:rgba(18,21,26,.88);border:1px solid var(--line);border-radius:10px;padding:22px}.stat b{display:block;color:var(--gold);font:600 30px Georgia,serif}.stat span{font-size:12px;color:var(--muted)}
+h2{font:400 30px Georgia,serif;margin:64px 0 20px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.panel h3,.venture h3{margin:0 0 12px;font-size:16px}.bar{height:7px;background:#222831;border-radius:8px;overflow:hidden;margin:8px 0 14px}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--cyan))}.row{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;margin:7px 0}
+.ventures{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}.venture .status{font:11px monospace;color:var(--cyan);letter-spacing:.1em}.venture p{color:#c7c3bb;font-size:14px}.meta{font-size:12px;color:var(--muted)}.tags span{display:inline-block;margin:4px 5px 0 0;padding:3px 8px;border:1px solid var(--line);border-radius:20px;color:var(--muted);font-size:11px}
+.empty{color:var(--red)}footer{max-width:1180px;margin:50px auto 0;padding:32px 28px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}@media(max-width:760px){.stats,.grid,.ventures{grid-template-columns:1fr}.hero h1{font-size:48px}}
+</style>
+</head>
+<body>
+<header><a class="brand" href="index.html">TheYKHC TOWER</a><a class="back" href="index.html">塔へ戻る</a></header>
+<main>
+  <section class="hero">
+    <div class="eyebrow">BUSINESS INTELLIGENCE / VENTURE GENERATION</div>
+    <h1>Luna</h1>
+    <p>全記録を「正しい答え」として記憶するのではなく、出典・未確定性・危険度を保ったまま把握し、検証可能な新事業候補へ組み替える。</p>
+    <div class="boundary">Lunaの出力は事業・科学・市場の確定判定ではありません。DOI登録を査読や実証と扱わず、医療・金融・安全重要領域は既定で生成対象から除外します。</div>
+  </section>
+  <div id="stats" class="stats"></div>
+  <h2>現在把握している構造</h2>
+  <div id="structure" class="grid"></div>
+  <h2>今回生成した検証候補</h2>
+  <div id="ventures" class="ventures"><p>読み込み中…</p></div>
+</main>
+<footer>Repository snapshot engine — 外部データとの常時同期ではありません。最終更新値はJSONスナップショットに基づきます。</footer>
+<script>
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+fetch('luna_snapshot.json').then(r=>{if(!r.ok)throw new Error(r.status);return r.json()}).then(data=>{
+  const inv=data.inventory||{};
+  const stats=[['統合レコード',inv.records||0],['DOI台帳（統合後）',(inv.sources||{}).doi||0],['問い',(inv.sources||{}).questions||0],['新規検証候補',(data.generated_ventures||[]).length]];
+  document.querySelector('#stats').innerHTML=stats.map(([l,v])=>`<div class="stat"><b>${esc(v)}</b><span>${esc(l)}</span></div>`).join('');
+  const groups=[['構造分類',inv.layers||{}],['危険フラグ',inv.risk_flags||{}],['根拠状態',inv.evidence_states||{}],['データソース',inv.sources||{}]];
+  document.querySelector('#structure').innerHTML=groups.map(([title,obj])=>{const max=Math.max(1,...Object.values(obj));return `<article class="panel"><h3>${esc(title)}</h3>${Object.entries(obj).map(([k,v])=>`<div class="row"><span>${esc(k)}</span><b>${esc(v)}</b></div><div class="bar"><i style="width:${Math.round(v/max*100)}%"></i></div>`).join('')}</article>`}).join('');
+  const ventures=data.generated_ventures||[];
+  document.querySelector('#ventures').innerHTML=ventures.length?ventures.map(v=>`<article class="venture"><div class="status">${esc(v.status)}</div><h3>${esc(v.title)}</h3><p>${esc(v.concept)}</p><div class="meta"><b>最初の検証：</b>${esc(v.first_customer_test)}</div><div class="tags">${(v.required_gates||[]).slice(0,5).map(x=>`<span>${esc(x)}</span>`).join('')}</div></article>`).join(''):'<p class="empty">生成候補がありません。</p>';
+}).catch(()=>{document.querySelector('#ventures').innerHTML='<p class="empty">Lunaスナップショットを読み込めませんでした。</p>'});
+</script>
+</body>
+</html>
