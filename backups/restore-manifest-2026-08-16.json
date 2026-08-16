@@ -1,0 +1,64 @@
+{
+  "manifest_version": 1,
+  "restored_at": "2026-08-16T00:00:00+09:00",
+  "source": {
+    "spreadsheet_id": "1oNVVa_bpkLRtVwUm6A3S3o2IRsC7jqWhd8JGj7xR-qQ",
+    "spreadsheet_title": "TheYKHC 全データバックアップ (16エンティティ 3,373件)",
+    "complete_backup_id": "1_C4xR4HJFRXUHxej-AIWUePA0INeeHNYZMt8ijPTJF4",
+    "complete_backup_title": "TheYKHC Complete Backup — 2026-08-07"
+  },
+  "destination": {
+    "base44_app_id": "6a698a95206b976d4cba9f4b",
+    "base44_app_name": "TheYKHC経営処方所",
+    "checkpoint_id": "6a80ffb73e72afcfb1e6f026",
+    "checkpoint_commit": "23ab98c605fc40ca39d15591477b28579cf391e7",
+    "echo_route": "/echo"
+  },
+  "restored_entities": {
+    "SeedRecord": 1034,
+    "LunaConversation": 26,
+    "EmotionalState": 1,
+    "NeutrinoEvent": 6,
+    "FxTickSnapshot": 28,
+    "BiorhythmReading": 3,
+    "IdeaSynthetixEntry": 15,
+    "ArtistProfile": 7,
+    "ArtistLyric": 24,
+    "FanProfile": 0,
+    "FanRequest": 1,
+    "HikariTransaction": 4,
+    "BrainwaveProxy": 0
+  },
+  "verification": {
+    "restored_record_total": 1149,
+    "entity_counts_match_source": true,
+    "production_build": "passed",
+    "changed_files_lint": "passed",
+    "whole_project_typecheck": "failed_on_pre_existing_errors",
+    "public_url_check": "blocked_by_waf"
+  },
+  "github_repository_inventory": {
+    "confirmed": [
+      "theykhc",
+      "katayama-works",
+      "echo",
+      "hikariplay",
+      "design-works"
+    ],
+    "unresolved": [
+      "TheYKHC-HistoricalNode",
+      "TheYKHC-Archive",
+      "kouka",
+      "-kouka",
+      "theykhc-mainsite",
+      "base44dev/kouka-92b448e3",
+      "glowing-bear",
+      "north-american-ironman"
+    ]
+  },
+  "notes": [
+    "The current Base44 repository uses an S3 remote and is not automatically mirrored to GitHub.",
+    "The former ECHO Base44 app id 69b1d589b12de5ad82cd58fb is not accessible to the current connection.",
+    "Do not describe the 13-repository GitHub backup as complete until unresolved repositories are recovered or intentionally retired."
+  ]
+}
