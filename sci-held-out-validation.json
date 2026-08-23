@@ -1,0 +1,90 @@
+{
+  "schema": "TheYKHC ODC-SCI held-out-study validation v1",
+  "dataset": "odc-sci_1081.csv",
+  "rows_total": 305,
+  "rows_predicted": 305,
+  "studies_total": 7,
+  "studies_evaluated": 7,
+  "split": "Leave-One-PMID-Out",
+  "features": [
+    "controlresult_norm",
+    "control_timedpo",
+    "outcome_timedpo",
+    "Animal",
+    "Strain",
+    "Sex_Grouped",
+    "Type_of_Injury",
+    "Injury_Segment_",
+    "Injury_Device",
+    "behavioraltest",
+    "outcomescore_max",
+    "Contusion_severity_group",
+    "grouplabel"
+  ],
+  "model": {
+    "name": "HistGradientBoostingRegressor",
+    "random_state": 20260823
+  },
+  "target": "outcomeresult / outcomescore_max",
+  "held_out_metrics": {
+    "MAE_normalized": 0.13831078829883003,
+    "RMSE_normalized": 0.18496859262005058,
+    "R2": 0.32370779322174026,
+    "Pearson_r": 0.5854959195895824
+  },
+  "baseline_control_score_metrics": {
+    "MAE_normalized": 0.5379391100702575,
+    "RMSE_normalized": 0.5845884755067329,
+    "R2": -5.755210669718478
+  },
+  "training_mean_baseline_metrics": {
+    "MAE_normalized": 0.21252997169501714,
+    "RMSE_normalized": 0.2538104632702575,
+    "R2": -0.2733782928679491
+  },
+  "folds": [
+    {
+      "held_out_PMID": "11402879",
+      "n": 22,
+      "MAE_normalized": 0.04906537200397865,
+      "RMSE_normalized": 0.060379537081587754
+    },
+    {
+      "held_out_PMID": "12675971",
+      "n": 43,
+      "MAE_normalized": 0.11682223694884407,
+      "RMSE_normalized": 0.15498067379014618
+    },
+    {
+      "held_out_PMID": "16430371",
+      "n": 17,
+      "MAE_normalized": 0.23742723794356344,
+      "RMSE_normalized": 0.2649424482719608
+    },
+    {
+      "held_out_PMID": "21963672",
+      "n": 30,
+      "MAE_normalized": 0.14684179853859708,
+      "RMSE_normalized": 0.19714233074976734
+    },
+    {
+      "held_out_PMID": "22445934",
+      "n": 21,
+      "MAE_normalized": 0.231205185597686,
+      "RMSE_normalized": 0.30549902956210256
+    },
+    {
+      "held_out_PMID": "23544088",
+      "n": 134,
+      "MAE_normalized": 0.14253885084418064,
+      "RMSE_normalized": 0.18526110195973602
+    },
+    {
+      "held_out_PMID": "32735618",
+      "n": 38,
+      "MAE_normalized": 0.0969727406943483,
+      "RMSE_normalized": 0.1030803968429126
+    }
+  ],
+  "interpretation_limit": "Behavioral outcome prediction across held-out preclinical studies only; no vascular/RPI/clinical validation."
+}
