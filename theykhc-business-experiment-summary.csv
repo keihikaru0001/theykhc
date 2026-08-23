@@ -1,0 +1,5 @@
+scenario,label_ja,trials,probability_any_customer,customers_median,customers_p10,customers_p90,revenue_median_yen,revenue_p10_yen,revenue_p90_yen,probability_annual_120k_yen,probability_annual_600k_yen
+archive_only,現状継続（公開・蓄積のみ）,20000,0.1221,0.0,0.0,1.0,0,0,0,0.0,0.0
+clear_offer,商品を一本化（90分・研究設計相談）,20000,0.7385,1.0,0.0,4.0,24554,0,78252,0.02395,0.0
+targeted_outreach,一本化商品＋月20件の個別提案,20000,0.97125,4.0,1.0,8.0,159380,48537,353688,0.63965,0.0079
+paid_pilot,月20件提案＋小規模な有償研究設計実証,20000,0.94955,3.0,1.0,7.0,508975,147468,1217769,0.92075,0.4288
