@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>TheYKHC Digital 3D Physics Laboratory</title>
+  <meta name="description" content="DOIに公開されたポリゴン超え・二重刻宇宙・光速不変仮説を、標準物理モデルと分離して比較する3D仮説実験室。">
+  <style>
+    :root{color-scheme:dark;--bg:#061016;--panel:#0b1b24e8;--line:#244453;--cyan:#5de7ff;--gold:#ffd36a;--pink:#ff78c8;--muted:#92a9b5;--ok:#63e6a7;--bad:#ff7b7b}
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:#ecf7fb;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Noto Sans JP",sans-serif;overflow:hidden}
+    #scene{position:fixed;inset:0}.top{position:fixed;left:22px;top:18px;z-index:4;max-width:min(690px,calc(100vw - 410px));pointer-events:none}
+    .eyebrow{font-size:11px;letter-spacing:.18em;color:var(--cyan);text-transform:uppercase}.top h1{margin:6px 0 5px;font-size:clamp(20px,3vw,38px);line-height:1.08}.top p{margin:0;color:#a9bec8;font-size:13px;line-height:1.55}
+    .panel{position:fixed;right:16px;top:16px;bottom:16px;width:360px;z-index:5;background:var(--panel);border:1px solid var(--line);border-radius:18px;backdrop-filter:blur(14px);padding:17px;overflow:auto;box-shadow:0 18px 70px #0008}
+    h2{font-size:16px;margin:0 0 4px}.doi{font-size:11px;color:var(--muted);line-height:1.55}.doi a{color:var(--cyan)}
+    .module{margin:16px 0;padding:13px;border:1px solid #1d3945;border-radius:13px;background:#07141bd9}.module header{display:flex;gap:9px;align-items:center;margin-bottom:9px}.badge{font-size:10px;border-radius:99px;padding:4px 7px;background:#17303b;color:#b9d3dd}.badge.hyp{background:#3b2638;color:#ffbce4}.badge.std{background:#18342c;color:#aef4d5}
+    label{display:block;font-size:11px;color:#a9c0ca;margin:10px 0 4px}.row{display:grid;grid-template-columns:1fr 58px;gap:9px;align-items:center}input[type=range]{width:100%;accent-color:var(--cyan)}output{font-variant-numeric:tabular-nums;text-align:right;color:#fff;font-size:12px}
+    .buttons{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:13px}button{border:1px solid #315565;background:#112b36;color:#edfaff;border-radius:10px;padding:10px;cursor:pointer;font-weight:700}button.primary{background:linear-gradient(135deg,#087d9a,#2356a2);border-color:#55d9ff}button:hover{filter:brightness(1.12)}
+    .metrics{display:grid;grid-template-columns:1fr 1fr;gap:7px}.metric{background:#061117;border:1px solid #19323d;border-radius:10px;padding:9px}.metric span{display:block;color:#89a4af;font-size:10px}.metric b{font-size:15px;font-variant-numeric:tabular-nums}.status{grid-column:1/-1}.ok{color:var(--ok)}.bad{color:var(--bad)}
+    .legend{position:fixed;left:22px;bottom:18px;z-index:4;background:#07151dca;border:1px solid var(--line);border-radius:12px;padding:10px 13px;font-size:11px;color:#b3c7d0}.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin:0 5px 0 10px}.dot:first-child{margin-left:0}
+    .notice{font-size:10px;line-height:1.5;color:#8da4af;border-top:1px solid #203a45;padding-top:12px;margin-top:13px}
+    @media(max-width:760px){body{overflow:auto}#scene{height:58vh;position:relative}.panel{position:relative;inset:auto;width:auto;margin:0;border-radius:0}.top{max-width:calc(100vw - 36px)}.top p{display:none}.legend{display:none}}
+  </style>
+</head>
+<body>
+  <div id="scene" aria-label="3D simulation viewport"></div>
+  <section class="top">
+    <div class="eyebrow">TheYKHC DOI Physics Engine / Experimental Prototype</div>
+    <h1>Digital 3D Hypothesis Laboratory</h1>
+    <p>標準光伝播と「刻宇宙（密度・時間）×元気宇宙（エネルギー・波動）」境界モデルを同条件で比較します。</p>
+  </section>
+  <aside class="panel">
+    <h2>光速不変・デュアル宇宙モジュール</h2>
+    <div class="doi">
+      <a href="https://doi.org/10.5281/zenodo.19689936" target="_blank" rel="noopener">DOI 19689936</a> ·
+      <a href="https://doi.org/10.5281/zenodo.20359077" target="_blank" rel="noopener">DOI 20359077</a><br>
+      空間表現：<a href="https://doi.org/10.5281/zenodo.21798578" target="_blank" rel="noopener">DOI 21798578</a> ·
+      二重層：<a href="https://doi.org/10.5281/zenodo.20526588" target="_blank" rel="noopener">DOI 20526588</a>
+    </div>
+
+    <div class="module">
+      <header><span class="badge std">対照群</span><strong>標準モデル</strong></header>
+      <div class="row"><span>光速（表示単位）</span><output id="cOut">1.000</output></div>
+      <label for="c">基準速度 c</label><div class="row"><input id="c" type="range" min="0.5" max="2" step="0.01" value="1"><output id="cv">1.00</output></div>
+    </div>
+
+    <div class="module">
+      <header><span class="badge hyp">未検証仮説</span><strong>二重宇宙境界</strong></header>
+      <label for="density">刻宇宙の密度勾配</label><div class="row"><input id="density" type="range" min="0" max="2" step="0.01" value="0.75"><output id="densityv">0.75</output></div>
+      <label for="energy">元気宇宙の波動強度</label><div class="row"><input id="energy" type="range" min="0" max="2" step="0.01" value="1"><output id="energyv">1.00</output></div>
+      <label for="coupling">境界結合係数 α</label><div class="row"><input id="coupling" type="range" min="0" max="1" step="0.005" value="0.12"><output id="couplingv">0.120</output></div>
+      <label for="threshold">反証許容差</label><div class="row"><input id="threshold" type="range" min="0.1" max="10" step="0.1" value="2"><output id="thresholdv">2.0%</output></div>
+      <div class="buttons"><button class="primary" id="run">実験開始</button><button id="reset">初期化</button></div>
+    </div>
+
+    <div class="metrics">
+      <div class="metric"><span>標準モデル速度</span><b id="stdSpeed">1.000</b></div>
+      <div class="metric"><span>境界モデル速度</span><b id="dualSpeed">—</b></div>
+      <div class="metric"><span>速度偏差</span><b id="deviation">—</b></div>
+      <div class="metric"><span>境界安定度</span><b id="stability">—</b></div>
+      <div class="metric status"><span>暫定判定</span><b id="verdict">未実行</b></div>
+    </div>
+    <p class="notice">この画面はDOI記載仮説を計算可能な形へ翻訳する研究用プロトタイプです。光速不変の証明、標準物理の代替、実験的検証済みの主張ではありません。係数と更新則は候補モデルであり、予測を固定した後に観測・既存理論と比較する必要があります。</p>
+  </aside>
+  <div class="legend"><span class="dot" style="background:#63e6a7"></span>標準光子 <span class="dot" style="background:#ff78c8"></span>境界光子 <span class="dot" style="background:#5de7ff"></span>刻宇宙 <span class="dot" style="background:#ffd36a"></span>元気宇宙</div>
+
+  <script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.164.1/build/three.module.js","three/addons/":"https://unpkg.com/three@0.164.1/examples/jsm/"}}</script>
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    const host=document.getElementById('scene'), scene=new THREE.Scene();
+    scene.background=new THREE.Color(0x061016); scene.fog=new THREE.FogExp2(0x061016,.028);
+    const camera=new THREE.PerspectiveCamera(52,host.clientWidth/host.clientHeight,.1,200);camera.position.set(2.5,7,16);
+    const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(host.clientWidth,host.clientHeight);host.appendChild(renderer.domElement);
+    const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.target.set(-1,0,0);
+    scene.add(new THREE.AmbientLight(0xb8eaff,1.25));const key=new THREE.DirectionalLight(0xffffff,2);key.position.set(5,8,8);scene.add(key);
+    const grid=new THREE.GridHelper(28,28,0x235166,0x102f3b);grid.position.y=-3.5;scene.add(grid);
+    const shell=(radius,color,opacity,wire=false)=>{const m=new THREE.Mesh(new THREE.SphereGeometry(radius,48,32),new THREE.MeshPhysicalMaterial({color,transparent:true,opacity,wireframe:wire,side:THREE.DoubleSide,roughness:.35,metalness:.05,depthWrite:false}));scene.add(m);return m};
+    const koku=shell(5.15,0x37d7ff,.09,true),genki=shell(4.5,0xffc44f,.07,true);koku.scale.set(1.5,.72,.72);genki.scale.set(1.55,.62,.62);
+    const boundary=new THREE.Mesh(new THREE.TorusGeometry(4.1,.075,12,160),new THREE.MeshBasicMaterial({color:0xff78c8,transparent:true,opacity:.72}));boundary.rotation.x=Math.PI/2;boundary.scale.y=.55;scene.add(boundary);
+    function photon(color,y){const m=new THREE.Mesh(new THREE.SphereGeometry(.14,18,12),new THREE.MeshBasicMaterial({color}));m.position.set(-6,y,0);scene.add(m);return m}
+    const pStd=photon(0x63e6a7,2.15),pDual=photon(0xff78c8,-.1);
+    function line(color,y){const pts=[new THREE.Vector3(-6,y,0),new THREE.Vector3(6,y,0)];const l=new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts),new THREE.LineDashedMaterial({color,dashSize:.22,gapSize:.14,transparent:true,opacity:.65}));l.computeLineDistances();scene.add(l)}line(0x63e6a7,2.15);line(0xff78c8,-.1);
+    const $=id=>document.getElementById(id), ids=['c','density','energy','coupling','threshold'];
+    function sync(){ids.forEach(id=>$(id+'v').textContent=id==='threshold'?(+$(id).value).toFixed(1)+'%':(+$(id).value).toFixed(id==='coupling'?3:2));$('cOut').textContent=(+$('c').value).toFixed(3);$('stdSpeed').textContent=(+$('c').value).toFixed(3)}ids.forEach(id=>$(id).addEventListener('input',sync));sync();
+    let running=false,t=0,samples=[];function restart(){running=false;t=0;samples=[];pStd.position.x=pDual.position.x=-6;$('dualSpeed').textContent=$('deviation').textContent=$('stability').textContent='—';$('verdict').textContent='未実行';$('verdict').className=''}
+    $('reset').onclick=restart;$('run').onclick=()=>{restart();running=true;$('verdict').textContent='計測中…'};
+    const clock=new THREE.Clock();
+    function tick(){requestAnimationFrame(tick);const dt=Math.min(clock.getDelta(),.04),c=+$('c').value,d=+$('density').value,e=+$('energy').value,a=+$('coupling').value;
+      koku.rotation.y+=dt*.035*(1+d);genki.rotation.y-=dt*.045*(1+e);boundary.rotation.z+=dt*.04;
+      if(running){t+=dt;const field=Math.sin(t*2.4+pDual.position.x*.55)*d-Math.cos(t*1.7)*e;const vDual=c*(1+a*.08*field);pStd.position.x+=c*dt*1.7;pDual.position.x+=vDual*dt*1.7;pDual.position.z=.22*Math.sin(t*2)*a;samples.push(vDual);
+        if(pStd.position.x>6||pDual.position.x>6){running=false;const avg=samples.reduce((x,y)=>x+y,0)/samples.length,variance=samples.reduce((x,y)=>x+(y-avg)**2,0)/samples.length,cv=Math.sqrt(variance)/avg*100,dev=Math.abs(avg-c)/c*100,limit=+$('threshold').value;$('dualSpeed').textContent=avg.toFixed(3);$('deviation').textContent=dev.toFixed(2)+'%';$('stability').textContent=(100-Math.min(cv,100)).toFixed(1)+'%';const pass=dev<=limit;$('verdict').textContent=pass?'許容差内（棄却されず）':'候補モデルを反証';$('verdict').className=pass?'ok':'bad';}}
+      controls.update();renderer.render(scene,camera)}tick();
+    addEventListener('resize',()=>{camera.aspect=host.clientWidth/host.clientHeight;camera.updateProjectionMatrix();renderer.setSize(host.clientWidth,host.clientHeight)});
+  </script>
+</body>
+</html>
