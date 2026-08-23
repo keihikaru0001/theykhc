@@ -1,0 +1,46 @@
+{
+  "schema": "TheYKHC ODC-SCI LED-IAD concordance v1",
+  "sources": {
+    "IAD": "odc-sci_1081.csv",
+    "LED": "odc-sci_1082.csv",
+    "dataset_DOIs": [
+      "10.34945/F5J59P",
+      "10.34945/F5DG6D"
+    ]
+  },
+  "rows": {
+    "IAD": 305,
+    "LED_groups": 21,
+    "matched_groups": 19,
+    "LED_only": 2,
+    "IAD_only": 3
+  },
+  "mean_concordance": {
+    "control_mean_Pearson_r": 0.9796298351382232,
+    "outcome_mean_Pearson_r": 0.9946965491171552,
+    "control_mean_MAE_score_units": 0.43980952223018166,
+    "outcome_mean_MAE_score_units": 0.2834782242904524
+  },
+  "normalized_change_concordance": {
+    "definition": "(outcome-control)/outcomescore_max",
+    "Pearson_r": 0.6682350742725032,
+    "MAE": 0.057272689550321776,
+    "RMSE": 0.11637106104851236,
+    "direction_agreement": 1.0,
+    "LED_mean": 0.5129773778421052,
+    "IAD_mean": 0.5501725674809816,
+    "LED_absolute_effect_larger_fraction": 0.21052631578947367
+  },
+  "sample_size": {
+    "reported_total_matched": 257,
+    "IAD_rows_matched": 272,
+    "groups_exact_n": 13,
+    "groups_compared": 19
+  },
+  "limitations": [
+    "Group assignment unavailable for PMID 22445934 in IAD",
+    "11 unknown and 1 NA group rows for PMID 21963672 are not matched",
+    "Normalized change is not the paired standardized mean difference used in the publication meta-analysis",
+    "Behavioral recovery concordance does not validate vascular, RPI, axon-guidance, or clinical equations"
+  ]
+}
