@@ -1,0 +1,84 @@
+{
+  "schema": "TheYKHC business execution experiment v1",
+  "date": "2026-08-24",
+  "status": "decision simulation, not a revenue forecast",
+  "trials_per_scenario": 20000,
+  "months": 12,
+  "observed_public_signals": [
+    "TheYKHC public website has multiple indexed entry pages",
+    "TheYKHC has a public Zenodo hypothesis archive with DOI records",
+    "No verified access-log, inquiry, conversion, or payment data were available"
+  ],
+  "results": [
+    {
+      "scenario": "archive_only",
+      "label_ja": "現状継続（公開・蓄積のみ）",
+      "trials": 20000,
+      "probability_any_customer": 0.1221,
+      "customers_median": 0.0,
+      "customers_p10": 0.0,
+      "customers_p90": 1.0,
+      "revenue_median_yen": 0,
+      "revenue_p10_yen": 0,
+      "revenue_p90_yen": 0,
+      "probability_annual_120k_yen": 0.0,
+      "probability_annual_600k_yen": 0.0
+    },
+    {
+      "scenario": "clear_offer",
+      "label_ja": "商品を一本化（90分・研究設計相談）",
+      "trials": 20000,
+      "probability_any_customer": 0.7385,
+      "customers_median": 1.0,
+      "customers_p10": 0.0,
+      "customers_p90": 4.0,
+      "revenue_median_yen": 24554,
+      "revenue_p10_yen": 0,
+      "revenue_p90_yen": 78252,
+      "probability_annual_120k_yen": 0.02395,
+      "probability_annual_600k_yen": 0.0
+    },
+    {
+      "scenario": "targeted_outreach",
+      "label_ja": "一本化商品＋月20件の個別提案",
+      "trials": 20000,
+      "probability_any_customer": 0.97125,
+      "customers_median": 4.0,
+      "customers_p10": 1.0,
+      "customers_p90": 8.0,
+      "revenue_median_yen": 159380,
+      "revenue_p10_yen": 48537,
+      "revenue_p90_yen": 353688,
+      "probability_annual_120k_yen": 0.63965,
+      "probability_annual_600k_yen": 0.0079
+    },
+    {
+      "scenario": "paid_pilot",
+      "label_ja": "月20件提案＋小規模な有償研究設計実証",
+      "trials": 20000,
+      "probability_any_customer": 0.94955,
+      "customers_median": 3.0,
+      "customers_p10": 1.0,
+      "customers_p90": 7.0,
+      "revenue_median_yen": 508975,
+      "revenue_p10_yen": 147468,
+      "revenue_p90_yen": 1217769,
+      "probability_annual_120k_yen": 0.92075,
+      "probability_annual_600k_yen": 0.4288
+    }
+  ],
+  "falsification": {
+    "archive_only": "If publication alone produces a paid inquiry, replace its zero-fee assumption and refit.",
+    "outreach": "If 60 well-targeted contacts produce no qualified replies, revise target, offer, or evidence package before scaling.",
+    "paid_pilot": "If three qualified proposal meetings produce no willingness to pay, do not interpret DOI volume as a commercial product."
+  },
+  "next_measurements": [
+    "qualified landing-page visits",
+    "offer-page clicks",
+    "targeted contacts sent",
+    "qualified replies",
+    "meetings",
+    "paid conversions",
+    "fee and delivery hours"
+  ]
+}
