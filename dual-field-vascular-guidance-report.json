@@ -1,0 +1,123 @@
+{
+  "schema": "TheYKHC dual-field in-silico experiment v1",
+  "runs": 1200,
+  "seeds_per_group": 200,
+  "steps": 45,
+  "groups": [
+    "neutral",
+    "demand_only",
+    "support_only",
+    "uniform_mix",
+    "dual_separated",
+    "dual_closed_loop"
+  ],
+  "primary_endpoint": "destination_rate",
+  "summary": [
+    {
+      "group": "demand_only",
+      "n": 200,
+      "destination_rate": 0.995,
+      "leak_mean": 0.043954917210254366,
+      "vessel_cells_mean": 423.63,
+      "forward_extent_mean": 43.88,
+      "lateral_deviation_mean": 3.8851559004117484,
+      "route_efficiency_mean": 0.4587889480484913,
+      "destination_gain_vs_neutral": 0.050000000000000044
+    },
+    {
+      "group": "dual_closed_loop",
+      "n": 200,
+      "destination_rate": 1.0,
+      "leak_mean": 0.0,
+      "vessel_cells_mean": 416.7,
+      "forward_extent_mean": 43.95,
+      "lateral_deviation_mean": 3.5388948938576106,
+      "route_efficiency_mean": 0.46982659989087966,
+      "destination_gain_vs_neutral": 0.05500000000000005
+    },
+    {
+      "group": "dual_separated",
+      "n": 200,
+      "destination_rate": 1.0,
+      "leak_mean": 0.0,
+      "vessel_cells_mean": 413.94,
+      "forward_extent_mean": 43.935,
+      "lateral_deviation_mean": 3.475840061321554,
+      "route_efficiency_mean": 0.4738819731676085,
+      "destination_gain_vs_neutral": 0.05500000000000005
+    },
+    {
+      "group": "neutral",
+      "n": 200,
+      "destination_rate": 0.945,
+      "leak_mean": 0.0,
+      "vessel_cells_mean": 387.48,
+      "forward_extent_mean": 43.745,
+      "lateral_deviation_mean": 4.46907032156601,
+      "route_efficiency_mean": 0.4897125488491707,
+      "destination_gain_vs_neutral": 0.0
+    },
+    {
+      "group": "support_only",
+      "n": 200,
+      "destination_rate": 0.995,
+      "leak_mean": 0.0,
+      "vessel_cells_mean": 386.65,
+      "forward_extent_mean": 43.865,
+      "lateral_deviation_mean": 3.7413255803263126,
+      "route_efficiency_mean": 0.5054400176328275,
+      "destination_gain_vs_neutral": 0.050000000000000044
+    },
+    {
+      "group": "uniform_mix",
+      "n": 200,
+      "destination_rate": 0.995,
+      "leak_mean": 0.0,
+      "vessel_cells_mean": 537.815,
+      "forward_extent_mean": 43.9,
+      "lateral_deviation_mean": 4.686887006888854,
+      "route_efficiency_mean": 0.3545700194072794,
+      "destination_gain_vs_neutral": 0.050000000000000044
+    }
+  ],
+  "paired_comparisons": {
+    "dual_separated_vs_neutral": {
+      "paired_rate_difference": 0.055,
+      "bootstrap_95CI": [
+        0.025,
+        0.09
+      ],
+      "discordant_dual_wins": 11,
+      "discordant_other_wins": 0
+    },
+    "dual_separated_vs_demand_only": {
+      "paired_rate_difference": 0.005,
+      "bootstrap_95CI": [
+        0.0,
+        0.015
+      ],
+      "discordant_dual_wins": 1,
+      "discordant_other_wins": 0
+    },
+    "dual_separated_vs_support_only": {
+      "paired_rate_difference": 0.005,
+      "bootstrap_95CI": [
+        0.0,
+        0.015
+      ],
+      "discordant_dual_wins": 1,
+      "discordant_other_wins": 0
+    },
+    "dual_separated_vs_uniform_mix": {
+      "paired_rate_difference": 0.005,
+      "bootstrap_95CI": [
+        0.0,
+        0.015
+      ],
+      "discordant_dual_wins": 1,
+      "discordant_other_wins": 0
+    }
+  },
+  "falsification_rule": "Reject guidance benefit if dual_separated does not exceed both single-field groups in destination rate, or if gain is accompanied by materially higher leakage.",
+  "status": "illustrative agent model; not biological evidence"
+}
