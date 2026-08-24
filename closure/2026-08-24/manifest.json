@@ -1,0 +1,71 @@
+{
+  "archive": "TheYKHC Final Archive",
+  "closure_date": "2026-08-24",
+  "timezone": "Asia/Tokyo",
+  "status": "closed",
+  "repository": {
+    "full_name": "keihikaru0001/theykhc",
+    "branch": "main",
+    "pre_closure_head": "b596f1b4c0d37fd59a61f6d0d0e584b5d96cd567",
+    "archive_commit": "e151d82a9e9c8893720e02a9245b40b853de9784"
+  },
+  "google_sheets": {
+    "source_id": "1_C4xR4HJFRXUHxej-AIWUePA0INeeHNYZMt8ijPTJF4",
+    "final_id": "1HE0_1TZ2Vf_Rtgzfv3EiwYOTn9SSvg2Ln6WYyRKn_jU",
+    "final_url": "https://docs.google.com/spreadsheets/d/1HE0_1TZ2Vf_Rtgzfv3EiwYOTn9SSvg2Ln6WYyRKn_jU/edit",
+    "copied_tabs": [
+      "KnowledgeStandard",
+      "Questions (748)",
+      "SeedRecords (DOI)",
+      "System Summary"
+    ],
+    "closure_tabs": [
+      "FINAL_SUMMARY",
+      "ASSET_INDEX",
+      "VERIFICATION_RESULTS",
+      "UNMET_AND_LIMITS",
+      "PRESERVATION_MANIFEST"
+    ]
+  },
+  "corpus": {
+    "zenodo_live_records": 1043,
+    "title_lineages": 797,
+    "organized_concepts": 748,
+    "questions_archive": 2197,
+    "all_data_backup_records": 3373,
+    "all_data_backup_entities": 16
+  },
+  "publication": {
+    "grand_declaration_doi": "10.5281/zenodo.22018199",
+    "all_versions_doi": "10.5281/zenodo.22018198"
+  },
+  "verification": {
+    "vascular_guidance_runs": 1200,
+    "conditions": 6,
+    "runs_per_condition": 200,
+    "dual_soil_vs_unguided_arrival_rate_delta_pp": 5.5,
+    "dual_soil_vs_developmental_soil_delta_pp": 0.5,
+    "closed_loop_outperformed_static_dual_soil": false,
+    "always_on_rescue_soil_necessity_confirmed": false
+  },
+  "evidence_commits": {
+    "neurovascular_digital_twin": "f15eeb381e5ccba9659116fba59e3be8252adc6e",
+    "held_out_pipeline": "5853af3a46e7b59dc81f4fe76c0e6cc3c5ec0199",
+    "unseen_study_results": "522dd1cd139bd95ce77ab9548d11790347474255",
+    "literature_individual_concordance": "4709a3188841c519656990e0013dba1b20826df1",
+    "vascular_guidance_results": "09f259b60b459b1038e6d5da8ccfd1a67dfe7272"
+  },
+  "unmet": [
+    "paid_poC",
+    "recurring_revenue",
+    "market_validation",
+    "independent_replication",
+    "formal_research_collaboration",
+    "clinical_efficacy",
+    "empirical_physics_or_propulsion_proof",
+    "verified_investment_or_regulatory_approval",
+    "physical_laboratory_or_700m_tower",
+    "established_asset_value"
+  ],
+  "integrity_rule": "Publication, document volume, prototype code and simulation results must not be represented as scientific proof, clinical evidence, market validation or commercial success."
+}
