@@ -1,0 +1,48 @@
+{
+  "name": "MoralogyDocument",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "author": {
+      "type": "string"
+    },
+    "publication_date": {
+      "type": "string"
+    },
+    "doi": {
+      "type": "string"
+    },
+    "source_url": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string"
+    },
+    "license": {
+      "type": "string"
+    },
+    "rights_status": {
+      "type": "string",
+      "enum": [
+        "cleared",
+        "restricted",
+        "review_required"
+      ],
+      "default": "review_required"
+    },
+    "scope_note": {
+      "type": "string"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "title",
+    "author",
+    "rights_status"
+  ]
+}
