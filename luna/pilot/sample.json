@@ -1,0 +1,160 @@
+{
+  "date": "2026-10-02",
+  "status": "internal_sample_no_customer_test",
+  "records": [
+    {
+      "id": "S01",
+      "source_file": "go_full_clean_748.json",
+      "doi": "10.5281/zenodo.19012096",
+      "title": "theykch legacy codex",
+      "question": "theykch legacy codexを基にした知識継承システムの導入による組織の利点は何か？",
+      "decision": "採用",
+      "reason": "判断理由を引き継ぐ中心の問い。",
+      "evidence": "GitHub保存レコード。原論文本文は未読。判断と理由は今回AIが作成。"
+    },
+    {
+      "id": "S02",
+      "source_file": "go_full_clean_748.json",
+      "doi": "10.5281/zenodo.20359226",
+      "title": "The Master-Embedded Device v3.0: Toward a Peer-Reviewable Framework for Tacit Knowledge Transfer into AI Agent Systems",
+      "question": "タクティクスの知識をAIに転送するための新しいプラットフォームは、どのように設計されるべきか？",
+      "decision": "限定採用",
+      "reason": "AIへの転送は実証せず、記録の検索・引用までに限定。",
+      "evidence": "GitHub保存レコード。原論文本文は未読。判断と理由は今回AIが作成。"
+    },
+    {
+      "id": "S03",
+      "source_file": "go_full_clean_748.json",
+      "doi": "10.5281/zenodo.20317978",
+      "title": "The Master-Embedded Device v2.0: Tacit Knowledge Density Transfer Through Structured AI Agent Architecture",
+      "question": "AIエージェントを通じた暗黙知の転送は、新しい商品やサービスの開発にどのように寄与するか？",
+      "decision": "限定採用",
+      "reason": "開発への応用は候補として残し、効果は試験する。",
+      "evidence": "GitHub保存レコード。原論文本文は未読。判断と理由は今回AIが作成。"
+    },
+    {
+      "id": "S04",
+      "source_file": "go_full_clean_748.json",
+      "doi": "10.5281/zenodo.20318003",
+      "title": "The Master-Embedded Device v3.0: Toward a Peer-Reviewable Framework for Tacit Knowledge Transfer into AI Agent Systems",
+      "question": "社会的暗黙知をAIシステムに組み込むことで、どのような新しいサービスを商品化できるか？",
+      "decision": "保留",
+      "reason": "社会全体の暗黙知は範囲が広く、最初の顧客を絞れない。",
+      "evidence": "GitHub保存レコード。原論文本文は未読。判断と理由は今回AIが作成。"
+    },
+    {
+      "id": "S05",
+      "source_file": "go_full_clean_748.json",
+      "doi": "10.5281/zenodo.20317672",
+      "title": "The Master-Embedded Device: Transferring Tacit Knowledge Density into AI Agent Architecture",
+      "question": "専門家の暗黙知をAIに移転することで、どのような新しいサービスが生まれるか？",
+      "decision": "限定採用",
+      "reason": "専門家本人に判断の再現性を確認してもらう。",
+      "evidence": "GitHub保存レコード。原論文本文は未読。判断と理由は今回AIが作成。"
+    },
+    {
+      "id": "S06",
+      "source_file": "go_full_clean_748.json",
+      "doi": "10.5281/zenodo.20359232",
+      "title": "The Master-Embedded Device: Transmitting Tacit Knowledge Density Through AI Agent Architecture",
+      "question": "職人の暗黙知をデジタル化し、特定の産業に応じたAIエージェントとして商業化することは可能か？",
+      "decision": "採用",
+      "reason": "職人・制作担当者の一案件に対象を絞れる。",
+      "evidence": "GitHub保存レコード。原論文本文は未読。判断と理由は今回AIが作成。"
+    },
+    {
+      "id": "S07",
+      "source_file": "go_full_clean_748.json",
+      "doi": "10.5281/zenodo.19012104",
+      "title": "theykch legacy codex",
+      "question": "Theykch Legacy Codexがデジタルアーカイブの設計にどのように役立つか？",
+      "decision": "採用",
+      "reason": "原資料と修正履歴の保持に使う。",
+      "evidence": "GitHub保存レコード。原論文本文は未読。判断と理由は今回AIが作成。"
+    },
+    {
+      "id": "S08",
+      "source_file": "go_full_clean_748.json",
+      "doi": "10.5281/zenodo.19011972",
+      "title": "05 cultural asset application",
+      "question": "文化資産のデジタルアーカイブ化がおもてなし産業に与える影響は？",
+      "decision": "保留",
+      "reason": "観光サービスへの展開は初回商品の範囲を超える。",
+      "evidence": "GitHub保存レコード。原論文本文は未読。判断と理由は今回AIが作成。"
+    },
+    {
+      "id": "S09",
+      "source_file": "go_full_clean_748.json",
+      "doi": "10.5281/zenodo.19011855",
+      "title": "05 cultural asset application",
+      "question": "文化資産のデジタルアーカイブがもたらす経済効果とは？",
+      "decision": "保留",
+      "reason": "経済効果は外部測定なしに表示できない。",
+      "evidence": "GitHub保存レコード。原論文本文は未読。判断と理由は今回AIが作成。"
+    },
+    {
+      "id": "S10",
+      "source_file": "go_full_clean_748.json",
+      "doi": "10.5281/zenodo.19012309",
+      "title": "cultural asset app",
+      "question": "文化資産アプリによって、どのように地域経済を活性化できるか？",
+      "decision": "保留",
+      "reason": "地域活性化は長期の評価対象で、初回納品の保証にしない。",
+      "evidence": "GitHub保存レコード。原論文本文は未読。判断と理由は今回AIが作成。"
+    }
+  ],
+  "concepts": [
+    {
+      "name": "問いの継承帳",
+      "core": "判断の理由を次の担当者へ渡す。",
+      "sources": [
+        "S01",
+        "S06",
+        "S07"
+      ],
+      "use": "過去案件の採用・棄却理由をカードにし、新しい制約で再評価する。"
+    },
+    {
+      "name": "試作前の理由レビュー",
+      "core": "作る前に、根拠の抜けを見つける。",
+      "sources": [
+        "S02",
+        "S03",
+        "S05"
+      ],
+      "use": "企画一案の根拠・反対理由・未解決点をまとめ、専門家が確認する。"
+    },
+    {
+      "name": "文化記録から商品仮説へ",
+      "core": "地域の記録を利用者の問いへ変換する。",
+      "sources": [
+        "S08",
+        "S09",
+        "S10"
+      ],
+      "use": "文化資料から体験企画を起こす。初回は保留し、地域の顧客課題が得られた後に検討する。"
+    }
+  ],
+  "chosen": "問いの継承帳",
+  "prototype": {
+    "fields": [
+      "出典",
+      "問い",
+      "採否",
+      "理由",
+      "制約",
+      "次の試作"
+    ],
+    "task": "10件のカードから、新案件に使う3件と使わない1件を選び、理由を説明する。",
+    "acceptance": [
+      "説明した根拠を原カードへたどれる",
+      "原文と今回の判断を区別できる",
+      "利用者が理由と制約を訂正できる"
+    ],
+    "not_tested": [
+      "顧客の支払意思",
+      "実務での時間短縮",
+      "暗黙知転送の成立"
+    ]
+  }
+}
