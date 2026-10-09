@@ -1,0 +1,37 @@
+{
+  "name": "SafetyEvent",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string"
+    },
+    "request_id": {
+      "type": "string"
+    },
+    "risk_level": {
+      "type": "string",
+      "enum": [
+        "none",
+        "concern",
+        "urgent"
+      ]
+    },
+    "matched_signals": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "action_taken": {
+      "type": "string"
+    },
+    "human_followup_required": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "risk_level",
+    "action_taken"
+  ]
+}

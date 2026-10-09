@@ -1,0 +1,39 @@
+{
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string"
+    },
+    "amount": {
+      "type": "number"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "earn",
+        "spend",
+        "royalty"
+      ]
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "chat",
+        "club",
+        "bonus",
+        "royalty_distribution"
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
+    "related_request_id": {
+      "type": "string"
+    },
+    "artist_id": {
+      "type": "string"
+    }
+  },
+  "required": [],
+  "name": "HikariTransaction"
+}

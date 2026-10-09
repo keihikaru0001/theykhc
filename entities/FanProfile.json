@@ -1,0 +1,45 @@
+{
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string"
+    },
+    "birth_date": {
+      "type": "string"
+    },
+    "dominant_emotion": {
+      "type": "string"
+    },
+    "interaction_count": {
+      "type": "number",
+      "default": 0
+    },
+    "hikari_balance": {
+      "type": "number",
+      "default": 0
+    },
+    "membership_tier": {
+      "type": "string",
+      "enum": [
+        "FREE",
+        "MEMBER",
+        "DEEP"
+      ],
+      "default": "FREE"
+    },
+    "emotion_history": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "followed_artists": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [],
+  "name": "FanProfile"
+}
