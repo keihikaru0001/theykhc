@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "properties": {
+    "fan_id": {
+      "type": "string"
+    },
+    "artist_id": {
+      "type": "string"
+    },
+    "input": {
+      "type": "string"
+    },
+    "output": {
+      "type": "string"
+    },
+    "detected_emotion": {
+      "type": "string"
+    },
+    "context_summary": {
+      "type": "string"
+    },
+    "referenced_lyric_id": {
+      "type": "string"
+    },
+    "referenced_lyric_title": {
+      "type": "string"
+    },
+    "hikari_earned": {
+      "type": "number",
+      "default": 0
+    },
+    "biorhythm_state": {
+      "type": "object"
+    }
+  },
+  "required": [],
+  "name": "FanRequest"
+}
