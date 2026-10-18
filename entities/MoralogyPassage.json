@@ -1,0 +1,39 @@
+{
+  "name": "MoralogyPassage",
+  "type": "object",
+  "properties": {
+    "document_id": {
+      "type": "string"
+    },
+    "section": {
+      "type": "string"
+    },
+    "page": {
+      "type": "number"
+    },
+    "passage_text": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "keywords": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "source_locator": {
+      "type": "string"
+    },
+    "is_quotable": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "document_id",
+    "passage_text",
+    "source_locator"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "name": "CounselingCitation",
+  "type": "object",
+  "properties": {
+    "request_id": {
+      "type": "string"
+    },
+    "document_id": {
+      "type": "string"
+    },
+    "passage_id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "author": {
+      "type": "string"
+    },
+    "source_locator": {
+      "type": "string"
+    },
+    "source_url": {
+      "type": "string"
+    },
+    "use_type": {
+      "type": "string",
+      "enum": [
+        "quotation",
+        "paraphrase",
+        "interpretation"
+      ]
+    }
+  },
+  "required": [
+    "request_id",
+    "document_id",
+    "passage_id",
+    "use_type"
+  ]
+}
