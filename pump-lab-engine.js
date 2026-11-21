@@ -29,7 +29,7 @@ const finalVolume=drive(end,p,axes,amp)[0]+p.compliance*y[0],qin=y[1]-window.y[1
 return {modelVersion:version,parameters:p,axes,amplitude:amp,valves,stroke:p.volume*(1-Math.pow(1-amp,axes)),meanFlow:qout/(2*T),peakPressure:peak,peakFlow,minVolume:minvol,massResidual:residual,cycleFlowDifference:Math.abs(last-prior)/T,rows,valid:minvol>0&&Number.isFinite(peak)&&Math.abs(residual)<.001,actualStep:h};
 }
 function compare(input={}){const p=parameters(input),equal=1-Math.pow(1-p.amplitude,3);return [
-['一軸・指定短縮率',{axes:1}],['三軸・指定短縮率',{axes:3}],['一軸・同じ幾何ストローク',{axes:1,amplitude:equal}],['三軸・逆止弁なし',{axes:3,valves:false}],['駆動なし',{axes:1,amplitude:0}]
+['一軸・同じ各軸短縮率',{axes:1}],['三軸・同じ各軸短縮率',{axes:3}],['一軸・同じ容積変化幅',{axes:1,amplitude:equal}],['三軸・逆止弁なし',{axes:3,valves:false}],['駆動なし',{axes:1,amplitude:0}]
 ].map(([name,options])=>({name,...simulate(p,options)}));}
 // An explicitly prescribed volume waveform, common to both actuator geometries.
 // Linear springs/dampers represent generalized mechanism loads, not calibrated wall materials.
@@ -57,3 +57,4 @@ return {modelVersion:version,parameters:p,mechanicalParameters:m,waveform:'match
 }
 return {version,defaults,bounds,parameters,drive,simulate,compare,mechanicalParameters,mechanicalInterpretation,mechanics};
 });
+
