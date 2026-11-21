@@ -1,7 +1,7 @@
-/* TheYKHC pump laboratory 0.1.0. Illustrative lumped model; not a clinical model. */
+/* TheYKHC pump laboratory 0.2.0. Illustrative lumped model; not a clinical model. */
 (function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.PumpLab=api;})(typeof globalThis!=='undefined'?globalThis:this,function(){
 'use strict';
-const version='0.1.0';
+const version='0.2.0';
 const defaults={volume:20,compliance:1,resistance:2,backpressure:1,frequency:1,amplitude:.1,cycles:12,dt:.002};
 const bounds={volume:[5,50],compliance:[.25,3],resistance:[.5,5],backpressure:[0,3],frequency:[.5,2],amplitude:[0,.3],cycles:[12,12],dt:[.00025,.002]};
 function parameters(input={}){const p={...defaults};for(const k of Object.keys(bounds)){if(input[k]!==undefined)p[k]=input[k];const [a,b]=bounds[k];if(typeof p[k]!=='number'||!Number.isFinite(p[k])||p[k]<a||p[k]>b)throw Error('条件の範囲外: '+k);}return p;}
@@ -31,5 +31,29 @@ return {modelVersion:version,parameters:p,axes,amplitude:amp,valves,stroke:p.vol
 function compare(input={}){const p=parameters(input),equal=1-Math.pow(1-p.amplitude,3);return [
 ['一軸・指定短縮率',{axes:1}],['三軸・指定短縮率',{axes:3}],['一軸・同じ幾何ストローク',{axes:1,amplitude:equal}],['三軸・逆止弁なし',{axes:3,valves:false}],['駆動なし',{axes:1,amplitude:0}]
 ].map(([name,options])=>({name,...simulate(p,options)}));}
-return {version,defaults,bounds,parameters,drive,simulate,compare};
+// An explicitly prescribed volume waveform, common to both actuator geometries.
+// Linear springs/dampers represent generalized mechanism loads, not calibrated wall materials.
+function mechanicalParameters(input={}){
+const p={stiffness:100,damping:.5};
+for(const [key,max] of [['stiffness',1000],['damping',10]]){if(input[key]!==undefined)p[key]=input[key];if(typeof p[key]!=='number'||!Number.isFinite(p[key])||p[key]<0||p[key]>max)throw Error('機械条件の範囲外: '+key);}return p;
+}
+function mechanicalInterpretation(fluid,axes,config={}){
+if(![1,3].includes(axes))throw Error('無効な軸数');
+const m=mechanicalParameters(config),p=fluid.parameters,L=Math.cbrt(p.volume*1e-6),A=1-Math.pow(1-p.amplitude,3),w=2*Math.PI*p.frequency;
+const rows=fluid.rows.map(r=>{
+const s=(1-Math.cos(w*r.t))/2,ds=w*Math.sin(w*r.t)/2,b=1-A*s,lambda=Math.pow(b,1/axes),q=L*(1-lambda),speed=L*A/axes*Math.pow(b,1/axes-1)*ds;
+const area=L*L*Math.pow(lambda,axes-1),pressureForce=r.pressure*1000*area,springForce=m.stiffness*q,dampingForce=m.damping*speed,force=pressureForce+springForce+dampingForce;
+const mechanicalPower=axes*force*speed,wallPower=-r.pressure*drive(r.t,p,1,A)[1]*.001,damperPower=axes*m.damping*speed*speed;
+return {...r,displacement:q,speed,force,pressureForce,springForce,dampingForce,mechanicalPower,positivePower:Math.max(mechanicalPower,0),returnedPower:Math.max(-mechanicalPower,0),wallPower,damperPower,resistancePower:p.resistance*(r.inlet*r.inlet+r.outlet*r.outlet)*.001,outputPower:p.backpressure*r.outlet*.001,elasticEnergy:.5*axes*m.stiffness*q*q,fluidEnergy:.5*p.compliance*r.pressure*r.pressure*.001,referenceVolumeFromGeometry:p.volume*Math.pow(lambda,axes)};
+});
+const integrate=key=>rows.slice(1).reduce((sum,r,i)=>sum+(r.t-rows[i].t)*(r[key]+rows[i][key])/2,0),duration=rows.at(-1).t-rows[0].t;
+const signedWork=integrate('mechanicalPower'),positiveWork=integrate('positivePower'),returnedWork=integrate('returnedPower'),damperLoss=integrate('damperPower'),resistanceLoss=integrate('resistancePower'),outputWork=integrate('outputPower'),elasticChange=rows.at(-1).elasticEnergy-rows[0].elasticEnergy,fluidChange=rows.at(-1).fluidEnergy-rows[0].fluidEnergy;
+const balanceResidual=signedWork-elasticChange-fluidChange-damperLoss-resistanceLoss-outputWork;
+return {axes,mechanicalParameters:m,meanFlow:fluid.meanFlow,peakPressure:fluid.peakPressure,stroke:fluid.stroke,referenceSide:L,duration,meanPositivePower:positiveWork/duration,positiveWork,returnedWork,signedWork,damperLoss,resistanceLoss,outputWork,elasticChange,fluidChange,balanceResidual,peakForce:Math.max(...rows.map(r=>Math.abs(r.force))),peakDisplacement:Math.max(...rows.map(r=>r.displacement)),valid:fluid.valid&&Math.abs(balanceResidual)<1e-5,rows};
+}
+function mechanics(input={},config={}){
+const p=parameters(input),m=mechanicalParameters(config),A=1-Math.pow(1-p.amplitude,3),fluid=simulate(p,{axes:1,amplitude:A});
+return {modelVersion:version,parameters:p,mechanicalParameters:m,waveform:'matched-volume-linear-sinusoid',fluid,runs:[mechanicalInterpretation(fluid,1,m),mechanicalInterpretation(fluid,3,m)]};
+}
+return {version,defaults,bounds,parameters,drive,simulate,compare,mechanicalParameters,mechanicalInterpretation,mechanics};
 });
