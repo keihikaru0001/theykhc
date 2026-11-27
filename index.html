@@ -2,60 +2,323 @@
 <html lang="ja">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>TheYKHC — 休眠・保存状態</title>
-<meta name="description" content="TheYKHCは現在、活動を休止し、研究記録と知的資産を保存する休眠状態にあります。">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>福井市への提案｜地域の仕事をつなぐ小さな循環 | TheYKHC</title>
+<meta name="description" content="福井市と地域の暮らしに役立つ課題から、一次・二次・三次産業をつなぐ小さな循環を考えるTheYKHCの独立提案。市との連携や実証は未決定です。">
 <meta name="robots" content="index,follow">
+<meta name="theme-color" content="#112b32">
 <style>
-:root{color-scheme:dark;--bg:#070b10;--panel:#0d141c;--line:#263342;--text:#edf1f5;--muted:#9ba9b7;--accent:#b4c8d9;--gold:#d7b46a}
-*{box-sizing:border-box}html,body{min-height:100%}body{margin:0;background:radial-gradient(circle at 50% -15%,#233343 0,transparent 42rem),var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;line-height:1.85}
-main{width:min(780px,calc(100% - 32px));margin:auto;padding:clamp(60px,12vh,130px) 0 70px}.mark{letter-spacing:.18em;color:var(--accent);font-weight:700}.state{display:inline-block;margin-top:22px;padding:7px 12px;border:1px solid var(--gold);border-radius:999px;color:var(--gold);font-size:.82rem;letter-spacing:.12em}
-h1{font-size:clamp(2.2rem,7vw,4.6rem);line-height:1.08;margin:.4em 0 .35em;letter-spacing:-.035em}.lead{font-size:clamp(1.05rem,2.5vw,1.25rem);color:#d6dee6}
-section{margin-top:45px;padding-top:28px;border-top:1px solid var(--line)}h2{font-size:1.15rem;color:var(--accent);margin:0 0 12px}p{margin:.7em 0}.note{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px 24px;color:var(--muted)}
-.serial{background:linear-gradient(145deg,#102427,#0b1519);border:1px solid #41625e;border-radius:18px;padding:26px}.serial-kicker{color:var(--gold);font-size:.76rem;letter-spacing:.14em}.serial h3{font-size:clamp(1.35rem,4vw,2rem);line-height:1.35;margin:10px 0}.serial p{color:#c5d1d8}.serial-meta{color:var(--muted);font-size:.84rem}.serial-link{display:inline-block;margin-top:12px;padding:10px 15px;border:1px solid var(--gold);border-radius:9px;color:var(--gold);text-decoration:none;font-weight:700}.serial-link:hover{background:var(--gold);color:#171207}
-a{color:#c7dded}footer{margin-top:50px;color:var(--muted);font-size:.9rem}@media(max-width:600px){main{padding-top:70px}.note{padding:18px}}
-
-.blog-card{display:block;background:linear-gradient(145deg,#102427,#0b1519);border:1px solid #41625e;border-radius:18px;padding:26px;color:var(--text);text-decoration:none;transition:border-color .2s,background .2s}.blog-card:hover{border-color:var(--gold);background:#14262a}.blog-card:focus-visible{outline:3px solid var(--gold);outline-offset:5px}.blog-kicker{color:var(--gold);font-size:.875rem;letter-spacing:.12em}.blog-card h3{font-size:clamp(1.35rem,4vw,2rem);line-height:1.35;margin:10px 0}.blog-card p{color:#c5d1d8}.blog-address{display:block;color:var(--muted);font-size:.9rem;overflow-wrap:anywhere}.blog-action{display:inline-block;margin-top:16px;padding:8px 14px;border:1px solid var(--gold);border-radius:9px;color:var(--gold);font-weight:700}.blog-note{color:var(--muted);font-size:.9rem}
+:root {
+  color-scheme: light;
+  --ink: #17343a;
+  --muted: #5d6b6a;
+  --paper: #f7f5ef;
+  --card: #fffefa;
+  --line: #d8dfd8;
+  --green: #276453;
+  --green-dark: #19483e;
+  --gold: #c69a4c;
+  --pale: #e8f0e9;
+  --blue-pale: #edf2f3;
+  --shadow: 0 18px 44px rgba(23, 52, 58, .08);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", sans-serif;
+  line-height: 1.8;
+  letter-spacing: .015em;
+}
+a { color: var(--green-dark); text-underline-offset: .18em; }
+a:hover { color: #9a712d; }
+.skip {
+  position: absolute; left: -9999px; top: 8px; z-index: 20;
+  background: white; padding: 10px 14px; border-radius: 8px;
+}
+.skip:focus { left: 8px; }
+.wrap { width: min(1080px, calc(100% - 36px)); margin: 0 auto; }
+.topbar {
+  display: flex; justify-content: space-between; align-items: center;
+  min-height: 74px; gap: 24px; border-bottom: 1px solid var(--line);
+}
+.brand { font-weight: 800; letter-spacing: .12em; font-size: .88rem; }
+.brand span { display: block; color: var(--muted); font-size: .66rem; letter-spacing: .16em; font-weight: 500; }
+nav { display: flex; gap: 22px; flex-wrap: wrap; justify-content: flex-end; font-size: .82rem; }
+nav a { color: var(--muted); text-decoration: none; }
+nav a:hover { color: var(--green-dark); text-decoration: underline; }
+.hero { padding: clamp(52px, 9vw, 106px) 0 68px; }
+.kicker {
+  display: inline-flex; align-items: center; gap: 9px; color: var(--green);
+  font-size: .78rem; font-weight: 800; letter-spacing: .11em;
+}
+.kicker::before { content: ""; width: 22px; height: 2px; background: var(--gold); }
+.status {
+  display: inline-block; margin: 0 0 21px 12px; padding: 5px 10px;
+  border: 1px solid #bdcfc6; border-radius: 999px; color: var(--green-dark);
+  font-size: .72rem; font-weight: 700; vertical-align: 1px;
+}
+h1 {
+  max-width: 850px; margin: 20px 0 17px;
+  font-size: clamp(2.25rem, 6.7vw, 4.9rem); line-height: 1.22;
+  letter-spacing: -.045em; font-weight: 750;
+}
+.lead { max-width: 740px; margin: 0; color: #43595a; font-size: clamp(1.02rem, 2vw, 1.25rem); }
+.hero-note {
+  display: flex; gap: 12px; align-items: flex-start; max-width: 790px;
+  margin-top: 30px; padding: 17px 20px; border-left: 3px solid var(--gold);
+  background: rgba(255, 254, 250, .76); color: #52615f; font-size: .9rem;
+}
+.hero-note strong { color: var(--ink); white-space: nowrap; }
+.actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+.button {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 46px; padding: 10px 17px; border: 1px solid var(--green);
+  border-radius: 7px; background: var(--green); color: white;
+  text-decoration: none; font-size: .88rem; font-weight: 750;
+}
+.button:hover { background: var(--green-dark); color: white; }
+.button.secondary { color: var(--green-dark); background: transparent; }
+.button.secondary:hover { background: var(--pale); }
+.section { padding: 66px 0; border-top: 1px solid var(--line); }
+.section-head { max-width: 740px; margin-bottom: 28px; }
+.eyebrow { color: var(--green); font-size: .72rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+h2 { margin: 7px 0 10px; font-size: clamp(1.55rem, 3.2vw, 2.25rem); line-height: 1.4; letter-spacing: -.025em; }
+.section-head p { margin: 0; color: var(--muted); }
+.context-grid, .flow-grid, .measure-grid { display: grid; gap: 15px; }
+.context-grid { grid-template-columns: repeat(3, 1fr); }
+.flow-grid { grid-template-columns: repeat(3, 1fr); }
+.measure-grid { grid-template-columns: repeat(2, 1fr); }
+.card {
+  padding: 22px 23px; background: var(--card); border: 1px solid var(--line);
+  border-radius: 12px; box-shadow: var(--shadow);
+}
+.card h3 { margin: 0 0 7px; font-size: 1.05rem; line-height: 1.5; }
+.card p { margin: 0; color: var(--muted); font-size: .9rem; }
+.num { color: var(--gold); font-size: .76rem; font-weight: 850; letter-spacing: .12em; }
+.flow-card { min-height: 164px; border-top: 3px solid var(--green); }
+.flow-card h3 { margin-top: 10px; }
+.flow-caption { margin-top: 18px; color: var(--green-dark); font-size: .83rem; font-weight: 700; }
+.callout {
+  margin-top: 19px; padding: 18px 20px; background: var(--blue-pale);
+  border-radius: 10px; color: #4d5d5f; font-size: .9rem;
+}
+.steps { counter-reset: step; display: grid; gap: 0; }
+.step {
+  counter-increment: step; display: grid; grid-template-columns: 52px 1fr;
+  gap: 16px; padding: 18px 0; border-top: 1px solid var(--line);
+}
+.step::before {
+  content: "0" counter(step); color: var(--green); font-size: .8rem;
+  font-weight: 850; letter-spacing: .08em; padding-top: 3px;
+}
+.step h3 { margin: 0 0 4px; font-size: 1rem; }
+.step p { margin: 0; color: var(--muted); font-size: .9rem; }
+.measure-grid .card { box-shadow: none; }
+.measure-grid h3 { color: var(--green-dark); }
+.note-panel {
+  padding: clamp(22px, 4vw, 34px); background: var(--ink); color: #eff4ef;
+  border-radius: 14px;
+}
+.note-panel h2 { color: white; }
+.note-panel p { color: #d2ddda; }
+.note-panel a { color: #f0d596; }
+.truth-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 22px; }
+.truth {
+  padding: 15px 16px; border: 1px solid rgba(255,255,255,.2);
+  border-radius: 9px; color: #e0e8e5; font-size: .86rem;
+}
+.truth strong { display: block; margin-bottom: 3px; color: #f0d596; }
+.refs { display: flex; flex-wrap: wrap; gap: 12px 22px; padding: 0; list-style: none; }
+.refs li { font-size: .9rem; }
+footer { padding: 32px 0 42px; color: var(--muted); font-size: .8rem; }
+footer .foot-row { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 22px; }
+@media (max-width: 760px) {
+  .topbar { align-items: flex-start; flex-direction: column; justify-content: center; padding: 15px 0; gap: 11px; }
+  nav { justify-content: flex-start; gap: 10px 17px; }
+  .context-grid, .flow-grid { grid-template-columns: 1fr; }
+  .measure-grid, .truth-grid { grid-template-columns: 1fr; }
+  .hero-note { flex-direction: column; gap: 3px; }
+  .status { margin: 13px 0 0; }
+  .section { padding: 52px 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
 </style>
 </head>
 <body>
-<main>
-<div class="mark">TheYKHC</div>
-<div class="state">DORMANT · PRESERVATION MODE</div>
-<h1>休眠・保存状態</h1>
-<p class="lead">TheYKHCは、問いと研究記録の蓄積から実商品開発に至りました。その到達と同時に、対外的な営業、販売および新規案件の受付を休止し、成果と知的資産を守る休眠状態へ移行しました。</p>
+<a class="skip" href="#main">本文へ移動</a>
+<div class="wrap">
+<header class="topbar">
+  <div class="brand">TheYKHC<span>FUKUI · JAPAN</span></div>
+  <nav aria-label="ページ内ナビゲーション">
+    <a href="#purpose">提案の背景</a>
+    <a href="#model">循環モデル</a>
+    <a href="#process">進め方</a>
+    <a href="#conditions">現在の段階</a>
+  </nav>
+</header>
+<main id="main">
+  <section class="hero" aria-labelledby="page-title">
+    <div class="kicker">福井市への独立提案</div>
+    <div class="status">構想公開・検討段階</div>
+    <h1 id="page-title">福井市の暮らしから、<br>地域の循環をつくる。</h1>
+    <p class="lead">市に役立つことを先に置き、地域にある仕事と活動をつなぐ。一次・二次・三次産業を一つの地域課題から小さく結び、実際の効果と負担を確かめるための提案です。</p>
+    <div class="hero-note">
+      <strong>この提案の立場</strong>
+      <span>福井市の公式事業ではなく、片山佳光／TheYKHCによる独立提案です。市との連携、実証、資金、採択は決まっていません。</span>
+    </div>
+    <div class="actions">
+      <a class="button" href="#model">提案の要点を見る</a>
+      <a class="button secondary" href="#conditions">実施前の条件を見る</a>
+    </div>
+  </section>
 
+  <section class="section" id="purpose" aria-labelledby="purpose-title">
+    <div class="section-head">
+      <div class="eyebrow">Why Fukui, Why Now</div>
+      <h2 id="purpose-title">新しい仕組みを持ち込む前に、地域にある力をつなぐ。</h2>
+      <p>福井市には地域別のまちづくり方針や、地場産農産物・食育に関わる活動があります。既存の計画や担い手を尊重し、重複する組織や仕組みを増やさず、現場が必要とするつながりを探ります。</p>
+    </div>
+    <div class="context-grid">
+      <article class="card">
+        <div class="num">01 · 地域ごとの視点</div>
+        <h3>13地域のまちづくり方針</h3>
+        <p>福井市の都市計画マスタープランは、地域の特性に沿った地域別方針を示しています。提案する場所や課題は、地域の意向を聞いてから選びます。</p>
+      </article>
+      <article class="card">
+        <div class="num">02 · すでにある活動</div>
+        <h3>地産地消と食育の連携</h3>
+        <p>市の連絡会は、地場産農産物の利用促進や農業体験、食育に取り組んでいます。まず既存の活動で届いている価値と、まだ困っている点を伺います。</p>
+      </article>
+      <article class="card">
+        <div class="num">03 · 地域の事業者</div>
+        <h3>生産から加工・販売へ</h3>
+        <p>市には農林水産加工食品を認定・PRする「ふくいの恵み」の取り組みもあります。新しい流通や商品を決めつけず、現場の需要と条件を確認します。</p>
+      </article>
+    </div>
+  </section>
 
-<section aria-labelledby="blog-heading">
-<h2 id="blog-heading">ブログ</h2>
-<a class="blog-card" href="https://theykhc.blogspot.com/">
-<span class="blog-kicker">TheYKHC BLOG</span>
-<h3>TheYKHCのブログ</h3>
-<p>問いから生まれた構想、研究の歩み、日々の学びを読む。</p>
-<span class="blog-address">theykhc.blogspot.com</span>
-<span class="blog-action">ブログを読む</span>
-</a>
-<p class="blog-note">TheYKHCは引き続き休眠・保存状態です。ブログへのご案内は、営業・販売や新規案件の受付再開を意味しません。</p>
-</section>
+  <section class="section" id="model" aria-labelledby="model-title">
+    <div class="section-head">
+      <div class="eyebrow">One Place · One Need · One Loop</div>
+      <h2 id="model-title">一地域・一課題・一つの仕事の流れから。</h2>
+      <p>大きな都市構想を一度に実現するのではなく、関係者が合意できる範囲の流れを一つ選びます。次の三段階は検討の枠組みであり、参加団体や実施内容が決定したものではありません。</p>
+    </div>
+    <div class="flow-grid">
+      <article class="card flow-card">
+        <div class="num">01 · PRIMARY</div>
+        <h3>地域でつくる</h3>
+        <p>農林水産、地域資源、担い手の現状と、季節・供給量・作業負担を確認する。</p>
+        <div class="flow-caption">生産・採取・資源</div>
+      </article>
+      <article class="card flow-card">
+        <div class="num">02 · SECONDARY</div>
+        <h3>使える形にする</h3>
+        <p>加工・製造・修理など、既存事業者が担える工程と、品質・衛生・採算を調べる。</p>
+        <div class="flow-caption">加工・製造・整備</div>
+      </article>
+      <article class="card flow-card">
+        <div class="num">03 · TERTIARY</div>
+        <h3>必要な人へ届ける</h3>
+        <p>小売、飲食、学校や地域の活動など、利用者の需要と既存手続きに合わせて考える。</p>
+        <div class="flow-caption">販売・提供・学び</div>
+      </article>
+    </div>
+    <div class="callout"><strong>大切にすること：</strong>食品残さの再利用など、循環に見える施策も、衛生・費用・担い手・制度を確認するまでは実施前提にしません。各工程が円で適正に取引されることを基本にします。</div>
+  </section>
 
-<section>
-<h2>到達点と現在の方針</h2><p><strong>TheYKHCは実商品開発に至ったが、同時に休眠状態に入った。</strong></p><p>これは成果の消滅や事業の放棄ではなく、商品化された設計、研究過程、反証・校正記録および将来の事業可能性を、無理な営業や不十分な検証によって損なわないための保存判断です。</p>
-<p>公開済みのDOI、GitHubの履歴、研究文書および検証記録は、将来の再開、再検証または適切な承継に備えて保持します。</p>
-<p>ここでいう実商品開発への到達は、販売実績、臨床的有効性、第三者認証または収益性が確立したことを意味しません。未検証の研究内容を、実証済みの治療法、投資商品または確定した事業価値として提示しません。</p>
-</section>
+  <section class="section" id="process" aria-labelledby="process-title">
+    <div class="section-head">
+      <div class="eyebrow">A Careful First Step</div>
+      <h2 id="process-title">聞く、測る、試す、続けるか決める。</h2>
+      <p>実験のために市を利用するのではありません。地域の課題と参加者の意思を起点に、無理なく確かめられる手順を提案します。</p>
+    </div>
+    <div class="steps">
+      <article class="step">
+        <div><h3>課題と参加意思を確認する</h3><p>市や地域の関係者が優先する課題を聞き、誰が何を望んでいるか整理します。場所・参加者・商品を先に決めません。</p></div>
+      </article>
+      <article class="step">
+        <div><h3>現状と負担を見える形にする</h3><p>物の流れ、移動、費用、作業量、利用者への届き方を確認します。個人情報は集めず、必要なデータは目的と管理方法を先に合意します。</p></div>
+      </article>
+      <article class="step">
+        <div><h3>責任と費用を決めてから小さく試す</h3><p>実施主体、役割、衛生・安全、保険、期間、予算を明確にし、必要な同意と手続きが整った場合だけ試行します。</p></div>
+      </article>
+      <article class="step">
+        <div><h3>結果を見て、継続・修正・終了を選ぶ</h3><p>地域への便益と現場負担の両方を振り返り、関係者が続けるか判断します。効果が確認できなければ、修正または終了します。</p></div>
+      </article>
+    </div>
+  </section>
 
-<section>
-<h2>知的財産と公開情報</h2>
-<div class="note">休眠は、著作権、発明、営業秘密その他の権利を放棄するものではありません。公開資料の利用条件は各資料に記載されたライセンスに従います。未出願の発明候補、非公開の技術情報、認証情報および個人情報は引き続き保護します。</div>
-</section>
+  <section class="section" aria-labelledby="measure-title">
+    <div class="section-head">
+      <div class="eyebrow">How to Learn</div>
+      <h2 id="measure-title">成果を、地域にとっての価値で測る。</h2>
+      <p>数字の目標や経済効果は、現状と参加者の合意を確認してから設定します。今の段階で成果や収益を約束しません。</p>
+    </div>
+    <div class="measure-grid">
+      <article class="card"><h3>地域の経済</h3><p>地域内での取引、地場産品の取扱量、参加事業者への売上寄与を、同意を得た範囲で確認。</p></article>
+      <article class="card"><h3>暮らしへの届き方</h3><p>利用者の利便性、価格や入手しやすさ、参加しにくい人がいないかを確認。</p></article>
+      <article class="card"><h3>環境と移動</h3><p>運搬距離、廃棄量など、データを得られる項目に絞って変化を測定。</p></article>
+      <article class="card"><h3>担い手と運営負担</h3><p>作業時間、調整の手間、運営費、責任の偏りを記録し、無理のない継続性を検討。</p></article>
+    </div>
+  </section>
 
-<section>
-<h2>再開・承継について</h2>
-<p>活動の再開、共同研究、技術評価、事業承継または資産譲渡は、資金、専門人材、検証体制、秘密保持および責任範囲が整った場合に、改めて判断します。</p>
-<p>重要な更新がある場合は、この公式サイトまたは<a href="https://github.com/keihikaru0001/theykhc">公開GitHub記録</a>で告知します。</p>
-</section>
+  <section class="section" aria-labelledby="hikari-title">
+    <div class="note-panel">
+      <div class="eyebrow">Optional · Not Yet Implemented</div>
+      <h2 id="hikari-title">光貨は、必要性と合意を確かめてから。</h2>
+      <p>光貨は、地域活動への参加や貢献を記録するTheYKHCの構想です。導入が決まった制度ではなく、最初の試行にも必須ではありません。</p>
+      <p>検討する場合も参加は任意とし、円での賃金・売買・公的給付の代わりにしません。換金や譲渡を前提にせず、個人情報、運用責任、制度上の扱いを確認し、地域が必要と判断した場合に限って設計します。</p>
+    </div>
+  </section>
 
-<footer>最終更新：2026年11月23日<br>TheYKHC　創設・研究責任　片山佳光</footer>
+  <section class="section" aria-labelledby="ideas-title">
+    <div class="section-head">
+      <div class="eyebrow">Gandhara · 748 Ideas</div>
+      <h2 id="ideas-title">大きな構想は、地域に役立つ一歩から。</h2>
+      <p>「ガンダーラ都市」は、産業と暮らしの循環を考えるための設計構想です。福井市の計画や実情を置き換えるものではありません。748案も、市に検証を求めるためのリストではありません。</p>
+      <p>まず地域の便益を確かめます。その過程で得た学びを、個人情報と権利に配慮し、許可を得た範囲で他の案の改善に生かします。748案への反映は、福井市への貢献に続く段階です。</p>
+    </div>
+  </section>
+
+  <section class="section" id="conditions" aria-labelledby="conditions-title">
+    <div class="note-panel">
+      <div class="eyebrow">Current Status</div>
+      <h2 id="conditions-title">いまは公開提案の段階です。</h2>
+      <p>このページの公開を、休眠表示から「福井市への提案を公開し、検討を始める段階」への切り替えとします。TheYKHCの全事業、販売、受託業務、法人運営を再開したという意味ではありません。</p>
+      <div class="truth-grid">
+        <div class="truth"><strong>福井市との関係</strong>市との連携・協議・採択・承認は決まっていません。市の公式ページではありません。</div>
+        <div class="truth"><strong>実施体制</strong>実施場所、参加団体、責任者、期間、費用、保険、資金は未確定です。</div>
+        <div class="truth"><strong>実績・効果</strong>実証や成果はまだありません。経済効果、収益、実現可能性を保証しません。</div>
+        <div class="truth"><strong>光貨・748案</strong>光貨は未導入です。福井市の取り組みを748案の検証に利用しません。</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="sources-title">
+    <div class="section-head">
+      <div class="eyebrow">Public Sources</div>
+      <h2 id="sources-title">福井市の公開情報</h2>
+      <p>提案の背景として参照した市の情報です。各ページの内容を確認し、地域の実情に合わせて提案を更新します。</p>
+    </div>
+    <ul class="refs">
+      <li><a href="https://www.city.fukui.lg.jp/sisei/tkeikaku/tkeikaku/p003317.html" target="_blank" rel="noopener">福井市都市計画マスタープラン</a></li>
+      <li><a href="https://www.city.fukui.lg.jp/sigoto/nourin/syokuiku/p012828.html" target="_blank" rel="noopener">ふくいを食べよう！地産地消連絡会</a></li>
+      <li><a href="https://www.city.fukui.lg.jp/sigoto/syoukou/renkei/kakouhinninteijigyou.html" target="_blank" rel="noopener">「ふくいの恵み」認定商品</a></li>
+    </ul>
+  </section>
 </main>
+<footer>
+  <div class="foot-row">
+    <span>TheYKHC · 片山佳光 · 福井</span>
+    <span>最終更新：2026年11月27日</span>
+    <span><a href="https://theykhc.blogspot.com/">構想と歩みを綴るブログ</a> · <a href="https://github.com/keihikaru0001/theykhc">公開記録</a></span>
+  </div>
+</footer>
+</div>
 </body>
 </html>
